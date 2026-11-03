@@ -81,6 +81,9 @@ def credits(P: Path) -> list[str]:
         return []
     out = []
     for t in json.loads(mj.read_text())["tracks"]:
-        out.append(f"Music: “{t.get('title', Path(t['file']).stem)}” by {t.get('artist', 'unknown')} "
-                   f"({t.get('license', 'licence?')}) {t.get('source', '')}".strip())
+        line = (f"Music: “{t.get('title', Path(t['file']).stem)}” by {t.get('artist', 'unknown')}, "
+                f"licensed under {t.get('license', 'licence?')} ({t.get('license_url', '')}). Source: {t.get('source', '')}")
+        if not t.get("licence_verified", True):
+            line = "⚠ UNVERIFIED LICENCE — " + line
+        out.append(line)
     return out

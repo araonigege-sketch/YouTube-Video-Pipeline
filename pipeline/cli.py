@@ -212,7 +212,10 @@ def cmd_episode_render(a):
     out = P / "out" / (f"{P.name}_0-{int(end)}s.mp4" if a.until else f"{P.name}.mp4")
     out.parent.mkdir(exist_ok=True)
     hf_render(P / "build", out, quality=a.quality)
-    print(f"rendered {out}")
+    from .mix import credits
+    cr = credits(P)
+    (out.parent / "credits.txt").write_text("\n".join(cr) + "\n")
+    print(f"rendered {out}\n" + "\n".join(cr))
 
 
 def main(argv=None):
