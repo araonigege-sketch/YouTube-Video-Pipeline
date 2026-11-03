@@ -1,0 +1,19 @@
+title: "The Silk Road Didn’t Trade Silk. It Traded Something Else"
+channel: joels-notebook
+youtube: https://youtu.be/-Ad9sfLDGGA
+shots: shots.yaml
+end: {anchor: "in the next one", after: 820}
+
+# Voice: Milly's three recordings, joined with 0.6 s gaps (words.json already aligned to this).
+voice:
+  - {file: vo/milly.mp3, text: vo/part1.txt}
+  - {file: vo/milly2.mp3, text: vo/part2.txt}
+  - {file: vo/milly3.mp3, text: vo/part3.txt}
+
+# Label strips that span several shots in the cold open.
+strips:
+  - {text: "c. 800 CE  ·  Central Asia", at: "year 800", until_shot: 0, tail: 0.2}
+  - {text: "Silk?", at: "says silk", until_shot: 6, top: 820, size: 84}
+  - {text: "never saw China", at: "never saw China", until_shot: 7, top: 820}
+  - {text: "“a roll of expensive cloth”", at: "a roll", lead: 0.2, until_shot: 9, tail: 0.2, top: 820, size: 58}
+  - {text: "China  →  Rome", at: "China sold", until_shot: 13}

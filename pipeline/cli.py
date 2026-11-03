@@ -166,6 +166,55 @@ def cmd_render(a):
     render(cfg, draft=a.draft)
 
 
+# ---------- channel episodes (HyperFrames composers) ----------
+
+def _episode(name: str) -> Path:
+    p = Path(name)
+    if not (p / "episode.yaml").exists():
+        p = PROJECTS / name
+    if not (p / "episode.yaml").exists():
+        raise PipelineError(f"episode not found: {name} (needs episode.yaml)")
+    return p.resolve()
+
+
+def _composer(P: Path):
+    import importlib
+    import yaml
+    ep = yaml.safe_load((P / "episode.yaml").read_text())
+    mod = importlib.import_module(f"channels.{ep['channel'].replace('-', '_')}.compose")
+    return ep, mod
+
+
+def cmd_compose(a):
+    P = _episode(a.project)
+    ep, mod = _composer(P)
+    mod.build(P, P / "build", until=a.until, check_only=a.check)
+
+
+def cmd_align(a):
+    from .align import align_episode
+    P = _episode(a.project)
+    ep, mod = _composer(P)
+    if (P / "words.json").exists() and not a.force:
+        raise PipelineError("words.json already exists — pass --force to re-align")
+    align_episode(P, ep["voice"], mod.load_channel()["audio"].get("part_gap", 0.6), ep.get("lexicon"))
+
+
+def cmd_episode_render(a):
+    from .hf import render as hf_render
+    from .mix import mix
+    P = _episode(a.project)
+    ep, mod = _composer(P)
+    index = mod.build(P, P / "build", until=a.until)
+    import re
+    end = float(re.search(r'data-composition-id="main" data-start="0" data-duration="([\d.]+)"', index.read_text()).group(1))
+    mix(P, ep["voice"], mod.load_channel()["audio"], end, P / "build/assets/audio.wav")
+    out = P / "out" / (f"{P.name}_0-{int(end)}s.mp4" if a.until else f"{P.name}.mp4")
+    out.parent.mkdir(exist_ok=True)
+    hf_render(P / "build", out, quality=a.quality)
+    print(f"rendered {out}")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pipeline", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -180,6 +229,15 @@ def main(argv=None):
     p = sp.add_parser("local"); p.add_argument("project"); p.set_defaults(fn=cmd_local)
     p = sp.add_parser("render"); p.add_argument("project"); p.add_argument("--draft", action="store_true")
     p.set_defaults(fn=cmd_render)
+    p = sp.add_parser("compose", help="channel episode: write build/index.html (or --check the shot list)")
+    p.add_argument("project"); p.add_argument("--check", action="store_true"); p.add_argument("--until", type=float)
+    p.set_defaults(fn=cmd_compose)
+    p = sp.add_parser("align", help="channel episode: word-align the voice recordings to the script")
+    p.add_argument("project"); p.add_argument("--force", action="store_true"); p.set_defaults(fn=cmd_align)
+    p = sp.add_parser("episode", help="channel episode: compose + audio mix + HyperFrames render")
+    p.add_argument("project"); p.add_argument("--until", type=float, help="render only the first N seconds")
+    p.add_argument("--quality", default="looks", choices=["draft", "looks", "delivery", "standard", "high"])
+    p.set_defaults(fn=cmd_episode_render)
     a = ap.parse_args(argv)
     try:
         a.fn(a)

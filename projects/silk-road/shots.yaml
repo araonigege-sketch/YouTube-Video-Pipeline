@@ -1,0 +1,775 @@
+# Silk Road shot list (converted from silk_full.py SHOTS). One entry per shot; see channels/joels_notebook/compose.py for fields.
+- at: Picture
+  type: plate
+  img: s1.jpg
+  move: [1, 1.08, 0, -40, 0, 0]
+  fx: dust
+  video: v_s1.mp4
+- at: He's got a camel
+  type: plate
+  img: s2.jpg
+  move: [1.12, 1.04, 60, -60, 0, 0]
+  fx: dust
+- at: and he's spent
+  type: custom
+  page: page_map
+- at: lethal terrain
+  type: plate
+  img: s4.jpg
+  move: [1.06, 1.16, 0, 0, 0, -20]
+  fx: sand
+- at: Now ask yourself
+  type: plate
+  img: s5.jpg
+  move: [1.02, 1.16, 0, -30, 0, 20]
+  fx: dust
+- at: What's on that camel
+  type: plate
+  img: s6.jpg
+  move: [1.15, 1.05, 0, 0, -20, 20]
+- at: Almost everyone says
+  type: plate
+  img: s7.jpg
+  move: [1, 1.1, -30, 30, 0, 0]
+- at: But here's the thing
+  type: plate
+  img: s8.jpg
+  move: [1.1, 1, -70, 70, 0, 0]
+  fx: dust
+- at: never met the person
+  type: custom
+  page: page_chain
+- at: And what he was really
+  type: plate
+  img: s10.jpg
+  move: [1, 1.1, 0, 0, 0, -10]
+  fx: embers
+  video: v_s10.mp4
+- at: So the story we all
+  type: custom
+  page: page_list
+- at: The Silk Road was
+  type: plate
+  img: s12.jpg
+  move: [1, 1.08, 0, -60, 0, 0]
+  fx: dust
+  video: v_s12.mp4
+- at: Silk going one way
+  type: custom
+  page: page_eastwest
+- at: China sold silk
+  type: plate
+  img: s15.jpg
+  move: [1.06, 1, 0, 0, 0, 0]
+- at: everybody got rich
+  type: plate
+  img: s16.jpg
+  move: [1, 1.12, 0, 0, 0, -15]
+  fx: embers
+- at: And look, on the surface
+  type: plate
+  img: s7.jpg
+  move: R
+- at: Spices did move
+  type: plate
+  img: n01.jpg
+  move: inR
+  fx: dust
+- at: But as the actual explanation
+  type: notes
+  title: But how did it physically work?
+  tsize: 88
+  pops:
+  - {html: '<div class="hw" style="font-size:260px;color:{red}">?</div>', x: 860, y: 420, a: physically}
+- at: Because here's the problem
+  type: plate
+  img: s12.jpg
+  move: out
+  fx: dust
+- at: Nobody actually travelled
+  type: notes
+  title: Who travelled the whole road?
+  items:
+  - {t: Nobody., x: 700, y: 430, s: 170, c: red, a: 0.35}
+  - {t: (not the whole thing), x: 720, y: 650, s: 64, a: Not the whole}
+- at: There was no merchant
+  type: plate
+  img: n03.jpg
+  move: inL
+  label: Chang’an, China
+- at: rode all the way
+  type: plate
+  img: n04.jpg
+  move: in
+  label: the Mediterranean
+- at: That journey was thousands
+  type: map
+  title: Thousands of miles
+  nodes:
+  - {n: the Mediterranean, x: 330, y: 560, a: 0.1, dx: -80}
+  - {n: Chang’an, x: 1640, y: 560, a: 0.9, dx: -80}
+  items:
+  - {t: '4,000+ miles', x: 820, y: 600, s: 84, a: 1.2}
+- at: deserts that kill you
+  type: plate
+  img: s4.jpg
+  move: inUp
+  fx: sand
+- at: mountains that kill you
+  type: plate
+  img: n06.jpg
+  move: R
+  label: the Pamirs
+- at: and bandit territory
+  type: plate
+  img: n07.jpg
+  move: [1.5, 1.58, 400, 420, 200, 215]
+- at: No single person did it
+  type: plate
+  img: n11.jpg
+  move: out
+  fx: dust
+- at: So how did a bolt
+  type: plate
+  img: s15.jpg
+  move: in
+- at: It got passed
+  type: plate
+  img: n09.jpg
+  move: in
+  video: v_n09.mp4
+- at: who carried it a few
+  type: plate
+  img: n10.jpg
+  move: inR
+  fx: dust
+- at: That trader sold it
+  type: plate
+  img: n13.jpg
+  move: L
+  fx: dust
+- at: Imagine a bucket brigade
+  type: relay
+  title: A bucket brigade
+  tokens:
+  - {t: silk, a: 0.9, dur: 6.5}
+  labels: [Rome, China]
+  items:
+  - {t: the silk moved…, x: 600, y: 860, s: 64, c: red, a: The silk moved}
+  - {t: the people didn’t, x: 1060, y: 860, s: 64, a: The people mostly}
+  stretches: The people mostly
+- at: Each one only knew
+  type: plate
+  img: n58.jpg
+  move: in
+  fx: dust
+- at: And once you see
+  type: plate
+  img: n11.jpg
+  move: inL
+- at: Because if goods are
+  type: relay
+  title: Thousands of strangers
+  tokens:
+  - {t: silk, a: 0.3, dur: 6}
+  labels: [west, east]
+  items:
+  - {t: who never meet, x: 1150, y: 290, s: 64, c: red, a: who never meet}
+  - {t: the relay itself!, x: 700, y: 860, s: 72, c: red, a: relay itself}
+- at: What else got passed
+  type: plate
+  img: s10.jpg
+  move: in
+  fx: embers
+  video: v_s10.mp4
+- at: So to understand what
+  type: plate
+  img: n16.jpg
+  move: inR
+  fx: dust
+- at: Because the Silk Road wasn't
+  type: plate
+  img: n11.jpg
+  move: up
+  fx: dust
+- at: It was a chain of oasis
+  type: map
+  title: The Silk Road
+  route_at: chain of oasis
+  nodes:
+  - {n: Merv, x: 560, y: 600, a: Merv, dx: -40}
+  - {n: Bukhara, x: 830, y: 500, a: Bukhara, dx: -70}
+  - {n: Samarkand, x: 1070, y: 430, a: Samarkand, dx: -60, dy: -110}
+  - {n: Kashgar, x: 1460, y: 520, a: Kashgar, dx: -60}
+  items:
+  - {t: a chain of oasis cities, x: 700, y: 760, s: 72, a: chain of oasis, d: 1}
+- at: And these weren't just
+  type: plate
+  img: n14.jpg
+  move: inUp
+  label: Samarkand, c. 800
+- at: These were the whole engine
+  type: plate
+  img: n15.jpg
+  move: in
+  fx: dust
+- at: Think about what one
+  type: plate
+  img: s8.jpg
+  move: inR
+  fx: dust
+- at: for purely geographic
+  type: converge
+  title: Where the routes converge
+  labels: [routes have to converge, true]
+  center: water
+- at: Which means every few weeks
+  type: plate
+  img: n16.jpg
+  move: L
+- at: A man from Persia
+  type: plate
+  img: n17.jpg
+  move: in
+- at: A man from India
+  type: plate
+  img: n18.jpg
+  move: in
+- at: A man from China
+  type: plate
+  img: n19.jpg
+  move: in
+- at: A man from the steppe
+  type: plate
+  img: n20.jpg
+  move: in
+- at: All of them stuck
+  type: plate
+  img: n21.jpg
+  move: inR
+  fx: embers
+- at: waiting out the weather
+  type: plate
+  img: n22.jpg
+  move: L
+  fx: sand
+- at: Now here's the thing nobody
+  type: notes
+  title: Not on the shopping list
+  items:
+  - {t: silk · spices · gold · glass, x: 330, y: 360, s: 72, a: 0.4, op: 0.8}
+  - {t: IDEAS, x: 760, y: 520, s: 200, c: red, a: They carried ideas}
+  strikes:
+  - {x: 320, y: 410, w: 780, a: haggle}
+- at: A Persian trader mentions
+  type: plate
+  img: n23.jpg
+  move: in
+  fx: embers
+- at: An Indian trader explains
+  type: plate
+  img: n24.jpg
+  move: [1.3, 1.38, 250, 270, 110, 130]
+- at: for nothing, for zero
+  type: notes
+  paths:
+  - {d: 'M960,300 C1110,300 1130,700 960,700 C790,700 810,300 960,300', a: 0.05, c: red, w: 16, len: 1400, dur: 0.7}
+  items:
+  - {t: shunya = “empty”, x: 700, y: 760, s: 72, a: 0.5}
+- at: A Chinese trader describes
+  type: plate
+  img: n25.jpg
+  move: inR
+- at: A monk travelling
+  type: plate
+  img: n26.jpg
+  move: in
+  fx: embers
+  video: v_n26.mp4
+- at: None of these things
+  type: plate
+  img: s6.jpg
+  move: in
+- at: But every single one
+  type: relay
+  title: Passed hand to hand
+  tokens:
+  - {t: prayer, a: 0.4, dur: 7, y: 300}
+  - {t: '0', a: 1.4, dur: 7, y: 380, c: ink}
+  - {t: paper, a: 2.4, dur: 7, y: 300}
+  - {t: the Buddha, a: 3.4, dur: 7, y: 380, c: ink}
+  items:
+  - {t: 'town to town, mind to mind', x: 560, y: 860, s: 72, c: red, a: 'town to town, mind'}
+- at: Silk is a luxury
+  type: plate
+  img: s7.jpg
+  move: inL
+- at: Now compare that
+  type: notes
+  title: Silk vs. everything else
+  items:
+  - {t: silk, x: 380, y: 420, s: 110, a: 0.3}
+  - {t: = a fabric, x: 330, y: 560, s: 64, a: 0.7, op: 0.8}
+  - {t: vs., x: 860, y: 450, s: 90, c: red, a: 1}
+  - {t: '?', x: 1300, y: 360, s: 240, c: red, a: 1.3}
+- at: Paper, the technology
+  type: plate
+  img: n29.jpg
+  move: inL
+  label: Baghdad, c. 800
+- at: and eventually reached Europe
+  type: map
+  title: How paper travelled
+  nodes:
+  - {n: China, x: 1650, y: 560, a: 0.1, date: c. 100 CE}
+  - {n: Samarkand, x: 1180, y: 440, a: 0.6, date: c. 750}
+  - {n: Baghdad, x: 880, y: 600, a: 1.1, date: '794'}
+  - {n: Spain, x: 320, y: 560, a: 1.6, date: c. 1100s}
+  - {n: 'Europe: printing press', x: 600, y: 440, a: 2.2, date: c. 1450, dx: -150, dy: -120}
+- at: it made the printing
+  type: plate
+  img: n28.jpg
+  move: inR
+  label: Europe, c. 1450
+- at: The concept of zero
+  type: plate
+  img: n30.jpg
+  move: inL
+  label: Baghdad’s House of Wisdom
+- at: Gunpowder moved west
+  type: plate
+  img: n31.jpg
+  move: in
+  fx: embers
+  video: v_n31.mp4
+- at: Whole religions moved
+  type: plate
+  img: n32.jpg
+  move: L
+- at: carried by monks
+  type: plate
+  img: n26.jpg
+  move: R
+  fx: embers
+- at: Later, Islam spread
+  type: plate
+  img: n33.jpg
+  move: inUp
+  fx: dust
+- at: So picture the real cargo
+  type: plate
+  img: s6.jpg
+  move: inUp
+- at: Not bolts of cloth
+  type: notes
+  title: The real cargo
+  svg_static: <rect x="300" y="380" width="520" height="340" rx="60" fill="#E9D9B8" stroke="{ink}" stroke-width="7"/><path d="M300,550 L820,550
+    M560,380 L560,720" stroke="{ink}" stroke-width="6" stroke-dasharray="18 12"/><path d="M820,450 L1000,400 M820,520 L1000,540 M820,610 L1000,680
+    M820,680 L1000,820" stroke="{ink}" stroke-width="4" opacity=".55"/>
+  items:
+  - {t: bolts of cloth, x: 1020, y: 260, s: 60, a: 0.05, op: 0.75}
+  - {t: letters & scripts, x: 1020, y: 360, s: 64, a: alphabet}
+  - {t: 0 1 2 3 …, x: 1020, y: 500, s: 72, c: red, a: The math}
+  - {t: paper, x: 1020, y: 640, s: 72, a: The paper this}
+  - {t: faith, x: 1020, y: 780, s: 72, c: red, a: The faith}
+  strikes:
+  - {x: 1010, y: 300, w: 380, a: 0.7}
+- at: All of it moving quietly
+  type: plate
+  img: n35.jpg
+  move: in
+  fx: dust
+- at: hidden inside what looked
+  type: plate
+  img: s2.jpg
+  move: L
+- at: The silk, it turns out
+  type: plate
+  img: s5.jpg
+  move: in
+  fx: dust
+- at: It was the thing valuable
+  type: plate
+  img: n09.jpg
+  move: inL
+- at: But the desert crossing
+  type: plate
+  img: n36.jpg
+  move: in
+  video: v_n36.mp4
+- at: So now the question
+  type: notes
+  title: So what was it FOR?
+  items:
+  - {t: the most important things…, x: 330, y: 400, s: 72, a: the most important}
+  - {t: …were the things nobody was trading, x: 420, y: 520, s: 72, c: red, a: things nobody}
+- at: What was really being exchanged
+  type: plate
+  img: n37.jpg
+  move: in
+  fx: embers
+- at: And here's where it turns
+  type: plate
+  img: n38.jpg
+  move: inR
+  fx: embers
+- at: We love to imagine
+  type: plate
+  img: n39.jpg
+  move: in
+  fx: embers
+- at: humanity coming together
+  type: plate
+  img: n13.jpg
+  move: inUp
+  fx: dust
+- at: And there's a sliver
+  type: notes
+  title: The warm story
+  items:
+  - {t: peaceful exchange, x: 330, y: 360, s: 72, a: 0.2}
+  - {t: sharing wisdom, x: 330, y: 460, s: 72, a: 0.5}
+  - {t: humanity united, x: 330, y: 560, s: 72, a: 0.8}
+  - {t: → money., x: 1050, y: 470, s: 130, c: red, a: money in it}
+  strikes:
+  - {x: 320, y: 410, w: 520, a: not why}
+  - {x: 320, y: 510, w: 440, a: '>not why'}
+  - {x: 320, y: 610, w: 480, a: crossed those}
+- at: Cold, hard profit
+  type: plate
+  img: n40.jpg
+  move: in
+- at: The exchange of ideas
+  type: plate
+  img: s16.jpg
+  move: out
+  fx: embers
+- at: none of it was the goal
+  type: notes
+  title: The goal vs. the result
+  items:
+  - {t: 'the goal: profit', x: 330, y: 380, s: 80, a: 0.1}
+  - {t: 'the byproduct: everything else', x: 330, y: 500, s: 80, c: red, a: 0.6, d: 0.8}
+  - {t: an accident of greed, x: 700, y: 680, s: 88, a: An accident, rot: -3}
+- at: And honestly, that's the more
+  type: plate
+  img: n55.jpg
+  move: inR
+- at: the cross-pollination
+  type: plate
+  img: n16.jpg
+  move: inUp
+  fx: dust
+- at: happened not because anyone
+  type: plate
+  img: n21.jpg
+  move: L
+  fx: embers
+- at: Proximity did the work
+  type: notes
+  title: Proximity did the work.
+  tsize: 110
+  paths:
+  - {d: 'M880,490 a110,110 0 1,1 -1,0', a: 0.5, w: 7, len: 800}
+  - {d: 'M1040,490 a110,110 0 1,1 -1,0', a: 0.8, c: red, w: 7, len: 800}
+- at: You put a Buddhist
+  type: plate
+  img: n42.jpg
+  move: in
+  fx: embers
+  video: v_n42.mp4
+- at: and ideas leak
+  type: notes
+  title: …and ideas leak
+  paths:
+  - {d: 'M850,320 a150,150 0 1,1 -1,0', a: 0.1, c: ink, w: 6, len: 1200, dur: 0.5}
+  - {d: 'M1070,320 a150,150 0 1,1 -1,0', a: 0.25, c: red, w: 6, len: 1200, dur: 0.5}
+  - {d: 'M850,530 a150,150 0 1,1 -1,0', a: 0.4, c: ink, w: 6, len: 1200, dur: 0.5}
+  - {d: 'M1070,530 a150,150 0 1,1 -1,0', a: 0.5499999999999999, c: red, w: 6, len: 1200, dur: 0.5}
+  items:
+  - {t: Buddhist, x: 520, y: 330, s: 60, a: 0.2}
+  - {t: Zoroastrian, x: 1180, y: 330, s: 60, a: 0.35}
+  - {t: Muslim, x: 560, y: 790, s: 60, a: 0.5}
+  - {t: Confucian, x: 1200, y: 790, s: 60, a: 0.65}
+  - {t: '?!', x: 920, y: 530, s: 100, c: red, a: 1}
+- at: Belief is contagious
+  type: plate
+  img: n42.jpg
+  move: inL
+  fx: embers
+- at: But proximity cuts both ways
+  type: plate
+  img: n22.jpg
+  move: R
+  fx: sand
+- at: The same chain that carried
+  type: notes
+  title: Proximity cuts both ways
+  items:
+  - {t: paper ✓, x: 330, y: 380, s: 80, a: carried paper}
+  - {t: mathematics ✓, x: 330, y: 490, s: 80, a: mathematics}
+  - {t: …and the thing that would break it, x: 330, y: 640, s: 80, c: red, a: the thing that}
+- at: In the 1340s
+  type: plate
+  img: n44.jpg
+  move: inR
+  label: the 1340s
+- at: A disease
+  type: plate
+  img: n57.jpg
+  move: in
+- at: Fleas on the rats
+  type: plate
+  img: n45.jpg
+  move: in
+- at: the bacterium
+  type: notes
+  title: Yersinia pestis
+  items:
+  - {t: the bacterium behind the Black Death, x: 330, y: 300, s: 58, a: 0.4, op: 0.85}
+  - {t: rat, x: 360, y: 520, s: 110, a: 0.5}
+  - {t: flea, x: 820, y: 520, s: 110, a: 0.9}
+  - {t: people, x: 1270, y: 520, s: 110, c: red, a: 1.3}
+  paths:
+  - {d: 'M560,590 L760,590 M735,570 L760,590 L735,610', a: 0.7, len: 400, dur: 0.3}
+  - {d: 'M1030,590 L1230,590 M1205,570 L1230,590 L1205,610', a: 1.1, len: 400, dur: 0.3}
+- at: And think about why
+  type: plate
+  img: n57.jpg
+  move: L
+- at: The convergence of routes
+  type: converge
+  title: The same machine
+  labels: [0.3, false]
+  center: plague
+  col: red
+- at: Every feature that made
+  type: map
+  title: How it travelled
+  spread: true
+  color: red
+  nodes:
+  - {n: Issyk-Kul, x: 1500, y: 440, a: 0.3, date: '1338'}
+  - {n: Caffa, x: 1020, y: 370, a: 1.6, date: '1346'}
+  - {n: Constantinople, x: 900, y: 480, a: 2.6, date: '1347', dx: -150}
+  - {n: Alexandria, x: 940, y: 700, a: 3.4, date: '1347'}
+  - {n: Sicily, x: 650, y: 580, a: 4.2, date: '1347', dx: -90}
+  - {n: Paris, x: 500, y: 470, a: 5, date: '1348', dx: -70}
+  - {n: England, x: 360, y: 380, a: 5.8, date: '1348', dx: 40, dy: -30}
+  items:
+  - {t: 'an idea or an infection?', x: 1150, y: 780, s: 68, a: distinguish, rot: -2}
+- at: So the same roads
+  type: plate
+  img: n47.jpg
+  move: inUp
+  label: Europe, 1348
+- at: a third of everyone
+  type: notes
+  title: The cost
+  items:
+  - {t: ≈ 1 in 3 people in Europe, x: 330, y: 400, s: 96, c: red, a: 0.2}
+  - {t: + tens of millions across Asia, x: 330, y: 560, s: 76, a: tens of millions}
+  - {t: and the Middle East, x: 380, y: 660, s: 76, a: Middle East}
+- at: The Silk Road's greatest strength
+  type: notes
+  items:
+  - {t: greatest strength, x: 300, y: 260, s: 96, a: 0.3}
+  - {t: '=', x: 900, y: 390, s: 120, c: red, a: and its greatest}
+  - {t: greatest catastrophe, x: 900, y: 510, s: 96, a: catastrophe}
+  - {t: Connection., x: 520, y: 700, s: 170, c: red, a: Connection}
+- at: So let's go all the way
+  type: plate
+  img: s1.jpg
+  move: in
+  fx: dust
+  video: v_s1.mp4
+- at: What was the Silk Road really
+  type: plate
+  img: s10.jpg
+  move: inR
+  fx: embers
+- at: Not silk
+  type: notes
+  title: What it really moved
+  items:
+  - {t: silk, x: 380, y: 400, s: 120, a: 0.2}
+  - {t: = just the excuse, x: 700, y: 430, s: 84, c: red, a: just the excuse}
+  strikes:
+  - {x: 370, y: 470, w: 230, a: Silk was just}
+- at: What the Silk Road actually
+  type: plate
+  img: n49.jpg
+  move: in
+  video: v_n49.mp4
+- at: the far-flung corners
+  type: plate
+  img: n15.jpg
+  move: out
+- at: where something that entered
+  type: relay
+  title: One network
+  labels: [one end, the other]
+  tokens:
+  - {t: an idea, a: an idea, dur: 5, y: 260, dir: e, c: ink}
+  - {t: a technology, a: a technology, dur: 5, y: 340, dir: e, c: ink}
+  - {t: a faith, a: a faith, dur: 5, y: 260, dir: e, c: ink}
+  - {t: a disease, a: a disease, dur: 5, y: 340, dir: e}
+- at: It wasn't a road for goods
+  type: plate
+  img: n49.jpg
+  move: inR
+- at: information highway
+  type: notes
+  items:
+  - {t: the world’s first, x: 420, y: 330, s: 96, a: 0}
+  - {t: information highway, x: 420, y: 470, s: 140, c: red, a: 0.4}
+- at: the best of us
+  type: plate
+  img: n32.jpg
+  move: R
+- at: the worst of us
+  type: plate
+  img: n44.jpg
+  move: L
+- at: And honestly, that's the part
+  type: plate
+  img: n54.jpg
+  move: in
+  fx: dust
+- at: Because we think of this
+  type: plate
+  img: n14.jpg
+  move: L
+  fx: dust
+- at: But the Silk Road was just
+  type: notes
+  title: We never stopped building it
+  paths:
+  - {d: 'M250,600 L1700,600', a: 0.2, w: 7, len: 1500, dur: 0.8}
+  - {d: 'M330,575 L330,625', a: 0.4, w: 7, len: 60, dur: 0.2}
+  - {d: 'M750,575 L750,625', a: the printing press, w: 7, len: 60, dur: 0.2}
+  - {d: 'M1170,575 L1170,625', a: the telegraph, w: 7, len: 60, dur: 0.2}
+  - {d: 'M1590,575 L1590,625', a: the internet, w: 7, len: 60, dur: 0.2}
+  items:
+  - {t: Silk Road, x: 240, y: 470, s: 64, a: 0.5}
+  - {t: c. 100 BCE, x: 250, y: 650, s: 50, c: red, a: 0.7}
+  - {t: printing press, x: 620, y: 470, s: 64, a: the printing press}
+  - {t: c. 1450, x: 690, y: 650, s: 50, c: red, a: the printing press}
+  - {t: telegraph, x: 1070, y: 470, s: 64, a: the telegraph}
+  - {t: 1840s, x: 1120, y: 650, s: 50, c: red, a: the telegraph}
+  - {t: internet, x: 1500, y: 470, s: 64, a: the internet}
+  - {t: 1990s, x: 1540, y: 650, s: 50, c: red, a: the internet}
+- at: And every single time, we tell
+  type: plate
+  img: n50.jpg
+  move: inL
+- at: Trade. News.
+  type: notes
+  title: One specific, valuable thing
+  items:
+  - {t: trade, x: 380, y: 420, s: 100, a: 0}
+  - {t: news, x: 800, y: 420, s: 100, a: News}
+  - {t: cat videos, x: 1180, y: 420, s: 100, c: red, a: Cat}
+- at: And every single time, the truth
+  type: plate
+  img: n52.jpg
+  move: in
+- at: The thing we think we're
+  type: plate
+  img: n51.jpg
+  move: inUp
+- at: What actually moves is everything
+  type: notes
+  title: 'What actually moves:'
+  items:
+  - {t: EVERYTHING, x: 560, y: 470, s: 190, c: red, a: everything}
+  paths:
+  - {d: 'M1000,350 C1500,350 1520,720 1000,720 C470,720 450,350 1000,350', a: 0.9, c: ink, w: 6, len: 2400, dur: 0.6}
+- at: Ideas we didn't mean
+  type: plate
+  img: n23.jpg
+  move: R
+  fx: embers
+- at: Beliefs that reshape
+  type: plate
+  img: n33.jpg
+  move: L
+  fx: dust
+- at: And, eventually, something
+  type: plate
+  img: n45.jpg
+  move: out
+- at: riding the network
+  type: plate
+  img: n57.jpg
+  move: inUp
+- at: The merchant thought he was
+  type: plate
+  img: s5.jpg
+  move: inR
+  fx: dust
+- at: He was actually carrying
+  type: plate
+  img: n35.jpg
+  move: R
+  fx: dust
+- at: None of them did
+  type: plate
+  img: n13.jpg
+  move: R
+- at: they stitched humanity
+  type: plate
+  img: n55.jpg
+  move: L
+- at: with all the wonder
+  type: plate
+  img: n49.jpg
+  move: out
+- at: We've been doing the same
+  type: plate
+  img: n51.jpg
+  move: L
+- at: We just use faster camels
+  type: plate
+  img: n56.jpg
+  move: R
+  fx: dust
+- at: So that's the Silk Road
+  type: plate
+  img: n54.jpg
+  move: R
+  fx: dust
+- at: the first time our species
+  type: plate
+  img: n35.jpg
+  move: inL
+  fx: dust
+- at: that you don't get to choose
+  type: relay
+  title: Down the line
+  tokens:
+  - {t: the good, a: The good comes, dur: 4.5, y: 300, c: ink}
+  - {t: the bad, a: The bad comes, dur: 4.5, y: 380}
+  items:
+  - {t: the same road does both, x: 560, y: 860, s: 72, c: red, a: The same road does}
+- at: So let me hand it to you
+  type: notes
+  title: Which one reshaped the world most?
+  tsize: 84
+  svg_static: <rect x="240" y="380" width="330" height="250" rx="18" fill="none" stroke="{ink}" stroke-width="6"/><rect x="620" y="380" width="330"
+    height="250" rx="18" fill="none" stroke="{ink}" stroke-width="6"/><rect x="1000" y="380" width="330" height="250" rx="18" fill="none" stroke="{ink}"
+    stroke-width="6"/><rect x="1380" y="380" width="330" height="250" rx="18" fill="none" stroke="{ink}" stroke-width="6"/>
+  items:
+  - {t: paper, x: 310, y: 460, s: 84, a: 'the paper,'}
+  - {t: zero, x: 710, y: 460, s: 84, a: the zero}
+  - {t: the faiths, x: 1030, y: 460, s: 76, a: the faiths}
+  - {t: the plague, x: 1405, y: 460, s: 76, c: red, a: the plague}
+  - {t: ↓ tell me in the comments, x: 560, y: 720, s: 80, c: red, a: drop it}
+- at: If digging under
+  type: plate
+  img: n49.jpg
+  move: inL
+  label: Subscribe to Joel’s Notebook
+- at: I'll see you in the next
+  type: end
+

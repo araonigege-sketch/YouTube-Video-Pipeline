@@ -1,0 +1,56 @@
+# Joel's Notebook — illustrated motion comic (history).
+# Look: graphic-novel plates with slow camera moves + cream notebook pages with
+# Caveat handwriting, red emphasis, JN wax seal. Captions white with black outline.
+name: Joel's Notebook
+composer: joels_notebook
+
+palette:
+  ink: "#2A2733"
+  red: "#B3261E"
+  paper: "#F3E9D2"
+  cream: "#F6EBD9"
+
+timing:
+  crossfade: 0.45          # dissolve between shots
+  shot_lead: 0.12          # a shot starts this much before its anchor word
+  end_hold: 5.2            # seconds after the last line
+
+captions:
+  max_words: 5
+  max_chars: 32
+  font: Montserrat
+  size: 54
+
+# Retention rules checked by `compose --check` (warnings, not errors)
+retention:
+  min_shot: 1.4
+  max_plate: 8.0           # a still (even with camera move) longer than this needs a cut
+  max_page: 11.0           # a notebook/map/relay page; past this, add a beat or split
+  page_beat_gap: 3.0       # on long pages something new should appear at least this often
+  reuse_gap: 90.0          # same illustration must not come back within this many seconds
+
+images:
+  model: byte-plus-seedream-4-5
+  mode: image2image
+  resolution: 2K
+  aspect: "16:9"
+  style_suffix: >-
+    Western graphic novel illustration, clean confident black ink outlines, cel shading
+    with hard shadow tones, {palette}. No text, no lettering, no watermark.
+  style_reference: WFcHW8sxFntx3OEOcNT6     # caravan panorama (OpenArt id)
+  character_reference: ITS5bK5aYABuVKshrBxO # merchant portrait
+  anachronisms: >-
+    blue tiled domes before 1400, Western wagons, modern digits, glass lanterns, logos
+
+animation:
+  model: pixverseV6
+  mode: image2video
+  resolution: 720p
+  seconds: 5
+  usable_seconds: 3.5      # people warp after ~3-4 s; hold the last frame after that
+
+audio:
+  voice_lufs: -16
+  music_lufs: -20
+  music_gain: 0.42         # ≈ 11 dB under the voice before ducking
+  part_gap: 0.6
