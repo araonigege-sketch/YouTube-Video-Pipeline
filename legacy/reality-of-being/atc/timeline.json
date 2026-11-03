@@ -1,0 +1,1266 @@
+{
+ "duration": 199.934,
+ "shots": [
+  {
+   "beat": 0,
+   "clip": "b00_0",
+   "start": 0.0,
+   "dur": 2.32,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 1,
+   "clip": "v:v01_radarroom",
+   "start": 2.32,
+   "dur": 4.14,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 2,
+   "clip": "a:a_headset",
+   "start": 6.46,
+   "dur": 3.23,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 3,
+   "clip": "b03_1",
+   "start": 9.69,
+   "dur": 4.24,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 4,
+   "clip": "b04_0",
+   "start": 13.93,
+   "dur": 3.0,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 5,
+   "clip": "b05_0",
+   "start": 16.93,
+   "dur": 2.6,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 6,
+   "clip": "b06_0",
+   "start": 19.53,
+   "dur": 3.35,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 7,
+   "clip": "b07_0",
+   "start": 22.88,
+   "dur": 3.75,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 8,
+   "clip": "b08_0",
+   "start": 26.63,
+   "dur": 4.17,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 9,
+   "clip": "xb10_0",
+   "start": 30.8,
+   "dur": 2.28,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 10,
+   "clip": "a:a_profile",
+   "start": 33.08,
+   "dur": 3.23,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 11,
+   "clip": "b11_0",
+   "start": 36.31,
+   "dur": 2.83,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 12,
+   "clip": "b12_1",
+   "start": 39.14,
+   "dur": 3.2,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 13,
+   "clip": "a:a_towerplane",
+   "start": 42.34,
+   "dur": 5.01,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 14,
+   "clip": "b14_0",
+   "start": 47.35,
+   "dur": 3.17,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 15,
+   "clip": "b15_0",
+   "start": 50.52,
+   "dur": 5.79,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 17,
+   "clip": "i:i02_exhausted",
+   "start": 56.31,
+   "dur": 3.49,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 17,
+   "clip": "b17_0",
+   "start": 59.8,
+   "dur": 4.52,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 19,
+   "clip": "b19_0",
+   "start": 64.32,
+   "dur": 3.13,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 20,
+   "clip": "b20_1",
+   "start": 67.45,
+   "dur": 2.75,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 21,
+   "clip": "b21_1",
+   "start": 70.2,
+   "dur": 3.4,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 22,
+   "clip": "b22_0",
+   "start": 73.6,
+   "dur": 2.63,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 22,
+   "clip": "b22_0",
+   "start": 76.23,
+   "dur": 4.06,
+   "src_offset": 7.0
+  },
+  {
+   "beat": 24,
+   "clip": "xb09_0",
+   "start": 80.29,
+   "dur": 3.37,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 25,
+   "clip": "i:i03_academy",
+   "start": 83.66,
+   "dur": 2.62,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 26,
+   "clip": "i:i04_emptychair",
+   "start": 86.28,
+   "dur": 4.12,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 27,
+   "clip": "xb06_1",
+   "start": 90.4,
+   "dur": 4.2,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 28,
+   "clip": "b28_1",
+   "start": 94.6,
+   "dur": 2.17,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 29,
+   "clip": "b29_1",
+   "start": 96.77,
+   "dur": 2.607,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 29,
+   "clip": "b29_1",
+   "start": 99.377,
+   "dur": 2.607,
+   "src_offset": 7.0
+  },
+  {
+   "beat": 30,
+   "clip": "b30_0",
+   "start": 101.984,
+   "dur": 3.71,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 31,
+   "clip": "b31_0",
+   "start": 105.694,
+   "dur": 3.17,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 32,
+   "clip": "b32_1",
+   "start": 108.864,
+   "dur": 3.88,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 33,
+   "clip": "b33_1",
+   "start": 112.744,
+   "dur": 3.3,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 34,
+   "clip": "v:v05_center",
+   "start": 116.044,
+   "dur": 4.56,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 35,
+   "clip": "b35_0",
+   "start": 120.604,
+   "dur": 2.99,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 36,
+   "clip": "b36_1",
+   "start": 123.594,
+   "dur": 2.69,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 37,
+   "clip": "b37_0",
+   "start": 126.284,
+   "dur": 2.95,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 38,
+   "clip": "i:i06_clearance",
+   "start": 129.234,
+   "dur": 2.72,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 39,
+   "clip": "b39_0",
+   "start": 131.954,
+   "dur": 4.39,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 40,
+   "clip": "v:v07_trainee",
+   "start": 136.344,
+   "dur": 2.96,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 41,
+   "clip": "i:i08c_towersim",
+   "start": 139.304,
+   "dur": 2.635,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 41,
+   "clip": "xb08_0",
+   "start": 141.939,
+   "dur": 2.635,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 42,
+   "clip": "b37_1",
+   "start": 144.574,
+   "dur": 3.9,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 44,
+   "clip": "b44_1",
+   "start": 148.474,
+   "dur": 2.89,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 45,
+   "clip": "a:a_scope",
+   "start": 151.364,
+   "dur": 2.1,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 46,
+   "clip": "b46_0",
+   "start": 153.464,
+   "dur": 2.86,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 47,
+   "clip": "b47_0",
+   "start": 156.324,
+   "dur": 3.43,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 48,
+   "clip": "b48_0",
+   "start": 159.754,
+   "dur": 4.76,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 49,
+   "clip": "v:v09_towernight",
+   "start": 164.514,
+   "dur": 3.25,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 50,
+   "clip": "i:i10_overnight",
+   "start": 167.764,
+   "dur": 2.27,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 51,
+   "clip": "i:i11_understaffed",
+   "start": 170.034,
+   "dur": 2.2,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 52,
+   "clip": "b52_0",
+   "start": 172.234,
+   "dur": 3.225,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 52,
+   "clip": "b52_1",
+   "start": 175.459,
+   "dur": 3.225,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 53,
+   "clip": "b53_0",
+   "start": 178.684,
+   "dur": 2.98,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 53,
+   "clip": "b53_1",
+   "start": 181.664,
+   "dur": 2.98,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 54,
+   "clip": "b54_0",
+   "start": 184.644,
+   "dur": 3.88,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 55,
+   "clip": "i:i12_veteran",
+   "start": 188.524,
+   "dur": 3.265,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 55,
+   "clip": "a:a_lookout",
+   "start": 191.789,
+   "dur": 3.265,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 56,
+   "clip": "b22_1",
+   "start": 195.054,
+   "dur": 2.41,
+   "src_offset": 1.0
+  },
+  {
+   "beat": 57,
+   "clip": "b57_0",
+   "start": 197.464,
+   "dur": 2.47,
+   "src_offset": 1.0
+  }
+ ],
+ "captions": [
+  {
+   "text": "So you think you could",
+   "start": 0.0,
+   "end": 0.83
+  },
+  {
+   "text": "be an air traffic controller.",
+   "start": 0.83,
+   "end": 2.4
+  },
+  {
+   "text": "It’s an appealing thought.",
+   "start": 2.4,
+   "end": 3.78
+  },
+  {
+   "text": "You sit in a dim",
+   "start": 3.78,
+   "end": 4.64
+  },
+  {
+   "text": "room in front of a",
+   "start": 4.64,
+   "end": 5.37
+  },
+  {
+   "text": "glowing scope.",
+   "start": 5.37,
+   "end": 6.54
+  },
+  {
+   "text": "You speak in that calm,",
+   "start": 6.54,
+   "end": 7.81
+  },
+  {
+   "text": "clipped,",
+   "start": 7.81,
+   "end": 8.45
+  },
+  {
+   "text": "unbothered voice.",
+   "start": 8.45,
+   "end": 9.77
+  },
+  {
+   "text": "You hold hundreds of lives",
+   "start": 9.77,
+   "end": 11.18
+  },
+  {
+   "text": "in your hands and your",
+   "start": 11.18,
+   "end": 12.28
+  },
+  {
+   "text": "pulse never moves.",
+   "start": 12.28,
+   "end": 14.01
+  },
+  {
+   "text": "And they pay you for",
+   "start": 14.01,
+   "end": 15.25
+  },
+  {
+   "text": "it.",
+   "start": 15.25,
+   "end": 15.64
+  },
+  {
+   "text": "Really pay you.",
+   "start": 15.64,
+   "end": 17.01
+  },
+  {
+   "text": "A typical air traffic controller",
+   "start": 17.01,
+   "end": 18.56
+  },
+  {
+   "text": "in America earns just over",
+   "start": 18.56,
+   "end": 20.22
+  },
+  {
+   "text": "$144,000 a year.",
+   "start": 20.22,
+   "end": 22.96
+  },
+  {
+   "text": "The ones at the busy",
+   "start": 22.96,
+   "end": 23.79
+  },
+  {
+   "text": "centers clear $185,000,",
+   "start": 23.79,
+   "end": 26.71
+  },
+  {
+   "text": "and with enough overtime,",
+   "start": 26.71,
+   "end": 28.16
+  },
+  {
+   "text": "past $250,000.",
+   "start": 28.16,
+   "end": 30.88
+  },
+  {
+   "text": "You don’t even strictly need",
+   "start": 30.88,
+   "end": 32.13
+  },
+  {
+   "text": "a college degree.",
+   "start": 32.13,
+   "end": 33.16
+  },
+  {
+   "text": "Just you,",
+   "start": 33.16,
+   "end": 34.02
+  },
+  {
+   "text": "a headset,",
+   "start": 34.02,
+   "end": 34.8
+  },
+  {
+   "text": "and nerves of steel.",
+   "start": 34.8,
+   "end": 36.39
+  },
+  {
+   "text": "Small problem.",
+   "start": 36.39,
+   "end": 37.41
+  },
+  {
+   "text": "You wouldn’t last a week.",
+   "start": 37.41,
+   "end": 39.22
+  },
+  {
+   "text": "Not because you’re weak.",
+   "start": 39.22,
+   "end": 40.37
+  },
+  {
+   "text": "Because almost nobody can.",
+   "start": 40.37,
+   "end": 42.42
+  },
+  {
+   "text": "The job you’re picturing,",
+   "start": 42.42,
+   "end": 43.56
+  },
+  {
+   "text": "the calm voice and the",
+   "start": 43.56,
+   "end": 44.67
+  },
+  {
+   "text": "six-figure federal paycheck,",
+   "start": 44.67,
+   "end": 46.41
+  },
+  {
+   "text": "is real.",
+   "start": 46.41,
+   "end": 47.43
+  },
+  {
+   "text": "What you’re not picturing is",
+   "start": 47.43,
+   "end": 48.96
+  },
+  {
+   "text": "the thing underneath it.",
+   "start": 48.96,
+   "end": 50.6
+  },
+  {
+   "text": "By the end of this",
+   "start": 50.6,
+   "end": 51.28
+  },
+  {
+   "text": "video,",
+   "start": 51.28,
+   "end": 51.7
+  },
+  {
+   "text": "you’ll understand why that enormous",
+   "start": 51.7,
+   "end": 53.53
+  },
+  {
+   "text": "salary isn’t a reward.",
+   "start": 53.53,
+   "end": 55.18
+  },
+  {
+   "text": "It’s a warning label.",
+   "start": 55.18,
+   "end": 56.39
+  },
+  {
+   "text": "And you’ll understand what this",
+   "start": 56.39,
+   "end": 57.84
+  },
+  {
+   "text": "job quietly does to the",
+   "start": 57.84,
+   "end": 59.35
+  },
+  {
+   "text": "people who do survive it,",
+   "start": 59.35,
+   "end": 61.24
+  },
+  {
+   "text": "the thing that follows them",
+   "start": 61.24,
+   "end": 62.47
+  },
+  {
+   "text": "out of the tower,",
+   "start": 62.47,
+   "end": 63.37
+  },
+  {
+   "text": "into their cars,",
+   "start": 63.37,
+   "end": 64.4
+  },
+  {
+   "text": "into their marriages,",
+   "start": 64.4,
+   "end": 65.6
+  },
+  {
+   "text": "and never quite lets go.",
+   "start": 65.6,
+   "end": 67.53
+  },
+  {
+   "text": "Okay.",
+   "start": 67.53,
+   "end": 67.98
+  },
+  {
+   "text": "Let’s start with whether they’d",
+   "start": 67.98,
+   "end": 69.11
+  },
+  {
+   "text": "even let you in.",
+   "start": 69.11,
+   "end": 70.28
+  },
+  {
+   "text": "You can’t even begin this",
+   "start": 70.28,
+   "end": 71.6
+  },
+  {
+   "text": "career after you turn 31.",
+   "start": 71.6,
+   "end": 73.68
+  },
+  {
+   "text": "That’s a hard federal cutoff,",
+   "start": 73.68,
+   "end": 75.34
+  },
+  {
+   "text": "and it exists for a",
+   "start": 75.34,
+   "end": 76.57
+  },
+  {
+   "text": "brutal little reason we’ll come",
+   "start": 76.57,
+   "end": 78.02
+  },
+  {
+   "text": "back to.",
+   "start": 78.02,
+   "end": 78.94
+  },
+  {
+   "text": "Say you make it under",
+   "start": 78.94,
+   "end": 79.75
+  },
+  {
+   "text": "the wire.",
+   "start": 79.75,
+   "end": 80.37
+  },
+  {
+   "text": "You get shipped to the",
+   "start": 80.37,
+   "end": 81.38
+  },
+  {
+   "text": "FAA Academy in Oklahoma City.",
+   "start": 81.38,
+   "end": 83.74
+  },
+  {
+   "text": "And here’s the first number",
+   "start": 83.74,
+   "end": 85.11
+  },
+  {
+   "text": "that should scare you.",
+   "start": 85.11,
+   "end": 86.36
+  },
+  {
+   "text": "In 2024,",
+   "start": 86.36,
+   "end": 87.56
+  },
+  {
+   "text": "more than 30% of trainees",
+   "start": 87.56,
+   "end": 89.49
+  },
+  {
+   "text": "washed out.",
+   "start": 89.49,
+   "end": 90.48
+  },
+  {
+   "text": "When the Department of Transportation’s",
+   "start": 90.48,
+   "end": 92.14
+  },
+  {
+   "text": "inspector general dug into that",
+   "start": 92.14,
+   "end": 93.95
+  },
+  {
+   "text": "failure rate,",
+   "start": 93.95,
+   "end": 94.68
+  },
+  {
+   "text": "the FAA didn’t even argue.",
+   "start": 94.68,
+   "end": 96.85
+  },
+  {
+   "text": "The agency admitted,",
+   "start": 96.85,
+   "end": 97.98
+  },
+  {
+   "text": "flat out,",
+   "start": 97.98,
+   "end": 98.77
+  },
+  {
+   "text": "that its own washout rate",
+   "start": 98.77,
+   "end": 100.23
+  },
+  {
+   "text": "was unacceptable.",
+   "start": 100.23,
+   "end": 102.02
+  },
+  {
+   "text": "And at some places it’s",
+   "start": 102.064,
+   "end": 103.414
+  },
+  {
+   "text": "far worse than one in",
+   "start": 103.414,
+   "end": 104.854
+  },
+  {
+   "text": "three.",
+   "start": 104.854,
+   "end": 105.774
+  },
+  {
+   "text": "Picture ten people walking into",
+   "start": 105.774,
+   "end": 107.544
+  },
+  {
+   "text": "that academy together.",
+   "start": 107.544,
+   "end": 108.944
+  },
+  {
+   "text": "By the time it’s done,",
+   "start": 108.944,
+   "end": 110.104
+  },
+  {
+   "text": "more than three of them",
+   "start": 110.104,
+   "end": 111.194
+  },
+  {
+   "text": "are already gone.",
+   "start": 111.194,
+   "end": 112.824
+  },
+  {
+   "text": "Now send the survivors to",
+   "start": 112.824,
+   "end": 114.044
+  },
+  {
+   "text": "a center like Oakland,",
+   "start": 114.044,
+   "end": 115.194
+  },
+  {
+   "text": "out in California,",
+   "start": 115.194,
+   "end": 116.124
+  },
+  {
+   "text": "and nearly half of the",
+   "start": 116.124,
+   "end": 117.584
+  },
+  {
+   "text": "ones still standing never finish",
+   "start": 117.584,
+   "end": 119.704
+  },
+  {
+   "text": "certifying.",
+   "start": 119.704,
+   "end": 120.684
+  },
+  {
+   "text": "Start with ten,",
+   "start": 120.684,
+   "end": 121.494
+  },
+  {
+   "text": "and you might end up",
+   "start": 121.494,
+   "end": 122.834
+  },
+  {
+   "text": "with four.",
+   "start": 122.834,
+   "end": 123.674
+  },
+  {
+   "text": "And these aren’t people who",
+   "start": 123.674,
+   "end": 124.774
+  },
+  {
+   "text": "wandered in off the street.",
+   "start": 124.774,
+   "end": 126.364
+  },
+  {
+   "text": "They already passed the aptitude",
+   "start": 126.364,
+   "end": 128.044
+  },
+  {
+   "text": "screen,",
+   "start": 128.044,
+   "end": 128.534
+  },
+  {
+   "text": "the medical,",
+   "start": 128.534,
+   "end": 129.314
+  },
+  {
+   "text": "the security clearance,",
+   "start": 129.314,
+   "end": 130.414
+  },
+  {
+   "text": "and months of training.",
+   "start": 130.414,
+   "end": 132.034
+  },
+  {
+   "text": "They failed anyway,",
+   "start": 132.034,
+   "end": 133.184
+  },
+  {
+   "text": "because the thing being tested",
+   "start": 133.184,
+   "end": 135.024
+  },
+  {
+   "text": "can’t be studied for.",
+   "start": 135.024,
+   "end": 136.424
+  },
+  {
+   "text": "Trainees describe living in a",
+   "start": 136.424,
+   "end": 137.774
+  },
+  {
+   "text": "low,",
+   "start": 137.774,
+   "end": 138.304
+  },
+  {
+   "text": "constant fear that one mistake",
+   "start": 138.304,
+   "end": 140.344
+  },
+  {
+   "text": "in a simulator ends the",
+   "start": 140.344,
+   "end": 141.704
+  },
+  {
+   "text": "entire career they uprooted their",
+   "start": 141.704,
+   "end": 143.674
+  },
+  {
+   "text": "life for.",
+   "start": 143.674,
+   "end": 144.654
+  },
+  {
+   "text": "One man in training developed",
+   "start": 144.654,
+   "end": 146.004
+  },
+  {
+   "text": "high blood pressure.",
+   "start": 146.004,
+   "end": 147.144
+  },
+  {
+   "text": "His sleep fell apart.",
+   "start": 147.144,
+   "end": 148.554
+  },
+  {
+   "text": "And that’s before he ever",
+   "start": 148.554,
+   "end": 149.884
+  },
+  {
+   "text": "touched a live plane.",
+   "start": 149.884,
+   "end": 151.444
+  },
+  {
+   "text": "So why does anyone chase",
+   "start": 151.444,
+   "end": 152.994
+  },
+  {
+   "text": "this?",
+   "start": 152.994,
+   "end": 153.544
+  },
+  {
+   "text": "Follow the money,",
+   "start": 153.544,
+   "end": 154.574
+  },
+  {
+   "text": "because the money is the",
+   "start": 154.574,
+   "end": 155.784
+  },
+  {
+   "text": "tell.",
+   "start": 155.784,
+   "end": 156.404
+  },
+  {
+   "text": "An academy trainee starts around",
+   "start": 156.404,
+   "end": 158.224
+  },
+  {
+   "text": "$45,000.",
+   "start": 158.224,
+   "end": 159.834
+  },
+  {
+   "text": "Certify at a real facility",
+   "start": 159.834,
+   "end": 161.324
+  },
+  {
+   "text": "and the number climbs fast,",
+   "start": 161.324,
+   "end": 162.964
+  },
+  {
+   "text": "past six figures,",
+   "start": 162.964,
+   "end": 164.594
+  },
+  {
+   "text": "and at the busiest towers",
+   "start": 164.594,
+   "end": 165.844
+  },
+  {
+   "text": "and centers it keeps going.",
+   "start": 165.844,
+   "end": 167.844
+  },
+  {
+   "text": "The overtime alone is staggering.",
+   "start": 167.844,
+   "end": 170.114
+  },
+  {
+   "text": "At the most understaffed facilities,",
+   "start": 170.114,
+   "end": 172.314
+  },
+  {
+   "text": "controllers pull in tens of",
+   "start": 172.314,
+   "end": 174.144
+  },
+  {
+   "text": "thousands of dollars in overtime",
+   "start": 174.144,
+   "end": 175.944
+  },
+  {
+   "text": "in a single year,",
+   "start": 175.944,
+   "end": 177.244
+  },
+  {
+   "text": "on top of base pay.",
+   "start": 177.244,
+   "end": 178.764
+  },
+  {
+   "text": "In 2026,",
+   "start": 178.764,
+   "end": 179.944
+  },
+  {
+   "text": "this one job got a",
+   "start": 179.944,
+   "end": 181.304
+  },
+  {
+   "text": "federal pay raise carved out",
+   "start": 181.304,
+   "end": 182.924
+  },
+  {
+   "text": "specifically for controllers,",
+   "start": 182.924,
+   "end": 184.724
+  },
+  {
+   "text": "at a time when most",
+   "start": 184.724,
+   "end": 185.834
+  },
+  {
+   "text": "of the government wasn’t getting",
+   "start": 185.834,
+   "end": 187.254
+  },
+  {
+   "text": "anything special.",
+   "start": 187.254,
+   "end": 188.604
+  },
+  {
+   "text": "They’re dangling twenty percent",
+   "start": 188.604,
+   "end": 190.214
+  },
+  {
+   "text": "bonuses at their most experienced",
+   "start": 190.214,
+   "end": 192.194
+  },
+  {
+   "text": "people,",
+   "start": 192.194,
+   "end": 192.844
+  },
+  {
+   "text": "the ones already old enough",
+   "start": 192.844,
+   "end": 194.314
+  },
+  {
+   "text": "to retire,",
+   "start": 194.314,
+   "end": 195.134
+  },
+  {
+   "text": "just to get them to",
+   "start": 195.134,
+   "end": 195.864
+  },
+  {
+   "text": "stay one more year.",
+   "start": 195.864,
+   "end": 197.544
+  },
+  {
+   "text": "And then another.",
+   "start": 197.544,
+   "end": 199.334
+  }
+ ],
+ "overlays": [
+  {
+   "type": "map",
+   "place": "usa",
+   "label": "United States",
+   "start": 17.08,
+   "dur": 2.35
+  },
+  {
+   "type": "stat",
+   "big": "$144,000",
+   "small": "typical controller pay, per year",
+   "start": 19.68,
+   "dur": 3.1
+  },
+  {
+   "type": "stat",
+   "big": "$185,000",
+   "small": "at the busiest centers",
+   "start": 23.03,
+   "dur": 3.5
+  },
+  {
+   "type": "stat",
+   "big": "$250,000+",
+   "small": "with overtime",
+   "start": 26.78,
+   "dur": 3.92
+  },
+  {
+   "type": "stat",
+   "big": "31",
+   "small": "the federal age cutoff to start",
+   "start": 70.35,
+   "dur": 3.15
+  },
+  {
+   "type": "map",
+   "place": "okc",
+   "label": "Oklahoma City",
+   "start": 80.44,
+   "dur": 3.12
+  },
+  {
+   "type": "stat",
+   "big": "30%+",
+   "small": "of trainees washed out in 2024",
+   "start": 86.43,
+   "dur": 3.87
+  },
+  {
+   "type": "people",
+   "total": 10,
+   "gone": 0,
+   "start": 105.844,
+   "dur": 2.92
+  },
+  {
+   "type": "people",
+   "total": 10,
+   "gone": 3,
+   "start": 109.014,
+   "dur": 3.63
+  },
+  {
+   "type": "map",
+   "place": "oak",
+   "label": "Oakland, California",
+   "start": 112.894,
+   "dur": 3.05
+  },
+  {
+   "type": "people",
+   "total": 10,
+   "gone": 6,
+   "start": 120.754,
+   "dur": 2.74
+  },
+  {
+   "type": "stat",
+   "big": "$45,000",
+   "small": "starting pay as a trainee",
+   "start": 156.474,
+   "dur": 3.18
+  },
+  {
+   "type": "stat",
+   "big": "20%",
+   "small": "retention bonus for veterans",
+   "start": 188.674,
+   "dur": 6.28
+  }
+ ],
+ "align": {
+  "script_tokens": 567,
+  "matched": 567
+ }
+}

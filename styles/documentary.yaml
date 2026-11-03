@@ -1,0 +1,71 @@
+# Faceless narration — documentary look (history, mysteries, explainers).
+# New niches: copy this file (or `extends: documentary`) and change what differs.
+
+video:
+  resolution: [1920, 1080]
+  fps: 30
+  crf: 20
+  preset: medium
+  tail_seconds: 2.0          # picture + music after the last line of narration
+
+voice:
+  provider: vidiq            # vidiq (hosted, via Claude) | edge (local, free) | file (you drop audio in)
+  voice_id: JBFqnCBsd6RMkjVDRZzb  # vidIQ "George - Warm, Captivating Storyteller"
+  voice_name: en-US-GuyNeural  # used by the edge provider
+  wpm: 150                   # speaking rate for planning estimates
+  max_chunk_chars: 4800      # vidIQ limit is 5000 per call
+
+visuals:
+  default_kind: stock        # stock | image | card — used when a paragraph has no [hint]
+  max_shot_seconds: 6        # long paragraphs get split into several shots
+  image_style: >-
+    cinematic documentary still, dramatic natural lighting, rich detail,
+    35mm film look, no text, no watermark
+
+music:
+  enabled: true
+  provider: vidiq
+  prompt: >-
+    instrumental cinematic documentary underscore, mysterious and contemplative,
+    soft strings, warm piano, low ambient pads, slow tempo 70 bpm
+  volume_db: -17
+  duck_threshold: 0.03       # sidechain ducking under narration
+  duck_ratio: 6
+
+audio:
+  loudness_lufs: -14         # YouTube normalises to -14 LUFS
+
+captions:
+  enabled: true
+  font: Inter
+  size: 58
+  color: "#FFFFFF"
+  outline_color: "#000000"
+  outline: 3
+  shadow: 1
+  margin_v: 80
+  max_words: 7
+  uppercase: false
+
+chapter_titles:
+  enabled: true
+  font: Inter Display
+  size: 92
+  spacing: 1
+  color: "#FFFFFF"
+  accent: "#E8B04A"
+  kicker: "PART {n}"
+  seconds: 3.5
+
+look:
+  saturation: 0.88
+  contrast: 1.06
+  brightness: -0.01
+  vignette: 0.45             # radians; 0 disables
+  grain: 5                   # 0 disables
+
+cards:
+  bg_top: "#15171C"
+  bg_bottom: "#07080A"
+  accent: "#E8B04A"
+  text: "#F2EEE6"

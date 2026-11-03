@@ -1,0 +1,73 @@
+{
+ "tracks": [
+  {
+   "file": "music/arid.mp3",
+   "start": 0,
+   "end": 201,
+   "offset": 0,
+   "title": "Arid Foothills",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Arid_Foothills_(ISRC_USUAN1100437).mp3",
+   "mood": "mysterious open",
+   "licence_verified": true
+  },
+  {
+   "file": "music/ibn.mp3",
+   "start": 197,
+   "end": 403,
+   "offset": 0,
+   "title": "Ibn Al-Noor",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://archive.org/download/Kevin-MacLeod_Vadodara_2014_FullAlbum/",
+   "mood": "curious discovery",
+   "licence_verified": false,
+   "note": "archive.org item has no licenseurl; re-source from Wikimedia Commons or incompetech before reuse"
+  },
+  {
+   "file": "music/eastern.mp3",
+   "start": 399,
+   "end": 531,
+   "offset": 8,
+   "title": "Eastern Thought",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://archive.org/download/Kevin-MacLeod_Vadodara_2014_FullAlbum/",
+   "mood": "ideas spreading",
+   "licence_verified": false,
+   "note": "archive.org item has no licenseurl; re-source from Wikimedia Commons or incompetech before reuse"
+  },
+  {
+   "file": "music/air.mp3",
+   "start": 527,
+   "end": 626,
+   "offset": 0,
+   "title": "Ossuary 6 - Air",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://archive.org/download/Kevin-MacLeod_Ossuary_2015_FullAlbum/",
+   "mood": "plague, dread",
+   "licence_verified": false,
+   "note": "archive.org item has no licenseurl; re-source from Wikimedia Commons or incompetech before reuse"
+  },
+  {
+   "file": "music/resolve.mp3",
+   "start": 621,
+   "end": 842.5,
+   "offset": 0,
+   "title": "Ossuary 7 - Resolve",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://archive.org/download/Kevin-MacLeod_Ossuary_2015_FullAlbum/",
+   "mood": "resolution",
+   "licence_verified": false,
+   "note": "archive.org item has no licenseurl; re-source from Wikimedia Commons or incompetech before reuse"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+__pycache__/
+projects/*/build/
+projects/*/out/*.mp4
+node_modules/
+projects/*/ai/
+projects/*/vo/*.mp3
+projects/*/music/*.mp3
+projects/*/music/*.wav
+projects/*/out/
