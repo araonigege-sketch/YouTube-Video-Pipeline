@@ -3,7 +3,8 @@
 Several YouTube channels, each with its own look. One shared core, one folder per channel.
 Hosted tools (vidIQ, OpenArt, ElevenLabs) make assets; Python + FFmpeg + HyperFrames
 assemble them. Claude is the glue: it reads what a project needs, calls the tools, and
-registers each result. The owner's standards apply to every channel:
+registers each result. **Read `docs/owner-brief.md` first**: it holds the owner's standing
+instructions, channels and decisions from earlier sessions. The owner's standards apply to every channel:
 
 - **Every shot must match its line.** Each shot is anchored to the words it illustrates.
 - **Keep the screen changing.** Run `compose --check` and fix the retention warnings before rendering.
