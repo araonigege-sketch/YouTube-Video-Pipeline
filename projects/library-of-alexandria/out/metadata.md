@@ -1,6 +1,6 @@
 # What Really Destroyed the Library of Alexandria
 
-File: `library-of-alexandria_draft.mp4` · 1:06
+File: `library-of-alexandria.mp4` · 1:06
 
 ## Description (draft)
 
@@ -12,9 +12,17 @@ Chapters:
 0:43 A Slow Death
 
 Footage credits:
+- Aliaksei Semirski (Pexels)
+- ArtHouse Studio (Pexels)
+- Attila Pergel (Pexels)
+- Engin Akyurt (Pexels)
+- Everett Bumstead (Pexels)
+- K (Pexels)
+- KoolShooters (Pexels)
 - Music: generated with vidIQ (royalty-free)
+- Rachel Claire (Pexels)
+- The Instagrapher (Pexels)
 
 ## QA
 
-- ⚠️ DRAFT: 11 placeholder asset(s)
 - Narration 64.3s, 12 shots, avg shot 5.5s

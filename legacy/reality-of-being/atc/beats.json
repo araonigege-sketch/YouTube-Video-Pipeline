@@ -1,0 +1,299 @@
+[
+ {
+  "at": "So you think you could",
+  "q": "air traffic control tower"
+ },
+ {
+  "at": "It’s an appealing thought",
+  "q": "radar"
+ },
+ {
+  "at": "You speak in that calm",
+  "q": "call center headset"
+ },
+ {
+  "at": "You hold hundreds of lives",
+  "q": "airplane passengers cabin"
+ },
+ {
+  "at": "And they pay you for it",
+  "q": "dollar money"
+ },
+ {
+  "at": "A typical air traffic controller",
+  "q": "airport",
+  "overlay": {
+   "type": "map",
+   "place": "usa",
+   "label": "United States"
+  }
+ },
+ {
+  "at": "just over $144,000",
+  "q": "airport runway",
+  "overlay": {
+   "type": "stat",
+   "big": "$144,000",
+   "small": "typical controller pay, per year"
+  }
+ },
+ {
+  "at": "The ones at the busy centers",
+  "q": "busy airport night",
+  "overlay": {
+   "type": "stat",
+   "big": "$185,000",
+   "small": "at the busiest centers"
+  }
+ },
+ {
+  "at": "and with enough overtime",
+  "q": "money counting",
+  "overlay": {
+   "type": "stat",
+   "big": "$250,000+",
+   "small": "with overtime"
+  }
+ },
+ {
+  "at": "You don’t even strictly need",
+  "q": "graduation cap"
+ },
+ {
+  "at": "Just you, a headset",
+  "q": "airplane landing"
+ },
+ {
+  "at": "Small problem",
+  "q": "storm clouds dark"
+ },
+ {
+  "at": "Not because you’re weak",
+  "q": "stressed man"
+ },
+ {
+  "at": "The job you’re picturing",
+  "q": "airport control tower"
+ },
+ {
+  "at": "What you’re not picturing",
+  "q": "airplane night sky"
+ },
+ {
+  "at": "By the end of this video",
+  "q": "money"
+ },
+ {
+  "at": "It’s a warning label",
+  "q": "caution warning"
+ },
+ {
+  "at": "And you’ll understand what this job",
+  "q": "tired man night"
+ },
+ {
+  "at": "into their cars",
+  "q": "driving car night"
+ },
+ {
+  "at": "into their marriages",
+  "q": "couple argument"
+ },
+ {
+  "at": "Okay. Let’s start",
+  "q": "airport terminal"
+ },
+ {
+  "at": "You can’t even begin",
+  "q": "birthday cake candles",
+  "overlay": {
+   "type": "stat",
+   "big": "31",
+   "small": "the federal age cutoff to start"
+  }
+ },
+ {
+  "at": "That’s a hard federal cutoff",
+  "q": "clock time"
+ },
+ {
+  "at": "Say you make it",
+  "q": "airplane taking off"
+ },
+ {
+  "at": "You get shipped to the FAA Academy",
+  "q": "city skyline sunset",
+  "overlay": {
+   "type": "map",
+   "place": "okc",
+   "label": "Oklahoma City"
+  }
+ },
+ {
+  "at": "And here’s the first number",
+  "q": "students lecture hall"
+ },
+ {
+  "at": "In 2024, more than 30%",
+  "q": "empty classroom",
+  "overlay": {
+   "type": "stat",
+   "big": "30%+",
+   "small": "of trainees washed out in 2024"
+  }
+ },
+ {
+  "at": "When the Department of Transportation",
+  "q": "federal building washington"
+ },
+ {
+  "at": "the FAA didn’t even argue",
+  "q": "paperwork desk"
+ },
+ {
+  "at": "The agency admitted",
+  "q": "business meeting"
+ },
+ {
+  "at": "And at some places",
+  "q": "airport aerial"
+ },
+ {
+  "at": "Picture ten people",
+  "q": "group of people walking",
+  "overlay": {
+   "type": "people",
+   "total": 10,
+   "gone": 0
+  }
+ },
+ {
+  "at": "By the time it’s done",
+  "q": "empty hallway",
+  "overlay": {
+   "type": "people",
+   "total": 10,
+   "gone": 3
+  }
+ },
+ {
+  "at": "Now send the survivors",
+  "q": "san francisco bay",
+  "overlay": {
+   "type": "map",
+   "place": "oak",
+   "label": "Oakland, California"
+  }
+ },
+ {
+  "at": "and nearly half of the ones",
+  "q": "radar"
+ },
+ {
+  "at": "Start with ten",
+  "q": "airplane",
+  "overlay": {
+   "type": "people",
+   "total": 10,
+   "gone": 6
+  }
+ },
+ {
+  "at": "And these aren’t people",
+  "q": "crowd street new york"
+ },
+ {
+  "at": "They already passed",
+  "q": "doctor stethoscope"
+ },
+ {
+  "at": "the security clearance",
+  "q": "fingerprint scan"
+ },
+ {
+  "at": "They failed anyway",
+  "q": "exam stress"
+ },
+ {
+  "at": "Trainees describe living",
+  "q": "worried man night"
+ },
+ {
+  "at": "that one mistake in a simulator",
+  "q": "cockpit night"
+ },
+ {
+  "at": "One man in training",
+  "q": "blood pressure"
+ },
+ {
+  "at": "His sleep fell apart",
+  "q": "man awake bed night"
+ },
+ {
+  "at": "And that’s before he ever",
+  "q": "pilot cockpit"
+ },
+ {
+  "at": "So why does anyone chase this",
+  "q": "airport night planes"
+ },
+ {
+  "at": "Follow the money",
+  "q": "us dollar"
+ },
+ {
+  "at": "An academy trainee starts",
+  "q": "wallet dollars",
+  "overlay": {
+   "type": "stat",
+   "big": "$45,000",
+   "small": "starting pay as a trainee"
+  }
+ },
+ {
+  "at": "Certify at a real facility",
+  "q": "stock chart screen"
+ },
+ {
+  "at": "and at the busiest towers",
+  "q": "control tower"
+ },
+ {
+  "at": "The overtime alone",
+  "q": "working late night office"
+ },
+ {
+  "at": "At the most understaffed",
+  "q": "airport busy"
+ },
+ {
+  "at": "controllers pull in tens of thousands",
+  "q": "hundred dollar bills"
+ },
+ {
+  "at": "In 2026, this one job",
+  "q": "washington capitol"
+ },
+ {
+  "at": "at a time when most of the government",
+  "q": "american flag"
+ },
+ {
+  "at": "They’re dangling twenty percent",
+  "q": "older man portrait",
+  "overlay": {
+   "type": "stat",
+   "big": "20%",
+   "small": "retention bonus for veterans"
+  }
+ },
+ {
+  "at": "just to get them to stay",
+  "q": "calendar"
+ },
+ {
+  "at": "And then another",
+  "q": "airplane sunset"
+ }
+]

@@ -1,0 +1,434 @@
+[
+ {
+  "beat": 0,
+  "q": "airport control tower",
+  "files": [
+   {
+    "id": 204999,
+    "url": "https://cdn.pixabay.com/video/2024/03/21/204999-925994639_medium.mp4",
+    "page": "https://pixabay.com/videos/id-204999/",
+    "user": "ScribblingGeek",
+    "duration": 5,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b00_0.mp4"
+   },
+   {
+    "id": 159833,
+    "url": "https://cdn.pixabay.com/video/2023/04/20/159833-819734131_medium.mp4",
+    "page": "https://pixabay.com/videos/id-159833/",
+    "user": "Drag0negr0",
+    "duration": 12,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b00_1.mp4"
+   },
+   {
+    "id": 36510,
+    "url": "https://cdn.pixabay.com/video/2020/04/18/36510-411342239_medium.mp4",
+    "page": "https://pixabay.com/videos/id-36510/",
+    "user": "Joker911",
+    "duration": 11,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b00_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 1,
+  "q": "monitor screens dark room",
+  "files": [
+   {
+    "id": 205519,
+    "url": "https://cdn.pixabay.com/video/2024/03/24/205519-927335684_medium.mp4",
+    "page": "https://pixabay.com/videos/id-205519/",
+    "user": "conte_public",
+    "duration": 16,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b01_0.mp4"
+   },
+   {
+    "id": 29552,
+    "url": "https://cdn.pixabay.com/video/2019/11/27/29552-376565643_medium.mp4",
+    "page": "https://pixabay.com/videos/id-29552/",
+    "user": "Engin_Akyurt",
+    "duration": 18,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b01_1.mp4"
+   },
+   {
+    "id": 26537,
+    "url": "https://cdn.pixabay.com/video/2019/09/04/26537-357886155_medium.mp4",
+    "page": "https://pixabay.com/videos/id-26537/",
+    "user": "ninosouza",
+    "duration": 18,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b01_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 2,
+  "q": "pilot headset",
+  "files": [
+   {
+    "id": 429,
+    "url": "https://cdn.pixabay.com/video/2015/08/13/429-136184488_medium.mp4",
+    "page": "https://pixabay.com/videos/id-429/",
+    "user": "Vimeo-Free-Videos",
+    "duration": 34,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b02_0.mp4"
+   },
+   {
+    "id": 51021,
+    "url": "https://cdn.pixabay.com/video/2020/09/27/51021-462807831_medium.mp4",
+    "page": "https://pixabay.com/videos/id-51021/",
+    "user": "Josh_Malic",
+    "duration": 10,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b02_1.mp4"
+   },
+   {
+    "id": 2289,
+    "url": "https://cdn.pixabay.com/video/2016/02/29/2289-157183570_medium.mp4",
+    "page": "https://pixabay.com/videos/id-2289/",
+    "user": "Coverr-Free-Footage",
+    "duration": 14,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b02_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 3,
+  "q": "aerial city night lights",
+  "files": [
+   {
+    "id": 172350,
+    "url": "https://cdn.pixabay.com/video/2023/07/20/172350-847185398_medium.mp4",
+    "page": "https://pixabay.com/videos/id-172350/",
+    "user": "D-GM",
+    "duration": 58,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b03_0.mp4"
+   },
+   {
+    "id": 287386,
+    "url": "https://cdn.pixabay.com/video/2025/06/23/287386_medium.mp4",
+    "page": "https://pixabay.com/videos/id-287386/",
+    "user": "TungArt7",
+    "duration": 8,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b03_1.mp4"
+   },
+   {
+    "id": 174305,
+    "url": "https://cdn.pixabay.com/video/2023/08/02/174305-851138233_medium.mp4",
+    "page": "https://pixabay.com/videos/id-174305/",
+    "user": "D-GM",
+    "duration": 58,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b03_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 4,
+  "q": "man stressed computer",
+  "files": [
+   {
+    "id": 3188,
+    "url": "https://cdn.pixabay.com/video/2016/05/12/3188-166339073_medium.mp4",
+    "page": "https://pixabay.com/videos/id-3188/",
+    "user": "Coverr-Free-Footage",
+    "duration": 14,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b04_0.mp4"
+   },
+   {
+    "id": 215751,
+    "url": "https://cdn.pixabay.com/video/2024/06/07/215751_medium.mp4",
+    "page": "https://pixabay.com/videos/id-215751/",
+    "user": "G3Remote",
+    "duration": 18,
+    "w": 1920,
+    "h": 1080,
+    "path": "atc/extra/b04_1.mp4"
+   },
+   {
+    "id": 3174,
+    "url": "https://cdn.pixabay.com/video/2016/05/12/3174-166338976_medium.mp4",
+    "page": "https://pixabay.com/videos/id-3174/",
+    "user": "Coverr-Free-Footage",
+    "duration": 12,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b04_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 5,
+  "q": "calendar flipping",
+  "files": [
+   {
+    "id": 111279,
+    "url": "https://cdn.pixabay.com/video/2022/03/19/111279-690770674_medium.mp4",
+    "page": "https://pixabay.com/videos/id-111279/",
+    "user": "AttilaPergel",
+    "duration": 21,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b05_0.mp4"
+   },
+   {
+    "id": 143683,
+    "url": "https://cdn.pixabay.com/video/2022/12/20/143683-784129669_medium.mp4",
+    "page": "https://pixabay.com/videos/id-143683/",
+    "user": "AttilaPergel",
+    "duration": 16,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b05_1.mp4"
+   },
+   {
+    "id": 181408,
+    "url": "https://cdn.pixabay.com/video/2023/09/20/181408-866575732_medium.mp4",
+    "page": "https://pixabay.com/videos/id-181408/",
+    "user": "Engin_Akyurt",
+    "duration": 59,
+    "w": 2730,
+    "h": 1439,
+    "path": "atc/extra/b05_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 6,
+  "q": "washington dc",
+  "files": [
+   {
+    "id": 239282,
+    "url": "https://cdn.pixabay.com/video/2024/10/31/239282_medium.mp4",
+    "page": "https://pixabay.com/videos/id-239282/",
+    "user": "InOldNews",
+    "duration": 20,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b06_0.mp4"
+   },
+   {
+    "id": 239278,
+    "url": "https://cdn.pixabay.com/video/2024/10/31/239278_medium.mp4",
+    "page": "https://pixabay.com/videos/id-239278/",
+    "user": "InOldNews",
+    "duration": 18,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b06_1.mp4"
+   },
+   {
+    "id": 364783,
+    "url": "https://cdn.pixabay.com/video/2026/07/18/364783_medium.mp4",
+    "page": "https://pixabay.com/videos/id-364783/",
+    "user": "Motionwell",
+    "duration": 15,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b06_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 7,
+  "q": "man lying awake",
+  "files": [
+   {
+    "id": 6970,
+    "url": "https://cdn.pixabay.com/video/2017/01/01/6970-197914397_medium.mp4",
+    "page": "https://pixabay.com/videos/id-6970/",
+    "user": "dianakuehn30010",
+    "duration": 21,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b07_0.mp4"
+   },
+   {
+    "id": 179207,
+    "url": "https://cdn.pixabay.com/video/2023/09/05/179207-861403607_medium.mp4",
+    "page": "https://pixabay.com/videos/id-179207/",
+    "user": "NickyPe",
+    "duration": 14,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b07_1.mp4"
+   },
+   {
+    "id": 729,
+    "url": "https://cdn.pixabay.com/video/2015/09/08/729-138678099_medium.mp4",
+    "page": "https://pixabay.com/videos/id-729/",
+    "user": "Vimeo-Free-Videos",
+    "duration": 9,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b07_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 8,
+  "q": "airplane night landing",
+  "files": [
+   {
+    "id": 242,
+    "url": "https://cdn.pixabay.com/video/2015/08/10/242-135867058_medium.mp4",
+    "page": "https://pixabay.com/videos/id-242/",
+    "user": "NASA-Imagery",
+    "duration": 96,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b08_0.mp4"
+   },
+   {
+    "id": 255761,
+    "url": "https://cdn.pixabay.com/video/2025/02/01/255761_medium.mp4",
+    "page": "https://pixabay.com/videos/id-255761/",
+    "user": "luongleddata",
+    "duration": 19,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b08_1.mp4"
+   },
+   {
+    "id": 3586,
+    "url": "https://cdn.pixabay.com/video/2016/06/27/3586-172490363_medium.mp4",
+    "page": "https://pixabay.com/videos/id-3586/",
+    "user": "Life-Of-Vids",
+    "duration": 53,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b08_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 9,
+  "q": "oklahoma",
+  "files": [
+   {
+    "id": 261194,
+    "url": "https://cdn.pixabay.com/video/2025/02/26/261194_medium.mp4",
+    "page": "https://pixabay.com/videos/id-261194/",
+    "user": "MAC_Drones",
+    "duration": 28,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b09_0.mp4"
+   },
+   {
+    "id": 261193,
+    "url": "https://cdn.pixabay.com/video/2025/02/26/261193_medium.mp4",
+    "page": "https://pixabay.com/videos/id-261193/",
+    "user": "MAC_Drones",
+    "duration": 18,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b09_1.mp4"
+   },
+   {
+    "id": 252871,
+    "url": "https://cdn.pixabay.com/video/2025/01/16/252871_medium.mp4",
+    "page": "https://pixabay.com/videos/id-252871/",
+    "user": "JoshuaWoroniecki",
+    "duration": 11,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b09_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 10,
+  "q": "exam students test",
+  "files": [
+   {
+    "id": 158618,
+    "url": "https://cdn.pixabay.com/video/2023/04/12/158618-817153712_medium.mp4",
+    "page": "https://pixabay.com/videos/id-158618/",
+    "user": "aso_2003",
+    "duration": 34,
+    "w": 2560,
+    "h": 1440,
+    "path": "atc/extra/b10_0.mp4"
+   },
+   {
+    "id": 355580,
+    "url": "https://cdn.pixabay.com/video/2026/05/30/355580_medium.mp4",
+    "page": "https://pixabay.com/videos/id-355580/",
+    "user": "rcp24",
+    "duration": 8,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b10_1.mp4"
+   },
+   {
+    "id": 1406,
+    "url": "https://cdn.pixabay.com/video/2015/11/27/1406-147169807_medium.mp4",
+    "page": "https://pixabay.com/videos/id-1406/",
+    "user": "Vimeo-Free-Videos",
+    "duration": 18,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b10_2.mp4"
+   }
+  ]
+ },
+ {
+  "beat": 11,
+  "q": "cockpit instruments",
+  "files": [
+   {
+    "id": 139,
+    "url": "https://cdn.pixabay.com/video/2015/08/08/139-135737102_medium.mp4",
+    "page": "https://pixabay.com/videos/id-139/",
+    "user": "Coverr-Free-Footage",
+    "duration": 14,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b11_0.mp4"
+   },
+   {
+    "id": 51016,
+    "url": "https://cdn.pixabay.com/video/2020/09/27/51016-462807856_medium.mp4",
+    "page": "https://pixabay.com/videos/id-51016/",
+    "user": "Josh_Malic",
+    "duration": 11,
+    "w": 1280,
+    "h": 720,
+    "path": "atc/extra/b11_1.mp4"
+   },
+   {
+    "id": 1651,
+    "url": "https://cdn.pixabay.com/video/2015/12/11/1651-148614472_medium.mp4",
+    "page": "https://pixabay.com/videos/id-1651/",
+    "user": "Coverr-Free-Footage",
+    "duration": 15,
+    "w": 1920,
+    "h": 1080,
+    "path": "atc/extra/b11_2.mp4"
+   }
+  ]
+ }
+]
