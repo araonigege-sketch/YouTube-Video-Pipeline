@@ -8,3 +8,4 @@ projects/*/music/*.mp3
 projects/*/music/*.wav
 projects/*/out/
 pipeline/reedit/models/*.tflite
+projects/*/source/
