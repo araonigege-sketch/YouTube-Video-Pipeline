@@ -192,7 +192,8 @@ def _split_clip(P, s, n, src_orig, clip, ch):
             "-filter_complex", fc, "-map", "[o]", "-frames:v", n, "-an", *ENC, "-r", FPS, clip])
 
 
-def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
+def plan_shots(P: Path, meta, edit, words) -> list[dict]:
+    """Resolve every shot's start/end on the original timeline (shared by the picture and graphics layers)."""
     a, b = edit["range"]
     shots, prev = [], a - 1
     for s in edit["shots"]:
@@ -211,6 +212,12 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
                 cap = s["t0"] + (src_end - frm) - 0.5 / FPS
                 if s["t1"] > cap + 0.01 and cap > s["t0"] + 0.3:
                     s["t1"] = shots[i + 1]["t0"] = cap
+    return shots
+
+
+def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
+    a, b = edit["range"]
+    shots = plan_shots(P, meta, edit, words)
     out = P / "build/base"
     out.mkdir(parents=True, exist_ok=True)
     src_orig = P / meta["source"]["file"]
@@ -270,8 +277,10 @@ class Overlay(Composition):
         items = "".join(f'<div class="ck-item" id="{gid}i{k}"><span class="ck-box">{"✓" if g.get("ticks") else str(k + 1)}</span>{html.escape(it["t"])}</div>'
                         for k, it in enumerate(g["items"]))
         title = f'<div class="ck-title">{html.escape(g["title"])}</div>' if g.get("title") else ""
-        pos = "left:90px;top:120px" if g.get("pos", "left") == "left" else "right:90px;top:120px"
-        self.box(gid, t0, t1, f'<div class="card ck">{title}{items}</div>', f"position:absolute;{pos}")
+        side = g.get("_side") or g.get("pos", "left")
+        pos = "left:90px;top:120px" if side == "left" else "right:90px;top:120px"
+        cls = "card ck compact" if g.get("_compact") else "card ck"
+        self.box(gid, t0, t1, f'<div class="{cls}">{title}{items}</div>', f"position:absolute;{pos}")
         self.enter(f"#{gid} .card", t0, "x:-60,opacity:0")
         for k, it in enumerate(g["items"]):
             ta = self.t(it["a"], t0) if "a" in it else t0 + 0.3 + 0.35 * k
@@ -304,7 +313,8 @@ class Overlay(Composition):
         gid = self.nid("lt")
         inner = (f'<div class="lt"><div class="lt-bar"></div><div><div class="lt-name">{html.escape(g["name"])}</div>'
                  f'<div class="lt-sub">{html.escape(g.get("sub", ""))}</div></div></div>')
-        self.box(gid, t0, t1, inner, "position:absolute;left:90px;bottom:200px")
+        side = "right:90px" if g.get("_side") == "right" else "left:90px"
+        self.box(gid, t0, t1, inner, f"position:absolute;{side};bottom:200px")
         self.enter(f"#{gid} .lt", t0, "x:-80,opacity:0", 0.5)
         self.leave(f"#{gid} .lt", t1)
 
@@ -312,7 +322,10 @@ class Overlay(Composition):
         gid = self.nid("st")
         lines = "".join(f'<div class="st-line" id="{gid}l{k}" style="{"color:" + self.ACC if k == len(g["lines"]) - 1 else ""}">{html.escape(l)}</div>'
                         for k, l in enumerate(g["lines"]))
-        self.box(gid, t0, t1, f'<div class="st-wrap"><div class="card st">{lines}</div></div>', "position:absolute;inset:0")
+        if g.get("_compact"):
+            self.box(gid, t0, t1, f'<div class="card st compact">{lines}</div>', "position:absolute;right:90px;top:120px")
+        else:
+            self.box(gid, t0, t1, f'<div class="st-wrap"><div class="card st">{lines}</div></div>', "position:absolute;inset:0")
         self.enter(f"#{gid} .card", t0, "scale:0.85,opacity:0")
         for k in range(1, len(g["lines"])):
             self.enter(f"#{gid}l{k}", t0 + 0.45 * k, "y:20,opacity:0", 0.35, "pop")
@@ -322,7 +335,7 @@ class Overlay(Composition):
         gid = self.nid("tg")
         col = self.WARN if g.get("tone") == "warn" else self.INK
         self.box(gid, t0, t1, f'<div class="tag" style="border-left:12px solid {col}">{html.escape(g["text"])}</div>',
-                 "position:absolute;left:90px;top:110px")
+                 "position:absolute;" + ("right:90px" if g.get("_side") == "right" else "left:90px") + ";top:110px")
         self.enter(f"#{gid} .tag", t0, "x:-60,opacity:0")
         self.leave(f"#{gid} .tag", t1)
 
@@ -357,7 +370,7 @@ class Overlay(Composition):
         gid = self.nid("sp")
         bgc = self.WARN if g.get("tone") == "warn" else self.GOOD
         self.box(gid, t0, t1, f'<div class="step"><span class="sp-n" style="background:{bgc}">{g["n"]}</span>{html.escape(g["text"])}</div>',
-                 "position:absolute;left:90px;top:110px")
+                 "position:absolute;" + ("right:90px" if g.get("_side") == "right" else "left:90px") + ";top:110px")
         self.enter(f"#{gid} .step", t0, "x:-60,opacity:0")
         self.leave(f"#{gid} .step", t1)
 
@@ -479,6 +492,36 @@ class Overlay(Composition):
             self.enter(f"#{gid}l{k}", self.t(lb["a"], t0), "x:40,opacity:0", 0.35, "pop")
         self.leave(f"#{gid}", t1)
 
+    def subscribe(self, g, t0, t1):
+        """Like + subscribe buttons with a cursor click; sits above the captions, clear of the host."""
+        gid = self.nid("sb")
+        thumb = ('<svg viewBox="0 0 24 24" width="46" height="46"><path fill="currentColor" d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l1-4.6v-.3'
+                 'c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6C6.2 8 6 8.5 6 9v10a2 2 0 0 0 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg>')
+        bell = ('<svg viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11c0-3.1-1.6-5.6-4.5-6.3V4'
+                'a1.5 1.5 0 0 0-3 0v.7C7.6 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>')
+        cursor = ('<svg viewBox="0 0 24 24" width="54" height="54"><path fill="#fff" stroke="#1F2A30" stroke-width="1.4" '
+                  'd="M5 2l14 11-6.2 1 3.6 7-2.6 1.3-3.6-7L5 19z"/></svg>')
+        inner = (f'<div class="sb-row"><div class="sb-like" id="{gid}l">{thumb}<span>Like</span></div>'
+                 f'<div class="sb-sub" id="{gid}s"><span id="{gid}st">Subscribe</span></div>'
+                 f'<div class="sb-bell" id="{gid}b">{bell}</div></div><div class="sb-cur" id="{gid}c">{cursor}</div>')
+        side = g.get("_side", "center")
+        place = {"center": "left:0;right:0;display:flex;justify-content:center", "right": "right:90px", "left": "left:90px"}[side]
+        self.box(gid, t0, t1, f'<div class="sb-wrap">{inner}</div>', f"position:absolute;bottom:190px;{place}")
+        self.enter(f"#{gid} .sb-wrap", t0, "y:60,opacity:0", 0.45, "whoosh")
+        # cursor moves to Like, clicks; then to Subscribe, clicks (button turns grey "Subscribed"); then bell
+        self.tw(f'tl.fromTo("#{gid}c",{{x:420,y:120,opacity:0}},{{x:40,y:30,opacity:1,duration:0.5,ease:"power2.out"}},{t0 + 0.4:.3f});')
+        self.tw(f'tl.to("#{gid}l",{{backgroundColor:"{self.ACC}",scale:1.08,duration:0.15,yoyo:true,repeat:1}},{t0 + 0.95:.3f});')
+        self.sfx.append((t0 + 0.95, "pop"))
+        self.tw(f'tl.to("#{gid}c",{{x:300,y:30,duration:0.45,ease:"power2.inOut"}},{t0 + 1.4:.3f});')
+        self.tw(f'tl.to("#{gid}s",{{backgroundColor:"#5E6B72",scale:1.06,duration:0.15,yoyo:true,repeat:1}},{t0 + 1.9:.3f});')
+        self.tw(f'tl.set("#{gid}st",{{textContent:"Subscribed"}},{t0 + 2.0:.3f});')
+        self.tw(f'tl.set("#{gid}s",{{backgroundColor:"#5E6B72"}},{t0 + 2.2:.3f});')
+        self.sfx.append((t0 + 1.9, "pop"))
+        self.tw(f'tl.to("#{gid}c",{{x:470,y:30,duration:0.35,ease:"power2.inOut"}},{t0 + 2.4:.3f});')
+        self.tw(f'tl.fromTo("#{gid}b",{{rotation:0}},{{rotation:18,duration:0.08,yoyo:true,repeat:5,transformOrigin:"50% 10%"}},{t0 + 2.8:.3f});')
+        self.tw(f'tl.to("#{gid}c",{{opacity:0,duration:0.3}},{t0 + 3.3:.3f});')
+        self.leave(f"#{gid} .sb-wrap", t1)
+
     # --- captions with the spoken word highlighted ---
     def word_captions(self, a, b):
         cap = self.ch["captions"]
@@ -557,6 +600,16 @@ html,body{{width:1920px;height:1080px;overflow:hidden;background:#000}}
 .dg-lab{{position:absolute;display:flex;align-items:center;gap:16px;background:{p['card']};font-size:46px;padding:14px 28px;border-radius:18px;
   box-shadow:0 10px 26px rgba(0,0,0,.18)}}
 .dg-dot{{width:22px;height:22px;border-radius:50%;flex:none}}
+.compact{{transform-origin:100% 0;scale:0.72}}
+.ck.compact{{min-width:0}}
+.st.compact{{padding:24px 36px}}
+.st.compact .st-line{{font-size:64px}}
+.sb-wrap{{position:relative}}
+.sb-row{{display:flex;align-items:center;gap:18px;background:{p['card']};padding:16px 20px;border-radius:999px;box-shadow:0 14px 40px rgba(0,0,0,.3)}}
+.sb-like{{display:flex;align-items:center;gap:12px;font-size:42px;padding:10px 28px;border-radius:999px;background:#F1F3F4;color:{p['ink']}}}
+.sb-sub{{font-size:42px;padding:12px 34px;border-radius:999px;background:#E62117;color:#fff}}
+.sb-bell{{color:{p['ink']};display:flex;padding:0 10px}}
+.sb-cur{{position:absolute;left:0;top:0;pointer-events:none}}
 .capwrap{{position:absolute;left:0;right:0;bottom:{cap['bottom']}px;display:flex;justify-content:center;z-index:40}}
 .cap{{color:#fff;font-size:{cap['size']}px;line-height:1.15;text-align:center;max-width:1500px;
  text-shadow:3px 3px 0 #000,-3px 3px 0 #000,3px -3px 0 #000,-3px -3px 0 #000,0 3px 0 #000,0 -3px 0 #000,3px 0 0 #000,-3px 0 0 #000,0 8px 18px rgba(0,0,0,.55)}}
@@ -564,14 +617,48 @@ html,body{{width:1920px;height:1080px;overflow:hidden;background:#000}}
 
 
 GRAPHICS = ("checklist", "badge", "circle", "lower_third", "statement", "tag", "compare", "timer", "step", "alert", "title",
-            "cards", "disposal", "trap")
+            "cards", "disposal", "trap", "subscribe")
+
+# Card types that sit beside the host and can be moved/shrunk; big centred types that must not sit on the host.
+SIDE_CARDS = {"checklist", "step", "tag", "lower_third", "statement", "subscribe"}
+CENTRE_CARDS = {"compare", "cards", "title"}
+
+
+def protect_host(graphics: list[tuple[dict, float, float]], shots: list[dict], log=print) -> list[str]:
+    """Owner rule: instruction cards never cover the host's face while they narrate.
+    Split screen → move side cards onto the B-roll panel (right). Full-frame host → compact card at the side;
+    big centred cards over a full-frame host are reported so the edit can be changed."""
+    issues = []
+    for g, t0, t1 in graphics:
+        over = [sh for sh in shots if (sh.get("host") or sh.get("split")) and sh["t0"] < t1 - 0.15 and sh["t1"] > t0 + 0.15]
+        if not over:
+            continue
+        kinds = {"split" if sh.get("split") else "host" for sh in over}
+        if g["type"] in SIDE_CARDS:
+            g["_side"] = "right"
+            if "host" in kinds and g["type"] in ("checklist", "statement"):
+                g["_compact"] = True
+        elif g["type"] in CENTRE_CARDS:
+            msg = f"{g['type']} at {t0:.1f}s sits over the host ({', '.join(sorted(kinds))}) — move it to a B-roll shot"
+            issues.append(msg)
+            log("⚠ " + msg)
+    return issues
 
 
 def build_overlay(P, meta, edit, ch, words, log=print, out: Path | None = None):
     a, b = edit["range"]
     out = out or P / "build/hf"
     c = Overlay(words, out, ch, a)
-    for g in edit.get("graphics", []):
+    graphics = [dict(g) for g in edit.get("graphics", [])]
+    # Owner rule: every video ends with a like & subscribe prompt (on the host's own mention, else the last seconds)
+    if ch.get("end_cta", True) and not any(g["type"] == "subscribe" for g in graphics):
+        mention = [w for w in words.words if a <= w["s"] < b and "subscrib" in w["w"].lower()]
+        if mention:
+            graphics.append({"type": "subscribe", "at": float(mention[-1]["s"]) - 0.6, "dur": 4.5})
+        else:
+            graphics.append({"type": "subscribe", "at": max(a, b - 6.0), "until": "end"})
+    timed = []
+    for g in graphics:
         if g["type"] not in GRAPHICS:
             raise PipelineError(f"unknown graphic type {g['type']}")
         t0 = resolve(c.words, g["at"], 0.0, 0.05) - c.off   # absolute lookup, so range renders match the full edit
@@ -582,6 +669,12 @@ def build_overlay(P, meta, edit, ch, words, log=print, out: Path | None = None):
         t1 = min(t1, b - a)
         if t0 >= b - a or t1 <= t0 or t1 <= 0:
             continue
+        timed.append((g, t0, t1))
+    shots = [{**sh, "t0": sh["t0"] - a, "t1": sh["t1"] - a} for sh in plan_shots(P, meta, edit, words)]
+    issues = protect_host(timed, shots, log)
+    if issues and not edit.get("allow_cards_over_host"):
+        raise PipelineError(f"{len(issues)} graphic(s) would cover the host — see warnings")
+    for g, t0, t1 in timed:
         getattr(c, g["type"])(g, t0, t1)
     end = b - a
     base_tag = f'<video id="base" class="clip" src="assets/base.mp4" muted data-start="0" data-duration="{end:.3f}"></video>'

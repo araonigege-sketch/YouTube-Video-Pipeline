@@ -10,6 +10,8 @@ instructions, channels and decisions from earlier sessions. The owner's standard
 - **Keep the screen changing.** Run `compose --check` and fix the retention warnings before rendering.
 - **Best available source, always.** Highest-resolution footage and images; no anachronisms in history content.
 - **Music per video, licence-checked:** follow `docs/music.md`. Record every track in `music.json`.
+- **Never cover the host's face; always end with like & subscribe** (both automatic in the re-edit composer —
+  see `docs/owner-brief.md`; carry the same rules into every other channel's composer).
 - **New look = model it on the owner's sample video.** Break the sample down (cut rhythm, shot types,
   captions, colour, music) into a channel folder, render a short test, get approval before a full episode.
 

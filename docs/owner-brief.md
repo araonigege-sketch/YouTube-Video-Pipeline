@@ -21,6 +21,13 @@ Update this file whenever the owner gives new standing instructions.
   **match the narration exactly** (no generic filler, no anachronisms in history).
 - **Keep the screen changing** to hold retention and avoid boredom: about one new shot every 5–6 s, with
   something new appearing at least every ~3 s on graphic pages. Fix every `compose --check` warning.
+- **Never cover the host's face while they narrate.** Instruction cards go on the B-roll side of a split screen,
+  or as a compact card beside a full-frame host. (Enforced in `pipeline/reedit/compose.py::protect_host`;
+  big centred cards over the host stop the build.) Owner feedback, 2026-11-04: it happened twice on the
+  garbage-disposal video.
+- **Every video ends with a like & subscribe prompt** (animated like/subscribe buttons). Added automatically on
+  the host's own "subscribe" line, or in the last seconds if they don't say it (`end_cta` in the channel file).
+  Joel's Notebook's end card needs its own in-style version when the next episode is built.
 - **Use maps and visual elements** (timelines, stat cards, diagrams) wherever they help viewers follow and keep watching.
 - **Voice:** either a real narrator the owner supplies (Milly for Joel's Notebook) or TTS. The vidIQ "George"
   voice (`JBFqnCBsd6RMkjVDRZzb`, "Warm, Captivating Storyteller") was approved as "perfect" for TTS narration.
