@@ -3,3 +3,7 @@ pillow>=10
 numpy>=1.26
 # optional: free local voice for drafts / budget videos
 # edge-tts>=6
+# re-edit analysis (talking-head videos)
+opencv-python-headless>=4.9,<5   # OpenCV 5 dropped pieces we rely on
+mediapipe>=0.10                  # face detector; needs system libegl1 + libgles2 (apt)
+pocketsphinx>=5
