@@ -211,6 +211,7 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
                 cap = s["t0"] + (src_end - frm) - 0.5 / FPS
                 if s["t1"] > cap + 0.01 and cap > s["t0"] + 0.3:
                     s["t1"] = shots[i + 1]["t0"] = cap
+    out = P / "build/base"
     out.mkdir(parents=True, exist_ok=True)
     src_orig = P / meta["source"]["file"]
     lines = []
