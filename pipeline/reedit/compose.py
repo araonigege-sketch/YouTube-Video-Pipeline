@@ -20,7 +20,7 @@ import yaml
 
 from ..config import ROOT
 from ..hf import Composition, render
-from ..util import PipelineError, duration, ffmpeg
+from ..util import PipelineError, duration, ffmpeg, short_hash
 from ..words import Words
 
 FPS = 25
@@ -43,6 +43,90 @@ def resolve(words: Words, at, after=0.0, lead=0.0):
 
 
 # ---------------------------------------------------------------- base picture
+ENC = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "15", "-pix_fmt", "yuv420p"]
+SHARPEN = "unsharp=5:5:0.9:5:5:0.0"
+
+
+def _zoom(move: str, z: float, secs: float) -> str:
+    return {"push": f"1+{z}*t/{secs:.3f}", "pull": f"1+{z}-{z}*t/{secs:.3f}", "none": "1"}[move]
+
+
+def _src(P: Path, src, src_orig: Path) -> Path:
+    return src_orig if (src or "orig") == "orig" else P / src
+
+
+def _full_clip(P, s, n, src_orig, clip, ch):
+    src = _src(P, s.get("src"), src_orig)
+    is_orig = (s.get("src") or "orig") == "orig"
+    start = float(s.get("from", s["t0"] if is_orig else 0.0))
+    secs = n / FPS
+    z = ch["motion"]["host_push" if s.get("host") else "broll_push"]
+    zexpr = _zoom(s.get("move", "push"), z, secs)
+    loop = ["-stream_loop", "-1"] if duration(src) < start + secs + 0.1 else []
+    sharpen = f",{SHARPEN}" if s.get("sharpen", is_orig and not s.get("host")) else ""
+    vf = (f"scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps={FPS},"
+          f"scale=w='trunc(1920*({zexpr})/2)*2':h=-2:eval=frame,crop=1920:1080{sharpen},setsar=1")
+    ffmpeg([*loop, "-ss", f"{start:.3f}", "-i", src, "-vf", vf, "-frames:v", n, "-an", *ENC, "-r", FPS, clip])
+
+
+def _split_assets(P: Path, ch) -> tuple[Path, Path, dict]:
+    """Background with soft panel shadows + rounded-corner mask (Pillow), cached per look."""
+    from PIL import Image, ImageDraw, ImageFilter
+    sp = ch.get("split", {})
+    m, gap, r = sp.get("margin", 70), sp.get("gap", 40), sp.get("radius", 36)
+    W, H = (1920 - 2 * m - gap) // 2 // 2 * 2, (1080 - 2 * m) // 2 * 2
+    geo = {"w": W, "h": H, "x1": m, "x2": m + W + gap, "y": m}
+    d = P / "build/split"
+    d.mkdir(parents=True, exist_ok=True)
+    bg, mask = d / "bg.png", d / "mask.png"
+    top, bot = sp.get("bg_top", "#F7F5F0"), sp.get("bg_bottom", "#ECE8E0")
+    hx = lambda c: tuple(int(c.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
+    img = Image.new("RGB", (1920, 1080), hx(top))
+    t, b2 = hx(top), hx(bot)
+    px = ImageDraw.Draw(img)
+    for y in range(1080):
+        f = y / 1079
+        px.line([(0, y), (1919, y)], fill=tuple(int(t[k] + (b2[k] - t[k]) * f) for k in range(3)))
+    sh = Image.new("L", (1920, 1080), 0)
+    ds = ImageDraw.Draw(sh)
+    for x in (geo["x1"], geo["x2"]):
+        ds.rounded_rectangle((x, m + 14, x + W, m + H + 14), r, fill=110)
+    sh = sh.filter(ImageFilter.GaussianBlur(22))
+    img = Image.composite(Image.new("RGB", (1920, 1080), (40, 40, 40)), img, sh)
+    img.save(bg)
+    mk = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(mk).rounded_rectangle((0, 0, W - 1, H - 1), r, fill=255)
+    mk.save(mask)
+    return bg, mask, geo
+
+
+def _split_clip(P, s, n, src_orig, clip, ch):
+    """Two rounded panels on a clean background: host (left half of the original) | new B-roll."""
+    bg, mask, g = _split_assets(P, ch)
+    W, H = g["w"], g["h"]
+    secs = n / FPS
+    host_from = float(s.get("from", s["t0"]))
+    r = s["right"]
+    rsrc = _src(P, r.get("src"), src_orig)
+    r_is_orig = (r.get("src") or "orig") == "orig"
+    rfrom = float(r.get("from", 0.0))
+    rloop = ["-stream_loop", "-1"] if duration(rsrc) < rfrom + secs + 0.1 else []
+    zr = _zoom(r.get("move", "push"), ch["motion"]["broll_push"], secs)
+    sharpen = f",{SHARPEN}" if r.get("sharpen", r_is_orig) else ""
+    hx = s.get("host_crop_x", 0)   # where the host sits in the original split frame (left half by default)
+    fx = float(r.get("focus", 0.5))  # horizontal focus of the B-roll crop: 0 = left edge, 1 = right edge
+    fc = (f"[1:v]fps={FPS},crop=960:1080:{hx}:0,scale={W}:-2,crop={W}:{H},format=rgba[h];"
+          f"[2:v]fps={FPS},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}:(iw-ow)*{fx}:(ih-oh)/2,"
+          f"scale=w='trunc({W}*({zr})/2)*2':h=-2:eval=frame,crop={W}:{H}{sharpen},format=rgba[b];"
+          f"[3:v]format=gray,split=2[m1][m2];[h][m1]alphamerge[hm];[b][m2]alphamerge[bm];"
+          f"[0:v][hm]overlay={g['x1']}:{g['y']}:shortest=1[t];[t][bm]overlay={g['x2']}:{g['y']}:shortest=1,setsar=1,format=yuv420p[o]")
+    ffmpeg(["-loop", "1", "-framerate", FPS, "-i", bg,
+            "-ss", f"{host_from:.3f}", "-i", src_orig,
+            *rloop, "-ss", f"{rfrom:.3f}", "-i", rsrc,
+            "-loop", "1", "-framerate", FPS, "-i", mask,
+            "-filter_complex", fc, "-map", "[o]", "-frames:v", n, "-an", *ENC, "-r", FPS, clip])
+
+
 def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
     a, b = edit["range"]
     shots, prev = [], a - 1
@@ -61,18 +145,16 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
         n = f1 - f0
         if n <= 0:
             raise PipelineError(f"shot {i} ({s['at']!r}) has no duration — check its anchor order")
-        src = src_orig if s.get("src", "orig") == "orig" else P / s["src"]
-        start = float(s.get("from", s["t0"] if s.get("src", "orig") == "orig" else 0.0))
-        secs = n / FPS
-        move = s.get("move", "push")
-        z = ch["motion"]["host_push" if s.get("src", "orig") == "orig" and s.get("host") else "broll_push"]
-        zexpr = {"push": f"1+{z}*t/{secs:.3f}", "pull": f"1+{z}-{z}*t/{secs:.3f}", "none": "1"}[move]
-        loop = ["-stream_loop", "-1"] if duration(src) < start + secs + 0.1 else []
-        vf = (f"scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps={FPS},"
-              f"scale=w='trunc(1920*({zexpr})/2)*2':h=-2:eval=frame,crop=1920:1080,setsar=1")
         clip = out / f"s{i:03d}.mp4"
-        ffmpeg([*loop, "-ss", f"{start:.3f}", "-i", src, "-vf", vf, "-frames:v", n, "-an",
-                "-c:v", "libx264", "-preset", "veryfast", "-crf", "15", "-pix_fmt", "yuv420p", "-r", FPS, clip])
+        key = short_hash(s.get("src"), s.get("from"), s.get("move"), s.get("host"), s.get("split"), s.get("right"),
+                         s.get("sharpen"), n, ch["motion"], ch.get("split"))
+        meta_f = clip.with_suffix(".key")
+        if not (clip.exists() and meta_f.exists() and meta_f.read_text() == key):
+            if s.get("split"):
+                _split_clip(P, s, n, src_orig, clip, ch)
+            else:
+                _full_clip(P, s, n, src_orig, clip, ch)
+            meta_f.write_text(key)
         lines.append(f"file '{clip.name}'")
         s["frames"] = n
     (out / "list.txt").write_text("\n".join(lines) + "\n")
@@ -190,13 +272,16 @@ class Overlay(Composition):
         self.box(gid, t0, t1, f'<div class="timer"><span class="tm-dot"></span><span id="{gid}v">0:00</span>'
                  f'<span class="tm-of">/ {html.escape(g.get("of", "2:00"))}</span></div>', "position:absolute;right:90px;top:90px")
         self.enter(f"#{gid} .timer", t0, "scale:0.5,opacity:0", 0.4, "pop")
-        for s in range(1, int(t1 - t0) + 1):
-            self.tw(f'tl.set("#{gid}v",{{textContent:"{s // 60}:{s % 60:02d}"}},{t0 + s:.3f});')
+        speed = float(g.get("speed", 1.0))   # screen time can be compressed: show real routine time
+        for sec in range(1, int((t1 - t0) * speed) + 1):
+            self.tw(f'tl.set("#{gid}v",{{textContent:"{sec // 60}:{sec % 60:02d}"}},{t0 + sec / speed:.3f});')
         self.tw(f'tl.fromTo("#{gid} .tm-dot",{{opacity:1}},{{opacity:0.25,duration:0.5,repeat:{max(1, int((t1 - t0) / 1.0))},yoyo:true,ease:"sine.inOut"}},{t0:.3f});')
+        self.leave(f"#{gid} .timer", t1)
 
     def step(self, g, t0, t1):
         gid = self.nid("sp")
-        self.box(gid, t0, t1, f'<div class="step"><span class="sp-n">{g["n"]}</span>{html.escape(g["text"])}</div>',
+        bgc = self.WARN if g.get("tone") == "warn" else self.GOOD
+        self.box(gid, t0, t1, f'<div class="step"><span class="sp-n" style="background:{bgc}">{g["n"]}</span>{html.escape(g["text"])}</div>',
                  "position:absolute;left:90px;top:110px")
         self.enter(f"#{gid} .step", t0, "x:-60,opacity:0")
         self.leave(f"#{gid} .step", t1)
@@ -216,6 +301,108 @@ class Overlay(Composition):
         if sub:
             self.enter(f"#{gid} .tt-sub", t0 + 0.3, "y:20,opacity:0", 0.35, None)
         self.leave(f"#{gid} .tt-wrap", t1)
+
+    def cards(self, g, t0, t1):
+        """N columns, each appearing on its own cue; optional mark (✓ / ✗) per column on a later cue."""
+        gid = self.nid("cd")
+        cols = ""
+        for k, c in enumerate(g["cols"]):
+            cols += (f'<div class="cd-col" id="{gid}c{k}"><div class="cd-h">{html.escape(c["title"])}</div>'
+                     f'<div class="cd-b">{html.escape(c.get("text", ""))}</div>'
+                     f'<div class="cd-mark" id="{gid}m{k}">{c.get("mark", "")}</div></div>')
+        title = f'<div class="cd-title">{html.escape(g["title"])}</div>' if g.get("title") else ""
+        self.box(gid, t0, t1, f'<div class="cmp-wrap"><div class="card cd">{title}<div class="cd-row">{cols}</div></div></div>',
+                 "position:absolute;inset:0")
+        self.enter(f"#{gid} .card", t0, "scale:0.9,opacity:0")
+        for k, c in enumerate(g["cols"]):
+            if "a" in c:
+                self.enter(f"#{gid}c{k}", self.t(c["a"], t0), "y:30,opacity:0", 0.35, "pop")
+            if c.get("mark") and "ma" in c:
+                ok = c["mark"] == "✓"
+                self.tw(f'tl.fromTo("#{gid}m{k}",{{scale:0,opacity:0}},{{scale:1,opacity:1,duration:0.3,ease:"back.out(2.5)"}},{self.t(c["ma"], t0):.3f});')
+                self.tw(f'tl.set("#{gid}m{k}",{{backgroundColor:"{self.GOOD if ok else self.WARN}"}},{t0:.3f});')
+                self.sfx.append((self.t(c["ma"], t0), "pop"))
+        self.leave(f"#{gid} .card", t1)
+
+    def disposal(self, g, t0, t1):
+        """Top-down cutaway: spinning plate with two swivel lugs, grind ring, food flung outward."""
+        gid = self.nid("dp")
+        cx, cy, R = 760, 540, 330
+        teeth = "".join(
+            f'<path d="M{cx + (R) * math.cos(a):.0f},{cy + R * math.sin(a):.0f} L{cx + (R - 34) * math.cos(a + 0.05):.0f},{cy + (R - 34) * math.sin(a + 0.05):.0f} '
+            f'L{cx + R * math.cos(a + 0.1):.0f},{cy + R * math.sin(a + 0.1):.0f}" fill="#8A969C"/>'
+            for a in [k * 2 * math.pi / 60 for k in range(60)])
+        bits = "".join(f'<circle class="{gid}bit" cx="{cx}" cy="{cy}" r="9" fill="#C9A227"/>' for _ in range(10))
+        svg = (f'<svg width="1920" height="1080" viewBox="0 0 1920 1080" style="position:absolute;left:0;top:0">'
+               f'<circle cx="{cx}" cy="{cy}" r="{R + 30}" fill="#DDE2E4"/>'
+               f'<g id="{gid}ring">{teeth}<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="#6B777D" stroke-width="10"/></g>'
+               f'<g id="{gid}plate" style="transform-origin:{cx}px {cy}px">'
+               f'<circle cx="{cx}" cy="{cy}" r="{R - 70}" fill="#B9C3C7" stroke="#6B777D" stroke-width="8"/>'
+               + "".join(f'<circle cx="{cx + 70 * math.cos(a):.0f}" cy="{cy + 70 * math.sin(a):.0f}" r="22" fill="#56636A"/>' for a in (0, 2.1, 4.2))
+               + f'<rect x="{cx + 120}" y="{cy - 22}" width="110" height="44" rx="14" fill="{self.ACC}" stroke="{self.INK}" stroke-width="5"/>'
+               f'<rect x="{cx - 230}" y="{cy - 22}" width="110" height="44" rx="14" fill="{self.ACC}" stroke="{self.INK}" stroke-width="5"/>'
+               f'</g>{bits}'
+               f'<g id="{gid}x" opacity="0"><line x1="{cx - 150}" y1="{cy - 150}" x2="{cx + 150}" y2="{cy + 150}" stroke="{self.WARN}" stroke-width="26" stroke-linecap="round"/>'
+               f'<line x1="{cx + 150}" y1="{cy - 150}" x2="{cx - 150}" y2="{cy + 150}" stroke="{self.WARN}" stroke-width="26" stroke-linecap="round"/></g></svg>')
+        labels = ""
+        for k, lb in enumerate(g.get("labels", [])):
+            labels += (f'<div class="dg-lab" id="{gid}l{k}" style="left:{lb.get("x", 1180)}px;top:{lb.get("y", 260 + 130 * k)}px">'
+                       f'<span class="dg-dot" style="background:{self.ACC}"></span>{html.escape(lb["t"])}</div>')
+        head = f'<div class="dg-head">{html.escape(g.get("title", "Inside the disposal"))}</div>'
+        self.box(gid, t0, t1, f'<div class="dg-bg"></div>{svg}{head}{labels}', "position:absolute;inset:0")
+        self.enter(f"#{gid}", t0, "opacity:0", 0.4)
+        spin = self.t(g["spin"], t0) if g.get("spin") else t0 + 0.5
+        self.tw(f'tl.fromTo("#{gid}plate",{{rotation:0}},{{rotation:{int((t1 - spin) * 540)},duration:{max(0.5, t1 - spin):.3f},ease:"power1.in"}},{spin:.3f});')
+        if g.get("no_blades"):
+            tx = self.t(g["no_blades"], t0)
+            self.tw(f'tl.fromTo("#{gid}x",{{opacity:0,scale:0.4,transformOrigin:"{cx}px {cy}px"}},{{opacity:1,scale:1,duration:0.3,ease:"back.out(2)"}},{tx:.3f});')
+            self.tw(f'tl.to("#{gid}x",{{opacity:0,duration:0.3}},{tx + 1.6:.3f});')
+            self.sfx.append((tx, "pop"))
+        if g.get("fling"):
+            tf = self.t(g["fling"], t0)
+            for k in range(10):
+                ang = k * 2 * math.pi / 10 + 0.3
+                self.tw(f'tl.fromTo("#{gid} .{gid}bit:nth-of-type({k + 1})",{{attr:{{cx:{cx},cy:{cy}}},opacity:1}},'
+                        f'{{attr:{{cx:{cx + (R - 30) * math.cos(ang):.0f},cy:{cy + (R - 30) * math.sin(ang):.0f}}},duration:0.6,ease:"power2.out",'
+                        f'repeat:{max(1, int((t1 - tf) / 1.2))},repeatDelay:0.6}},{tf + k * 0.05:.3f});')
+        else:
+            self.tw(f'tl.set("#{gid} .{gid}bit",{{opacity:0}},{t0:.3f});')
+        for k, lb in enumerate(g.get("labels", [])):
+            self.enter(f"#{gid}l{k}", self.t(lb["a"], t0), "x:40,opacity:0", 0.35, "pop")
+        self.leave(f"#{gid}", t1)
+
+    def trap(self, g, t0, t1):
+        """U-trap side view: water seal blocks sewer gas; optional 'dry' cue drains it and lets gas through."""
+        gid = self.nid("tp")
+        pipe = "M520,180 L520,640 Q520,840 760,840 Q1000,840 1000,640 L1000,560 L1500,560"
+        water = "M560,520 L560,640 Q560,800 760,800 Q960,800 960,640 L960,520"
+        svg = (f'<svg width="1920" height="1080" viewBox="0 0 1920 1080" style="position:absolute;left:0;top:0">'
+               f'<path d="{pipe}" fill="none" stroke="#C7CED1" stroke-width="110" stroke-linecap="round" stroke-linejoin="round"/>'
+               f'<path id="{gid}w" d="{water}" fill="none" stroke="#5DADE2" stroke-width="80" stroke-linecap="round" opacity="0.9"/>'
+               f'<path d="{pipe}" fill="none" stroke="{self.INK}" stroke-width="8" stroke-opacity=".25"/>'
+               + "".join(f'<circle class="{gid}gas" cx="1450" cy="560" r="16" fill="#8DB255" opacity="0"/>' for _ in range(6))
+               + '</svg>')
+        labels = ""
+        for k, lb in enumerate(g.get("labels", [])):
+            labels += (f'<div class="dg-lab" id="{gid}l{k}" style="left:{lb["x"]}px;top:{lb["y"]}px">'
+                       f'<span class="dg-dot" style="background:{lb.get("c", self.ACC)}"></span>{html.escape(lb["t"])}</div>')
+        head = f'<div class="dg-head">{html.escape(g.get("title", "The bend under your sink"))}</div>'
+        self.box(gid, t0, t1, f'<div class="dg-bg"></div>{svg}{head}{labels}', "position:absolute;inset:0")
+        self.enter(f"#{gid}", t0, "opacity:0", 0.4)
+        # gas puffs drift in from the sewer side and stop at the water (or pass when dry)
+        dry = self.t(g["dry"], t0) if g.get("dry") else None
+        for k in range(6):
+            st = t0 + 0.6 + k * 0.5
+            self.tw(f'tl.fromTo("#{gid} .{gid}gas:nth-of-type({k + 1})",{{attr:{{cx:1450,cy:560}},opacity:0.9}},'
+                    f'{{attr:{{cx:1010,cy:560}},opacity:0.2,duration:1.4,ease:"sine.in",repeat:3,repeatDelay:1.6}},{st:.3f});')
+        if dry:
+            self.tw(f'tl.to("#{gid}w",{{opacity:0,duration:1.0}},{dry:.3f});')
+            for k in range(6):
+                self.tw(f'tl.fromTo("#{gid} .{gid}gas:nth-of-type({k + 1})",{{attr:{{cx:1450,cy:560}},opacity:0.9}},'
+                        f'{{attr:{{cx:520,cy:180}},opacity:0.9,duration:2.2,ease:"none"}},{dry + 0.8 + k * 0.35:.3f});')
+        for k, lb in enumerate(g.get("labels", [])):
+            self.enter(f"#{gid}l{k}", self.t(lb["a"], t0), "x:40,opacity:0", 0.35, "pop")
+        self.leave(f"#{gid}", t1)
 
     # --- captions with the spoken word highlighted ---
     def word_captions(self, a, b):
@@ -282,13 +469,27 @@ html,body{{width:1920px;height:1080px;overflow:hidden;background:#000}}
 .tt{{font-size:150px;line-height:1;color:#fff;letter-spacing:2px;text-transform:uppercase;
   text-shadow:0 6px 0 {p['ink']},0 14px 40px rgba(0,0,0,.6)}}
 .tt-sub{{margin-top:22px;background:{p['accent']};color:{p['ink']};font-size:42px;padding:10px 28px;border-radius:999px}}
+.cd{{padding:34px 40px}}
+.cd-title{{font-size:46px;margin:0 0 20px 6px}}
+.cd-row{{display:flex;gap:24px}}
+.cd-col{{position:relative;width:440px;padding:28px 30px 34px;border-radius:20px;background:#F3F5F6}}
+.cd-h{{font-size:56px;margin-bottom:10px}}
+.cd-b{{font-size:38px;color:{p['muted']};line-height:1.25}}
+.cd-mark{{position:absolute;right:-14px;top:-14px;width:70px;height:70px;border-radius:50%;color:#fff;font-size:44px;
+  display:flex;align-items:center;justify-content:center;opacity:0;box-shadow:0 8px 20px rgba(0,0,0,.25)}}
+.dg-bg{{position:absolute;inset:0;background:linear-gradient(#F7F5F0,#ECE8E0)}}
+.dg-head{{position:absolute;left:90px;top:70px;font-size:60px}}
+.dg-lab{{position:absolute;display:flex;align-items:center;gap:16px;background:{p['card']};font-size:46px;padding:14px 28px;border-radius:18px;
+  box-shadow:0 10px 26px rgba(0,0,0,.18)}}
+.dg-dot{{width:22px;height:22px;border-radius:50%;flex:none}}
 .capwrap{{position:absolute;left:0;right:0;bottom:{cap['bottom']}px;display:flex;justify-content:center;z-index:40}}
 .cap{{color:#fff;font-size:{cap['size']}px;line-height:1.15;text-align:center;max-width:1500px;
  text-shadow:3px 3px 0 #000,-3px 3px 0 #000,3px -3px 0 #000,-3px -3px 0 #000,0 3px 0 #000,0 -3px 0 #000,3px 0 0 #000,-3px 0 0 #000,0 8px 18px rgba(0,0,0,.55)}}
 """
 
 
-GRAPHICS = ("checklist", "badge", "circle", "lower_third", "statement", "tag", "compare", "timer", "step", "alert", "title")
+GRAPHICS = ("checklist", "badge", "circle", "lower_third", "statement", "tag", "compare", "timer", "step", "alert", "title",
+            "cards", "disposal", "trap")
 
 
 def build_overlay(P, meta, edit, ch, words, log=print):
@@ -329,6 +530,31 @@ def _sfx_files(d: Path):
     return {"whoosh": whoosh, "pop": pop}
 
 
+def _music_bed(P: Path, a: float, end: float) -> Path | None:
+    """Lay the music.json tracks (each over [start, end] of the original timeline) into one bed with crossfades."""
+    mj = P / "music.json"
+    if not mj.exists():
+        return None
+    tracks = [t for t in json.loads(mj.read_text())["tracks"] if t["end"] > a and t["start"] < a + end]
+    if not tracks:
+        return None
+    args, f, labs = [], [], []
+    for i, t in enumerate(tracks):
+        st, en = max(t["start"], a) - a, min(t["end"], a + end) - a
+        d = en - st
+        ms = int(st * 1000)
+        args += ["-stream_loop", "-1", "-i", P / t["file"]]
+        fi = 0.5 if i == 0 else 3.0
+        f.append(f"[{i}]atrim={t.get('offset', 0)}:{t.get('offset', 0) + d:.3f},asetpts=PTS-STARTPTS,aresample=44100,"
+                 f"aformat=channel_layouts=stereo,afade=t=in:d={fi},afade=t=out:st={max(0, d - 3):.3f}:d=3,adelay={ms}|{ms}[m{i}]")
+        labs.append(f"[m{i}]")
+    f.append(f"{''.join(labs)}amix=inputs={len(labs)}:duration=longest:normalize=0,apad,atrim=0:{end:.3f}[o]")
+    out = P / "build/audio_parts/music_bed.wav"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    ffmpeg([*args, "-filter_complex", ";".join(f), "-map", "[o]", out])
+    return out
+
+
 def build_audio(P, meta, edit, ch, sfx_cues, music: Path | None, log=print) -> Path:
     a, b = edit["range"]
     end = b - a
@@ -340,6 +566,8 @@ def build_audio(P, meta, edit, ch, sfx_cues, music: Path | None, log=print) -> P
     voice = tmp / "voice.wav"
     ffmpeg(["-ss", f"{a:.3f}", "-t", f"{end:.3f}", "-i", src, "-vn", "-ac", "2", "-ar", "44100",
             "-af", f"loudnorm=I={aud['voice_lufs']}:TP=-1.5:LRA=11", voice])
+    if music is None:
+        music = _music_bed(P, a, end)
     inputs, chains, mixes = ["-i", voice], [], ["[v1]"]
     chains.append("[0]anull[v1]")
     n = 1

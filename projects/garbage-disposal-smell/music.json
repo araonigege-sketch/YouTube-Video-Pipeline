@@ -1,4 +1,14 @@
-{"tracks": [{"file": "music/bed_vidiq.wav", "start": 0, "end": 106.9, "title": "Untitled acoustic bed",
-  "artist": "Generated with vidIQ (royalty-free original)", "license": "Royalty-free (vidIQ generated)",
-  "source": "vidIQ generate_music a8ac489a-d157-4d66-bdb7-106651109d12", "licence_verified": true,
-  "prompt": "Instrumental acoustic pop. Cheerful, warm and light. Acoustic guitar and ukulele with soft percussion. Medium tempo."}]}
+{"tracks": [
+ {"file": "music/bed_vidiq.wav", "start": 0, "end": 157, "offset": 0, "mood": "upbeat · hook & routine",
+  "title": "Acoustic bed A", "artist": "Generated with vidIQ", "license": "Royalty-free (vidIQ generated)",
+  "source": "vidIQ generate_music a8ac489a-d157-4d66-bdb7-106651109d12", "licence_verified": true},
+ {"file": "music/bed_curious.wav", "start": 155, "end": 427, "offset": 0, "mood": "curious · how it works, guard",
+  "title": "Acoustic bed B", "artist": "Generated with vidIQ", "license": "Royalty-free (vidIQ generated)",
+  "source": "vidIQ generate_music b032eacb-55b0-4c2f-aff8-8dbcef888792", "licence_verified": true},
+ {"file": "music/bed_steady.wav", "start": 425, "end": 622, "offset": 0, "mood": "steady · mistakes & troubleshooting",
+  "title": "Acoustic bed C", "artist": "Generated with vidIQ", "license": "Royalty-free (vidIQ generated)",
+  "source": "vidIQ generate_music 25ebed82-de77-448e-b887-fbecd6e1fb85", "licence_verified": true},
+ {"file": "music/bed_vidiq.wav", "start": 620, "end": 751.7, "offset": 20, "mood": "upbeat · prevention & outro",
+  "title": "Acoustic bed A", "artist": "Generated with vidIQ", "license": "Royalty-free (vidIQ generated)",
+  "source": "vidIQ generate_music a8ac489a-d157-4d66-bdb7-106651109d12", "licence_verified": true}
+]}

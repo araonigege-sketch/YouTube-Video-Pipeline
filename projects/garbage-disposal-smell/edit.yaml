@@ -1,62 +1,1112 @@
-# Test section: hook + intro + the Ice Scour (original 0–107 s).
-# Shots: picture track. `host: true` = Nora on camera (original footage, gentle push-in).
-# src: orig = the original video at `from` seconds; otherwise a clip in build/cand (Pexels, see credits).
-range: [0, 106.9]
+range:
+- 0
+- 751.7
 shots:
-  - {at: 0, src: orig, from: 0, host: true}
-  - {at: "The sink is so clean", src: orig, from: 2.36}                           # original: clean stainless sink (sharp)
-  - {at: "And still, every time", src: build/cand/6901296.mp4, from: 2}          # woman passing the kitchen sink
-  - {at: "something sour drifts", src: build/cand/4064321.mp4, from: 0.5}        # water swirling into a drain
-  - {at: "like the kitchen remembers", src: build/cand/4061918.mp4, from: 3}     # dirty plate in the sink
-  - {at: "Before you buy another bottle", src: build/cand/6612138.mp4, from: 1}  # spray bottle
-  - {at: "a handful of ice", src: build/cand/14058792.mp4, from: 0.5}            # scooping ice
-  - {at: "a little coarse salt", src: build/cand/6694020.mp4, from: 2}           # coarse salt in a bowl
-  - {at: "and half a lemon", src: build/cand/5540318.mp4, from: 3}               # cutting a lemon
-  - {at: "me two minutes", src: orig, from: 23.04, host: true}
-  - {at: "Then I’ll show you the spot", src: orig, from: 5.08, move: push}       # original: drain opening + rubber guard
-  - {at: "because if that’s where", src: orig, from: 46.4}                        # original: grime under the flap
-  - {at: "the lemon will never win", src: build/cand/6666529.mp4, from: 1}       # lemon wedges
-  - {at: "Nora Hart", src: orig, from: 35.52, host: true}
-  - {at: "A disposal that smells", src: build/cand/16641598.mp4, from: 1}        # sink, running water (high angle)
-  - {at: "Most of the time", src: orig, from: 43.8}                               # original: water into the drain
-  - {at: "just holding on", src: orig, from: 10.56}                               # original: dirty disposal chamber
-  - {at: "Let’s get the two minutes", src: orig, from: 49.84, host: true}
-  - {at: "This is for a disposal", src: build/cand/16641476.mp4, from: 1}        # bright kitchen (checklist over it)
-  - {at: "If yours is jammed", src: orig, from: 56.88}                            # original: hex key under the unit
-  - {at: "a different job", src: orig, from: 60.0}
-  - {at: "One more thing", src: orig, from: 62.84, host: true}
-  - {at: "If yours is a batch-feed", src: build/cand/16641476.mp4, from: 7, move: pull}   # kitchen, compare card on top
-  - {at: "or your manual says", src: build/cand/7584759.mp4, from: 2}            # reading the manual
-  - {at: "What I’m showing you", src: build/cand/16641598.mp4, from: 7, move: pull}
-  - {at: "Clock on", src: build/cand/5588610.mp4, from: 1}                        # opening the faucet (top-down)
-  - {at: "Switch the disposal on", src: orig, from: 83.76}                        # original: wall switch
-  - {at: "Now drop in", src: orig, from: 85.72}                                   # original: ice in hand over the sink
-  - {at: "Rock salt", src: orig, from: 90.56}                                     # original: coarse salt (sharp)
-  - {at: "Drop it all in", src: build/cand/4064321.mp4, from: 3}
-  - {at: "Fingers stay out", src: orig, from: 95.84, host: true}
-  - {at: "It’s going to be loud", src: orig, from: 99.44}                         # original: water splash in the sink
-  - {at: "Let it run until", src: build/cand/16641598.mp4, from: 4}
-  - {at: "That’s the Ice Scour", src: orig, from: 105.28}                         # original: disposal chamber
-
+- at: 0
+  src: orig
+  from: 0
+  host: true
+- at: The sink is so clean
+  src: orig
+  from: 2.36
+- at: And still, every time
+  src: build/cand/6901296.mp4
+  from: 2
+- at: something sour drifts
+  src: build/cand/4064321.mp4
+  from: 0.5
+- at: like the kitchen remembers
+  src: build/cand/4061918.mp4
+  from: 3
+- at: Before you buy another bottle
+  src: build/cand/6612138.mp4
+  from: 1
+- at: a handful of ice
+  src: build/cand/14058792.mp4
+  from: 0.5
+- at: a little coarse salt
+  src: build/cand/6694020.mp4
+  from: 2
+- at: and half a lemon
+  src: build/cand/5540318.mp4
+  from: 3
+- at: me two minutes
+  src: orig
+  from: 23.04
+  host: true
+- at: Then I’ll show you the spot
+  src: orig
+  from: 5.08
+  move: push
+- at: because if that’s where
+  src: orig
+  from: 46.4
+- at: the lemon will never win
+  src: build/cand/6666529.mp4
+  from: 1
+- at: Nora Hart
+  src: orig
+  from: 35.52
+  host: true
+- at: A disposal that smells
+  src: build/cand/16641598.mp4
+  from: 1
+- at: Most of the time
+  src: orig
+  from: 43.8
+- at: just holding on
+  src: orig
+  from: 10.56
+- at: Let’s get the two minutes
+  src: orig
+  from: 49.84
+  host: true
+- at: This is for a disposal
+  src: build/cand/16641476.mp4
+  from: 1
+- at: If yours is jammed
+  src: orig
+  from: 56.88
+- at: a different job
+  src: orig
+  from: 60.0
+- at: One more thing
+  src: orig
+  from: 62.84
+  host: true
+- at: If yours is a batch-feed
+  src: build/cand/16641476.mp4
+  from: 7
+  move: pull
+- at: or your manual says
+  src: build/cand/7584759.mp4
+  from: 2
+- at: What I’m showing you
+  src: build/cand/16641598.mp4
+  from: 7
+  move: pull
+- at: Clock on
+  src: build/cand/5588610.mp4
+  from: 1
+- at: Switch the disposal on
+  src: orig
+  from: 83.76
+- at: Now drop in
+  src: orig
+  from: 85.72
+- at: Rock salt
+  src: orig
+  from: 90.56
+- at: Drop it all in
+  src: build/cand/4064321.mp4
+  from: 3
+- at: Fingers stay out
+  src: orig
+  from: 95.84
+  host: true
+- at: It’s going to be loud
+  src: orig
+  from: 99.44
+- at: Let it run until
+  src: build/cand/16641598.mp4
+  from: 4
+- at: That’s the Ice Scour
+  src: orig
+  from: 105.28
+- at: Then the lemon
+  src: build/cand/6666529.mp4
+  from: 6
+- at: 108.08
+  split: true
+  right:
+    src: build/cand/5540318.mp4
+    from: 3
+    focus: 0.7
+- at: 116.2
+  src: build/cand/16641598.mp4
+  from: 14
+- at: feed the wedges
+  src: orig
+  from: 143.9
+- at: and let each batch
+  src: orig
+  from: 120.68
+- at: That’s the Lemon Finish
+  src: orig
+  from: 139.6
+- at: When the last of it’s gone
+  src: orig
+  from: 126.2
+- at: then switch the disposal off
+  src: orig
+  from: 131.1
+- at: and let the water run
+  src: build/cand/4064321.mp4
+  from: 8
+- at: 136.04
+  split: true
+  right:
+    src: orig
+    from: 139.6
+- at: 139.6
+  src: build/cand/16641476.mp4
+  from: 15
+- at: smells clean and bright
+  src: build/cand/6666529.mp4
+  from: 9
+- at: If that’s you, wonderful
+  src: build/cand/6262735.mp4
+  from: 1
+- at: 148.84
+  split: true
+  right:
+    src: build/cand/6901296.mp4
+    from: 9
+- at: 154.8
+  src: build/cand/5835662.mp4
+  from: 3
+- at: There’s a reason for that
+  src: orig
+  from: 162.8
+- at: buying lemons by the bag
+  src: orig
+  from: 286.9
+- at: First, what just happened
+  src: orig
+  from: 167.3
+- at: The plate spins fast
+  src: orig
+  from: 173.4
+- at: the lugs fling the food
+  src: orig
+  from: 181.6
+- at: and it smashes against
+  src: orig
+  from: 185.0
+- at: Water carries the bits away
+  src: orig
+  from: 189.0
+- at: 191.32
+  split: true
+  right:
+    src: orig
+    from: 197.9
+- at: 196.12
+  split: true
+  right:
+    src: orig
+    from: 178.2
+- at: 197.92
+  src: orig
+  from: 200.4
+- at: Those chunks get thrown
+  src: orig
+  from: 203.5
+- at: and knock loose the soft film
+  src: orig
+  from: 207.4
+- at: 210.16
+  split: true
+  right:
+    src: build/cand/6694020.mp4
+    from: 6
+- at: 213.56
+  split: true
+  right:
+    src: orig
+    from: 280.7
+- at: 216.2
+  src: orig
+  from: 297.2
+- at: The cold matters too
+  src: orig
+  from: 224.9
+- at: hardens on the inside
+  src: orig
+  from: 229.7
+- at: Now, that’s about the thin film
+  src: orig
+  from: 219.9
+- at: A pan of grease
+  src: build/cand/5542073.mp4
+  from: 10
+- at: That never goes down the drain
+  src: orig
+  from: 243.3
+- at: 246.72
+  split: true
+  right:
+    src: build/cand/6666529.mp4
+    from: 12
+- at: 249.68
+  split: true
+  right:
+    src: orig
+    from: 259.5
+- at: 254.2
+  src: orig
+  from: 254.2
+- at: Lemon on its own
+  src: orig
+  from: 234.0
+- at: is perfume on
+  src: build/cand/6639615.mp4
+  from: 3
+- at: yesterday’s laundry
+  src: build/cand/10566657.mp4
+  from: 2
+- at: That’s worth sorting out
+  src: build/cand/4301616.mp4
+  from: 1
+- at: saves you a lot of wasted lemons
+  src: build/cand/10561216.mp4
+  from: 30
+- at: 291.4
+  split: true
+  right:
+    src: build/cand/4061918.mp4
+    from: 12
+- at: 297.2
+  src: orig
+  from: 300.0
+- at: Look at the rubber flaps
+  src: orig
+  from: 303.0
+- at: It keeps food and water
+  src: orig
+  from: 363.5
+- at: The top side gets rinsed
+  src: build/cand/16641598.mp4
+  from: 18
+- at: The underside doesn’t get
+  src: orig
+  from: 305.8
+- at: so food residue collects
+  src: orig
+  from: 317.2
+- at: 323.48
+  split: true
+  right:
+    src: build/cand/855423.mp4
+    from: 2
+- at: 328.0
+  src: orig
+  from: 328.0
+- at: If the disposal plugs into
+  src: orig
+  from: 333.0
+- at: If it’s wired straight in
+  src: orig
+  from: 337.3
+- at: And whatever happens next
+  src: orig
+  from: 340.7
+- at: If you can see something stuck
+  src: orig
+  from: 345.5
+- at: lift it out with kitchen tongs
+  src: orig
+  from: 350.1
+- at: 352.16
+  split: true
+  right:
+    src: orig
+    from: 354.4
+- at: 354.4
+  src: orig
+  from: 525.5
+- at: and the smell coming off it
+  src: orig
+  from: 477.3
+- at: Food splashes up under there
+  src: orig
+  from: 611.6
+- at: the water barely reaches it
+  src: orig
+  from: 234.6
+- at: 370.4
+  split: true
+  right:
+    src: orig
+    from: 749.3
+- at: 378.4
+  src: orig
+  from: 378.4
+- at: Check your manual
+  src: build/cand/7584759.mp4
+  from: 8
+- at: take it to the sink with warm soapy water
+  src: build/cand/7640962.mp4
+  from: 2
+- at: and an old toothbrush
+  src: build/cand/6322940.mp4
+  from: 2
+- at: 390.04
+  split: true
+  right:
+    src: orig
+    from: 384.8
+- at: 393.52
+  src: orig
+  from: 393.5
+- at: If yours doesn’t come out
+  src: orig
+  from: 396.4
+- at: Use a long-handled bottle brush
+  src: orig
+  from: 399.5
+- at: and work it up under each flap
+  src: orig
+  from: 405.6
+- at: then go around the metal rim
+  src: orig
+  from: 407.4
+- at: That’s the Flap Scrub
+  src: orig
+  from: 427.4
+- at: Power back on
+  src: orig
+  from: 410.9
+- at: one more quick Ice Scour
+  src: orig
+  from: 197.9
+- at: 420.08
+  split: true
+  right:
+    src: build/cand/16641598.mp4
+    from: 12
+- at: 427.44
+  src: build/cand/8550690.mp4
+  from: 8
+- at: Now, there are three mistakes
+  src: build/cand/4301616.mp4
+  from: 4
+- at: The first is shutting the water off
+  src: orig
+  from: 438.0
+- at: Grinding is only half the job
+  src: orig
+  from: 440.8
+- at: 443.0
+  split: true
+  right:
+    src: orig
+    from: 455.4
+- at: 448.48
+  src: orig
+  from: 448.5
+- at: you’ve just parked a slurry
+  src: orig
+  from: 460.6
+- at: Keep the cold water running fifteen
+  src: orig
+  from: 451.5
+- at: The scraps have to leave
+  src: build/cand/4064321.mp4
+  from: 10
+- at: 464.0
+  split: true
+  right:
+    src: build/cand/6639615.mp4
+    from: 7
+- at: 467.08
+  src: orig
+  from: 467.1
+- at: more lemon isn’t the answer
+  src: orig
+  from: 473.4
+- at: Something’s still in there
+  src: orig
+  from: 475.6
+- at: The third is reaching for a jug
+  src: orig
+  from: 481.6
+- at: Those caustic cleaners
+  src: orig
+  from: 485.6
+- at: They can damage the seals
+  src: orig
+  from: 454.0
+- at: and if you switch the disposal on with
+  src: orig
+  from: 491.6
+- at: 492.68
+  split: true
+  right:
+    src: orig
+    from: 614.4
+- at: 498.16
+  src: orig
+  from: 481.6
+- at: stop. Leave the disposal off
+  src: orig
+  from: 502.6
+- at: Follow the emergency directions
+  src: build/cand/6612138.mp4
+  from: 4
+- at: or call a plumber and tell them
+  src: build/cand/4082870.mp4
+  from: 2
+- at: 513.68
+  split: true
+  right:
+    src: build/cand/16641476.mp4
+    from: 12
+- at: 518.68
+  src: orig
+  from: 518.7
+- at: and the real skill is noticing
+  src: orig
+  from: 528.2
+- at: If the smell hangs on
+  src: orig
+  from: 554.3
+- at: If your dishwasher drains
+  src: build/cand/8052782.mp4
+  from: 4
+- at: a dirty dishwasher filter
+  src: orig
+  from: 531.9
+- at: If yours has a filter in the bottom
+  src: orig
+  from: 535.8
+- at: pull it and rinse it
+  src: orig
+  from: 540.6
+- at: 545.04
+  split: true
+  right:
+    src: orig
+    from: 550.1
+- at: 550.08
+  src: orig
+  from: 563.0
+- at: Run the tap for a minute
+  src: orig
+  from: 554.3
+- at: If the sink smells and drains slowly
+  src: orig
+  from: 557.8
+- at: often in that U-shaped trap
+  src: orig
+  from: 576.7
+- at: Ice and lemon won’t touch
+  src: orig
+  from: 566.0
+- at: That’s a drain job
+  src: orig
+  from: 563.5
+- at: And if several drains are slow
+  src: orig
+  from: 572.1
+- at: or there’s a steady sewer smell
+  src: build/cand/16641598.mp4
+  from: 20
+- at: 581.4
+  split: true
+  right:
+    src: build/cand/6962706.mp4
+    from: 3
+- at: 587.96
+  src: orig
+  from: 588.0
+- at: Many models have a small socket
+  src: orig
+  from: 591.8
+- at: and a red reset button
+  src: orig
+  from: 596.6
+- at: 599.08
+  split: true
+  right:
+    src: orig
+    from: 594.4
+- at: 607.4
+  src: orig
+  from: 607.4
+- at: But if it keeps tripping the breaker
+  src: orig
+  from: 337.3
+- at: starts making grinding noises
+  src: orig
+  from: 614.4
+- at: Here’s how to keep from doing
+  src: build/cand/4301616.mp4
+  from: 14
+- at: Cold water every time you grind
+  src: orig
+  from: 624.1
+- at: Feed it a little at a time
+  src: build/cand/6305031.mp4
+  from: 2
+- at: Grease and cooking oil go into
+  src: build/cand/14527415.mp4
+  from: 2
+- at: Coffee grounds settle into sludge
+  src: orig
+  from: 638.5
+- at: stringy scraps like celery
+  src: build/cand/4959967.mp4
+  from: 3
+- at: and corn husks
+  src: orig
+  from: 645.5
+- at: so those go in the bin too
+  src: orig
+  from: 642.2
+- at: 649.24
+  split: true
+  right:
+    src: orig
+    from: 427.4
+- at: 657.04
+  src: orig
+  from: 659.8
+- at: One trick makes that routine
+  src: build/cand/6666529.mp4
+  from: 18
+- at: as long as your manual is fine with citrus
+  src: orig
+  from: 665.7
+- at: When you use a lemon, keep the peel
+  src: orig
+  from: 662.2
+- at: Cut it into small pieces
+  src: build/cand/10561216.mp4
+  from: 20
+- at: drop them into an ice cube tray
+  src: orig
+  from: 670.8
+- at: top it up with water
+  src: orig
+  from: 676.6
+- at: and freeze it
+  src: orig
+  from: 679.1
+- at: Now your ice and your lemon
+  src: orig
+  from: 684.4
+- at: A few of those cubes
+  src: orig
+  from: 682.2
+- at: cold water running, and you’re done
+  src: orig
+  from: 695.1
+- at: You’ll do it while the kettle boils
+  src: build/cand/5835662.mp4
+  from: 1
+- at: 690.56
+  split: true
+  right:
+    src: build/cand/16641476.mp4
+    from: 20
+- at: 692.32
+  src: build/cand/5592515.mp4
+  from: 2
+- at: Run the tap
+  src: build/cand/4484511.mp4
+  from: 2
+- at: The water goes straight down
+  src: orig
+  from: 696.2
+- at: Nothing but clean
+  src: orig
+  from: 699.0
+- at: 700.48
+  split: true
+  right:
+    src: build/cand/5743133.mp4
+    from: 2
+- at: 705.64
+  src: orig
+  from: 305.8
+- at: I have a feeling
+  src: build/cand/8550690.mp4
+  from: 10
+- at: 712.16
+  split: true
+  right:
+    src: build/cand/6262735.mp4
+    from: 3
+- at: 718.12
+  src: orig
+  from: 720.6
+- at: for the part the tile video
+  src: orig
+  from: 723.6
+- at: Now, how do you keep it white
+  src: build/cand/8403602.mp4
+  from: 2
+- at: There’s a test that takes one drop
+  src: orig
+  from: 729.7
+- at: Okay. So, two minutes
+  src: build/cand/6666529.mp4
+  from: 14
+- at: 734.64
+  split: true
+  right:
+    src: build/cand/14058792.mp4
+    from: 4
+- at: 743.0
+  src: orig
+  from: 743.0
+- at: The secret was never
+  src: build/cand/5540318.mp4
+  from: 14
+- at: It was finding what got left behind
+  src: orig
+  from: 317.2
 graphics:
-  - {type: checklist, at: "grab three things", until: "me two minutes", title: "Grab 3 things",
-     items: [{t: "A handful of ice", a: "handful of ice"}, {t: "Coarse salt", a: "coarse salt"}, {t: "Half a lemon", a: "half a lemon"}]}
-  - {type: badge, at: "Give me two minutes", text: "2-minute fix", dur: 2.6}
-  - {type: circle, at: "the spot under", x: 990, y: 560, r: 300, label: "the spot nobody cleans", lx: 1170, ly: 190, until: "because if that’s where"}
-  - {type: lower_third, at: "Nora Hart", name: "Nora Hart", sub: "Bring it back. Don’t buy new.", dur: 4.0}
-  - {type: statement, at: "A disposal that smells", lines: ["Smelly", "≠ dying"], until: "Most of the time"}
-  - {type: checklist, at: "This is for a disposal", until: "If yours is jammed", title: "This fix is for you if it…", ticks: true,
-     items: [{t: "Runs normally", a: "runs normally"}, {t: "Drains fine", a: "drains fine"}, {t: "Just smells", a: "just smells"}]}
-  - {type: tag, at: "If yours is jammed", until: "One more thing", tone: warn, text: "Jammed or backing up? Different fix — coming later"}
-  - {type: compare, at: "If yours is a batch-feed", until: "or your manual says",
-     left: {title: "Batch-feed", text: "Runs only with the stopper in"}, right: {title: "Continuous-feed", text: "Switch on, feed as you go"}}
-  - {type: compare, at: "What I’m showing you", until: "Clock on",
-     left: {title: "Batch-feed", text: "Runs only with the stopper in"}, right: {title: "Continuous-feed", text: "Most kitchens — this video"},
-     pick: {side: right, at: "continuous-feed"}}
-  - {type: timer, at: "Clock on", until: end, of: "2:00"}
-  - {type: step, at: "Turn the cold water", n: 1, text: "Cold water · steady, medium stream", until: "Switch the disposal on"}
-  - {type: step, at: "Switch the disposal on", n: 2, text: "Disposal ON", until: "Now drop in"}
-  - {type: step, at: "Now drop in", n: 3, text: "Ice + 1 tbsp coarse salt", until: "Fingers stay out"}
-  - {type: alert, at: "Fingers stay out", text: "Fingers out of the opening", dur: 2.0}
-  - {type: title, at: "That’s the Ice Scour", text: "The Ice Scour", sub: "Step 1 of the 2-minute routine", until: end}
+- type: checklist
+  at: grab three things
+  until: me two minutes
+  title: Grab 3 things
+  items:
+  - t: A handful of ice
+    a: handful of ice
+  - t: Coarse salt
+    a: coarse salt
+  - t: Half a lemon
+    a: half a lemon
+- type: badge
+  at: Give me two minutes
+  text: 2-minute fix
+  dur: 2.6
+- type: circle
+  at: the spot under
+  x: 990
+  y: 560
+  r: 300
+  label: the spot nobody cleans
+  lx: 1170
+  ly: 190
+  until: because if that’s where
+- type: lower_third
+  at: Nora Hart
+  name: Nora Hart
+  sub: Bring it back. Don’t buy new.
+  dur: 4.0
+- type: statement
+  at: A disposal that smells
+  lines:
+  - Smelly
+  - ≠ dying
+  until: Most of the time
+- type: checklist
+  at: This is for a disposal
+  until: If yours is jammed
+  title: This fix is for you if it…
+  ticks: true
+  items:
+  - t: Runs normally
+    a: runs normally
+  - t: Drains fine
+    a: drains fine
+  - t: Just smells
+    a: just smells
+- type: tag
+  at: If yours is jammed
+  until: One more thing
+  tone: warn
+  text: Jammed or backing up? Different fix — coming later
+- type: compare
+  at: If yours is a batch-feed
+  until: or your manual says
+  left:
+    title: Batch-feed
+    text: Runs only with the stopper in
+  right:
+    title: Continuous-feed
+    text: Switch on, feed as you go
+- type: compare
+  at: What I’m showing you
+  until: Clock on
+  left:
+    title: Batch-feed
+    text: Runs only with the stopper in
+  right:
+    title: Continuous-feed
+    text: Most kitchens — this video
+  pick:
+    side: right
+    at: continuous-feed
+- type: timer
+  at: Clock on
+  until: Clock off
+  of: '2:00'
+  speed: 1.97
+- type: step
+  at: Turn the cold water
+  n: 1
+  text: Cold water · steady, medium stream
+  until: Switch the disposal on
+- type: step
+  at: Switch the disposal on
+  n: 2
+  text: Disposal ON
+  until: Now drop in
+- type: step
+  at: Now drop in
+  n: 3
+  text: Ice + 1 tbsp coarse salt
+  until: Fingers stay out
+- type: alert
+  at: Fingers stay out
+  text: Fingers out of the opening
+  dur: 2.0
+- type: title
+  at: That’s the Ice Scour
+  text: The Ice Scour
+  sub: Step 1 of the 2-minute routine
+  until: Then the lemon
+- type: title
+  at: That’s the Lemon Finish
+  text: The Lemon Finish
+  sub: Step 2 of the 2-minute routine
+  dur: 2.4
+- type: step
+  at: Cut half a lemon
+  n: 4
+  text: Half a lemon → thumb-size wedges
+  until: Water still running
+- type: step
+  at: feed the wedges
+  n: 5
+  text: Feed wedges a few at a time
+  until: That’s the Lemon Finish
+- type: step
+  at: keep the cold water running about thirty
+  n: 6
+  text: Cold water ~30 s more
+  until: then switch the disposal off
+- type: step
+  at: then switch the disposal off
+  n: 7
+  text: Disposal OFF · water a few more seconds
+  until: Clock off
+- type: badge
+  at: A little under two minutes
+  text: Done in under 2 minutes
+  dur: 2.6
+- type: tag
+  at: find the same
+  until: There’s a reason
+  text: Smell back by morning? Keep watching
+- type: disposal
+  at: First, what just happened
+  until: The plate spins fast
+  title: Inside a disposal
+  spin: a spinning plate
+  no_blades: There aren’t any
+  labels:
+  - t: No blades!
+    a: There aren’t any
+    x: 1200
+    y: 300
+  - t: Spinning plate
+    a: a spinning plate
+    x: 1200
+    y: 440
+  - t: 2 swivel lugs
+    a: two small metal lugs
+    x: 1200
+    y: 580
+- type: badge
+  at: called the grind ring
+  text: The grind ring
+  dur: 2.8
+- type: statement
+  at: sharpens the blades
+  lines:
+  - Ice sharpens blades?
+  - Myth.
+  until: There’s nothing in there
+- type: badge
+  at: What the ice does is scrub
+  text: Ice = scrubber
+  dur: 2.8
+- type: compare
+  at: The cold matters too
+  until: Now, that’s about the thin film
+  left:
+    title: Cold water
+    text: Grease stays hard → chopped & flushed
+  right:
+    title: Hot water
+    text: Grease melts → hardens inside your pipe
+  pick:
+    side: left
+    at: Cold water, every time
+- type: alert
+  at: That never goes down the drain
+  text: Pan grease never goes down the drain
+  dur: 3.0
+- type: cards
+  at: three different problems
+  until: saves you a lot of wasted lemons
+  title: “My disposal smells” is 3 problems
+  cols:
+  - title: Freshen
+    text: Make it smell better
+    a: Freshening is
+    mark: ✓
+    ma: The two-minute routine freshens
+  - title: Clean
+    text: Get residue off surfaces
+    a: Cleaning is
+    mark: ✓
+    ma: it cleans what the ice
+  - title: Unclog
+    text: Get water moving again
+    a: Unclogging is
+    mark: ✗
+    ma: It won’t unclog anything
+- type: statement
+  at: Ask what got left behind
+  lines:
+  - Don’t cover it up.
+  - Find what’s left behind.
+  dur: 2.6
+- type: badge
+  at: That’s the splash guard
+  text: The splash guard
+  dur: 3.0
+- type: tag
+  at: The underside doesn’t get
+  until: Before anything goes near it
+  text: The underside never gets rinsed
+- type: alert
+  at: cut the power
+  text: Cut the power first
+  dur: 3.2
+- type: step
+  at: If the disposal plugs into
+  n: 1
+  text: Plugged in? Unplug it
+  until: If it’s wired straight in
+- type: step
+  at: If it’s wired straight in
+  n: 2
+  text: Hard-wired? Breaker off
+  until: And whatever happens next
+- type: alert
+  at: your hand never goes down
+  text: Hands never go in the chamber
+  dur: 3.0
+- type: badge
+  at: lift it out with kitchen tongs
+  text: Use tongs
+  dur: 2.0
+- type: tag
+  at: the underside is coated
+  until: Food splashes up
+  text: Dark, slimy layer = your smell
+- type: step
+  at: the guard lifts or twists
+  n: 1
+  text: Lift or twist the guard out
+  until: If yours comes out
+- type: step
+  at: If yours comes out
+  n: 2
+  text: Warm soapy water + old toothbrush
+  until: Rinse it and seat it
+- type: step
+  at: If yours doesn’t come out
+  n: 3
+  text: Stuck? Bottle brush from above
+  until: That’s the Flap Scrub
+- type: title
+  at: That’s the Flap Scrub
+  text: The Flap Scrub
+  sub: The part almost nobody cleans
+  dur: 2.4
+- type: badge
+  at: once a month
+  text: Once a month
+  dur: 2.6
+- type: statement
+  at: Now, there are three mistakes
+  lines:
+  - 3 mistakes
+  - that bring the smell back
+  until: The first is shutting
+- type: step
+  at: The first is shutting
+  n: 1
+  text: Water off too soon
+  tone: warn
+  until: The other half
+- type: badge
+  at: Keep the cold water running fifteen
+  text: Run it 15–20 s more
+  dur: 3.0
+- type: step
+  at: The second is treating
+  n: 2
+  text: Nice smell ≠ clean
+  tone: warn
+  until: Something’s still in there
+- type: step
+  at: The third is reaching
+  n: 3
+  text: Caustic drain cleaner
+  tone: warn
+  until: it can spray right back
+- type: alert
+  at: never mix it
+  text: Never mix drain cleaner with anything
+  dur: 3.0
+- type: checklist
+  at: Leave the disposal off
+  until: So what if you’ve done
+  title: Already poured some in?
+  items:
+  - t: Disposal stays OFF
+    a: Leave the disposal off
+  - t: Hands & plunger away
+    a: keep your hands
+  - t: Bottle directions or a plumber
+    a: Follow the emergency
+- type: tag
+  at: If the smell hangs on
+  until: And if it’s a sink
+  text: Drains fine, still smells? Check these
+- type: step
+  at: a dirty dishwasher filter
+  n: 1
+  text: Rinse the dishwasher filter
+  until: And if it’s a sink
+- type: trap
+  at: and that water is what keeps
+  until: Run the tap for a minute
+  title: The water in the bend
+  labels:
+  - t: Water seal
+    a: and that water
+    x: 1080
+    y: 700
+  - t: Sewer gas
+    a: sewer gas
+    x: 1300
+    y: 380
+    c: '#8DB255'
+- type: badge
+  at: Run the tap for a minute
+  text: Run the tap ~1 min
+  dur: 3.0
+- type: tag
+  at: If the sink smells and drains slowly
+  until: And if several drains
+  text: Smells + drains slowly? It’s a clog
+- type: badge
+  at: I walked through it in the drain video
+  text: → Watch the drain video
+  dur: 3.0
+- type: tag
+  at: And if several drains are slow
+  until: The same goes for
+  tone: warn
+  text: Several drains slow? Call a plumber
+- type: badge
+  at: and a red reset button
+  text: Hex socket + reset button
+  dur: 3.0
+- type: step
+  at: power off first
+  n: 1
+  text: Power off
+  until: work the hex key
+- type: step
+  at: work the hex key
+  n: 2
+  text: Hex key back & forth
+  until: then press the reset
+- type: step
+  at: then press the reset
+  n: 3
+  text: Press reset → power on
+  until: But if it keeps
+- type: alert
+  at: stop using it until
+  text: Stop using it — get it checked
+  dur: 2.8
+- type: checklist
+  at: Cold water every time you grind
+  until: If you’re reaching for it
+  title: Keep it fresh
+  ticks: true
+  items:
+  - t: Cold water, and let it run
+    a: Cold water every time
+  - t: Feed it a little at a time
+    a: Feed it a little
+  - t: Grease & oil → container → trash
+    a: Grease and cooking oil
+  - t: No coffee grounds
+    a: Coffee grounds
+  - t: No celery or corn husks
+    a: stringy scraps
+  - t: Scrub the guard monthly
+    a: the guard a scrub
+- type: badge
+  at: every week or two at most
+  text: 'Ice routine: every 1–2 weeks'
+  dur: 3.2
+- type: step
+  at: keep the peel
+  n: 1
+  text: Keep the lemon peel
+  until: Cut it into small pieces
+- type: step
+  at: Cut it into small pieces
+  n: 2
+  text: Cut it smaller than a thumbnail
+  until: drop them into an ice cube tray
+- type: step
+  at: drop them into an ice cube tray
+  n: 3
+  text: Ice tray + water
+  until: and freeze it
+- type: step
+  at: and freeze it
+  n: 4
+  text: Freeze
+  until: Now your ice
+- type: title
+  at: Lemon Cubes
+  text: Lemon Cubes
+  sub: Ice + lemon, ready to go
+  dur: 2.4
+- type: badge
+  at: Tell me something in the comments
+  text: Tell me in the comments ↓
+  dur: 4.5
+- type: badge
+  at: a like and a subscribe
+  text: Like & subscribe
+  dur: 3.0
+- type: tag
+  at: In the next one
+  until: Okay. So, two minutes
+  text: 'Next: white grout, no bleach'
+- type: checklist
+  at: handful of ice, a little salt
+  until: Some days that’s all
+  title: All you need
+  ticks: true
+  items:
+  - t: A handful of ice
+    a: handful of ice
+  - t: A little salt
+    a: a little salt
+  - t: Half a lemon
+    a: and half a lemon
+- type: statement
+  at: It was finding what got left behind
+  lines:
+  - Find what got
+  - left behind.
+  until: end
 sfx: true
