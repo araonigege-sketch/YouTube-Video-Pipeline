@@ -65,12 +65,18 @@ def _orig_segment(P: Path, src_orig: Path, start: float, secs: float) -> tuple[P
     if key not in _BOUNDS:
         aj = P / "build/analysis/analysis.json"
         _BOUNDS[key] = [(sh["start"], sh["end"]) for sh in json.loads(aj.read_text())["shots"]] if aj.exists() else []
+    # reuse times were often read off rounded labels: snap a time just before a cut onto the shot it was meant for
+    nxt = next((a0 for a0, _ in _BOUNDS[key] if 0 < a0 - start <= 0.15), None)
+    if nxt is not None:
+        start = nxt
+    if any(abs(a0 - start) < 0.02 for a0, _ in _BOUNDS[key]):
+        start += 1.0 / FPS   # skip the boundary frame itself
     shot = next(((a0, b0) for a0, b0 in _BOUNDS[key] if a0 - 0.01 <= start < b0), None)
     if not shot:
         return src_orig, start, [], ""
     avail = shot[1] - start - 0.08
     if avail >= secs or avail <= 0.2:
-        return src_orig, start, [], ""
+        return src_orig, start, [], ""     # (start may have been snapped)
     seg = P / "build/segments" / f"seg_{start:.2f}_{avail:.2f}.mp4"
     if not seg.exists():
         seg.parent.mkdir(parents=True, exist_ok=True)
@@ -79,6 +85,22 @@ def _orig_segment(P: Path, src_orig: Path, start: float, secs: float) -> tuple[P
     slow = f"setpts={k:.3f}*PTS," if k > 1.02 else ""
     loop = ["-stream_loop", "-1"] if avail * k < secs + 0.05 else []
     return seg, 0.0, loop, slow
+
+
+def _fit_stock(src: Path, start: float, secs: float) -> tuple[float, list, str]:
+    """Fit a stock clip to a shot without visible loops: move the start earlier if needed,
+    then slow it down (max 1.6x), and only loop as a last resort."""
+    d = duration(src)
+    if start + secs <= d - 0.05:
+        return start, [], ""
+    start = max(0.0, d - secs - 0.05)
+    avail = d - start - 0.05
+    if avail >= secs:
+        return start, [], ""
+    k = min(secs / max(avail, 0.1), 1.6)
+    slow = f"setpts={k:.3f}*PTS," if k > 1.02 else ""
+    loop = ["-stream_loop", "-1"] if avail * k < secs + 0.05 else []
+    return start, loop, slow
 
 
 def _full_clip(P, s, n, src_orig, clip, ch):
@@ -91,6 +113,8 @@ def _full_clip(P, s, n, src_orig, clip, ch):
     slow = ""
     if is_orig and not s.get("host"):
         src, start, loop, slow = _orig_segment(P, src_orig, start, secs)
+    elif not is_orig:
+        start, loop, slow = _fit_stock(src, start, secs)
     else:
         loop = []
     if not loop and duration(src) < start + secs + 0.1:
@@ -146,6 +170,8 @@ def _split_clip(P, s, n, src_orig, clip, ch):
     rloop = []
     if r_is_orig:
         rsrc, rfrom, rloop, rslow = _orig_segment(P, src_orig, rfrom, secs)
+    else:
+        rfrom, rloop, rslow = _fit_stock(rsrc, rfrom, secs)
     if not rloop and duration(rsrc) < rfrom + secs + 0.1:
         rloop = ["-stream_loop", "-1"]
     zr = _zoom(r.get("move", "push"), ch["motion"]["broll_push"], secs)
@@ -184,7 +210,7 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
             raise PipelineError(f"shot {i} ({s['at']!r}) has no duration — check its anchor order")
         clip = out / f"s{i:03d}.mp4"
         key = short_hash(s.get("src"), s.get("from"), s.get("move"), s.get("host"), s.get("split"), s.get("right"),
-                         s.get("sharpen"), n, ch["motion"], ch.get("split"), "clamp-v1")
+                         s.get("sharpen"), n, ch["motion"], ch.get("split"), "clamp-v2")
         meta_f = clip.with_suffix(".key")
         if not (clip.exists() and meta_f.exists() and meta_f.read_text() == key):
             if s.get("split"):
@@ -631,10 +657,30 @@ def build_audio(P, meta, edit, ch, sfx_cues, music: Path | None, log=print) -> P
     return out
 
 
+def qa_cuts(P: Path, shots: list[dict], a: float, log=print) -> list[float]:
+    """Every hard cut in the base picture should be a planned shot change. Anything else is a flash
+    frame, a reused clip running into its neighbour, or a visible loop."""
+    from .analyze import detect_cuts
+    base = P / "build/hf/assets/base.mp4"
+    planned, f = [], 0
+    for s in shots:
+        planned.append(f / FPS)
+        f += s["frames"]
+    cuts = detect_cuts(base, threshold=12.0)
+    stray = [c for c in cuts if min(abs(c - p) for p in planned) > 0.12]
+    for c in stray:
+        log(f"⚠ unplanned cut at {a + c:7.2f}s (composition {c:.2f}s)")
+    log(f"QA: {len(cuts)} cuts detected, {len(planned)} planned, {len(stray)} unplanned")
+    return stray
+
+
 def run(P: Path, music: Path | None = None, do_render=True, log=print) -> Path:
     P = Path(P)
     meta, edit, ch, words = load(P)
-    build_base(P, meta, edit, ch, words, log)
+    _, shots = build_base(P, meta, edit, ch, words, log)
+    stray = qa_cuts(P, shots, edit["range"][0], log)
+    if stray and not edit.get("allow_stray_cuts"):
+        raise PipelineError(f"{len(stray)} unplanned cut(s) in the base picture — fix before rendering")
     _, sfx = build_overlay(P, meta, edit, ch, words, log)
     build_audio(P, meta, edit, ch, sfx, music, log)
     if not do_render:
