@@ -1050,6 +1050,7 @@ graphics:
     a: stringy scraps
   - t: Scrub the guard monthly
     a: the guard a scrub
+  pos: right
 - type: badge
   at: every week or two at most
   text: 'Ice routine: every 1–2 weeks'
@@ -1103,6 +1104,7 @@ graphics:
     a: a little salt
   - t: Half a lemon
     a: and half a lemon
+  pos: right
 - type: statement
   at: It was finding what got left behind
   lines:

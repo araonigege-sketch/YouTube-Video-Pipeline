@@ -529,9 +529,9 @@ GRAPHICS = ("checklist", "badge", "circle", "lower_third", "statement", "tag", "
             "cards", "disposal", "trap")
 
 
-def build_overlay(P, meta, edit, ch, words, log=print):
+def build_overlay(P, meta, edit, ch, words, log=print, out: Path | None = None):
     a, b = edit["range"]
-    out = P / "build/hf"
+    out = out or P / "build/hf"
     c = Overlay(words, out, ch, a)
     for g in edit.get("graphics", []):
         if g["type"] not in GRAPHICS:
@@ -542,7 +542,7 @@ def build_overlay(P, meta, edit, ch, words, log=print):
         else:
             t1 = t0 + g.get("dur", 3.0)
         t1 = min(t1, b - a)
-        if t0 >= b - a or t1 <= t0:
+        if t0 >= b - a or t1 <= t0 or t1 <= 0:
             continue
         getattr(c, g["type"])(g, t0, t1)
     end = b - a
