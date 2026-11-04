@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Anton;src:url(anton.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1280px;height:720px;overflow:hidden;background:#111}
+.s{position:absolute;inset:0;overflow:hidden;display:none}
+.s.on{display:block}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.t{position:absolute;font-family:Anton;color:#FFE11A;line-height:.92;text-transform:uppercase;letter-spacing:1px;
+ -webkit-text-stroke:12px #000;paint-order:stroke fill;filter:drop-shadow(0 8px 0 rgba(0,0,0,.55)) drop-shadow(0 0 18px rgba(0,0,0,.35))}
+.nora{position:absolute;filter:drop-shadow(-12px 0 30px rgba(0,0,0,.45))}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(0,0,0,0) 45%,rgba(0,0,0,.45) 100%)}
+.div{position:absolute;top:0;bottom:0;width:8px;background:#fff}
+svg{position:absolute;left:0;top:0}
+</style></head><body>
+<!-- A: IT'S UNDER HERE -->
+<div class="s" id="A">
+ <img class="bg" src="grime.jpg" style="transform:scale(1.25);transform-origin:30% 70%">
+ <div class="vig"></div>
+ <img class="nora" src="nora_37.9_clean.png" style="height:920px;left:200px;top:-10px">
+ <div class="t" style="left:46px;top:30px;font-size:150px">IT'S<br>UNDER HERE</div>
+ <svg width="1280" height="720"><path d="M165,345 C150,445 230,490 360,470" fill="none" stroke="#000" stroke-width="40" stroke-linecap="round"/>
+  <path d="M165,345 C150,445 230,490 360,470" fill="none" stroke="#FFE11A" stroke-width="24" stroke-linecap="round"/>
+  <path d="M338,420 L440,466 L346,520 Z" fill="#FFE11A" stroke="#000" stroke-width="9" stroke-linejoin="round"/></svg>
+</div>
+<!-- B: STOP THE SMELL (split) -->
+<div class="s" id="B">
+ <img class="bg" src="grime.jpg" style="width:640px;transform:scale(1.35);transform-origin:35% 70%">
+ <div style="position:absolute;left:640px;top:0;width:640px;height:720px;overflow:hidden">
+   <img src="frames/c_37.9.jpg" style="position:absolute;height:820px;left:-410px;top:-30px"></div>
+ <div class="div" style="left:636px"></div>
+ <div class="t" style="left:0;right:0;text-align:center;top:26px;font-size:142px">STOP THE SMELL</div>
+ <svg width="1280" height="720"><path d="M520,250 C600,300 600,420 470,470" fill="none" stroke="#000" stroke-width="40" stroke-linecap="round"/>
+  <path d="M520,250 C600,300 600,420 470,470" fill="none" stroke="#FFE11A" stroke-width="24" stroke-linecap="round"/>
+  <path d="M505,425 L410,488 L505,530 Z" fill="#FFE11A" stroke="#000" stroke-width="9" stroke-linejoin="round"/></svg>
+</div>
+<!-- C: LEMON WON'T FIX IT -->
+<div class="s" id="C">
+ <img class="bg" src="grime.jpg" style="transform:scale(1.25);transform-origin:30% 70%">
+ <div class="vig"></div>
+ <img class="nora" src="nora_37.9_clean.png" style="height:920px;left:200px;top:-10px">
+ <div class="t" style="left:46px;top:30px;font-size:140px">LEMON<br><span style="color:#fff">WON'T</span> FIX IT</div>
+ <svg width="1280" height="720"><path d="M165,345 C150,445 230,490 360,470" fill="none" stroke="#000" stroke-width="40" stroke-linecap="round"/>
+  <path d="M165,345 C150,445 230,490 360,470" fill="none" stroke="#FFE11A" stroke-width="24" stroke-linecap="round"/>
+  <path d="M338,420 L440,466 L346,520 Z" fill="#FFE11A" stroke="#000" stroke-width="9" stroke-linejoin="round"/></svg>
+</div>
+<script>const id=location.hash.slice(1)||"A";document.getElementById(id).classList.add("on")</script>
+</body></html>
