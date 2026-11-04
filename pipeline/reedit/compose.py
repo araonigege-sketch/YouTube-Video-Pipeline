@@ -691,6 +691,8 @@ def run(P: Path, music: Path | None = None, do_render=True, log=print) -> Path:
     meta, edit, ch, words = load(P)
     _, shots = build_base(P, meta, edit, ch, words, log)
     stray = qa_cuts(P, shots, edit["range"][0], log)
+    reviewed = edit.get("qa_reviewed_cuts", [])   # cuts a human/Claude looked at and accepted (e.g. cuts inside source footage)
+    stray = [c for c in stray if not any(abs(edit["range"][0] + c - r) < 0.15 for r in reviewed)]
     if stray and not edit.get("allow_stray_cuts"):
         raise PipelineError(f"{len(stray)} unplanned cut(s) in the base picture — fix before rendering")
     _, sfx = build_overlay(P, meta, edit, ch, words, log)

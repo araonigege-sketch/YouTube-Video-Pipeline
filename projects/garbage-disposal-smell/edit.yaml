@@ -1112,3 +1112,5 @@ graphics:
   - left behind.
   until: end
 sfx: true
+# Reviewed 2026-11-04: both are cuts inside the original B-roll (same subject, close-up → wider). Accepted.
+qa_reviewed_cuts: [29.80, 301.88]
