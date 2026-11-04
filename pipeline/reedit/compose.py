@@ -536,7 +536,7 @@ def build_overlay(P, meta, edit, ch, words, log=print, out: Path | None = None):
     for g in edit.get("graphics", []):
         if g["type"] not in GRAPHICS:
             raise PipelineError(f"unknown graphic type {g['type']}")
-        t0 = c.t(g["at"], lead=0.05)
+        t0 = resolve(c.words, g["at"], 0.0, 0.05) - c.off   # absolute lookup, so range renders match the full edit
         if "until" in g:
             t1 = (b - a) if g["until"] == "end" else c.t(g["until"], t0, lead=0.1)
         else:
