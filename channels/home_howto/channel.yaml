@@ -1,0 +1,36 @@
+# Home how-to (Nora Hart): bright, clean, friendly. Re-edits of finished talking-head videos.
+name: Home How-To (Nora Hart)
+composer: reedit
+
+palette:
+  ink: "#1F2A30"         # text
+  card: "#FFFFFF"
+  accent: "#FFCF33"      # lemon — highlights, active caption word, timer
+  good: "#14A38B"        # check marks, "do this"
+  warn: "#E5484D"        # safety only
+  muted: "#5E6B72"
+
+type:
+  font: Outfit           # bundled with HyperFrames
+  weight: 700
+
+captions:
+  max_words: 5
+  max_chars: 30
+  size: 58
+  bottom: 70
+  active: accent
+
+motion:
+  host_push: 0.05        # gentle push-in on host shots (fraction of zoom over the shot)
+  broll_push: 0.06
+
+retention:
+  max_broll_shot: 4.5    # longer B-roll stretches get split
+  max_static: 3.0        # something new on screen at least this often
+
+audio:
+  voice_lufs: -16
+  music_lufs: -24
+  music_gain: 0.55
+  sfx_db: -14

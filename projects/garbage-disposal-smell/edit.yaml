@@ -1,0 +1,62 @@
+# Test section: hook + intro + the Ice Scour (original 0–107 s).
+# Shots: picture track. `host: true` = Nora on camera (original footage, gentle push-in).
+# src: orig = the original video at `from` seconds; otherwise a clip in build/cand (Pexels, see credits).
+range: [0, 106.9]
+shots:
+  - {at: 0, src: orig, from: 0, host: true}
+  - {at: "The sink is so clean", src: orig, from: 2.36}                           # original: clean stainless sink (sharp)
+  - {at: "And still, every time", src: build/cand/6901296.mp4, from: 2}          # woman passing the kitchen sink
+  - {at: "something sour drifts", src: build/cand/4064321.mp4, from: 0.5}        # water swirling into a drain
+  - {at: "like the kitchen remembers", src: build/cand/4061918.mp4, from: 3}     # dirty plate in the sink
+  - {at: "Before you buy another bottle", src: build/cand/6612138.mp4, from: 1}  # spray bottle
+  - {at: "a handful of ice", src: build/cand/14058792.mp4, from: 0.5}            # scooping ice
+  - {at: "a little coarse salt", src: build/cand/6694020.mp4, from: 2}           # coarse salt in a bowl
+  - {at: "and half a lemon", src: build/cand/5540318.mp4, from: 3}               # cutting a lemon
+  - {at: "me two minutes", src: orig, from: 23.04, host: true}
+  - {at: "Then I’ll show you the spot", src: orig, from: 5.08, move: push}       # original: drain opening + rubber guard
+  - {at: "because if that’s where", src: orig, from: 46.4}                        # original: grime under the flap
+  - {at: "the lemon will never win", src: build/cand/6666529.mp4, from: 1}       # lemon wedges
+  - {at: "Nora Hart", src: orig, from: 35.52, host: true}
+  - {at: "A disposal that smells", src: build/cand/16641598.mp4, from: 1}        # sink, running water (high angle)
+  - {at: "Most of the time", src: orig, from: 43.8}                               # original: water into the drain
+  - {at: "just holding on", src: orig, from: 10.56}                               # original: dirty disposal chamber
+  - {at: "Let’s get the two minutes", src: orig, from: 49.84, host: true}
+  - {at: "This is for a disposal", src: build/cand/16641476.mp4, from: 1}        # bright kitchen (checklist over it)
+  - {at: "If yours is jammed", src: orig, from: 56.88}                            # original: hex key under the unit
+  - {at: "a different job", src: orig, from: 60.0}
+  - {at: "One more thing", src: orig, from: 62.84, host: true}
+  - {at: "If yours is a batch-feed", src: build/cand/16641476.mp4, from: 7, move: pull}   # kitchen, compare card on top
+  - {at: "or your manual says", src: build/cand/7584759.mp4, from: 2}            # reading the manual
+  - {at: "What I’m showing you", src: build/cand/16641598.mp4, from: 7, move: pull}
+  - {at: "Clock on", src: build/cand/5588610.mp4, from: 1}                        # opening the faucet (top-down)
+  - {at: "Switch the disposal on", src: orig, from: 83.76}                        # original: wall switch
+  - {at: "Now drop in", src: orig, from: 85.72}                                   # original: ice in hand over the sink
+  - {at: "Rock salt", src: orig, from: 90.56}                                     # original: coarse salt (sharp)
+  - {at: "Drop it all in", src: build/cand/4064321.mp4, from: 3}
+  - {at: "Fingers stay out", src: orig, from: 95.84, host: true}
+  - {at: "It’s going to be loud", src: orig, from: 99.44}                         # original: water splash in the sink
+  - {at: "Let it run until", src: build/cand/16641598.mp4, from: 4}
+  - {at: "That’s the Ice Scour", src: orig, from: 105.28}                         # original: disposal chamber
+
+graphics:
+  - {type: checklist, at: "grab three things", until: "me two minutes", title: "Grab 3 things",
+     items: [{t: "A handful of ice", a: "handful of ice"}, {t: "Coarse salt", a: "coarse salt"}, {t: "Half a lemon", a: "half a lemon"}]}
+  - {type: badge, at: "Give me two minutes", text: "2-minute fix", dur: 2.6}
+  - {type: circle, at: "the spot under", x: 990, y: 560, r: 300, label: "the spot nobody cleans", lx: 1170, ly: 190, until: "because if that’s where"}
+  - {type: lower_third, at: "Nora Hart", name: "Nora Hart", sub: "Bring it back. Don’t buy new.", dur: 4.0}
+  - {type: statement, at: "A disposal that smells", lines: ["Smelly", "≠ dying"], until: "Most of the time"}
+  - {type: checklist, at: "This is for a disposal", until: "If yours is jammed", title: "This fix is for you if it…", ticks: true,
+     items: [{t: "Runs normally", a: "runs normally"}, {t: "Drains fine", a: "drains fine"}, {t: "Just smells", a: "just smells"}]}
+  - {type: tag, at: "If yours is jammed", until: "One more thing", tone: warn, text: "Jammed or backing up? Different fix — coming later"}
+  - {type: compare, at: "If yours is a batch-feed", until: "or your manual says",
+     left: {title: "Batch-feed", text: "Runs only with the stopper in"}, right: {title: "Continuous-feed", text: "Switch on, feed as you go"}}
+  - {type: compare, at: "What I’m showing you", until: "Clock on",
+     left: {title: "Batch-feed", text: "Runs only with the stopper in"}, right: {title: "Continuous-feed", text: "Most kitchens — this video"},
+     pick: {side: right, at: "continuous-feed"}}
+  - {type: timer, at: "Clock on", until: end, of: "2:00"}
+  - {type: step, at: "Turn the cold water", n: 1, text: "Cold water · steady, medium stream", until: "Switch the disposal on"}
+  - {type: step, at: "Switch the disposal on", n: 2, text: "Disposal ON", until: "Now drop in"}
+  - {type: step, at: "Now drop in", n: 3, text: "Ice + 1 tbsp coarse salt", until: "Fingers stay out"}
+  - {type: alert, at: "Fingers stay out", text: "Fingers out of the opening", dur: 2.0}
+  - {type: title, at: "That’s the Ice Scour", text: "The Ice Scour", sub: "Step 1 of the 2-minute routine", until: end}
+sfx: true

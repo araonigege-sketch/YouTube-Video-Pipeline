@@ -104,6 +104,51 @@ def group_setups(shots, sim=0.9):
     return groups
 
 
+def _hist(img):
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    h = cv2.calcHist([hsv], [0, 1], None, [24, 12], [0, 180, 0, 256])
+    cv2.normalize(h, h)
+    return h
+
+
+def refine_host(shots, full_t=0.95, split_t=0.95, pip_t=0.5):
+    """Tell the real host from other people, and find split-screen / picture-in-picture layouts.
+
+    The host always films in the same setting, so the reference is the face shot that the most
+    other face shots resemble. Each shot is compared to it as a whole frame (host full), by its
+    left half (host split, B-roll on the right) and by its lower-left corner (host PiP over B-roll).
+    """
+    cands = [s for s in shots if s["face"] and all(r > 0.01 for r in s["face"]) and s["_thumb"] is not None]
+    if not cands:
+        for s in shots:
+            s["layout"] = "broll"
+        return
+    hs = [_hist(s["_thumb"]) for s in cands]
+    score = [sum(cv2.compareHist(h, o, cv2.HISTCMP_CORREL) > full_t for o in hs) for h in hs]
+    ref = cands[int(np.argmax(score))]["_thumb"]
+    W = ref.shape[1]
+    ref_full, ref_mid = _hist(ref), _hist(ref[:, W // 4: 3 * W // 4])
+    H = ref.shape[0]
+    for s in shots:
+        f = s["_thumb"]
+        if f is None:
+            s["layout"], s["kind"] = "broll", "broll"
+            continue
+        full = cv2.compareHist(ref_full, _hist(f), cv2.HISTCMP_CORREL)
+        left = cv2.compareHist(ref_mid, _hist(f[:, : W // 2]), cv2.HISTCMP_CORREL)
+        pip = cv2.compareHist(ref_mid, _hist(f[int(H * .65):, : int(W * .22)]), cv2.HISTCMP_CORREL)
+        s["host_sim"] = [round(full, 2), round(left, 2), round(pip, 2)]
+        if full >= full_t:
+            s["layout"] = "host"
+        elif left >= split_t:
+            s["layout"] = "split"
+        elif pip >= pip_t:
+            s["layout"] = "pip"
+        else:
+            s["layout"] = "broll"
+        s["kind"] = "host" if s["layout"] in ("host", "split") else "broll"
+
+
 def analyse(video: Path, out: Path, threshold: float = 10.0) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     info = probe(video)
@@ -130,16 +175,19 @@ def analyse(video: Path, out: Path, threshold: float = 10.0) -> dict:
             m["setup"] = gi
             faces = sum(r > 0.01 for r in m["face"])
             m["kind"] = "host" if recurring or (m["face"] and faces == len(m["face"])) else "broll"
+    refine_host(shots)
     for s in shots:
         s.pop("_sig", None)
     _sheets(shots, out)
     for s in shots:
         s.pop("_thumb", None)
     host = sum(s["dur"] for s in shots if s["kind"] == "host")
+    from collections import Counter
     result = {"video": str(video), **info, "cuts": len(cuts), "shots": shots,
               "summary": {"shots": len(shots), "host_seconds": round(host, 1),
                           "broll_seconds": round(info["duration"] - host, 1),
                           "broll_shots": sum(s["kind"] == "broll" for s in shots),
+                          "layouts": dict(Counter(s["layout"] for s in shots)),
                           "avg_shot": round(info["duration"] / max(1, len(shots)), 2)}}
     (out / "analysis.json").write_text(json.dumps(result, indent=1))
     return result
@@ -159,9 +207,9 @@ def _sheets(shots, out: Path, cols=6, per_sheet=36):
             fr = s["_thumb"]
             img = Image.fromarray(cv2.cvtColor(fr, cv2.COLOR_BGR2RGB)).resize((tw, th)) if fr is not None else Image.new("RGB", (tw, th))
             d = ImageDraw.Draw(img)
-            col = (80, 200, 120) if s["kind"] == "host" else (240, 170, 40)
+            col = {"host": (80, 200, 120), "split": (90, 160, 255), "pip": (200, 120, 255)}.get(s.get("layout"), (240, 170, 40))
             d.rectangle((0, 0, tw - 1, th - 1), outline=col, width=4)
-            label = f"#{s['i']} {s['start']:.1f}s {s['dur']:.1f}s {s['kind'].upper()} g{s['setup']}"
+            label = f"#{s['i']} {s['start']:.1f}s {s['dur']:.1f}s {s.get('layout', s['kind']).upper()}"
             d.rectangle((0, th - 28, tw, th), fill=(0, 0, 0))
             d.text((8, th - 25), label, font=font, fill=col)
             sheet.paste(img, ((j % cols) * tw, (j // cols) * th))
