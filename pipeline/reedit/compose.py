@@ -55,6 +55,32 @@ def _src(P: Path, src, src_orig: Path) -> Path:
     return src_orig if (src or "orig") == "orig" else P / src
 
 
+_BOUNDS: dict = {}
+
+
+def _orig_segment(P: Path, src_orig: Path, start: float, secs: float) -> tuple[Path, float, list, str]:
+    """For B-roll taken from the original edit: never run past the end of the original shot that
+    contains `start` (that would show the next, unrelated shot). Returns (source, start, loop args, extra filter)."""
+    key = str(P)
+    if key not in _BOUNDS:
+        aj = P / "build/analysis/analysis.json"
+        _BOUNDS[key] = [(sh["start"], sh["end"]) for sh in json.loads(aj.read_text())["shots"]] if aj.exists() else []
+    shot = next(((a0, b0) for a0, b0 in _BOUNDS[key] if a0 - 0.01 <= start < b0), None)
+    if not shot:
+        return src_orig, start, [], ""
+    avail = shot[1] - start - 0.08
+    if avail >= secs or avail <= 0.2:
+        return src_orig, start, [], ""
+    seg = P / "build/segments" / f"seg_{start:.2f}_{avail:.2f}.mp4"
+    if not seg.exists():
+        seg.parent.mkdir(parents=True, exist_ok=True)
+        ffmpeg(["-ss", f"{start:.3f}", "-i", src_orig, "-t", f"{avail:.3f}", "-an", *ENC, seg])
+    k = min(secs / avail, 1.6)
+    slow = f"setpts={k:.3f}*PTS," if k > 1.02 else ""
+    loop = ["-stream_loop", "-1"] if avail * k < secs + 0.05 else []
+    return seg, 0.0, loop, slow
+
+
 def _full_clip(P, s, n, src_orig, clip, ch):
     src = _src(P, s.get("src"), src_orig)
     is_orig = (s.get("src") or "orig") == "orig"
@@ -62,9 +88,15 @@ def _full_clip(P, s, n, src_orig, clip, ch):
     secs = n / FPS
     z = ch["motion"]["host_push" if s.get("host") else "broll_push"]
     zexpr = _zoom(s.get("move", "push"), z, secs)
-    loop = ["-stream_loop", "-1"] if duration(src) < start + secs + 0.1 else []
+    slow = ""
+    if is_orig and not s.get("host"):
+        src, start, loop, slow = _orig_segment(P, src_orig, start, secs)
+    else:
+        loop = []
+    if not loop and duration(src) < start + secs + 0.1:
+        loop = ["-stream_loop", "-1"]
     sharpen = f",{SHARPEN}" if s.get("sharpen", is_orig and not s.get("host")) else ""
-    vf = (f"scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps={FPS},"
+    vf = (f"{slow}scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps={FPS},"
           f"scale=w='trunc(1920*({zexpr})/2)*2':h=-2:eval=frame,crop=1920:1080{sharpen},setsar=1")
     ffmpeg([*loop, "-ss", f"{start:.3f}", "-i", src, "-vf", vf, "-frames:v", n, "-an", *ENC, "-r", FPS, clip])
 
@@ -110,13 +142,18 @@ def _split_clip(P, s, n, src_orig, clip, ch):
     rsrc = _src(P, r.get("src"), src_orig)
     r_is_orig = (r.get("src") or "orig") == "orig"
     rfrom = float(r.get("from", 0.0))
-    rloop = ["-stream_loop", "-1"] if duration(rsrc) < rfrom + secs + 0.1 else []
+    rslow = ""
+    rloop = []
+    if r_is_orig:
+        rsrc, rfrom, rloop, rslow = _orig_segment(P, src_orig, rfrom, secs)
+    if not rloop and duration(rsrc) < rfrom + secs + 0.1:
+        rloop = ["-stream_loop", "-1"]
     zr = _zoom(r.get("move", "push"), ch["motion"]["broll_push"], secs)
     sharpen = f",{SHARPEN}" if r.get("sharpen", r_is_orig) else ""
     hx = s.get("host_crop_x", 0)   # where the host sits in the original split frame (left half by default)
     fx = float(r.get("focus", 0.5))  # horizontal focus of the B-roll crop: 0 = left edge, 1 = right edge
     fc = (f"[1:v]fps={FPS},crop=960:1080:{hx}:0,scale={W}:-2,crop={W}:{H},format=rgba[h];"
-          f"[2:v]fps={FPS},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}:(iw-ow)*{fx}:(ih-oh)/2,"
+          f"[2:v]{rslow}fps={FPS},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}:(iw-ow)*{fx}:(ih-oh)/2,"
           f"scale=w='trunc({W}*({zr})/2)*2':h=-2:eval=frame,crop={W}:{H}{sharpen},format=rgba[b];"
           f"[3:v]format=gray,split=2[m1][m2];[h][m1]alphamerge[hm];[b][m2]alphamerge[bm];"
           f"[0:v][hm]overlay={g['x1']}:{g['y']}:shortest=1[t];[t][bm]overlay={g['x2']}:{g['y']}:shortest=1,setsar=1,format=yuv420p[o]")
@@ -147,7 +184,7 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
             raise PipelineError(f"shot {i} ({s['at']!r}) has no duration — check its anchor order")
         clip = out / f"s{i:03d}.mp4"
         key = short_hash(s.get("src"), s.get("from"), s.get("move"), s.get("host"), s.get("split"), s.get("right"),
-                         s.get("sharpen"), n, ch["motion"], ch.get("split"))
+                         s.get("sharpen"), n, ch["motion"], ch.get("split"), "clamp-v1")
         meta_f = clip.with_suffix(".key")
         if not (clip.exists() and meta_f.exists() and meta_f.read_text() == key):
             if s.get("split"):
@@ -336,7 +373,7 @@ class Overlay(Composition):
         svg = (f'<svg width="1920" height="1080" viewBox="0 0 1920 1080" style="position:absolute;left:0;top:0">'
                f'<circle cx="{cx}" cy="{cy}" r="{R + 30}" fill="#DDE2E4"/>'
                f'<g id="{gid}ring">{teeth}<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="#6B777D" stroke-width="10"/></g>'
-               f'<g id="{gid}plate" style="transform-origin:{cx}px {cy}px">'
+               f'<g id="{gid}plate">'
                f'<circle cx="{cx}" cy="{cy}" r="{R - 70}" fill="#B9C3C7" stroke="#6B777D" stroke-width="8"/>'
                + "".join(f'<circle cx="{cx + 70 * math.cos(a):.0f}" cy="{cy + 70 * math.sin(a):.0f}" r="22" fill="#56636A"/>' for a in (0, 2.1, 4.2))
                + f'<rect x="{cx + 120}" y="{cy - 22}" width="110" height="44" rx="14" fill="{self.ACC}" stroke="{self.INK}" stroke-width="5"/>'
@@ -352,10 +389,10 @@ class Overlay(Composition):
         self.box(gid, t0, t1, f'<div class="dg-bg"></div>{svg}{head}{labels}', "position:absolute;inset:0")
         self.enter(f"#{gid}", t0, "opacity:0", 0.4)
         spin = self.t(g["spin"], t0) if g.get("spin") else t0 + 0.5
-        self.tw(f'tl.fromTo("#{gid}plate",{{rotation:0}},{{rotation:{int((t1 - spin) * 540)},duration:{max(0.5, t1 - spin):.3f},ease:"power1.in"}},{spin:.3f});')
+        self.tw(f'tl.fromTo("#{gid}plate",{{rotation:0,svgOrigin:"{cx} {cy}"}},{{rotation:{int((t1 - spin) * 540)},svgOrigin:"{cx} {cy}",duration:{max(0.5, t1 - spin):.3f},ease:"power1.in"}},{spin:.3f});')
         if g.get("no_blades"):
             tx = self.t(g["no_blades"], t0)
-            self.tw(f'tl.fromTo("#{gid}x",{{opacity:0,scale:0.4,transformOrigin:"{cx}px {cy}px"}},{{opacity:1,scale:1,duration:0.3,ease:"back.out(2)"}},{tx:.3f});')
+            self.tw(f'tl.fromTo("#{gid}x",{{opacity:0,scale:0.4,svgOrigin:"{cx} {cy}"}},{{opacity:1,scale:1,duration:0.3,ease:"back.out(2)"}},{tx:.3f});')
             self.tw(f'tl.to("#{gid}x",{{opacity:0,duration:0.3}},{tx + 1.6:.3f});')
             self.sfx.append((tx, "pop"))
         if g.get("fling"):
