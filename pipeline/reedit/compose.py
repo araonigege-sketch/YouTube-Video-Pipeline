@@ -83,8 +83,9 @@ def _orig_segment(P: Path, src_orig: Path, start: float, secs: float) -> tuple[P
         ffmpeg(["-ss", f"{start:.3f}", "-i", src_orig, "-t", f"{avail:.3f}", "-an", *ENC, seg])
     k = min(secs / avail, 1.6)
     slow = f"setpts={k:.3f}*PTS," if k > 1.02 else ""
-    loop = ["-stream_loop", "-1"] if avail * k < secs + 0.05 else []
-    return seg, 0.0, loop, slow
+    if avail * k < secs + 0.05:
+        slow += "tpad=stop_mode=clone:stop_duration=60,"   # hold the last frame instead of a visible loop
+    return seg, 0.0, [], slow
 
 
 def _fit_stock(src: Path, start: float, secs: float) -> tuple[float, list, str]:
@@ -99,8 +100,9 @@ def _fit_stock(src: Path, start: float, secs: float) -> tuple[float, list, str]:
         return start, [], ""
     k = min(secs / max(avail, 0.1), 1.6)
     slow = f"setpts={k:.3f}*PTS," if k > 1.02 else ""
-    loop = ["-stream_loop", "-1"] if avail * k < secs + 0.05 else []
-    return start, loop, slow
+    if avail * k < secs + 0.05:
+        slow += "tpad=stop_mode=clone:stop_duration=60,"
+    return start, [], slow
 
 
 def _full_clip(P, s, n, src_orig, clip, ch):
@@ -199,7 +201,16 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
         prev = t
     for i, s in enumerate(shots):
         s["t1"] = shots[i + 1]["t0"] if i + 1 < len(shots) else b
-    out = P / "build/base"
+    _orig_segment(P, P / meta["source"]["file"], 0.0, 0.0)   # loads the original's shot boundaries
+    bounds = _BOUNDS.get(str(P), [])
+    for i, s in enumerate(shots):
+        if (s.get("src") or "orig") == "orig" and (s.get("host") or s.get("split")) and i + 1 < len(shots):
+            frm = float(s.get("from", s["t0"]))
+            src_end = next((b0 for a0, b0 in bounds if a0 - 0.01 <= frm < b0), None)
+            if src_end is not None:
+                cap = s["t0"] + (src_end - frm) - 0.5 / FPS
+                if s["t1"] > cap + 0.01 and cap > s["t0"] + 0.3:
+                    s["t1"] = shots[i + 1]["t0"] = cap
     out.mkdir(parents=True, exist_ok=True)
     src_orig = P / meta["source"]["file"]
     lines = []
@@ -210,7 +221,7 @@ def build_base(P: Path, meta, edit, ch, words, log=print) -> tuple[Path, list[di
             raise PipelineError(f"shot {i} ({s['at']!r}) has no duration — check its anchor order")
         clip = out / f"s{i:03d}.mp4"
         key = short_hash(s.get("src"), s.get("from"), s.get("move"), s.get("host"), s.get("split"), s.get("right"),
-                         s.get("sharpen"), n, ch["motion"], ch.get("split"), "clamp-v2")
+                         s.get("sharpen"), n, ch["motion"], ch.get("split"), "clamp-v3")
         meta_f = clip.with_suffix(".key")
         if not (clip.exists() and meta_f.exists() and meta_f.read_text() == key):
             if s.get("split"):
