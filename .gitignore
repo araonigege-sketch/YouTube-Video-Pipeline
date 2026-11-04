@@ -10,3 +10,4 @@ projects/*/out/
 pipeline/reedit/models/*.tflite
 projects/*/source/
 projects/*/vo/*.wav
+pipeline/reedit/models/
