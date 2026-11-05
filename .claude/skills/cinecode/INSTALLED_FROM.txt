@@ -1,0 +1,3 @@
+source: https://github.com/sarpstar/cinecode
+commit: 67f9807 (2026-11-03)
+installed: 2026-11-05 as a project skill (docs/media omitted)
