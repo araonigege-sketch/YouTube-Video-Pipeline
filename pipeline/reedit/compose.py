@@ -198,8 +198,15 @@ def plan_shots(P: Path, meta, edit, words) -> list[dict]:
     shots, prev = [], a - 1
     for s in edit["shots"]:
         t = resolve(words, s["at"], prev, lead=0.08) if not isinstance(s["at"], (int, float)) else float(s["at"])
-        shots.append({**s, "t0": max(a, t)})
+        shots.append({**s, "t0": max(a, t), "_t": t})
         prev = t
+    # a section render: keep the shot running at the range start and drop shots outside the range
+    first = max((i for i, s in enumerate(shots) if s["_t"] <= a + 1e-6), default=0)
+    shots = [s for i, s in enumerate(shots) if i >= first and s["t0"] < b - 0.01]
+    for s in shots:
+        if (s.get("src") or "orig") == "orig" and s["_t"] < a and "from" in s and not s.get("split"):
+            s["from"] = float(s["from"]) + (a - s["_t"])   # start the reused shot where the range begins
+        s.pop("_t")
     for i, s in enumerate(shots):
         s["t1"] = shots[i + 1]["t0"] if i + 1 < len(shots) else b
     _orig_segment(P, P / meta["source"]["file"], 0.0, 0.0)   # loads the original's shot boundaries
@@ -505,17 +512,18 @@ class Overlay(Composition):
         rnd = random.Random(7)
         gid = self.nid("gr")
         joints = g.get("joints") or [{"name": "", "absorbs": True}]
-        top, bot, bed = 470, 700, 830
+        top, bot, bed = 470, 760, 880          # labels live in the band above (y 160-330); captions below
+        DROP_Y = 330
         if len(joints) == 1:
-            tiles, jw = [(220, 820), (1060, 1700)], [(820, 1060)]
+            tiles, jw = [(140, 800), (1120, 1780)], [(800, 1120)]
         else:
-            tiles, jw = [(160, 560), (740, 1180), (1360, 1760)], [(560, 740), (1180, 1360)]
+            tiles, jw = [(100, 560), (780, 1140), (1360, 1820)], [(560, 780), (1140, 1360)]
         GROUT, PORE, WET = "#E4DED2", "#C3B9A6", "#71808C"
         s = ['<svg width="1920" height="1080" viewBox="0 0 1920 1080" style="position:absolute;left:0;top:0">',
              '<defs>' + "".join(f'<clipPath id="{gid}c{k}"><rect x="{x0}" y="{top + 8}" width="{x1 - x0}" height="{bot - top - 8}"/></clipPath>'
                                  for k, (x0, x1) in enumerate(jw)) + '</defs>',
-             f'<rect x="100" y="{bot}" width="1720" height="{bed - bot}" rx="10" fill="#A7A39A"/>',
-             f'<text x="130" y="{bot + 80}" font-size="34" fill="#F4F1EA" font-family="Outfit">mortar bed</text>']
+             f'<rect x="60" y="{bot}" width="1800" height="{bed - bot}" rx="10" fill="#A7A39A"/>',
+             f'<text x="90" y="{bot + 74}" font-size="32" fill="#F4F1EA" font-family="Outfit">mortar bed</text>']
         for x0, x1 in tiles:
             s.append(f'<rect x="{x0}" y="{top}" width="{x1 - x0}" height="{bot - top}" rx="8" fill="#F2F4F5" stroke="#B9C2C6" stroke-width="4"/>'
                      f'<rect x="{x0}" y="{top}" width="{x1 - x0}" height="26" rx="8" fill="#7FB7D9" opacity=".55"/>')
@@ -530,17 +538,17 @@ class Overlay(Composition):
             s.append(f'<rect id="{gid}wet{k}" x="{x0}" y="{top + 8}" width="{x1 - x0}" height="0" fill="{WET}" opacity=".62"/>')
             seal_h = 95
             s.append(f'<rect id="{gid}seal{k}" x="{x0}" y="{top + 8}" width="{x1 - x0}" height="{seal_h if j.get("sealed") else 0}" '
-                     f'fill="{self.ACC}" opacity=".5"/>')
+                     f'fill="{self.GOOD}" opacity=".42"/>')
             s.append('</g>')
             if j.get("name"):
-                s.append(f'<text x="{(x0 + x1) / 2:.0f}" y="{bot + 64}" font-size="40" text-anchor="middle" fill="{self.INK}" font-family="Outfit" font-weight="700">{html.escape(j["name"])}</text>')
+                s.append(f'<text x="{(x0 + x1) / 2:.0f}" y="{bot + 76}" font-size="42" text-anchor="middle" fill="{self.INK}" font-family="Outfit" font-weight="700">{html.escape(j["name"])}</text>')
             cx = (x0 + x1) / 2
-            s.append(f'<ellipse id="{gid}d{k}" cx="{cx:.0f}" cy="130" rx="26" ry="30" fill="#4FA3DB" opacity="0"/>')
+            s.append(f'<ellipse id="{gid}d{k}" cx="{cx:.0f}" cy="{DROP_Y}" rx="30" ry="34" fill="#4FA3DB" opacity="0"/>')
             for q in range(7):
-                s.append(f'<circle class="{gid}dirt{k}" cx="{cx:.0f}" cy="130" r="7" fill="#6B4E2E" opacity="0"/>')
+                s.append(f'<circle class="{gid}dirt{k}" cx="{cx:.0f}" cy="{DROP_Y}" r="8" fill="#6B4E2E" opacity="0"/>')
         tx = (tiles[0][0] + tiles[0][1]) / 2
-        s.append(f'<ellipse id="{gid}dt" cx="{tx:.0f}" cy="130" rx="26" ry="30" fill="#4FA3DB" opacity="0"/></svg>')
-        labels = "".join(f'<div class="dg-lab" id="{gid}l{k}" style="left:{lb["x"]}px;top:{lb["y"]}px">'
+        s.append(f'<ellipse id="{gid}dt" cx="{tx:.0f}" cy="{DROP_Y}" rx="30" ry="34" fill="#4FA3DB" opacity="0"/></svg>')
+        labels = "".join(f'<div class="dg-lab" id="{gid}l{k}" style="left:{lb["x"]}px;top:{lb["y"]}px;font-size:40px">'
                          f'<span class="dg-dot" style="background:{lb.get("c", self.ACC)}"></span>{html.escape(lb["t"])}</div>'
                          for k, lb in enumerate(g.get("labels", [])))
         head = f'<div class="dg-head">{html.escape(g.get("title", "Tile vs grout, cut in half"))}</div>'
@@ -560,12 +568,12 @@ class Overlay(Composition):
             td = self.t(g["drop"], t0)
             surf = top + 8
             # tile face: drop beads and sits
-            self.tw(f'tl.fromTo("#{gid}dt",{{attr:{{cy:130,rx:26,ry:30}},opacity:1}},{{attr:{{cy:{top - 18}}},duration:0.55,ease:"power2.in"}},{td:.3f});')
+            self.tw(f'tl.fromTo("#{gid}dt",{{attr:{{cy:{DROP_Y},rx:30,ry:34}},opacity:1}},{{attr:{{cy:{top - 18}}},duration:0.55,ease:"power2.in"}},{td:.3f});')
             self.tw(f'tl.to("#{gid}dt",{{attr:{{rx:36,ry:20,cy:{top - 18}}},duration:0.25,ease:"back.out(2)"}},{td + 0.55:.3f});')
             for k, j in enumerate(joints):
                 x0, x1 = jw[k]
                 d0 = td + 0.25 * (k + 1)
-                self.tw(f'tl.fromTo("#{gid}d{k}",{{attr:{{cy:130,rx:26,ry:30}},opacity:1}},{{attr:{{cy:{surf - 22}}},duration:0.55,ease:"power2.in"}},{d0:.3f});')
+                self.tw(f'tl.fromTo("#{gid}d{k}",{{attr:{{cy:{DROP_Y},rx:30,ry:34}},opacity:1}},{{attr:{{cy:{surf - 22}}},duration:0.55,ease:"power2.in"}},{d0:.3f});')
                 self.sfx.append((d0 + 0.5, "pop"))
                 if j.get("absorbs"):
                     self.tw(f'tl.to("#{gid}d{k}",{{attr:{{rx:60,ry:8,cy:{surf - 4}}},opacity:0,duration:1.6,ease:"power1.in"}},{d0 + 0.55:.3f});')
