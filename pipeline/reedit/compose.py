@@ -710,7 +710,7 @@ GRAPHICS = ("checklist", "badge", "circle", "lower_third", "statement", "tag", "
 
 # Card types that sit beside the host and can be moved/shrunk; big centred types that must not sit on the host.
 SIDE_CARDS = {"checklist", "step", "tag", "lower_third", "statement", "subscribe"}
-CENTRE_CARDS = {"compare", "cards", "title", "disposal", "trap", "grout"}   # full-screen diagrams too
+CENTRE_CARDS = {"compare", "cards", "title", "alert", "disposal", "trap", "grout"}   # full-screen diagrams too
 
 
 def protect_host(graphics: list[tuple[dict, float, float]], shots: list[dict], log=print) -> list[str]:
@@ -725,7 +725,8 @@ def protect_host(graphics: list[tuple[dict, float, float]], shots: list[dict], l
         kinds = {"split" if sh.get("split") else "host" for sh in over}
         if g["type"] in SIDE_CARDS:
             g["_side"] = "right"
-            if "host" in kinds and g["type"] in ("checklist", "statement"):
+            # statements are centred at full size, so they go compact on any host shot; checklists only beside a full-frame host
+            if g["type"] == "statement" or ("host" in kinds and g["type"] == "checklist"):
                 g["_compact"] = True
         elif g["type"] in CENTRE_CARDS:
             msg = f"{g['type']} at {t0:.1f}s sits over the host ({', '.join(sorted(kinds))}) — move it to a B-roll shot"
@@ -868,6 +869,75 @@ def qa_cuts(P: Path, shots: list[dict], a: float, log=print) -> list[float]:
     return stray
 
 
+def check(P: Path, log=print) -> int:
+    """Dry run, no rendering: resolve every shot and graphic and report problems.
+    Errors: zero-length or out-of-order shots, graphics that end before they start, cards over the host.
+    Warnings: graphics that resolve far before their list neighbours (anchor matched an earlier line),
+    long B-roll shots and stretches where nothing new appears on screen."""
+    P = Path(P)
+    meta, edit, ch, words = load(P)
+    a, b = edit["range"]
+    errs = warns = 0
+    shots = plan_shots(P, meta, edit, words)
+    ret = ch.get("retention", {})
+    max_broll, max_static = ret.get("max_broll_shot", 4.5), ret.get("max_static", 3.0)
+    full = [(resolve(words, g["at"], 0.0, 0.05), g) for g in edit.get("graphics", []) if g["type"] in ("grout", "disposal", "trap")]
+    for i, s in enumerate(shots):
+        d = s["t1"] - s["t0"]
+        covered = any(abs(t - s["t0"]) < 0.6 for t, _ in full)   # a full-screen diagram replaces this picture
+        if d < 0.2:
+            errs += 1
+            log(f"✗ shot {i} {s['at']!r}: {d:.2f}s long (anchor order?)")
+        elif not (s.get("host") or s.get("split") or covered) and d > max_broll + 1.0:
+            warns += 1
+            log(f"⚠ shot {i} {s['at']!r} at {s['t0']:.1f}s: B-roll {d:.1f}s (max {max_broll})")
+    c = Overlay(words, P / "build/check", ch, a)
+    events = [s["t0"] for s in shots]
+    timed, prev = [], a
+    for g in edit.get("graphics", []):
+        try:
+            t0 = resolve(words, g["at"], 0.0, 0.05)
+            t1 = (b if g.get("until") == "end" else resolve(words, g["until"], t0, 0.1)) if "until" in g else t0 + g.get("dur", 3.0)
+        except KeyError as e:
+            errs += 1
+            log(f"✗ {g['type']} {g['at']!r}: {e}")
+            continue
+        if t1 <= t0:
+            errs += 1
+            log(f"✗ {g['type']} {g['at']!r}: ends {t1:.1f}s before it starts {t0:.1f}s")
+        if t0 < prev - 5:
+            warns += 1
+            log(f"⚠ {g['type']} {g['at']!r} resolves to {t0:.1f}s, well before the previous graphic ({prev:.1f}s) — earlier line matched?")
+        prev = max(prev, t0)
+        timed.append((dict(g), t0 - a, t1 - a))
+        events += [t0, t1]
+        for cue in ("drop", "seal", "pores", "spin", "fling", "dry"):   # a diagram's own animation counts as change
+            if isinstance(g.get(cue), (str, int, float)) and not isinstance(g.get(cue), bool):
+                try:
+                    tc = resolve(words, g[cue], t0, 0.0)
+                    events += [tc, tc + 1.5]
+                except KeyError as e:
+                    errs += 1
+                    log(f"✗ {g['type']} {g['at']!r} {cue}: {e}")
+        for it in g.get("items", []) + g.get("labels", []) + g.get("cols", []):
+            if "a" in it:
+                try:
+                    events.append(resolve(words, it["a"], t0, 0.0))
+                except KeyError as e:
+                    errs += 1
+                    log(f"✗ {g['type']} {g['at']!r} item: {e}")
+    rel = [{**sh, "t0": sh["t0"] - a, "t1": sh["t1"] - a} for sh in shots]
+    errs += len(protect_host(timed, rel, log))
+    ev = sorted(e for e in events if a <= e <= b) + [b]
+    for x, y in zip(ev, ev[1:]):
+        if y - x > max(max_static, max_broll) + 0.5:
+            warns += 1
+            log(f"⚠ nothing new on screen {x:.1f}–{y:.1f}s ({y - x:.1f}s)")
+    del c
+    log(f"check: {len(shots)} shots, {len(timed)} graphics — {errs} error(s), {warns} warning(s)")
+    return errs
+
+
 def run(P: Path, music: Path | None = None, do_render=True, log=print) -> Path:
     P = Path(P)
     meta, edit, ch, words = load(P)
@@ -908,7 +978,9 @@ def remix(P: Path, music: Path | None, log=print) -> Path:
 if __name__ == "__main__":
     import sys
     m = Path(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2] != "-" else None
-    if "--remix" in sys.argv:
+    if "--check" in sys.argv:
+        sys.exit(1 if check(Path(sys.argv[1])) else 0)
+    elif "--remix" in sys.argv:
         remix(Path(sys.argv[1]), m)
     else:
         run(Path(sys.argv[1]), m, do_render="--no-render" not in sys.argv)

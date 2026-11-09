@@ -1,0 +1,64 @@
+{
+ "tracks": [
+  {
+   "file": "music/bed_bright.wav",
+   "start": 0,
+   "end": 170,
+   "offset": 0,
+   "mood": "bright \u00b7 hook, bleach, what grout is",
+   "title": "Acoustic bed (bright)",
+   "artist": "Generated with vidIQ",
+   "license": "Royalty-free (vidIQ generated)",
+   "source": "vidIQ generate_music 156fa273-ea16-4ede-87f0-6401ef25b401",
+   "licence_verified": true
+  },
+  {
+   "file": "music/bed_steady.wav",
+   "start": 168,
+   "end": 315,
+   "offset": 0,
+   "mood": "steady \u00b7 the reset clean",
+   "title": "Lo-fi bed (steady)",
+   "artist": "Generated with vidIQ",
+   "license": "Royalty-free (vidIQ generated)",
+   "source": "vidIQ generate_music 74d136e4-0578-4108-8d05-9933f7097838",
+   "licence_verified": true
+  },
+  {
+   "file": "music/bed_curious.wav",
+   "start": 313,
+   "end": 483,
+   "offset": 0,
+   "mood": "curious \u00b7 drop test & sealing",
+   "title": "Pizzicato bed (curious)",
+   "artist": "Generated with vidIQ",
+   "license": "Royalty-free (vidIQ generated)",
+   "source": "vidIQ generate_music 1d1506a5-ec09-4e6a-9589-ddf7f797e766",
+   "licence_verified": true
+  },
+  {
+   "file": "music/bed_bright.wav",
+   "start": 481,
+   "end": 645,
+   "offset": 8,
+   "mood": "bright \u00b7 applying sealer & habits",
+   "title": "Acoustic bed (bright)",
+   "artist": "Generated with vidIQ",
+   "license": "Royalty-free (vidIQ generated)",
+   "source": "vidIQ generate_music 156fa273-ea16-4ede-87f0-6401ef25b401",
+   "licence_verified": true
+  },
+  {
+   "file": "music/bed_steady.wav",
+   "start": 643,
+   "end": 757.8,
+   "offset": 30,
+   "mood": "steady \u00b7 troubleshooting & outro",
+   "title": "Lo-fi bed (steady)",
+   "artist": "Generated with vidIQ",
+   "license": "Royalty-free (vidIQ generated)",
+   "source": "vidIQ generate_music 74d136e4-0578-4108-8d05-9933f7097838",
+   "licence_verified": true
+  }
+ ]
+}
