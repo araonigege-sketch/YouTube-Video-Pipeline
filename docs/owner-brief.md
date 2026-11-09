@@ -25,7 +25,8 @@ Update this file whenever the owner gives new standing instructions.
   or as a compact card beside a full-frame host. (Enforced in `pipeline/reedit/compose.py::protect_host`;
   big centred cards over the host stop the build.) Owner feedback, 2026-11-04: it happened twice on the
   garbage-disposal video.
-- **Thumbnails (Nora):** Nora on the right, chest-up, calm closed-mouth "trust me" look at camera; 1–3 words in
+- **Thumbnails: the owner makes them himself from now on (2026-11-09). Do not make thumbnails** unless asked.
+  Earlier Nora style, for reference only: Nora on the right, chest-up, calm closed-mouth "trust me" look at camera; 1–3 words in
   heavy condensed yellow (#FFE11A, Anton) with a thick black outline + drop shadow; the problem object on the left
   with a thick yellow curved arrow; optional white-divider split. Built from her real footage (cut-out via MediaPipe,
   expression picked by face blendshapes), template `channels/home_howto/thumbnail_template.html`.
