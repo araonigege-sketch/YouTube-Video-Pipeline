@@ -200,7 +200,7 @@ shots = [
     B("sometimes even it out", "6561656", 8),
     B("and that may be a better", "4238724", 8),
     S(643.0, "9200530", 5),
-    S("that may not be a cleaning", "4106935", 20),
+    S("that may not be a cleaning", "9200530", 60),
     B(651.36, "9200530", 20),
     B("failed caulk", "39310416", 2),
     B("or poor ventilation", "orig", 528.6),

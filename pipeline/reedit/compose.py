@@ -568,12 +568,12 @@ class Overlay(Composition):
             td = self.t(g["drop"], t0)
             surf = top + 8
             # tile face: drop beads and sits
-            self.tw(f'tl.fromTo("#{gid}dt",{{attr:{{cy:{DROP_Y},rx:30,ry:34}},opacity:1}},{{attr:{{cy:{top - 18}}},duration:0.55,ease:"power2.in"}},{td:.3f});')
+            self.tw(f'tl.fromTo("#{gid}dt",{{attr:{{cy:{DROP_Y},rx:30,ry:34}},opacity:1}},{{attr:{{cy:{top - 18}}},duration:0.55,ease:"power2.in",immediateRender:false}},{td:.3f});')
             self.tw(f'tl.to("#{gid}dt",{{attr:{{rx:36,ry:20,cy:{top - 18}}},duration:0.25,ease:"back.out(2)"}},{td + 0.55:.3f});')
             for k, j in enumerate(joints):
                 x0, x1 = jw[k]
                 d0 = td + 0.25 * (k + 1)
-                self.tw(f'tl.fromTo("#{gid}d{k}",{{attr:{{cy:{DROP_Y},rx:30,ry:34}},opacity:1}},{{attr:{{cy:{surf - 22}}},duration:0.55,ease:"power2.in"}},{d0:.3f});')
+                self.tw(f'tl.fromTo("#{gid}d{k}",{{attr:{{cy:{DROP_Y},rx:30,ry:34}},opacity:1}},{{attr:{{cy:{surf - 22}}},duration:0.55,ease:"power2.in",immediateRender:false}},{d0:.3f});')
                 self.sfx.append((d0 + 0.5, "pop"))
                 if j.get("absorbs"):
                     self.tw(f'tl.to("#{gid}d{k}",{{attr:{{rx:60,ry:8,cy:{surf - 4}}},opacity:0,duration:1.6,ease:"power1.in"}},{d0 + 0.55:.3f});')
@@ -582,7 +582,7 @@ class Overlay(Composition):
                         for q in range(7):
                             px, py = rnd.uniform(x0 + 20, x1 - 20), rnd.uniform(top + 40, top + 40 + (bot - top) * 0.6)
                             self.tw(f'tl.fromTo("#{gid} .{gid}dirt{k}:nth-of-type({q + 1})",{{attr:{{cx:{(x0 + x1) / 2:.0f},cy:{surf - 22}}},opacity:0}},'
-                                    f'{{attr:{{cx:{px:.0f},cy:{py:.0f}}},opacity:1,duration:1.4,ease:"power1.out"}},{d0 + 0.6 + q * 0.06:.3f});')
+                                    f'{{attr:{{cx:{px:.0f},cy:{py:.0f}}},opacity:1,duration:1.4,ease:"power1.out",immediateRender:false}},{d0 + 0.6 + q * 0.06:.3f});')
                 else:
                     self.tw(f'tl.to("#{gid}d{k}",{{attr:{{rx:38,ry:20,cy:{surf - 18}}},duration:0.3,ease:"back.out(2)"}},{d0 + 0.55:.3f});')
         for k, lb in enumerate(g.get("labels", [])):

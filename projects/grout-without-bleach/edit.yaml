@@ -585,8 +585,8 @@ shots:
 - at: that may not be a cleaning
   split: true
   right:
-    src: build/cand/4106935.mp4
-    from: 20
+    src: build/cand/9200530.mp4
+    from: 60
 - at: 651.36
   src: build/cand/9200530.mp4
   from: 20
