@@ -492,6 +492,95 @@ class Overlay(Composition):
             self.enter(f"#{gid}l{k}", self.t(lb["a"], t0), "x:40,opacity:0", 0.35, "pop")
         self.leave(f"#{gid}", t1)
 
+    def grout(self, g, t0, t1):
+        """Side cross-section of tiles and cement-grout joints.
+
+        joints: [{name, sealed: bool, absorbs: bool}] (1 or 2 joints)
+        drop: cue → a water drop falls on each joint (and one on the tile face, which beads)
+        seal: cue → penetrating sealer soaks into the top of every joint marked `seal_me`
+        dirt: true → dirt specks ride in with the water and lodge in the pores of absorbing joints
+        pores: cue → pore network pulses (the 'hard sponge')
+        labels: [{t, a, x, y, c?}]"""
+        import random
+        rnd = random.Random(7)
+        gid = self.nid("gr")
+        joints = g.get("joints") or [{"name": "", "absorbs": True}]
+        top, bot, bed = 470, 700, 830
+        if len(joints) == 1:
+            tiles, jw = [(220, 820), (1060, 1700)], [(820, 1060)]
+        else:
+            tiles, jw = [(160, 560), (740, 1180), (1360, 1760)], [(560, 740), (1180, 1360)]
+        GROUT, PORE, WET = "#E4DED2", "#C3B9A6", "#71808C"
+        s = ['<svg width="1920" height="1080" viewBox="0 0 1920 1080" style="position:absolute;left:0;top:0">',
+             '<defs>' + "".join(f'<clipPath id="{gid}c{k}"><rect x="{x0}" y="{top + 8}" width="{x1 - x0}" height="{bot - top - 8}"/></clipPath>'
+                                 for k, (x0, x1) in enumerate(jw)) + '</defs>',
+             f'<rect x="100" y="{bot}" width="1720" height="{bed - bot}" rx="10" fill="#A7A39A"/>',
+             f'<text x="130" y="{bot + 80}" font-size="34" fill="#F4F1EA" font-family="Outfit">mortar bed</text>']
+        for x0, x1 in tiles:
+            s.append(f'<rect x="{x0}" y="{top}" width="{x1 - x0}" height="{bot - top}" rx="8" fill="#F2F4F5" stroke="#B9C2C6" stroke-width="4"/>'
+                     f'<rect x="{x0}" y="{top}" width="{x1 - x0}" height="26" rx="8" fill="#7FB7D9" opacity=".55"/>')
+        for k, (x0, x1) in enumerate(jw):
+            j = joints[k]
+            s.append(f'<g clip-path="url(#{gid}c{k})"><rect x="{x0}" y="{top + 8}" width="{x1 - x0}" height="{bot - top}" fill="{GROUT}"/>')
+            pts = [(rnd.uniform(x0 + 14, x1 - 14), rnd.uniform(top + 20, bot - 12)) for _ in range(46)]
+            for (ax, ay) in pts[:30]:   # connected channels
+                bx, by = min(pts, key=lambda p: (p[0] - ax) ** 2 + (p[1] - ay) ** 2 if p != (ax, ay) else 1e9)
+                s.append(f'<line class="{gid}pore" x1="{ax:.0f}" y1="{ay:.0f}" x2="{bx:.0f}" y2="{by:.0f}" stroke="{PORE}" stroke-width="5"/>')
+            s += [f'<circle class="{gid}pore" cx="{px:.0f}" cy="{py:.0f}" r="{rnd.uniform(5, 11):.1f}" fill="{PORE}"/>' for px, py in pts]
+            s.append(f'<rect id="{gid}wet{k}" x="{x0}" y="{top + 8}" width="{x1 - x0}" height="0" fill="{WET}" opacity=".62"/>')
+            seal_h = 95
+            s.append(f'<rect id="{gid}seal{k}" x="{x0}" y="{top + 8}" width="{x1 - x0}" height="{seal_h if j.get("sealed") else 0}" '
+                     f'fill="{self.ACC}" opacity=".5"/>')
+            s.append('</g>')
+            if j.get("name"):
+                s.append(f'<text x="{(x0 + x1) / 2:.0f}" y="{bot + 64}" font-size="40" text-anchor="middle" fill="{self.INK}" font-family="Outfit" font-weight="700">{html.escape(j["name"])}</text>')
+            cx = (x0 + x1) / 2
+            s.append(f'<ellipse id="{gid}d{k}" cx="{cx:.0f}" cy="130" rx="26" ry="30" fill="#4FA3DB" opacity="0"/>')
+            for q in range(7):
+                s.append(f'<circle class="{gid}dirt{k}" cx="{cx:.0f}" cy="130" r="7" fill="#6B4E2E" opacity="0"/>')
+        tx = (tiles[0][0] + tiles[0][1]) / 2
+        s.append(f'<ellipse id="{gid}dt" cx="{tx:.0f}" cy="130" rx="26" ry="30" fill="#4FA3DB" opacity="0"/></svg>')
+        labels = "".join(f'<div class="dg-lab" id="{gid}l{k}" style="left:{lb["x"]}px;top:{lb["y"]}px">'
+                         f'<span class="dg-dot" style="background:{lb.get("c", self.ACC)}"></span>{html.escape(lb["t"])}</div>'
+                         for k, lb in enumerate(g.get("labels", [])))
+        head = f'<div class="dg-head">{html.escape(g.get("title", "Tile vs grout, cut in half"))}</div>'
+        self.box(gid, t0, t1, f'<div class="dg-bg"></div>{"".join(s)}{head}{labels}', "position:absolute;inset:0")
+        self.enter(f"#{gid}", t0, "opacity:0", 0.4)
+        if g.get("pores"):
+            tp = self.t(g["pores"], t0)
+            self.tw(f'tl.to("#{gid} .{gid}pore",{{attr:{{fill:"{self.ACC}",stroke:"{self.ACC}"}},duration:0.35,stagger:0.006,yoyo:true,repeat:1}},{tp:.3f});')
+            self.sfx.append((tp, "pop"))
+        if g.get("seal"):
+            ts = self.t(g["seal"], t0)
+            for k, j in enumerate(joints):
+                if j.get("seal_me"):
+                    self.tw(f'tl.fromTo("#{gid}seal{k}",{{attr:{{height:0}}}},{{attr:{{height:95}},duration:1.6,ease:"power1.out"}},{ts:.3f});')
+            self.sfx.append((ts, "whoosh"))
+        if g.get("drop"):
+            td = self.t(g["drop"], t0)
+            surf = top + 8
+            # tile face: drop beads and sits
+            self.tw(f'tl.fromTo("#{gid}dt",{{attr:{{cy:130,rx:26,ry:30}},opacity:1}},{{attr:{{cy:{top - 18}}},duration:0.55,ease:"power2.in"}},{td:.3f});')
+            self.tw(f'tl.to("#{gid}dt",{{attr:{{rx:36,ry:20,cy:{top - 18}}},duration:0.25,ease:"back.out(2)"}},{td + 0.55:.3f});')
+            for k, j in enumerate(joints):
+                x0, x1 = jw[k]
+                d0 = td + 0.25 * (k + 1)
+                self.tw(f'tl.fromTo("#{gid}d{k}",{{attr:{{cy:130,rx:26,ry:30}},opacity:1}},{{attr:{{cy:{surf - 22}}},duration:0.55,ease:"power2.in"}},{d0:.3f});')
+                self.sfx.append((d0 + 0.5, "pop"))
+                if j.get("absorbs"):
+                    self.tw(f'tl.to("#{gid}d{k}",{{attr:{{rx:60,ry:8,cy:{surf - 4}}},opacity:0,duration:1.6,ease:"power1.in"}},{d0 + 0.55:.3f});')
+                    self.tw(f'tl.to("#{gid}wet{k}",{{attr:{{height:{(bot - top) * 0.78:.0f}}},duration:2.2,ease:"power1.out"}},{d0 + 0.6:.3f});')
+                    if g.get("dirt"):
+                        for q in range(7):
+                            px, py = rnd.uniform(x0 + 20, x1 - 20), rnd.uniform(top + 40, top + 40 + (bot - top) * 0.6)
+                            self.tw(f'tl.fromTo("#{gid} .{gid}dirt{k}:nth-of-type({q + 1})",{{attr:{{cx:{(x0 + x1) / 2:.0f},cy:{surf - 22}}},opacity:0}},'
+                                    f'{{attr:{{cx:{px:.0f},cy:{py:.0f}}},opacity:1,duration:1.4,ease:"power1.out"}},{d0 + 0.6 + q * 0.06:.3f});')
+                else:
+                    self.tw(f'tl.to("#{gid}d{k}",{{attr:{{rx:38,ry:20,cy:{surf - 18}}},duration:0.3,ease:"back.out(2)"}},{d0 + 0.55:.3f});')
+        for k, lb in enumerate(g.get("labels", [])):
+            self.enter(f"#{gid}l{k}", self.t(lb["a"], t0), "x:40,opacity:0", 0.35, "pop")
+        self.leave(f"#{gid}", t1)
+
     def subscribe(self, g, t0, t1):
         """Like + subscribe buttons with a cursor click; sits above the captions, clear of the host."""
         gid = self.nid("sb")
@@ -617,11 +706,11 @@ html,body{{width:1920px;height:1080px;overflow:hidden;background:#000}}
 
 
 GRAPHICS = ("checklist", "badge", "circle", "lower_third", "statement", "tag", "compare", "timer", "step", "alert", "title",
-            "cards", "disposal", "trap", "subscribe")
+            "cards", "disposal", "trap", "grout", "subscribe")
 
 # Card types that sit beside the host and can be moved/shrunk; big centred types that must not sit on the host.
 SIDE_CARDS = {"checklist", "step", "tag", "lower_third", "statement", "subscribe"}
-CENTRE_CARDS = {"compare", "cards", "title"}
+CENTRE_CARDS = {"compare", "cards", "title", "disposal", "trap", "grout"}   # full-screen diagrams too
 
 
 def protect_host(graphics: list[tuple[dict, float, float]], shots: list[dict], log=print) -> list[str]:

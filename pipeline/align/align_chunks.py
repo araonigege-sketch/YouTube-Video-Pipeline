@@ -53,26 +53,30 @@ for i, p in enumerate(paras):
             try: ok = D.lookup_word(w)
             except Exception: ok = None
             if ok: sp.append(w); owner.append(k)
+    # rough-ASR word times where script words match (used to check the forced result, or as the fallback)
+    idx = [j for j, h in enumerate(hyp) if a - 0.5 <= h[1] <= b + 0.3]
+    hw_p = [hw[j] for j in idx]
+    sm = difflib.SequenceMatcher(None, sp, hw_p, autojunk=False)
+    st = [None] * len(sp)
+    for blk in sm.get_matching_blocks():
+        for q in range(blk.size): st[blk.a + q] = hyp[idx[blk.b + q]][1]
+    known = [(q, t) for q, t in enumerate(st) if t is not None]
     times = {}
     try:
         D.set_align_text(" ".join(sp)); D.start_utt(); D.process_raw(seg, full_utt=True); D.end_utt()
         D.set_alignment(); D.start_utt(); D.process_raw(seg, full_utt=True); D.end_utt()
         segs = [s for s in D.get_alignment() if s.name not in ("<sil>", "<s>", "</s>", "[NOISE]")]
         assert len(segs) == len(sp)
+        # a forced alignment can "succeed" while sliding off the speech: trust it only if it agrees with the ASR times
+        dev = sorted(abs(a + segs[q].start / 100 - t) for q, t in known)
+        if dev and dev[len(dev) // 2] > 0.6 or (len(dev) > 8 and dev[int(len(dev) * 0.8)] > 1.5):
+            raise ValueError(f"forced result disagrees with ASR (median {dev[len(dev) // 2]:.2f}s)")
         for o, s in zip(owner, segs):
             t0, t1 = a + s.start / 100, a + (s.start + s.duration) / 100
             times[o] = (min(times[o][0], t0), max(times[o][1], t1)) if o in times else (t0, t1)
         status = "ok"
     except Exception as e:
-        status = "ASR-MATCH"
-        # use rough-ASR word times where script words match, interpolate the rest
-        idx = [j for j, h in enumerate(hyp) if a - 0.5 <= h[1] <= b + 0.3]
-        hw_p = [hw[j] for j in idx]
-        sm = difflib.SequenceMatcher(None, sp, hw_p, autojunk=False)
-        st = [None] * len(sp)
-        for blk in sm.get_matching_blocks():
-            for q in range(blk.size): st[blk.a + q] = hyp[idx[blk.b + q]][1]
-        known = [(q, t) for q, t in enumerate(st) if t is not None]
+        status = f"ASR-MATCH ({str(e)[:50]})"
         pts = [(-1, a)] + known + [(len(sp), b)]
         for (q0, t0), (q1, t1) in zip(pts, pts[1:]):
             for q in range(q0 + 1, q1): st[q] = t0 + (t1 - t0) * (q - q0) / (q1 - q0)
@@ -80,11 +84,11 @@ for i, p in enumerate(paras):
             t0 = st[q]; t1 = st[q + 1] if q + 1 < len(st) else b
             t1 = min(t1, t0 + 1.2)
             times[o] = (min(times[o][0], t0), max(times[o][1], t1)) if o in times else (t0, t1)
-        for k, t in enumerate(p):  # tokens with no spoken lookup: borrow neighbour
-            if k not in times:
-                prv = max([x for x in times if x < k], default=None)
-                times[k] = (times[prv][1], times[prv][1] + 0.2) if prv is not None else (a, a + 0.2)
         status += f" {len(known)}/{len(sp)} matched"
+    for k, t in enumerate(p):  # tokens with no spoken lookup (e.g. unknown words): borrow neighbour
+        if k not in times:
+            prv = max([x for x in times if x < k], default=None)
+            times[k] = (times[prv][1], times[prv][1] + 0.2) if prv is not None else (a, a + 0.2)
     for k, t in enumerate(p):
         if k in times: out.append({"w": t, "s": round(times[k][0] + offset, 3), "e": round(times[k][1] + offset, 3)})
     print(f"para {i}: {a:.2f}-{b:.2f} {status}")

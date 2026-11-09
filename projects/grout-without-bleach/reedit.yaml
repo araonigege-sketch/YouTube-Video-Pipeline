@@ -3,7 +3,7 @@ type: reedit
 host: Nora Hart
 niche: home fixes / cleaning ("we bring things back instead of buying new")
 source:
-  drive_id: null        # video not uploaded yet (2026-11-09)
+  drive_id: 1j3nWKq7rAiWUnTXWkQQb66yUmLhxLG2O   # owner: araonigege@gmail.com
   file: source/original.mp4
 script_doc: https://docs.google.com/document/d/1dmYMs4JvThlb6MePm4fD5MfUKzysXhSSg8ccatYuZrU
 script: script.txt
