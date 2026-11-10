@@ -10,6 +10,7 @@ Update this file whenever the owner gives new standing instructions.
 | Reality of Being | Footage + stat cards + US maps (ATC pilot, 3:20) | ElevenLabs TTS | Legacy pipeline in `legacy/reality-of-being`; not ported yet |
 | Talking-head re-edits | Owner's already-edited talking-head videos (several niches, **different hosts**). Keep the voiceover and host footage; replace the weak B-roll with better, line-matched footage; add captions, text callouts, lower thirds, graphics, maps, music and SFX. Source videos have no burned-in text. | The host's own voice | Starting: owner uploads videos + scripts to Google Drive and can give a **reference video per host** — each host gets their own look |
 | ↳ Nora Hart (home fixes) | Look: `channels/home_howto` (bright, white cards, lemon accent, Outfit, word-highlight captions) — **approved** on the garbage-disposal test. Split screens are restyled as **two rounded panels on a clean background** (Nora left, new B-roll right). **No OpenArt / AI imagery for this host** — real footage, original close-ups and code-drawn diagrams only. | Her own recording | Garbage disposal: **delivered** 2026-11-04 (`projects/garbage-disposal-smell`). Grout without bleach: **delivered** 2026-11-09 (`projects/grout-without-bleach`) |
+| Comparative religion & history (new, 2026-11-10) | Long-form documentaries (25–40 min) on religion and history. Samples: Para Bellum (Arabia before Islam, Assyria, Nuragic Sardinia: animated maps + archive collage, 135–145 wpm) and UsefulCharts (chart-driven: source timelines, family trees, branching "stream" charts, comparison tables, scorecards, one giant chart with a camera moving across it). Copy the formats, never their look or layouts. **Visuals change every 3–5 s.** Owner writes the scripts and makes the thumbnails. Pilot look "Case File" (archive objects on a dark desk, EXHIBIT tags, vermilion stamps, engraved maps and charts on bone paper), built with the Cinecode kit: `projects/pre-adamites/README.md`. **Prefer public-domain art and museum open-access objects over AI imagery.** | George (ElevenLabs TTS) | Cold-open test (1:00) of "Who Were the Humans Before Adam and Eve?" rendered 2026-11-10; **awaiting owner approval** of the look |
 | Others | To come. **Every channel gets its own distinct look.** | | |
 
 ## How the owner wants videos made
@@ -42,7 +43,9 @@ Update this file whenever the owner gives new standing instructions.
   no copyright risk: follow `docs/music.md` (Wikimedia Commons first, licence verified on the file page).
   If the right free track can't be obtained, leave music out rather than use something doubtful.
 - **Sources available:** Wikimedia Commons, Pixabay (`PIXABAY_API_KEY`), Internet Archive, Pexels (via vidIQ),
-  Library of Congress, OpenArt (images/video), vidIQ (voice, music, b-roll, research). The owner can grant
+  Library of Congress, OpenArt (images/video), vidIQ (voice, music, b-roll, research), and (added 2026-11-10)
+  museum open access through Cinecode's `asset_search.py`: the Met, Art Institute of Chicago, Cleveland Museum
+  of Art, Rijksmuseum, Openverse. Blocked from the sandbox: Jamendo downloads, Freesound, YouTube. The owner can grant
   access to a collection of free short movie clips: ask for it when needed, and check each clip's licence.
 
 ## Practicalities

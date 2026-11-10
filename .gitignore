@@ -11,3 +11,8 @@ pipeline/reedit/models/*.tflite
 projects/*/source/
 projects/*/vo/*.wav
 pipeline/reedit/models/
+projects/*/assets/
+projects/*/research/
+projects/*/audio/
+projects/*/fontpkg/
+projects/*/film/img/

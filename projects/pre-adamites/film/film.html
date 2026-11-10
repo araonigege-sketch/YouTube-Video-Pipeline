@@ -1,0 +1,448 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Pre-Adamites cold open</title>
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas>
+<script src="map.js"></script>
+<script>
+// "The Case File" look: real archive objects on a dark desk, typed catalogue tags, vermilion stamps,
+// engraved maps and charts on bone paper. Every frame is a pure function of time.
+const W = 1920, H = 1080, FPS = 30, END = 60.6;
+const FRAMES = Math.ceil(END * FPS);
+const C = document.getElementById('c'), ctx = C.getContext('2d');
+const COL = { paper: '#e9e0cb', paperDark: '#d8cbab', ink: '#2a221b', inkSoft: 'rgba(42,34,27,0.55)',
+  red: '#b3321d', redSoft: 'rgba(179,50,29,0.18)', sea: '#e4e2d2', land: '#e6d8b6', label: '#efe6d1' };
+const FELL = '"IM Fell English"', MONO = '"Courier Prime"', SANS = '"IBM Plex Sans Condensed"';
+
+// ---------- helpers ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const E = {
+  io: x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; },
+  out: x => { x = clamp(x); return 1 - Math.pow(1 - x, 3); },
+  inn: x => { x = clamp(x); return x * x * x; },
+  back: x => { x = clamp(x); const c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
+};
+function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+function off(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+
+// ---------- assets ----------
+const IMG = {};
+const IMGS = ['pa_title', 'pa_hand', 'brussels', 'medal', 'sunday', 'durer', 'jami', 'skull', 'hands', 'gobekli'];
+function loadImg(k) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => { IMG[k] = i; res(); }; i.onerror = () => rej(new Error('img ' + k)); i.src = 'img/' + k + '.jpg'; }); }
+const FONTS = [
+  ['IM Fell English', 'fonts/im-fell-english-latin-400-normal.woff2', {}],
+  ['IM Fell English', 'fonts/im-fell-english-latin-400-italic.woff2', { style: 'italic' }],
+  ['Courier Prime', 'fonts/courier-prime-latin-400-normal.woff2', {}],
+  ['Courier Prime', 'fonts/courier-prime-latin-700-normal.woff2', { weight: '700' }],
+  ['IBM Plex Sans Condensed', 'fonts/ibm-plex-sans-condensed-latin-400-normal.woff2', {}],
+  ['IBM Plex Sans Condensed', 'fonts/ibm-plex-sans-condensed-latin-600-normal.woff2', { weight: '600' }],
+];
+function loadFonts() { return Promise.all(FONTS.map(([n, u, d]) => new FontFace(n, `url(${u})`, d).load().then(f => document.fonts.add(f)))); }
+
+// ---------- textures (built once, seeded) ----------
+let DESK, GRAIN = [], PAPERTEX, MAPC, SPECK;
+function buildTextures() {
+  // desk: dark walnut with long grain and a soft pool of lamp light
+  DESK = off(W, H); let g = DESK.getContext('2d'); const r = rng(7);
+  g.fillStyle = '#17120e'; g.fillRect(0, 0, W, H);
+  for (let i = 0; i < 2600; i++) {
+    const y = r() * H, len = 200 + r() * 900, x = r() * W - 200, a = 0.02 + r() * 0.05;
+    g.strokeStyle = r() < 0.5 ? `rgba(90,62,40,${a})` : `rgba(0,0,0,${a * 1.4})`;
+    g.lineWidth = 0.6 + r() * 2.2; g.beginPath(); g.moveTo(x, y);
+    g.bezierCurveTo(x + len * .3, y + (r() - .5) * 8, x + len * .6, y + (r() - .5) * 8, x + len, y + (r() - .5) * 6); g.stroke();
+  }
+  let rad = g.createRadialGradient(W * .42, H * .38, 80, W * .5, H * .5, W * .75);
+  rad.addColorStop(0, 'rgba(255,214,160,0.13)'); rad.addColorStop(.5, 'rgba(0,0,0,0)'); rad.addColorStop(1, 'rgba(0,0,0,0.6)');
+  g.fillStyle = rad; g.fillRect(0, 0, W, H);
+  // paper fibre tile
+  PAPERTEX = off(512, 512); g = PAPERTEX.getContext('2d'); const r2 = rng(11);
+  g.fillStyle = COL.paper; g.fillRect(0, 0, 512, 512);
+  const id = g.getImageData(0, 0, 512, 512), d = id.data;
+  for (let i = 0; i < d.length; i += 4) { const n = (r2() - .5) * 16; d[i] += n; d[i + 1] += n; d[i + 2] += n * .9; }
+  g.putImageData(id, 0, 0);
+  for (let i = 0; i < 260; i++) { g.strokeStyle = `rgba(120,100,70,${.04 + r2() * .06})`; g.lineWidth = .6; const x = r2() * 512, y = r2() * 512; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + (r2() - .5) * 30, y + (r2() - .5) * 30, x + (r2() - .5) * 40, y + (r2() - .5) * 40); g.stroke(); }
+  // film grain frames
+  const r3 = rng(23);
+  for (let k = 0; k < 6; k++) { const c = off(480, 270), gg = c.getContext('2d'), im = gg.createImageData(480, 270);
+    for (let i = 0; i < im.data.length; i += 4) { const v = r3() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
+    gg.putImageData(im, 0, 0); GRAIN.push(c); }
+  // stamp speckle mask
+  SPECK = off(600, 200); g = SPECK.getContext('2d'); const r4 = rng(31);
+  for (let i = 0; i < 1400; i++) { g.fillStyle = `rgba(0,0,0,${.3 + r4() * .7})`; const s = .6 + r4() * 2.4; g.fillRect(r4() * 600, r4() * 200, s, s); }
+  buildMap();
+}
+function paperRect(g, x, y, w, h, dark = 0) {
+  g.save(); g.fillStyle = g.createPattern(PAPERTEX, 'repeat'); g.fillRect(x, y, w, h);
+  const e = g.createRadialGradient(x + w / 2, y + h / 2, Math.min(w, h) * .3, x + w / 2, y + h / 2, Math.max(w, h) * .75);
+  e.addColorStop(0, 'rgba(0,0,0,0)'); e.addColorStop(1, `rgba(110,80,40,${.16 + dark})`); g.fillStyle = e; g.fillRect(x, y, w, h); g.restore();
+}
+// engraved map at 2x, built once
+const MS = 2;
+function buildMap() {
+  const M = window.MAP; MAPC = off(M.w * MS, M.h * MS); const g = MAPC.getContext('2d'); g.scale(MS, MS);
+  paperRect(g, 0, 0, M.w, M.h); g.fillStyle = 'rgba(160,175,170,0.12)'; g.fillRect(0, 0, M.w, M.h);
+  const land = new Path2D(M.land);
+  g.lineJoin = 'round';
+  for (const w of [54, 42, 32, 24, 17, 11, 6]) {
+    g.lineWidth = w; g.strokeStyle = 'rgba(55,70,72,0.30)'; g.stroke(land);
+    g.lineWidth = w - 2.2; g.strokeStyle = '#e5e1cf'; g.stroke(land);
+  }
+  g.fillStyle = COL.land; g.fill(land);
+  g.save(); g.clip(land); g.globalAlpha = .5; g.globalCompositeOperation = 'multiply'; g.fillStyle = g.createPattern(PAPERTEX, 'repeat'); g.fillRect(0, 0, M.w, M.h); g.restore();
+  g.lineWidth = 1.7; g.strokeStyle = '#3b3027'; g.stroke(land);
+  g.fillStyle = 'rgba(52,62,64,0.75)'; g.textAlign = 'center';
+  const L = (t, p, s, rot = 0) => { g.save(); g.translate(p[0], p[1]); g.rotate(rot); g.font = `italic ${s}px ${FELL}`; g.letterSpacing = '6px'; g.fillText(t, 0, 0); g.restore(); };
+  L('MARE MEDITERRANEUM', M.labels.mare, 30, -0.05); L('OCEANUS', M.labels.oceanus, 34, -0.2); L('MARE GERMANICUM', M.labels.germanicum, 24); L('MARE ADRIATICUM', M.labels.adriaticum, 20, 0.62);
+}
+
+// ---------- drawing primitives ----------
+function desk() { ctx.drawImage(DESK, 0, 0); }
+function shadowOn(b = 40, oy = 18, a = .55) { ctx.shadowColor = `rgba(0,0,0,${a})`; ctx.shadowBlur = b; ctx.shadowOffsetY = oy; ctx.shadowOffsetX = oy * .35; }
+function shadowOff() { ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetX = ctx.shadowOffsetY = 0; }
+// camera: world point (cx,cy) at screen centre, scale s
+function cam(s, cx, cy, shake = 0, seed = 0) {
+  const sx = shake ? Math.sin(seed * 91.7) * shake : 0, sy = shake ? Math.cos(seed * 57.3) * shake : 0;
+  ctx.translate(W / 2 + sx, H / 2 + sy); ctx.scale(s, s); ctx.translate(-cx, -cy);
+}
+// a page scan or photo laid on the desk. kind: 'page' (multiplied onto bone paper), 'print' (photo with white border)
+function sheet(img, cx, cy, h, rot, kind = 'page', o = {}) {
+  const ar = img.width / img.height, w = h * ar;
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot);
+  if (kind === 'page') {
+    shadowOn(46, 22, .6); ctx.fillStyle = COL.paper; ctx.fillRect(-w / 2, -h / 2, w, h); shadowOff();
+    paperRect(ctx, -w / 2, -h / 2, w, h, .05);
+    ctx.globalCompositeOperation = 'multiply'; ctx.globalAlpha = .96; ctx.drawImage(img, -w / 2, -h / 2, w, h);
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+  } else if (kind === 'print') {
+    const b = o.border ?? Math.round(h * .035);
+    shadowOn(40, 20, .65); ctx.fillStyle = '#efe9dc'; ctx.fillRect(-w / 2 - b, -h / 2 - b, w + 2 * b, h + 2 * b); shadowOff();
+    ctx.drawImage(img, -w / 2, -h / 2, w, h);
+    if (o.tone) { ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = o.tone; ctx.fillRect(-w / 2, -h / 2, w, h); ctx.globalCompositeOperation = 'source-over'; }
+  } else if (kind === 'disc') { // object photographed on white: cut out the disc
+    const rr = h * (o.r ?? .43), dx = (o.dx ?? 0) * h, dy = (o.dy ?? 0) * h;
+    ctx.save(); shadowOn(50, 26, .75); ctx.beginPath(); ctx.arc(dx, dy, rr, 0, 7); ctx.fillStyle = '#3a3630'; ctx.fill(); shadowOff();
+    ctx.clip(); ctx.drawImage(img, -w / 2, -h / 2, w, h); ctx.restore();
+  }
+  ctx.restore();
+  return { w, h, cx, cy, rot, pt: (u, v) => { const x = -w / 2 + u * w, y = -h / 2 + v * h; return [cx + x * Math.cos(rot) - y * Math.sin(rot), cy + x * Math.sin(rot) + y * Math.cos(rot)]; } };
+}
+// typed catalogue label
+function label(t, t0, x, y, rot, head, lines, o = {}) {
+  const p = E.out(prog(t, t0, t0 + .45)); if (p <= 0) return;
+  const fs = o.size ?? 22, lh = fs * 1.32, pad = 18;
+  ctx.save(); ctx.font = `${fs}px ${MONO}`;
+  const w = o.w ?? Math.max(ctx.measureText(head).width * 1.1, ...lines.map(l => ctx.measureText(l).width)) + pad * 2 + 6;
+  const h = pad * 2 + lh * (lines.length + 1);
+  ctx.translate(x, y + (1 - p) * 26); ctx.rotate(rot); ctx.globalAlpha = p;
+  shadowOn(16, 8, .5); ctx.fillStyle = COL.label; ctx.fillRect(0, 0, w, h); shadowOff();
+  paperRect(ctx, 0, 0, w, h, -.05);
+  ctx.fillStyle = COL.red; ctx.fillRect(0, 0, 6, h);
+  ctx.textBaseline = 'top'; ctx.font = `700 ${fs * .82}px ${MONO}`; ctx.letterSpacing = '3px'; ctx.fillStyle = COL.red; ctx.fillText(head, pad + 6, pad);
+  ctx.letterSpacing = '0px'; ctx.font = `${fs}px ${MONO}`; ctx.fillStyle = COL.ink;
+  // lines type on quickly
+  const chars = Math.floor(prog(t, t0 + .1, t0 + .1 + lines.join('').length * .008) * lines.join('').length + .001);
+  let used = 0;
+  lines.forEach((l, i) => { const n = clamp(chars - used, 0, l.length); used += l.length; ctx.fillText(l.slice(0, n), pad + 6, pad + lh * (i + 1)); });
+  ctx.restore();
+}
+// rubber stamp slam
+function stamp(t, t0, x, y, rot, text, size = 64, sub = null, onDesk = false) {
+  const lt = t - t0; if (lt < 0) return;
+  const s = lt < .11 ? lerp(1.55, 1, E.inn(lt / .11)) : 1, a = clamp(lt / .05) * .9;
+  ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.scale(s, s); ctx.globalAlpha = a;
+  ctx.font = `700 ${size}px ${MONO}`; ctx.letterSpacing = `${size * .12}px`;
+  const tw = ctx.measureText(text).width, bw = tw + size * 1.0, bh = size * (sub ? 1.95 : 1.45);
+  const c = off(Math.ceil(bw + 20), Math.ceil(bh + 20)), g = c.getContext('2d');
+  g.translate(10, 10); g.strokeStyle = COL.red; g.fillStyle = COL.red;
+  g.lineWidth = size * .07; g.strokeRect(0, 0, bw, bh); g.lineWidth = size * .03; g.strokeRect(size * .12, size * .12, bw - size * .24, bh - size * .24);
+  g.font = ctx.font; g.letterSpacing = ctx.letterSpacing; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText(text, bw / 2 + size * .06, sub ? bh * .4 : bh / 2 + size * .04);
+  if (sub) { g.font = `700 ${size * .34}px ${MONO}`; g.letterSpacing = `${size * .08}px`; g.fillText(sub, bw / 2, bh * .76); }
+  g.globalCompositeOperation = 'destination-out'; g.drawImage(SPECK, 0, 0, c.width, c.height);
+  ctx.globalCompositeOperation = onDesk ? 'source-over' : 'multiply'; ctx.drawImage(c, -c.width / 2, -c.height / 2); ctx.restore();
+}
+function stampShake(t, t0) { const lt = t - t0; return lt > 0 && lt < .35 ? (1 - lt / .35) * 7 : 0; }
+// typed strip (place/date), top-left of frame
+function strip(t, t0, t1, text) {
+  if (t < t0 || t > t1 + .4) return;
+  const n = Math.floor(prog(t, t0, t0 + text.length * .035) * text.length + .001), a = 1 - prog(t, t1, t1 + .4);
+  ctx.save(); ctx.globalAlpha = a; ctx.font = `700 30px ${MONO}`; ctx.letterSpacing = '6px'; ctx.textBaseline = 'middle';
+  const w = ctx.measureText(text).width + 50; ctx.fillStyle = 'rgba(14,11,9,0.78)'; ctx.fillRect(70, 62, w, 58);
+  ctx.fillStyle = COL.red; ctx.fillRect(70, 62, 6, 58); ctx.fillStyle = '#efe6d1'; ctx.fillText(text.slice(0, n), 96, 92); ctx.restore();
+}
+function grainAndVignette(f) {
+  ctx.save(); ctx.globalAlpha = .07; ctx.globalCompositeOperation = 'overlay'; ctx.drawImage(GRAIN[f % 6], 0, 0, W, H); ctx.restore();
+  const v = ctx.createRadialGradient(W / 2, H / 2, H * .45, W / 2, H / 2, W * .72); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.45)');
+  ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+}
+// slide-in offset for a sheet arriving on the desk
+function arrive(t, t0, dir = [0, 1], dur = .42) { const p = E.out(prog(t, t0, t0 + dur)); return [(1 - p) * dir[0] * 1300, (1 - p) * dir[1] * 900, (1 - p) * .05]; }
+
+// ---------- MAP ----------
+const MX = 110, MY = 40; // map placement on the world sheet
+function mapSheet() {
+  shadowOn(50, 24, .6); ctx.fillStyle = COL.paper; ctx.fillRect(80, 20, 1760, 1040); shadowOff();
+  paperRect(ctx, 80, 20, 1760, 1040);
+  ctx.drawImage(MAPC, MX, MY, window.MAP.w, window.MAP.h);
+  ctx.strokeStyle = 'rgba(42,34,27,.6)'; ctx.lineWidth = 2; ctx.strokeRect(MX, MY, window.MAP.w, window.MAP.h);
+  ctx.lineWidth = .8; ctx.strokeRect(MX - 8, MY - 8, window.MAP.w + 16, window.MAP.h + 16);
+}
+const P = k => { const p = window.MAP.pins[k]; return [p[0] + MX, p[1] + MY]; };
+function city(t, t0, k, name, side = 'r', active = false) {
+  const p = E.back(prog(t, t0, t0 + .35)); if (p <= 0) return; const [x, y] = P(k);
+  ctx.save(); ctx.globalAlpha = clamp(p);
+  if (active) { ctx.strokeStyle = COL.red; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, 15 * p, 0, 7); ctx.stroke(); }
+  ctx.fillStyle = COL.ink; ctx.beginPath(); ctx.arc(x, y, 7 * p, 0, 7); ctx.fill();
+  ctx.font = `34px ${FELL}`; ctx.textBaseline = 'middle'; ctx.textAlign = side === 'r' ? 'left' : 'right';
+  const tx = x + (side === 'r' ? 22 : -22); ctx.lineWidth = 7; ctx.strokeStyle = 'rgba(233,224,203,.92)'; ctx.strokeText(name, tx, y); ctx.fillStyle = COL.ink; ctx.fillText(name, tx, y);
+  ctx.restore();
+}
+function route(t, t0, t1, a, b, bend = .18) {
+  const p = E.io(prog(t, t0, t1)); if (p <= 0) return; const [x0, y0] = P(a), [x1, y1] = P(b);
+  const mx = (x0 + x1) / 2 - (y1 - y0) * bend, my = (y0 + y1) / 2 + (x1 - x0) * bend;
+  const Q = u => [(1 - u) * (1 - u) * x0 + 2 * (1 - u) * u * mx + u * u * x1, (1 - u) * (1 - u) * y0 + 2 * (1 - u) * u * my + u * u * y1];
+  ctx.save(); ctx.strokeStyle = COL.red; ctx.lineWidth = 4.5; ctx.setLineDash([16, 11]); ctx.lineCap = 'round'; ctx.beginPath();
+  const N = 60; for (let i = 0; i <= N * p; i++) { const q = Q(i / N); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); } const e = Q(p); ctx.lineTo(e[0], e[1]); ctx.stroke();
+  ctx.setLineDash([]); ctx.fillStyle = COL.red; ctx.beginPath(); ctx.arc(e[0], e[1], 7, 0, 7); ctx.fill(); ctx.restore();
+}
+function yearCard(t, t0, y0, y1, tChange) {
+  if (t < t0) return; const a = prog(t, t0, t0 + .3);
+  const yr = tChange != null && t >= tChange ? y1 : y0, flip = tChange != null ? E.out(prog(t, tChange, tChange + .25)) : 1;
+  ctx.save(); ctx.globalAlpha = a; ctx.translate(1530, 92); shadowOn(14, 6, .4); ctx.fillStyle = COL.label; ctx.fillRect(0, 0, 250, 112); shadowOff();
+  ctx.strokeStyle = COL.ink; ctx.lineWidth = 2; ctx.strokeRect(10, 10, 230, 92);
+  ctx.textAlign = 'center'; ctx.fillStyle = COL.ink; ctx.font = `italic 24px ${FELL}`; ctx.fillText('Anno', 125, 40);
+  ctx.font = `56px ${FELL}`; ctx.save(); ctx.translate(125, 90); ctx.scale(1, tChange != null && t >= tChange ? flip : 1); ctx.fillText(String(yr), 0, 0); ctx.restore(); ctx.restore();
+}
+
+// ---------- CHART: Genesis 4 family ----------
+function node(t, t0, x, y, name, role, o = {}) {
+  const p = E.back(prog(t, t0, t0 + .4)); if (p <= 0) return;
+  const w = o.w ?? 290, h = 118; ctx.save(); ctx.translate(x, y); ctx.scale(lerp(.85, 1, p), lerp(.85, 1, p)); ctx.globalAlpha = clamp(p) * (o.dim ? .38 : 1);
+  if (o.q) { ctx.setLineDash([10, 8]); ctx.strokeStyle = COL.red; ctx.lineWidth = 3; ctx.fillStyle = 'rgba(179,50,29,0.06)'; ctx.fillRect(-w / 2, -h / 2, w, h); ctx.strokeRect(-w / 2, -h / 2, w, h); ctx.setLineDash([]); }
+  else { shadowOn(12, 5, .25); ctx.fillStyle = '#f2ead8'; ctx.fillRect(-w / 2, -h / 2, w, h); shadowOff(); ctx.strokeStyle = o.hi ? COL.red : COL.ink; ctx.lineWidth = o.hi ? 4 : 2; ctx.strokeRect(-w / 2, -h / 2, w, h); }
+  ctx.textAlign = 'center'; ctx.fillStyle = o.q ? COL.red : COL.ink;
+  ctx.font = `${o.q ? 44 : 54}px ${FELL}`; ctx.fillText(name, 0, o.q ? -2 : 4);
+  ctx.font = `19px ${MONO}`; ctx.fillStyle = o.q ? COL.red : 'rgba(42,34,27,.75)'; ctx.fillText(role, 0, 40);
+  if (o.strike != null) { const s = E.out(prog(t, o.strike, o.strike + .3)); if (s > 0) { ctx.strokeStyle = COL.red; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(-w / 2 - 10, 8); ctx.lineTo(-w / 2 - 10 + (w + 20) * s, -8); ctx.stroke(); } }
+  ctx.restore();
+}
+function line(t, t0, pts, o = {}) {
+  const p = E.io(prog(t, t0, t0 + (o.dur ?? .45))); if (p <= 0) return;
+  let L = 0; for (let i = 1; i < pts.length; i++) L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+  ctx.save(); ctx.strokeStyle = o.col ?? COL.ink; ctx.lineWidth = o.w ?? 3; ctx.globalAlpha = o.a ?? 1; if (o.dash) ctx.setLineDash(o.dash);
+  ctx.beginPath(); ctx.moveTo(...pts[0]); let left = L * p;
+  for (let i = 1; i < pts.length && left > 0; i++) { const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); const u = Math.min(1, left / d);
+    ctx.lineTo(lerp(pts[i - 1][0], pts[i][0], u), lerp(pts[i - 1][1], pts[i][1], u)); left -= d; }
+  ctx.stroke(); ctx.restore();
+}
+function chartSheet(title, sub) {
+  shadowOn(50, 24, .6); ctx.fillStyle = COL.paper; ctx.fillRect(80, 20, 1760, 1040); shadowOff(); paperRect(ctx, 80, 20, 1760, 1040);
+  ctx.strokeStyle = 'rgba(42,34,27,.5)'; ctx.lineWidth = 1.2; ctx.strokeRect(110, 50, 1700, 980);
+  ctx.fillStyle = COL.ink; ctx.font = `66px ${FELL}`; ctx.textBaseline = 'alphabetic'; ctx.fillText(title, 170, 150);
+  ctx.font = `700 20px ${MONO}`; ctx.letterSpacing = '4px'; ctx.fillStyle = COL.red; ctx.fillText(sub, 172, 190); ctx.letterSpacing = '0px';
+}
+function family(t, s) { // s: stage times
+  const A = [470, 360], Ev = [860, 360], Ca = [470, 640], Ab = [860, 640];
+  line(t, s.eve, [[A[0] + 145, A[1] - 6], [Ev[0] - 145, Ev[1] - 6]], { w: 3 }); line(t, s.eve, [[A[0] + 145, A[1] + 6], [Ev[0] - 145, Ev[1] + 6]], { w: 3 });
+  line(t, s.sons - .25, [[665, 366], [665, 520], [470, 520], [470, 581]], { dur: .5 }); line(t, s.sons - .25, [[665, 520], [860, 520], [860, 581]], { dur: .5 });
+  node(t, s.adam, ...A, 'Adam', 'the first man', { dim: s.dim && t > s.dim });
+  node(t, s.eve, ...Ev, 'Eve', 'mother of all who live', { w: 330, dim: s.dim && t > s.dim });
+  node(t, s.sons, ...Ca, 'Cain', 'the firstborn', { hi: s.hi && t > s.hi });
+  node(t, s.sons + .15, ...Ab, 'Abel', 'the second son', { strike: s.kill, dim: s.dim && t > s.dim });
+  if (s.kill && t > s.kill + .2) { ctx.save(); ctx.globalAlpha = E.out(prog(t, s.kill + .2, s.kill + .5)) * (s.dim && t > s.dim ? .4 : 1); ctx.fillStyle = COL.red; ctx.font = `700 22px ${MONO}`; ctx.textAlign = 'center'; ctx.fillText('KILLED BY HIS BROTHER', 860, 735); ctx.restore(); }
+}
+
+// ---------- CHART: timeline (years before 2026, linear, today at right) ----------
+const TX0 = 230, TX1 = 1690, TY = 640;
+const tx = (bp, span) => TX1 - bp / span * (TX1 - TX0);
+function niceStep(span) { for (const s of [50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000]) if (span / s <= 7) return s; return 100000; }
+function fmtBP(bp, step) { if (step < 1000) return String(2026 - bp); if (bp === 0) return 'today'; return bp.toLocaleString('en-US') + ' yrs ago'; }
+function axis(span) {
+  ctx.save(); ctx.strokeStyle = COL.ink; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(TX0 - 30, TY); ctx.lineTo(TX1 + 40, TY); ctx.stroke();
+  ctx.fillStyle = COL.ink; ctx.beginPath(); ctx.moveTo(TX1 + 52, TY); ctx.lineTo(TX1 + 30, TY - 10); ctx.lineTo(TX1 + 30, TY + 10); ctx.fill();
+  const step = niceStep(span); ctx.font = `24px ${SANS}`; ctx.textAlign = 'center';
+  for (const st of [step]) {
+    const first = step < 1000 ? (2026 % step) : 0; // CE ticks land on round years
+    for (let bp = first; bp <= span * 1.0001; bp += st) {
+      const x = tx(bp, span); if (x < TX0 - 5) continue;
+      ctx.strokeStyle = 'rgba(42,34,27,.7)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, TY - 12); ctx.lineTo(x, TY + 12); ctx.stroke();
+      ctx.fillStyle = 'rgba(42,34,27,.8)'; ctx.fillText(fmtBP(bp, step), x, TY + 48);
+    }
+  }
+  ctx.restore();
+}
+function marker(t, t0, bp, span, text, sub, o = {}) {
+  const p = E.out(prog(t, t0, t0 + .4)); if (p <= 0) return; const x = tx(bp, span), up = o.up ?? 190;
+  ctx.save(); ctx.globalAlpha *= p; const col = o.col ?? COL.ink;
+  ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(x, TY - 14); ctx.lineTo(x, TY - 14 - up * p); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, TY, 10, 0, 7); ctx.fill();
+  ctx.textAlign = o.side === 'right' ? 'left' : o.side === 'left' ? 'right' : 'center'; const ax = o.side === 'right' ? x + 16 : o.side === 'left' ? x - 16 : x;
+  ctx.font = `44px ${FELL}`; ctx.fillText(text, ax, TY - up - 50); ctx.font = `22px ${MONO}`; ctx.fillStyle = o.col ?? 'rgba(42,34,27,.8)'; ctx.fillText(sub, ax, TY - up - 18);
+  ctx.restore();
+}
+function bracket(t, t0, bpA, bpB, span, text) {
+  const p = E.out(prog(t, t0, t0 + .5)); if (p <= 0) return; const xa = tx(bpA, span), xb = tx(bpB, span), y = TY + 110;
+  ctx.save(); ctx.globalAlpha *= p; ctx.strokeStyle = COL.red; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(xa, y - 16); ctx.lineTo(xa, y); ctx.lineTo(lerp(xa, xb, p), y); if (p > .98) ctx.lineTo(xb, y - 16); ctx.stroke();
+  ctx.fillStyle = COL.red; ctx.font = `italic 40px ${FELL}`; ctx.textAlign = 'center'; ctx.fillText(text, (xa + xb) / 2, y + 52); ctx.restore();
+}
+function generations(t, t0, span) { // fine hatch: one stroke per ~25-year generation (sampled), fading in during the zoom-out
+  const p = prog(t, t0, t0 + 1.2); if (p <= 0) return; ctx.save(); ctx.globalAlpha = p * .55; ctx.strokeStyle = COL.red; ctx.lineWidth = 1;
+  const gx = Math.max(3, (25 / span) * (TX1 - TX0)); ctx.beginPath(); for (let x = TX1; x > TX0; x -= gx) { ctx.moveTo(x, TY - 30); ctx.lineTo(x, TY - 16); } ctx.stroke(); ctx.restore();
+}
+
+// ---------- loupe ----------
+function loupe(drawFn, x, y, r, m, a = 1) {
+  if (a <= 0) return; ctx.save(); ctx.globalAlpha = a;
+  ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.clip(); ctx.fillStyle = COL.paper; ctx.fill();
+  ctx.translate(x, y); ctx.scale(m, m); ctx.translate(-x, -y); drawFn(); ctx.restore();
+  const g = ctx.createRadialGradient(x - r * .3, y - r * .3, r * .1, x, y, r); g.addColorStop(0, 'rgba(255,255,255,0.10)'); g.addColorStop(1, 'rgba(255,255,255,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+  shadowOn(24, 12, .6); ctx.lineWidth = 22; ctx.strokeStyle = '#2b2722'; ctx.beginPath(); ctx.arc(x, y, r + 11, 0, 7); ctx.stroke(); shadowOff();
+  ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(200,185,150,.6)'; ctx.beginPath(); ctx.arc(x, y, r + 20, Math.PI * 1.1, Math.PI * 1.6); ctx.stroke();
+  ctx.restore();
+}
+
+// ---------- SHOTS ----------
+const SHOTS = [
+  // 1  In 1655, a book appeared in Amsterdam
+  { t0: 0, t1: 2.35, draw(t) {
+      const [ox, oy, orot] = arrive(t, 0, [0, 1], .55); const z = lerp(1.1, 1.03, E.io(prog(t, 0, 2.35)));
+      ctx.save(); cam(z, 940, 545); sheet(IMG.pa_title, 860 + ox, 545 + oy, 900, -.03 + orot, 'page');
+      label(t, .7, 1180, 360, .03, 'EXHIBIT 01', ['PRÆADAMITÆ', 'printed 1655', 'Internet Archive'], {}); ctx.restore();
+      strip(t, .15, 2.35, 'AMSTERDAM · 1655'); } },
+  // 2  ...burned in Paris almost as soon as it arrived
+  { t0: 2.35, t1: 6.30, draw(t) {
+      const p = E.io(prog(t, 2.35, 6.3)); ctx.save(); cam(lerp(2.3, 2.05, p), lerp(880, 840, p), lerp(330, 380, p), stampShake(t, 4.0), t);
+      mapSheet(); city(t, 2.45, 'amsterdam', 'Amsterdam', 'r', t < 3.3); route(t, 2.8, 3.75, 'amsterdam', 'paris', -.25); city(t, 3.6, 'paris', 'Paris', 'l', true);
+      ctx.restore(); ctx.save(); cam(lerp(2.3, 2.05, p), lerp(880, 840, p), lerp(330, 380, p), stampShake(t, 4.0), t);
+      const [px, py] = P('paris'); stamp(t, 4.0, px - 40, py + 74, -.12, 'BURNED', 30, 'PARIS · 1655'); ctx.restore();
+      yearCard(t, 2.5, 1655, 1655); } },
+  // 3  The next year, its author was arrested in Brussels
+  { t0: 6.30, t1: 9.55, draw(t) {
+      const [ox, oy, orot] = arrive(t, 6.3, [1, 0], .45); const z = lerp(1.0, 1.07, E.io(prog(t, 6.3, 9.55)));
+      ctx.save(); cam(z, 980, 520, stampShake(t, 8.3), t);
+      sheet(IMG.brussels, 900 + ox, 500 + oy, 860, .012 + orot, 'print', { tone: '#efe3c8' });
+      label(t, 6.9, 150, 790, -.02, 'EXHIBIT 02', ['The court at Brussels', 'engraving, Hans Collaert I', 'Rijksmuseum · public domain']);
+      stamp(t, 8.3, 1350, 760, -.08, 'ARRESTED', 60, 'BRUSSELS · 1656'); ctx.restore(); } },
+  // 4  And before long, he was in Rome
+  { t0: 9.55, t1: 11.60, draw(t) {
+      const p = E.io(prog(t, 9.55, 11.6)); const s = lerp(1.9, 1.22, p), cx = lerp(905, 1030, p), cy = lerp(400, 590, p);
+      ctx.save(); cam(s, cx, cy); mapSheet();
+      city(t, -1, 'amsterdam', 'Amsterdam'); city(t, -1, 'paris', 'Paris', 'l'); route(t, -1, -.5, 'amsterdam', 'paris', -.25);
+      city(t, 9.6, 'brussels', 'Brussels', 'r', false); route(t, 9.8, 10.9, 'brussels', 'rome', .12); city(t, 10.8, 'rome', 'Rome', 'r', true);
+      const [px, py] = P('paris'); stamp(t, -1, px - 40, py + 74, -.12, 'BURNED', 30, 'PARIS · 1655'); ctx.restore();
+      yearCard(t, 9.55, 1656, 1657, 10.8); } },
+  // 5  renouncing it in person before Pope Alexander the Seventh
+  { t0: 11.60, t1: 15.10, draw(t) {
+      const z = lerp(1.05, 1.16, E.io(prog(t, 11.6, 15.1)));
+      ctx.save(); cam(z, 900, 560, stampShake(t, 13.25), t);
+      const [ox, oy, orot] = arrive(t, 11.6, [0, -1], .45); sheet(IMG.medal, 840 + ox, 545 + oy, 1250, .0 + orot, 'disc', { r: .316, dx: .016, dy: -.016 });
+      label(t, 12.1, 1340, 230, .03, 'EXHIBIT 03', ['Medal of Pope', 'Alexander VII (r. 1655–67)', 'bronze · The Met, CC0']);
+      stamp(t, 13.25, 1440, 800, -.1, 'RECANTED', 58, 'ROME · 1657', true); ctx.restore(); } },
+  // 6  His crime? Asking a question almost every child asks in Sunday school.
+  { t0: 15.10, t1: 20.40, draw(t) {
+      ctx.save(); cam(lerp(1.0, 1.05, E.io(prog(t, 15.1, 20.4))), 960, 540);
+      // index card
+      const [cx0, cy0] = arrive(t, 15.1, [0, 1], .35);
+      ctx.save(); ctx.translate(560 + cx0, 330 + cy0); ctx.rotate(-.05); shadowOn(20, 10, .5); ctx.fillStyle = '#efe7d3'; ctx.fillRect(-330, -150, 660, 300); shadowOff(); paperRect(ctx, -330, -150, 660, 300, -.05);
+      ctx.strokeStyle = 'rgba(179,50,29,.5)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(-330, -86); ctx.lineTo(330, -86); ctx.stroke();
+      ctx.strokeStyle = 'rgba(80,110,140,.25)'; ctx.lineWidth = 1.5; for (let y = -40; y < 150; y += 46) { ctx.beginPath(); ctx.moveTo(-330, y); ctx.lineTo(330, y); ctx.stroke(); }
+      const txt = 'THE CHARGE:'; const n = Math.floor(prog(t, 15.3, 15.9) * txt.length + .001);
+      ctx.font = `700 50px ${MONO}`; ctx.letterSpacing = '6px'; ctx.fillStyle = COL.ink; ctx.fillText(txt.slice(0, n), -290, -104); ctx.restore();
+      // photo
+      const [ox, oy, orot] = arrive(t, 16.25, [1, .3], .5);
+      sheet(IMG.sunday, 1080 + ox, 600 + oy, 640, .035 + orot, 'print', { tone: '#f1e6cf' });
+      label(t, 17.0, 230, 760, -.03, 'EXHIBIT 04', ['Sunday school,', 'Dailey, West Virginia, 1941', 'Arthur Rothstein · LOC']);
+      ctx.restore(); } },
+  // 7  If Adam and Eve were the first people... two sons... one killed the other
+  { t0: 20.40, t1: 26.05, draw(t) {
+      const p = E.io(prog(t, 20.4, 26.05)); ctx.save(); cam(lerp(1.08, 1.0, p), lerp(900, 960, p), lerp(520, 540, p));
+      const [ox, oy] = arrive(t, 20.4, [0, 1], .4); ctx.translate(ox, oy);
+      chartSheet('Genesis 4', 'THE FAMILY THE TEXT NAMES');
+      family(t, { adam: 20.6, eve: 21.05, sons: 23.45, kill: 24.75 });
+      // Islamic tradition's picture of the same family
+      const [jx, jy] = arrive(t, 21.6, [1, 0], .5); sheet(IMG.jami, 1440 + jx, 470 + jy, 640, .02, 'print', { border: 12, tone: '#f3eadb' });
+      label(t, 22.2, 1205, 820, -.02, 'EXHIBIT 05', ['Adam and his sons,', "Jami' al-Tawarikh (Persian)", 'Cleveland Museum of Art'], { size: 20 });
+      ctx.restore(); } },
+  // 8  then who was Cain afraid of?
+  { t0: 26.05, t1: 28.30, draw(t) {
+      const p = E.io(prog(t, 26.05, 28.3)); ctx.save(); cam(lerp(1.25, 1.55, p), lerp(900, 840, p), lerp(470, 400, p));
+      sheet(IMG.durer, 920, 540, 1000, -.015, 'page'); label(t, 26.4, 1060, 250, .02, 'EXHIBIT 06', ['Cain Killing Abel', 'woodcut, Albrecht Dürer, 1511', 'The Met · CC0'], { size: 20 });
+      ctx.restore(); } },
+  // 9  Who did he marry? And who lived in the city he built?
+  { t0: 28.30, t1: 31.95, draw(t) {
+      const p = E.io(prog(t, 28.3, 31.95)); ctx.save(); cam(lerp(1.0, .94, p), lerp(800, 820, p), lerp(560, 600, p));
+      chartSheet('Genesis 4', 'THE FAMILY THE TEXT NAMES');
+      family(t, { adam: -1, eve: -1, sons: -1, kill: -1, dim: 28.3, hi: 28.3 });
+      const Q = [[330, 905, 'anyone?', 'whom he feared · 4:14', 28.35], [800, 905, 'a wife?', 'never introduced · 4:17', 28.85], [1270, 905, 'a city?', 'who lived in it · 4:17', 30.45]];
+      for (const [x, y, n, r, t0] of Q) { line(t, t0 - .15, [[470, 699], [470, 780], [x, 780], [x, 846]], { col: COL.red, dash: [9, 7], dur: .35 }); node(t, t0, x, y, n, r, { q: true, w: 360 }); }
+      ctx.restore(); } },
+  // 10 The author's name was Isaac La Peyrère
+  { t0: 31.95, t1: 35.55, draw(t) {
+      const p = E.io(prog(t, 31.95, 35.55)); ctx.save(); cam(lerp(2.25, 1.75, p), lerp(1010, 990, p), lerp(170, 220, p));
+      const S = sheet(IMG.pa_hand, 960, 560, 1000, .018, 'page');
+      const u = E.out(prog(t, 33.0, 33.9)); if (u > 0) { const a = S.pt(.27, .033), b = S.pt(.84, .033); ctx.strokeStyle = COL.red; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(lerp(a[0], b[0], u), lerp(a[1], b[1], u)); ctx.stroke(); }
+      label(t, 32.5, 1130, 300, .03, 'EXHIBIT 07', ['Præadamitæ, 1655', "author's name added by hand", 'BCU Lausanne copy · IA'], { size: 17 });
+      ctx.restore(); } },
+  // 11 there must have been people before Adam  (loupe)
+  { t0: 35.55, t1: 37.92, draw(t) {
+      ctx.save(); cam(1.12, 960, 540);
+      const page = () => sheet(IMG.pa_hand, 960, 560, 1000, .018, 'page'); const S = page();
+      const tgt = S.pt(.6, .483), m = E.io(prog(t, 35.55, 36.2)); const lx = lerp(tgt[0] + 380, tgt[0], m), ly = lerp(tgt[1] + 260, tgt[1], m);
+      loupe(() => page(), lx, ly, 240, 1.6, E.out(prog(t, 35.55, 35.8)));
+      label(t, 36.35, 1290, 640, .02, 'TRANSLATION', ['"the first men,', ' created before Adam"'], { size: 26 });
+      ctx.restore(); } },
+  // 12 That got him into deep trouble.
+  { t0: 37.92, t1: 40.14, draw(t) {
+      ctx.save(); cam(lerp(1.0, .95, E.io(prog(t, 37.92, 40.14))), 960, 540, stampShake(t, 38.7), t);
+      sheet(IMG.pa_hand, 960, 560, 1000, .018, 'page'); stamp(t, 38.7, 975, 455, -.14, 'CONDEMNED', 92);
+      ctx.restore(); } },
+  // 13-14 Three and a half centuries later ... hundreds of thousands of years
+  { t0: 40.14, t1: 51.08, draw(t) {
+      const zoom = E.io(prog(t, 45.6, 49.4)); const span = Math.exp(lerp(Math.log(460), Math.log(305000), zoom));
+      ctx.save(); cam(lerp(1.02, 1.0, prog(t, 40.14, 51)), 960, 540); const [ox, oy] = arrive(t, 40.14, [0, 1], .4); ctx.translate(ox, oy);
+      chartSheet('Before Adam?', 'A TIMELINE OF THE HUMAN PAST');
+      generations(t, 46.4, span); axis(span);
+      const a1 = 1 - prog(t, 45.5, 45.9);
+      ctx.save(); ctx.globalAlpha = a1; marker(t, 40.35, 371, span, '1655', 'Præadamitæ', { col: COL.red, up: 160 }); marker(t, 40.75, 0, span, '2026', 'today', { up: 160 });
+      bracket(t, 40.9, 371, 0, span, 'three and a half centuries'); ctx.restore();
+      if (t > 46.0) { const x = tx(371, span); ctx.save(); ctx.globalAlpha = prog(t, 46, 46.6); ctx.fillStyle = COL.red; ctx.font = `20px ${MONO}`; ctx.textAlign = 'right'; ctx.fillText('1655 → today', TX1 - 6, TY - 46); ctx.fillRect(x, TY - 9, TX1 - x + 2, 18); ctx.restore(); }
+      marker(t, 47.3, 300000, span, 'Homo sapiens', 'earliest fossils · c. 300,000 yrs ago', { side: 'right', up: 230 });
+      if (t > 48.4) { ctx.save(); ctx.globalAlpha = E.out(prog(t, 48.4, 48.9)); ctx.fillStyle = COL.red; ctx.font = `italic 40px ${FELL}`; ctx.textAlign = 'center'; ctx.fillText('generations upon generations', 960, TY - 70); ctx.restore(); }
+      ctx.restore(); } },
+  // 15 People who buried their dead
+  { t0: 51.08, t1: 52.71, draw(t) {
+      ctx.save(); cam(lerp(1.0, 1.08, prog(t, 51.08, 52.71)), 960, 540); const [ox, oy, orot] = arrive(t, 51.08, [-1, 0], .35);
+      sheet(IMG.skull, 900 + ox, 520 + oy, 760, -.02 + orot, 'print'); label(t, 51.3, 1290, 760, .02, 'EXHIBIT 08', ['Neanderthal skull', 'photo: Gary Lee Todd · CC0'], { size: 19 }); ctx.restore(); } },
+  // 16 painted on cave walls
+  { t0: 52.71, t1: 54.25, draw(t) {
+      ctx.save(); cam(lerp(1.0, 1.1, prog(t, 52.71, 54.25)), 960, 540); const [ox, oy, orot] = arrive(t, 52.71, [0, 1], .35);
+      sheet(IMG.hands, 820 + ox, 540 + oy, 900, .025 + orot, 'print'); label(t, 52.9, 1150, 700, -.02, 'EXHIBIT 09', ['Hand stencils, Pettakere Cave,', 'Sulawesi · photo: Cahyo', 'Ramadhani · CC BY-SA 4.0'], { size: 19 }); ctx.restore(); } },
+  // 17 and built great monuments
+  { t0: 54.25, t1: 55.65, draw(t) {
+      ctx.save(); cam(lerp(1.0, 1.08, prog(t, 54.25, 55.65)), 960, 540); const [ox, oy, orot] = arrive(t, 54.25, [1, 0], .35);
+      sheet(IMG.gobekli, 900 + ox, 510 + oy, 820, -.015 + orot, 'print'); label(t, 54.4, 1230, 820, .02, 'EXHIBIT 10', ['Göbekli Tepe, Building C', 'photo: Dosseman · CC BY-SA 4.0'], { size: 19 }); ctx.restore(); } },
+  // 18 long before the date tradition gave for the first man
+  { t0: 55.65, t1: END, draw(t) {
+      const zoom = E.io(prog(t, 55.65, 56.5)); const span = Math.exp(lerp(Math.log(305000), Math.log(15000), zoom));
+      ctx.save(); cam(1.0, 960, 540); chartSheet('Before Adam?', 'A TIMELINE OF THE HUMAN PAST'); axis(span);
+      marker(t, 55.9, 11500, span, 'Göbekli Tepe', 'c. 11,500 yrs ago', { up: 200 });
+      marker(t, 56.6, 6000, span, 'Adam, by tradition', 'c. 6,000 yrs ago', { col: COL.red, up: 280 });
+      const x = tx(371, span); ctx.fillStyle = COL.red; ctx.globalAlpha = .9; ctx.fillRect(x, TY - 9, TX1 - x + 2, 18); ctx.globalAlpha = 1;
+      ctx.restore();
+      const f = prog(t, END - .5, END); if (f > 0) { ctx.fillStyle = `rgba(0,0,0,${f})`; ctx.fillRect(0, 0, W, H); } } },
+];
+
+window.renderFrame = (i) => {
+  const t = i / FPS; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; shadowOff();
+  desk();
+  const s = SHOTS.find(s => t >= s.t0 && t < s.t1) || SHOTS[SHOTS.length - 1];
+  s.draw(t);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); grainAndVignette(i);
+};
+window.captureFrame = (frame, type = 'image/png', quality = 0.95) => { window.renderFrame(frame); return C.toDataURL(type, quality); };
+window.READY = loadFonts().then(() => Promise.all(IMGS.map(loadImg))).then(() => document.fonts.ready).then(() => {
+  buildTextures(); window.renderFrame(0);
+  return { frames: FRAMES, fps: FPS, width: W, height: H, renderer: 'canvas2d' };
+});
+</script></body></html>

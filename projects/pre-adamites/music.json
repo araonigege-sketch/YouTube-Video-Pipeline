@@ -1,0 +1,14 @@
+{
+  "tracks": [
+    {
+      "section": "cold open (0:00-1:00)",
+      "title": "Case file underscore (generated)",
+      "artist": "vidIQ generate_music",
+      "source": "vidIQ generate_music, job job_028cca90-48ba-49b7-8852-6e0a6c27abd6, musicId 6b3f6ba4-994e-4823-9dde-cb54c35a52c6",
+      "licence": "royalty-free original (generated)",
+      "prompt": "Instrumental dark ambient documentary underscore for a historical investigation. Mysterious, patient, slightly tense mood. Low sustained cello and string drones, soft felt piano, distant low choir pad, harpsichord-like plucks, gentle low taiko pulse ~60 BPM; builds slightly toward a quiet, awe-filled resolution.",
+      "credit": "Music: original score generated for this video"
+    }
+  ],
+  "sfx": "Synthesized in code (build/sfx.py): paper slides, stamps, pen, typewriter, whooshes. No outside recordings."
+}
