@@ -5,8 +5,8 @@ Long single requests drift in pace and sometimes stumble; per-paragraph requests
 neighbouring text as context keep the intonation continuous, and a bad paragraph can be
 regenerated on its own (--only N).
 
-  python3 tools/tts.py --voice <voice_id> --name <label> [--text vo/coldopen.txt] [--speed 0.92]
-                       [--stability 0.6] [--gap 0.6] [--only 3]
+  python3 tools/tts.py --voice <voice_id> --name <label> [--text vo/coldopen.txt] [--gap 0.6] [--only 3]
+                       [--speed/--stability/--similarity/--style only to override the voice's saved settings]
 
 Writes vo/<label>/pNN.mp3 + pNN.json (alignment), then vo/coldopen_<label>.mp3 and
 vo/words_<label>.json (word timings on the joined track). Needs ffmpeg; the key comes from the
@@ -17,8 +17,9 @@ import argparse, base64, json, os, subprocess, urllib.request
 ap = argparse.ArgumentParser()
 ap.add_argument('--voice', required=True); ap.add_argument('--name', required=True)
 ap.add_argument('--text', default='vo/coldopen.txt'); ap.add_argument('--model', default='eleven_multilingual_v2')
-ap.add_argument('--speed', type=float, default=0.92); ap.add_argument('--stability', type=float, default=0.6)
-ap.add_argument('--similarity', type=float, default=0.8); ap.add_argument('--style', type=float, default=0.0)
+# Default: the voice's own saved settings (owner, 2026-11-10: tuned stability/speed made voices sound worse).
+ap.add_argument('--speed', type=float); ap.add_argument('--stability', type=float)
+ap.add_argument('--similarity', type=float); ap.add_argument('--style', type=float)
 ap.add_argument('--gap', type=float, default=0.6, help='silence between paragraphs, seconds')
 ap.add_argument('--only', type=int, help='regenerate just this paragraph (1-based), then rejoin')
 a = ap.parse_args()
@@ -27,9 +28,9 @@ paras = [p.strip() for p in open(a.text).read().split('\n\n') if p.strip()]
 d = f'vo/{a.name}'; os.makedirs(d, exist_ok=True)
 
 def tts(i):
-    body = {"text": paras[i], "model_id": a.model,
-            "voice_settings": {"stability": a.stability, "similarity_boost": a.similarity, "style": a.style,
-                               "use_speaker_boost": True, "speed": a.speed}}
+    body = {"text": paras[i], "model_id": a.model}
+    vs = {k: v for k, v in [("stability", a.stability), ("similarity_boost", a.similarity), ("style", a.style), ("speed", a.speed)] if v is not None}
+    if vs: body["voice_settings"] = vs
     if i > 0: body["previous_text"] = paras[i - 1]
     if i + 1 < len(paras): body["next_text"] = paras[i + 1]
     req = urllib.request.Request(
