@@ -19,9 +19,9 @@ CHROME_PATH=/opt/pw-browsers/chromium-1243/chrome-linux64/chrome node ../../.cla
 
 and mix `vo/coldopen.mp3` + `audio/music_bed.wav` (−20 dB, ducked) + `audio/sfx.wav`, loudnorm −14 LUFS.
 
-## The look (pending owner approval)
+## The look (liked by the owner, 2026-11-10; voice to be replaced)
 - Real archive objects (title pages, engravings, medals, photos) laid on a dark walnut desk, slight rotation,
-  paper shadows; typed catalogue tags "EXHIBIT NN" (Courier Prime) with source and licence.
+  paper shadows. No source credits or exhibit numbers on screen; a typed caption (Courier Prime) only when it adds information.
 - Vermilion rubber stamps for verdicts (BURNED, ARRESTED, RECANTED, CONDEMNED); a brass loupe to read details.
 - Maps and charts on bone paper: engraved coastlines with water-lining, Latin sea names (IM Fell English),
   dashed vermilion routes, "Anno" year card; family-tree and timeline charts (IBM Plex Sans Condensed labels).

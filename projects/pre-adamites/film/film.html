@@ -133,17 +133,17 @@ function label(t, t0, x, y, rot, head, lines, o = {}) {
   const fs = o.size ?? 22, lh = fs * 1.32, pad = 18;
   ctx.save(); ctx.font = `${fs}px ${MONO}`;
   const w = o.w ?? Math.max(ctx.measureText(head).width * 1.1, ...lines.map(l => ctx.measureText(l).width)) + pad * 2 + 6;
-  const h = pad * 2 + lh * (lines.length + 1);
+  const hr = head ? 1 : 0, h = pad * 2 + lh * (lines.length + hr);
   ctx.translate(x, y + (1 - p) * 26); ctx.rotate(rot); ctx.globalAlpha = p;
   shadowOn(16, 8, .5); ctx.fillStyle = COL.label; ctx.fillRect(0, 0, w, h); shadowOff();
   paperRect(ctx, 0, 0, w, h, -.05);
   ctx.fillStyle = COL.red; ctx.fillRect(0, 0, 6, h);
-  ctx.textBaseline = 'top'; ctx.font = `700 ${fs * .82}px ${MONO}`; ctx.letterSpacing = '3px'; ctx.fillStyle = COL.red; ctx.fillText(head, pad + 6, pad);
+  ctx.textBaseline = 'top'; ctx.font = `700 ${fs * .82}px ${MONO}`; ctx.letterSpacing = '3px'; ctx.fillStyle = COL.red; if (head) ctx.fillText(head, pad + 6, pad);
   ctx.letterSpacing = '0px'; ctx.font = `${fs}px ${MONO}`; ctx.fillStyle = COL.ink;
   // lines type on quickly
   const chars = Math.floor(prog(t, t0 + .1, t0 + .1 + lines.join('').length * .008) * lines.join('').length + .001);
   let used = 0;
-  lines.forEach((l, i) => { const n = clamp(chars - used, 0, l.length); used += l.length; ctx.fillText(l.slice(0, n), pad + 6, pad + lh * (i + 1)); });
+  lines.forEach((l, i) => { const n = clamp(chars - used, 0, l.length); used += l.length; ctx.fillText(l.slice(0, n), pad + 6, pad + lh * (i + hr)); });
   ctx.restore();
 }
 // rubber stamp slam
@@ -307,8 +307,7 @@ const SHOTS = [
   // 1  In 1655, a book appeared in Amsterdam
   { t0: 0, t1: 2.35, draw(t) {
       const [ox, oy, orot] = arrive(t, 0, [0, 1], .55); const z = lerp(1.1, 1.03, E.io(prog(t, 0, 2.35)));
-      ctx.save(); cam(z, 940, 545); sheet(IMG.pa_title, 860 + ox, 545 + oy, 900, -.03 + orot, 'page');
-      label(t, .7, 1180, 360, .03, 'EXHIBIT 01', ['PRÆADAMITÆ', 'printed 1655', 'Internet Archive'], {}); ctx.restore();
+      ctx.save(); cam(z, 940, 545); sheet(IMG.pa_title, 860 + ox, 545 + oy, 900, -.03 + orot, 'page'); ctx.restore();
       strip(t, .15, 2.35, 'AMSTERDAM · 1655'); } },
   // 2  ...burned in Paris almost as soon as it arrived
   { t0: 2.35, t1: 6.30, draw(t) {
@@ -322,7 +321,6 @@ const SHOTS = [
       const [ox, oy, orot] = arrive(t, 6.3, [1, 0], .45); const z = lerp(1.0, 1.07, E.io(prog(t, 6.3, 9.55)));
       ctx.save(); cam(z, 980, 520, stampShake(t, 8.3), t);
       sheet(IMG.brussels, 900 + ox, 500 + oy, 860, .012 + orot, 'print', { tone: '#efe3c8' });
-      label(t, 6.9, 150, 790, -.02, 'EXHIBIT 02', ['The court at Brussels', 'engraving, Hans Collaert I', 'Rijksmuseum · public domain']);
       stamp(t, 8.3, 1350, 760, -.08, 'ARRESTED', 60, 'BRUSSELS · 1656'); ctx.restore(); } },
   // 4  And before long, he was in Rome
   { t0: 9.55, t1: 11.60, draw(t) {
@@ -337,7 +335,6 @@ const SHOTS = [
       const z = lerp(1.05, 1.16, E.io(prog(t, 11.6, 15.1)));
       ctx.save(); cam(z, 900, 560, stampShake(t, 13.25), t);
       const [ox, oy, orot] = arrive(t, 11.6, [0, -1], .45); sheet(IMG.medal, 840 + ox, 545 + oy, 1250, .0 + orot, 'disc', { r: .316, dx: .016, dy: -.016 });
-      label(t, 12.1, 1340, 230, .03, 'EXHIBIT 03', ['Medal of Pope', 'Alexander VII (r. 1655–67)', 'bronze · The Met, CC0']);
       stamp(t, 13.25, 1440, 800, -.1, 'RECANTED', 58, 'ROME · 1657', true); ctx.restore(); } },
   // 6  His crime? Asking a question almost every child asks in Sunday school.
   { t0: 15.10, t1: 20.40, draw(t) {
@@ -352,7 +349,6 @@ const SHOTS = [
       // photo
       const [ox, oy, orot] = arrive(t, 16.25, [1, .3], .5);
       sheet(IMG.sunday, 1080 + ox, 600 + oy, 640, .035 + orot, 'print', { tone: '#f1e6cf' });
-      label(t, 17.0, 230, 760, -.03, 'EXHIBIT 04', ['Sunday school,', 'Dailey, West Virginia, 1941', 'Arthur Rothstein · LOC']);
       ctx.restore(); } },
   // 7  If Adam and Eve were the first people... two sons... one killed the other
   { t0: 20.40, t1: 26.05, draw(t) {
@@ -362,12 +358,12 @@ const SHOTS = [
       family(t, { adam: 20.6, eve: 21.05, sons: 23.45, kill: 24.75 });
       // Islamic tradition's picture of the same family
       const [jx, jy] = arrive(t, 21.6, [1, 0], .5); sheet(IMG.jami, 1440 + jx, 470 + jy, 640, .02, 'print', { border: 12, tone: '#f3eadb' });
-      label(t, 22.2, 1205, 820, -.02, 'EXHIBIT 05', ['Adam and his sons,', "Jami' al-Tawarikh (Persian)", 'Cleveland Museum of Art'], { size: 20 });
+      label(t, 22.2, 1225, 830, -.02, '', ['Adam and his sons, in a', 'Persian history of the world'], { size: 21 });
       ctx.restore(); } },
   // 8  then who was Cain afraid of?
   { t0: 26.05, t1: 28.30, draw(t) {
       const p = E.io(prog(t, 26.05, 28.3)); ctx.save(); cam(lerp(1.25, 1.55, p), lerp(900, 840, p), lerp(470, 400, p));
-      sheet(IMG.durer, 920, 540, 1000, -.015, 'page'); label(t, 26.4, 1060, 250, .02, 'EXHIBIT 06', ['Cain Killing Abel', 'woodcut, Albrecht Dürer, 1511', 'The Met · CC0'], { size: 20 });
+      sheet(IMG.durer, 920, 540, 1000, -.015, 'page');
       ctx.restore(); } },
   // 9  Who did he marry? And who lived in the city he built?
   { t0: 28.30, t1: 31.95, draw(t) {
@@ -382,7 +378,6 @@ const SHOTS = [
       const p = E.io(prog(t, 31.95, 35.55)); ctx.save(); cam(lerp(2.25, 1.75, p), lerp(1010, 990, p), lerp(170, 220, p));
       const S = sheet(IMG.pa_hand, 960, 560, 1000, .018, 'page');
       const u = E.out(prog(t, 33.0, 33.9)); if (u > 0) { const a = S.pt(.27, .033), b = S.pt(.84, .033); ctx.strokeStyle = COL.red; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(lerp(a[0], b[0], u), lerp(a[1], b[1], u)); ctx.stroke(); }
-      label(t, 32.5, 1130, 300, .03, 'EXHIBIT 07', ['Præadamitæ, 1655', "author's name added by hand", 'BCU Lausanne copy · IA'], { size: 17 });
       ctx.restore(); } },
   // 11 there must have been people before Adam  (loupe)
   { t0: 35.55, t1: 37.92, draw(t) {
@@ -413,15 +408,15 @@ const SHOTS = [
   // 15 People who buried their dead
   { t0: 51.08, t1: 52.71, draw(t) {
       ctx.save(); cam(lerp(1.0, 1.08, prog(t, 51.08, 52.71)), 960, 540); const [ox, oy, orot] = arrive(t, 51.08, [-1, 0], .35);
-      sheet(IMG.skull, 900 + ox, 520 + oy, 760, -.02 + orot, 'print'); label(t, 51.3, 1290, 760, .02, 'EXHIBIT 08', ['Neanderthal skull', 'photo: Gary Lee Todd · CC0'], { size: 19 }); ctx.restore(); } },
+      sheet(IMG.skull, 900 + ox, 520 + oy, 760, -.02 + orot, 'print'); ctx.restore(); } },
   // 16 painted on cave walls
   { t0: 52.71, t1: 54.25, draw(t) {
       ctx.save(); cam(lerp(1.0, 1.1, prog(t, 52.71, 54.25)), 960, 540); const [ox, oy, orot] = arrive(t, 52.71, [0, 1], .35);
-      sheet(IMG.hands, 820 + ox, 540 + oy, 900, .025 + orot, 'print'); label(t, 52.9, 1150, 700, -.02, 'EXHIBIT 09', ['Hand stencils, Pettakere Cave,', 'Sulawesi · photo: Cahyo', 'Ramadhani · CC BY-SA 4.0'], { size: 19 }); ctx.restore(); } },
+      sheet(IMG.hands, 820 + ox, 540 + oy, 900, .025 + orot, 'print'); ctx.restore(); } },
   // 17 and built great monuments
   { t0: 54.25, t1: 55.65, draw(t) {
       ctx.save(); cam(lerp(1.0, 1.08, prog(t, 54.25, 55.65)), 960, 540); const [ox, oy, orot] = arrive(t, 54.25, [1, 0], .35);
-      sheet(IMG.gobekli, 900 + ox, 510 + oy, 820, -.015 + orot, 'print'); label(t, 54.4, 1230, 820, .02, 'EXHIBIT 10', ['Göbekli Tepe, Building C', 'photo: Dosseman · CC BY-SA 4.0'], { size: 19 }); ctx.restore(); } },
+      sheet(IMG.gobekli, 900 + ox, 510 + oy, 820, -.015 + orot, 'print'); ctx.restore(); } },
   // 18 long before the date tradition gave for the first man
   { t0: 55.65, t1: END, draw(t) {
       const zoom = E.io(prog(t, 55.65, 56.5)); const span = Math.exp(lerp(Math.log(305000), Math.log(15000), zoom));
