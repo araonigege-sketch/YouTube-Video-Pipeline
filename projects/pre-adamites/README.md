@@ -39,3 +39,16 @@ and mix `vo/coldopen.mp3` + `audio/music_bed.wav` (−20 dB, ducked) + `audio/sf
 5. **Picture:** `film2/player.html` (Case File player; maps from `film/map.js` and `tools/mapgen_world.mjs` → `film2/world.js`),
    rendered with Cinecode's `capture.mjs` in two halves (`--start/--end`, JPEG frames), then joined.
 6. **Audio:** `tools/mix.py` (narration + 9 generated cues by section + foley from the shot list) → −14 LUFS. See `music.json`.
+
+## v3 (2026-11-10): owner feedback on v2 fixed
+- **Framing engine** (`film2/player.html`): stills are `frame` shots in a 16:9 window: `cover` crops clamped inside the image,
+  or `fit` (whole image over a blurred copy) for portraits; documents are `page` shots (always whole); `map` shots fit
+  the camera to the pins and areas in play and always fill the frame; `footage` plays graded Pexels frames.
+- **Shot list**: `tools/shotlist_v3.py` (executed by `tools/build_shots.py`). The builder splits long stills into close-ups
+  that respect the source resolution (faces / upper third for figure art; `detail=[(u,v)...]` to steer), and reports long
+  holds, late card content, elements that never show, and any image/clip used more than twice (except `INTEGRAL`).
+- **Footage**: `tools/footage.json` (Pexels clips, credits), `tools/footage.py --src <dir with footage/>` → `film2/vid/`.
+- **QA**: `node tools/qa.mjs film2/player.html` renders every shot at five moments and lists anything outside the
+  safe area (5% margin) or any empty frame; must report 0 issues. `node tools/still.mjs film2/player.html <dir> <t...>`
+  renders single frames for review.
+- **Credits**: `credits.md` is generated from the images and clips actually on screen (for the video description).
