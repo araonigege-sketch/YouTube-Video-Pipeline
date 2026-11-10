@@ -17,3 +17,6 @@ projects/*/audio/
 projects/*/fontpkg/
 projects/*/film/img/
 projects/*/vo/samples/
+projects/*/vo/*/
+projects/*/vo/alignment_*.json
+projects/*/vo/words_*.json
