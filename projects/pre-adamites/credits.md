@@ -1,18 +1,81 @@
 IMAGES & ARCHIVE MATERIAL
-- Præadamitæ (1655), title page. Internet Archive, Google Books scan of the Biblioteca Nazionale, Rome copy. Public domain.
-- Præadamitæ (1655), title page with handwritten attribution. Internet Archive, Google Books scan of the BCU Lausanne copy. Public domain.
-- Hans Collaert I, "Gezicht op het Hof van Brussel" (engraving). Rijksmuseum, Amsterdam. Public domain.
-- Gasparo Morone, medal of Pope Alexander VII. The Metropolitan Museum of Art. CC0.
-- Arthur Rothstein, "Youngest Sunday school class, singing hymns. Dailey, West Virginia" (1941). Farm Security Administration / Office of War Information, Library of Congress. No known restrictions.
-- "The Story of Adam, peace upon him, his Sons and Progeny", from a Jami' al-Tawarikh. Cleveland Museum of Art. CC0.
-- Albrecht Dürer, "Cain Killing Abel" (woodcut, 1511). The Metropolitan Museum of Art. CC0.
-- "Neanderthal Skull", photo by Gary Lee Todd, Ph.D. (Flickr). CC0.
-- "Hands in Pettakere Cave detail 2", photo by Cahyo Ramadhani (Wikimedia Commons). CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/
-- "Göbeklitepe Building C 5305", photo by Dosseman (Wikimedia Commons). CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/
+- Praeadamitae (1655), title page, Isaac La Peyrère. https://archive.org/details/bub_gb_c9khNVg7RAAC (Public domain)
+- PraeAdamitae (1655), title page with handwritten attribution, Isaac La Peyrère. https://archive.org/details/bub_gb_dpwUAAAAQAAJ (Public domain)
+- Gezicht op het Hof van Brussel, Hans Collaert (I). https://www.rijksmuseum.nl/en/collection/RP-P-1889-A-15012 (Public domain)
+- Alexander VII (Pope, 1655–67), Gasparo Morone. https://www.metmuseum.org/art/collection/search/202410 (CC0)
+- Youngest Sunday school class, singing hymns. Dailey, West Virginia, Arthur Rothstein (FSA/OWI). https://www.loc.gov/item/2017774998/ (Public domain)
+- Cain Killing Abel, Albrecht Dürer. https://www.metmuseum.org/art/collection/search/387246 (CC0)
+- The Family of Cain, Peter Oliver. https://www.metmuseum.org/art/collection/search/339160 (CC0)
+- The Story of Adam, peace upon him, his Sons and Progeny, from a Jami al-tavarikh. https://clevelandart.org/art/1945.384.b (CC0)
+- Neanderthal Skull, Gary Lee Todd, Ph.D.. https://www.flickr.com/photos/101561334@N08/28650572992 (CC0)
+- Hands in Pettakere Cave detail 2, Cahyo Ramadhani. https://commons.wikimedia.org/w/index.php?curid=73846531 (CC BY-SA 4.0)
+- Göbeklitepe Building C 5305, Dosseman. https://commons.wikimedia.org/w/index.php?curid=93944918 (CC BY-SA 4.0)
+- Göbekli2012-11, Klaus-Peter Simon. https://commons.wikimedia.org/w/index.php?curid=20133126 (CC BY-SA 4.0)
+- Adam and Eve, Albrecht Dürer. https://www.metmuseum.org/art/collection/search/336222 (CC0)
+- Adam and Eve in Paradise, Lucas Cranach the Elder (German, 1472–1553). https://clevelandart.org/art/1925.115 (CC0)
+- Adam and Eve at Work, from The Story of Adam and Eve, Heinrich Aldegrever. https://www.artic.edu/artworks/95600 (CC0)
+- The Fall of Adam and Eve, Hans Burgkmair (German, 1473–1531). https://clevelandart.org/art/1951.278 (CC0)
+- Adam and Eve, Rembrandt van Rijn. https://www.artic.edu/artworks/70019 (CC0)
+- Kaïn doodt Abel, Lucas van Leyden (mentioned on object). https://www.rijksmuseum.nl/en/collection/RP-P-OB-1573 (Public domain)
+- Kaïn en Abel, John Macallan Swan. https://www.rijksmuseum.nl/en/collection/RP-T-1950-601 (Public domain)
+- Kain slaat Abel dood met een knots, Lucas Cranach (I). https://www.rijksmuseum.nl/en/collection/RP-P-OB-4498 (Public domain)
+- Kain bij het lijk van Abel, Luca Giordano. https://www.rijksmuseum.nl/en/collection/RP-T-1958-85 (Public domain)
+- Manuscript Leaf from a Bible, North French. https://www.metmuseum.org/art/collection/search/466281 (CC0)
+- Manuscript Leaf with the Opening of the Epistle of Saint Paul to the Ephesians, , French. https://www.metmuseum.org/art/collection/search/470122 (CC0)
+- Cain fleeing after having slain Abel, Matthias Stom. https://www.metmuseum.org/art/collection/search/771506 (CC0)
+- New Excavation at Medinet-Haboo, Francis Frith. https://www.artic.edu/artworks/38052 (CC0)
+- The Sixth Day (Dies VI): The Creation of Adam and Eve, from "The Creation of the, Jan Muller. https://www.metmuseum.org/art/collection/search/374005 (CC0)
+- The Creation of Eve, plate one from Adam and Eve, Heinrich Aldegrever. https://www.artic.edu/artworks/108921 (CC0)
+- The Garden of Paradise, Workshop of Hieronymus Bosch (Netherlandish, c. 1450–1516). https://www.artic.edu/artworks/22857 (CC0)
+- Garden of Eden; Creation of the Animals, Anonymous, Netherlandish, 16th century. https://www.metmuseum.org/art/collection/search/335506 (CC0)
+- Adam in the Garden of Eden, Naming the Animals, Joachim Wtewael. https://www.metmuseum.org/art/collection/search/360552 (CC0)
+- Garden of Eden, from "Dance of Death", Wenceslaus Hollar. https://www.metmuseum.org/art/collection/search/361647 (CC0)
+- Ornamental Engraving with the Tree of Jesse, Israhel van Meckenem. https://www.metmuseum.org/art/collection/search/641796 (CC0)
+- The Tree of Jesse, circle of Geertgen tot Sint Jans. https://www.rijksmuseum.nl/en/collection/SK-A-3901 (Public domain)
+- Christ Teaching the Disciples, 1, from Das Plenarium, Hans Schäufelein. https://www.metmuseum.org/art/collection/search/670706 (CC0)
+- The Creation of Adam, Giovanni Benedetto Castiglione. https://www.artic.edu/artworks/105073 (CC0)
+- The Creation of the World and the Expulsion from Paradise, Giovanni di Paolo (Giovanni di Paolo di Grazia). https://www.metmuseum.org/art/collection/search/458971 (CC0)
+- Book of the Gospels, Northern Highlands artist. https://www.metmuseum.org/art/collection/search/317618 (CC0)
+- Landscape with Stars, Henri-Edmond Cross (Henri-Edmond Delacroix). https://www.metmuseum.org/art/collection/search/459189 (CC0)
+- Hand Axe. https://clevelandart.org/art/1915.41 (CC0)
+- Biface, commonly referred to as a hand ax. https://www.metmuseum.org/art/collection/search/552159 (CC0)
+- The Geological Lecture Room, Oxford: Dr. William Buckland Lecturing on February , Nathaniel Whittock. https://www.metmuseum.org/art/collection/search/700867 (CC0)
+- Torah ark curtain. https://www.metmuseum.org/art/collection/search/849457 (CC0)
+- Pair of Torah finials (Rimmonim). https://www.metmuseum.org/art/collection/search/903518 (CC0)
+- Portret van James Ussher, William Marshall (mentioned on object). https://www.rijksmuseum.nl/en/collection/RP-P-1962-172 (Public domain)
+- Portret van James Ussher op 76-jarige leeftijd, William Faithorne (I) (possibly). https://www.rijksmuseum.nl/en/collection/RP-P-2022-4334 (Public domain)
+- Saint Paul the Apostle, Attributed to Govaert Flinck (Dutch, 1615–1660). https://www.artic.edu/artworks/35161 (CC0)
+- Saint Paul, Niccolò di Buonaccorso. https://www.metmuseum.org/art/collection/search/437221 (CC0)
+- Saint Paul preaching in Athens, after Raphael, Marcantonio Raimondi. https://www.metmuseum.org/art/collection/search/342755 (CC0)
+- The Dance of Death: Expulsion from Paradise; Adam Cultivating the Ground, Hans Holbein the Younger (German, active England and Switzer. https://clevelandart.org/art/1922.502 (CC0)
+- The Expulsion from Paradise, from "The Small Passion", Albrecht Dürer. https://www.metmuseum.org/art/collection/search/387389 (CC0)
+- Expulsion from Paradise, Hans Holbein (II). https://www.rijksmuseum.nl/en/collection/RP-P-OB-4509B%28R%29 (Public domain)
+- Double Page from the Qur'an, Iran. https://www.artic.edu/artworks/108749 (CC0)
+- Qur'an Manuscript, Iran. https://www.artic.edu/artworks/16144 (CC0)
+- Folio from a Qur'an. https://clevelandart.org/art/1933.488 (CC0)
+- Folio from a Qur'an Manuscript. https://www.metmuseum.org/art/collection/search/448369 (CC0)
+- fire, flames, fire wood, campfire, bonfire, fireplace, burning, burn, embers, he, suhasrawool. https://pixabay.com/photos/fire-flames-fire-wood-campfire-2197606/ (Pixabay Content License)
+- marbles, glass marbles, balls, round, colorful, children's toys, to play, toy, m, Couleur. https://pixabay.com/photos/marbles-glass-marbles-balls-round-1659398/ (Pixabay Content License)
+- rabaul, volcano, papua new guinea, primitive, island, culture, village, landscap, JulesR. https://pixabay.com/photos/rabaul-volcano-papua-new-guinea-4380826/ (Pixabay Content License)
+- rome, italy, antiquity, st peter, st peter's basilica, view, castel sant'angelo,, Severinson. https://pixabay.com/photos/rome-italy-antiquity-st-peter-173472/ (Pixabay Content License)
+- night sky, starry sky, nature, space, stars, mountains, galaxy, sky, dawn, dista, Tama66. https://pixabay.com/photos/night-sky-starry-sky-nature-space-10506842/ (Pixabay Content License)
+- bus, passengers, people, seats, metro, commute, commuters, commuting, transporta, Pexels. https://pixabay.com/photos/bus-passengers-people-seats-metro-1868507/ (Pixabay Content License)
+- buildings, prague, czech, town, tourist, aerial, streets, roofs, people, view, c, MonicaVolpin. https://pixabay.com/photos/buildings-prague-czech-town-1207824/ (Pixabay Content License)
+- morocco, ait benhaddou, kasbah, nature, africa, village, mountains, fortress, qa, sosinda. https://pixabay.com/photos/morocco-ait-benhaddou-kasbah-africa-4030733/ (Pixabay Content License)
+- morocco, landscape, hills, sky, drought, desert, sand, marroc, nature, africa, t, pixelRaw. https://pixabay.com/photos/morocco-landscape-hills-sky-4748687/ (Pixabay Content License)
+- analysis, biochemistry, biologist, biology, biotechnology, chemistry, clinic, cl, Sunriseforever. https://pixabay.com/photos/analysis-biochemistry-biologist-7091203/ (Pixabay Content License)
+- people, exhibition, faces, photo album, world, population, media, system, web, n, geralt. https://pixabay.com/photos/people-exhibition-faces-photo-album-2944065/ (Pixabay Content License)
+- Page of Talmud, Chajm. https://www.flickr.com/photos/59676351@N00/3241675093 (CC BY-SA 4.0)
+- Kabbalah Tree of Life, RootOfAllLight. https://commons.wikimedia.org/w/index.php?curid=77842848 (CC BY-SA 4.0)
+- Abolitionist Jug. https://www.metmuseum.org/art/collection/search/841224 (CC0)
+- The Rebuke of Adam and Eve, Charles Joseph Natoire. https://www.metmuseum.org/art/collection/search/437180 (CC0)
+- Isaac La Peyrère, Præadamitæ (1655), title pages: Internet Archive, https://archive.org/details/bub_gb_c9khNVg7RAAC and https://archive.org/details/bub_gb_dpwUAAAAQAAJ (public domain)
+- Alexander Winchell, Preadamites, cover: Internet Archive, https://archive.org/details/preadamitesordem00winciala (public domain)
+- James Ussher, Annales Veteris et Novi Testamenti: Internet Archive, https://archive.org/details/bub_gb_SZhmnF6hGrQC (public domain)
 - Map coastlines: Natural Earth (public domain), via world-atlas.
 
 MUSIC & SOUND
-- Original score generated for this video. Sound effects synthesized for this video.
+- Original score generated for this video (vidIQ). Sound effects synthesized for this video.
 
 NARRATION
-- Voice: "George" (ElevenLabs).
+- Voice: "Roger" (vidIQ voiceover).

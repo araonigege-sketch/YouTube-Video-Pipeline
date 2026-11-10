@@ -14,6 +14,7 @@ ap.add_argument('blocks', nargs='+'); ap.add_argument('--out', required=True)
 ap.add_argument('--max-pause', type=float, default=0.42); ap.add_argument('--edge', type=float, default=0.08)
 ap.add_argument('--tempo', type=float, default=1.05); ap.add_argument('--gap', type=float, default=0.55)
 ap.add_argument('--lead', type=float, default=0.5); ap.add_argument('--threshold', default='-42dB')
+ap.add_argument('--keep', help='folder to keep each paced block (bNNN.wav) and starts.json')
 a = ap.parse_args()
 
 def dur(f): return float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f]))
@@ -34,4 +35,9 @@ for i, b in enumerate(a.blocks):
 lst = os.path.join(tmp, 'list.txt')
 open(lst, 'w').write(''.join(f"file '{p}'\n" for p in parts))
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', lst, '-c:a', 'pcm_s16le', a.out], check=True)
+if a.keep:
+    import json, shutil
+    os.makedirs(a.keep, exist_ok=True)
+    for i in range(len(a.blocks)): shutil.copy(os.path.join(tmp, f'b{i:03d}.wav'), os.path.join(a.keep, f'b{i + 1:02d}.wav'))
+    json.dump(starts, open(os.path.join(a.keep, 'starts.json'), 'w'))
 print('block starts:', starts); print(f'total {dur(a.out):.2f} s -> {a.out}')

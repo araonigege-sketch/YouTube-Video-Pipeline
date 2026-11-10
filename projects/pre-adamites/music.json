@@ -1,14 +1,142 @@
 {
-  "tracks": [
-    {
-      "section": "cold open (0:00-1:00)",
-      "title": "Case file underscore (generated)",
-      "artist": "vidIQ generate_music",
-      "source": "vidIQ generate_music, job job_028cca90-48ba-49b7-8852-6e0a6c27abd6, musicId 6b3f6ba4-994e-4823-9dde-cb54c35a52c6",
-      "licence": "royalty-free original (generated)",
-      "prompt": "Instrumental dark ambient documentary underscore for a historical investigation. Mysterious, patient, slightly tense mood. Low sustained cello and string drones, soft felt piano, distant low choir pad, harpsichord-like plucks, gentle low taiko pulse ~60 BPM; builds slightly toward a quiet, awe-filled resolution.",
-      "credit": "Music: original score generated for this video"
-    }
-  ],
-  "sfx": "Synthesized in code (build/sfx.py): paper slides, stamps, pen, typewriter, whooshes. No outside recordings."
+ "tracks": [
+  {
+   "id": "01_hook",
+   "musicId": "ad3b7a26-d7a1-4a09-a71d-30329d20fe82",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "curious, warm, gently mysterious (pizzicato, felt piano, light percussion, ~88 BPM)"
+  },
+  {
+   "id": "02_genesis",
+   "musicId": "9470b2e5-c816-4971-8ac6-e6b123a20478",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "warm, ancient, contemplative (oud, harp, strings, soft frame drum, ~72 BPM)"
+  },
+  {
+   "id": "03_scholar",
+   "musicId": "66ef5978-53d3-4099-b0ba-be9e03a8783c",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "scholarly, curious (baroque plucks, piano, woodblock, ~92 BPM)"
+  },
+  {
+   "id": "04_deeptime",
+   "musicId": "8d99a1a2-f8fb-4a2b-877d-5119b3b2767f",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "wonder and discovery (marimba, kalimba, warm arpeggios, ~84 BPM)"
+  },
+  {
+   "id": "05_dna",
+   "musicId": "f02fd114-4f10-4928-892a-fd634eb6fbcf",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "playful curiosity (glassy plucks, pizzicato, piano staccato, ~96 BPM)"
+  },
+  {
+   "id": "06_faiths",
+   "musicId": "d6ef1c63-bce5-41da-b357-2b01e4d300c5",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "reflective, reverent (choir pad, piano, harp, ~70 BPM)"
+  },
+  {
+   "id": "07_questions",
+   "musicId": "b54f04e1-52d0-42fc-a821-df2f3adf57a8",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "gentle wonder (piano, soft strings, celesta, ~76 BPM)"
+  },
+  {
+   "id": "08_dark",
+   "musicId": "e113a638-e215-4745-b342-d77c1feee9b2",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "somber, restrained (low cello/bass drones, sparse piano, ~60 BPM)"
+  },
+  {
+   "id": "09_verdict",
+   "musicId": "5dba8e62-c8c7-47b5-88cf-53f5c186734d",
+   "source": "vidIQ generate_music",
+   "licence": "royalty-free original (generated)",
+   "mood": "hopeful resolution (strings build, piano, choir pad, ~80 BPM)"
+  }
+ ],
+ "sections": [
+  {
+   "from": 0,
+   "to": 124,
+   "track": "01_hook"
+  },
+  {
+   "from": 121,
+   "to": 293,
+   "track": "02_genesis"
+  },
+  {
+   "from": 290,
+   "to": 455,
+   "track": "03_scholar"
+  },
+  {
+   "from": 452,
+   "to": 627,
+   "track": "04_deeptime"
+  },
+  {
+   "from": 624,
+   "to": 799,
+   "track": "05_dna"
+  },
+  {
+   "from": 796,
+   "to": 973,
+   "track": "06_faiths"
+  },
+  {
+   "from": 970,
+   "to": 1141,
+   "track": "02_genesis"
+  },
+  {
+   "from": 1138,
+   "to": 1271,
+   "track": "06_faiths"
+  },
+  {
+   "from": 1268,
+   "to": 1388,
+   "track": "05_dna"
+  },
+  {
+   "from": 1385,
+   "to": 1450,
+   "track": "07_questions"
+  },
+  {
+   "from": 1447,
+   "to": 1505,
+   "track": "08_dark"
+  },
+  {
+   "from": 1502,
+   "to": 1558,
+   "track": "07_questions"
+  },
+  {
+   "from": 1555,
+   "to": 1731,
+   "track": "09_verdict"
+  },
+  {
+   "from": 1728,
+   "to": 1763.8,
+   "track": "01_hook"
+  }
+ ],
+ "levels": "each cue loudnorm -17 LUFS; bed gain 0.0756 (0.12 x 0.63, 4 dB under the sample at owner request); 70% under speech; 3 s crossfades; master -14 LUFS",
+ "sfx": "synthesized from the shot list (tools/mix.py): paper, stamps, pen, typing, whoosh; >= 6 dB under voice, 40% under speech",
+ "credit": "Music: original score generated for this video"
 }

@@ -20,3 +20,6 @@ projects/*/vo/samples/
 projects/*/vo/*/
 projects/*/vo/alignment_*.json
 projects/*/vo/words_*.json
+projects/*/film2/img/
+projects/*/film2/world.js
+projects/*/build2/

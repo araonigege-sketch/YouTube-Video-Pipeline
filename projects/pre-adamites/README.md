@@ -26,3 +26,16 @@ and mix `vo/coldopen.mp3` + `audio/music_bed.wav` (−20 dB, ducked) + `audio/sf
 - Maps and charts on bone paper: engraved coastlines with water-lining, Latin sea names (IM Fell English),
   dashed vermilion routes, "Anno" year card; family-tree and timeline charts (IBM Plex Sans Condensed labels).
 - Palette: desk #17120e, paper #e9e0cb, ink #2a221b, vermilion #b3321d. A new visual every ~3–5 s.
+
+## Full episode (v2, 2026-11-10): how it was built
+1. **Voice:** Roger (vidIQ voiceover, `CwhRBWXzGAHq8TQ4Fs17`), the Finance pipeline's setup: the script in ≤1,000-character
+   blocks (`vo/blocks.json`), then `tools/vo_pace.py --keep` (pauses ≤0.42 s, edges 0.08 s, tempo ×1.05, 0.55 s gaps, 0.5 s lead-in).
+2. **Word timings:** `pipeline/align/align.py` per paced block (fallback `align_chunks.py`), with `vo/lexicon.json`
+   (ASCII spellings, ARPABET without stress digits) → `vo/words.json`.
+3. **Images:** Cinecode's `asset_search.py` (Met, AIC, Cleveland, Rijksmuseum, Openverse, Pixabay) + Internet Archive scans;
+   `tools/images.json` maps short keys to sources (`film2/img/<key>.jpg`, ≤2200 px). Every file is in `LICENSES.csv`.
+4. **Shots:** `tools/build_shots.py` (the shot list, anchored to narration phrases) → `film2/shots.js`. Long stills are split into
+   wide + detail; long charts get camera re-framings, so the frame changes every ~3–5 s.
+5. **Picture:** `film2/player.html` (Case File player; maps from `film/map.js` and `tools/mapgen_world.mjs` → `film2/world.js`),
+   rendered with Cinecode's `capture.mjs` in two halves (`--start/--end`, JPEG frames), then joined.
+6. **Audio:** `tools/mix.py` (narration + 9 generated cues by section + foley from the shot list) → −14 LUFS. See `music.json`.
