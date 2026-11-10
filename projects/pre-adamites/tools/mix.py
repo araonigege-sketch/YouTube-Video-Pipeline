@@ -88,8 +88,7 @@ def put(t, y, db):
     last[0] = t; i = int(t * SR); n = min(len(y), N - i); FX[i:i + n] += (y[:n] * 10 ** (db / 20)).astype(np.float32)
 events = []
 for s in shots:
-    if s.get('arrive') and s['type'] in ('sheet', 'card', 'list', 'compare', 'timeline', 'tree'): events.append((s['t0'], 'paper'))
-    elif s['type'] in ('card', 'list', 'compare') and s.get('arrive') is None: pass
+    if s.get('arrive') and s['type'] in ('sheet', 'card', 'list', 'compare', 'timeline', 'tree', 'frame', 'page'): events.append((s['t0'], 'paper'))
     for it in s.get('items', []) if s['type'] == 'spread' else []: events.append((it['at'], 'paper'))
     st = s.get('stamp');
     if st and isinstance(st.get('at'), (int, float)) and s['t0'] <= st['at'] < s['t1']: events.append((st['at'], 'stamp'))
@@ -100,7 +99,7 @@ for s in shots:
     for u in s.get('underline', []) + s.get('ring', []): events.append((u['at'], ('pen', .7)))
     if s.get('loupe'): events.append((s['loupe']['at'], 'whoosh'))
     if s.get('strip'): events.append((s['t0'] + .1, ('type', len(s['strip']))))
-    if s['type'] in ('map_eu', 'map_world') and s['t0'] > 0: events.append((s['t0'], 'paper2'))
+    if s['type'] in ('map_eu', 'map_world', 'map') and s['t0'] > 0: events.append((s['t0'], 'paper2'))
 for t, kind in sorted(events, key=lambda e: e[0]):
     if kind == 'paper': put(t, paper(), -18)
     elif kind == 'paper2': put(t, paper(.6, .8), -21)

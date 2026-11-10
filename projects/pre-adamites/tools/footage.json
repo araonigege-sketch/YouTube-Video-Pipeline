@@ -1,0 +1,20 @@
+{
+ "book1": {"file": "footage/book1.mp4", "by": "Attila Pergel", "page": "https://www.pexels.com/video/close-up-of-male-hands-flipping-pages-of-an-old-book-11530055/"},
+ "book3": {"file": "footage/book3.mp4", "by": "Attila Pergel", "page": "https://www.pexels.com/video/old-map-and-book-on-table-with-candle-10480415/"},
+ "ink": {"file": "footage/ink.mp4", "by": "emirkhan bal", "page": "https://www.pexels.com/video/close-up-on-writing-with-ink-pen-11137423/"},
+ "fire": {"file": "footage/fire.mp4", "by": "K", "page": "https://www.pexels.com/video/burning-logs-of-wood-close-up-6093239/"},
+ "fossil": {"file": "footage/fossil.mp4", "by": "Los Muertos Crew", "page": "https://www.pexels.com/video/a-person-holding-a-fossil-10041486/"},
+ "lab": {"file": "footage/lab.mp4", "by": "Mikhail Nilov", "page": "https://www.pexels.com/video/close-up-of-a-scientist-using-laboratory-equipment-8863360/"},
+ "mdesert": {"file": "footage/mdesert.mp4", "by": "Ahmed", "page": "https://www.pexels.com/video/the-desert-landscape-of-morocco-18980863/"},
+ "stars": {"file": "footage/milky2.mp4", "by": "Helder Sato", "page": "https://www.pexels.com/video/stargazing-on-a-clear-night-8144359/"},
+ "quran1": {"file": "footage/quran1.mp4", "by": "Alena Darmel", "page": "https://www.pexels.com/video/an-open-book-of-quran-8165476/"},
+ "quran2": {"file": "footage/quran2.mp4", "by": "Alena Darmel", "page": "https://www.pexels.com/video/a-girl-reading-a-quran-8165779/"},
+ "rome1": {"file": "footage/rome1.mp4", "by": "K", "page": "https://www.pexels.com/video/the-dome-of-a-church-in-rome-20156158/"},
+ "rome2": {"file": "footage/rome2.mp4", "by": "K", "page": "https://www.pexels.com/video/aerial-view-of-the-city-20156155/"},
+ "torah1": {"file": "footage/torah1.mp4", "by": "cottonbro studio", "page": "https://www.pexels.com/video/rolling-out-a-torah-scroll-5986560/"},
+ "torah2": {"file": "footage/torah2.mp4", "by": "cottonbro studio", "page": "https://www.pexels.com/video/close-up-view-of-a-person-using-a-yad-to-point-on-a-hebrew-bible-5986569/"},
+ "walker": {"file": "footage/walker.mp4", "by": "ArtHouse Studio", "page": "https://www.pexels.com/video/drone-footage-of-a-person-walking-in-the-desert-6573928/"},
+ "island": {"file": "footage/island2.mp4", "by": "Andriall", "page": "https://www.pexels.com/video/an-aerial-view-of-a-small-island-with-a-dock-17779880/"},
+ "tundra": {"file": "footage/tundra.mp4", "by": "Ryan Jones", "page": "https://www.pexels.com/video/drone-footage-of-a-snow-covered-tundra-on-a-sunny-day-14975787/"},
+ "shadows": {"file": "footage/crowd1.mp4", "by": "Shahzad Reaction", "page": "https://www.pexels.com/video/people-with-shadows-while-walking-in-slow-motion-on-pavement-4698492/"}
+}

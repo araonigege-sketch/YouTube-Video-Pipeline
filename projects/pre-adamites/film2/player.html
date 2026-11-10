@@ -15,6 +15,12 @@ const C = document.getElementById('c'), ctx = C.getContext('2d');
 const COL = { paper: '#e9e0cb', ink: '#2a221b', inkSoft: 'rgba(42,34,27,0.62)', red: '#b3321d', label: '#efe6d1', land: '#e6d8b6',
   green: '#4f6f52', blue: '#3d5a73', gold: '#a8822f' };
 const FELL = '"IM Fell English"', MONO = '"Courier Prime"', SANS = '"IBM Plex Sans Condensed"';
+const SAFE = { x0: 96, y0: 54, x1: 1824, y1: 1026 };
+let QA = null; // when set, key elements report their on-screen boxes here
+function track(kind, x, y, w, h, imp = true) {
+  if (!QA) return; const m = ctx.getTransform(); const pts = [[x, y], [x + w, y], [x, y + h], [x + w, y + h]].map(([a, b]) => [m.a * a + m.c * b + m.e, m.b * a + m.d * b + m.f]);
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]); QA.push({ kind, x0: Math.min(...xs), y0: Math.min(...ys), x1: Math.max(...xs), y1: Math.max(...ys), a: ctx.globalAlpha, imp: imp && !MOV });
+}
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const lerp = (a, b, t) => a + (b - a) * t;
 const prog = (t, a, b) => clamp((t - a) / (b - a));
@@ -102,6 +108,8 @@ function sheet(img, cx, cy, h, rot, kind = 'page', o = {}) {
     const rr = h * (o.r ?? .43), dx = (o.dx ?? 0) * h, dy = (o.dy ?? 0) * h;
     ctx.save(); shadowOn(50, 26, .75); ctx.beginPath(); ctx.arc(dx, dy, rr, 0, 7); ctx.fillStyle = '#3a3630'; ctx.fill(); shadowOff(); ctx.clip(); ctx.drawImage(img, -w / 2, -h / 2, w, h); ctx.restore();
   }
+  if (kind === 'disc') { const rr = h * (o.r ?? .43); track('disc', (o.dx ?? 0) * h - rr, (o.dy ?? 0) * h - rr, 2 * rr, 2 * rr); }
+  else track('page', -w / 2, -h / 2, w, h, kind !== 'print' || !o.bg);
   ctx.restore();
   return { w, h, pt: (u, v) => { const x = -w / 2 + u * w, y = -h / 2 + v * h; return [cx + x * Math.cos(rot) - y * Math.sin(rot), cy + x * Math.sin(rot) + y * Math.cos(rot)]; } };
 }
@@ -118,7 +126,7 @@ function label(t, t0, x, y, rot, head, lines, o = {}) {
   ctx.font = `${fs}px ${MONO}`; ctx.fillStyle = COL.ink;
   const all = lines.join(''), chars = Math.floor(prog(t, t0 + .1, t0 + .1 + all.length * .008) * all.length + .001); let used = 0;
   lines.forEach((l, i) => { const n = clamp(chars - used, 0, l.length); used += l.length; ctx.fillText(l.slice(0, n), pad + 6, pad + lh * (i + hr)); });
-  ctx.restore();
+  track('label', 0, 0, w, h); ctx.restore();
 }
 const STAMPC = {};
 function stamp(t, t0, x, y, rot, text, size = 64, sub = null, onDesk = false) {
@@ -133,31 +141,32 @@ function stamp(t, t0, x, y, rot, text, size = 64, sub = null, onDesk = false) {
     g.font = ctx.font; g.letterSpacing = ctx.letterSpacing; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(text, bw / 2 + size * .06, sub ? bh * .4 : bh / 2 + size * .04);
     if (sub) { g.font = `700 ${size * .34}px ${MONO}`; g.letterSpacing = `${size * .08}px`; g.fillText(sub, bw / 2, bh * .76); }
     g.globalCompositeOperation = 'destination-out'; g.drawImage(SPECK, 0, 0, c.width, c.height); STAMPC[key] = c; }
-  ctx.globalCompositeOperation = onDesk ? 'source-over' : 'multiply'; ctx.drawImage(c, -c.width / 2, -c.height / 2); ctx.restore();
+  ctx.globalCompositeOperation = onDesk ? 'source-over' : 'multiply'; ctx.drawImage(c, -c.width / 2, -c.height / 2); track('stamp', -c.width / 2, -c.height / 2, c.width, c.height); ctx.restore();
 }
 function stampShake(t, t0) { const lt = t - t0; return lt > 0 && lt < .35 ? (1 - lt / .35) * 7 : 0; }
 function strip(t, t0, t1, text) {
   if (t < t0 || t > t1 + .4) return; const n = Math.floor(prog(t, t0, t0 + text.length * .035) * text.length + .001), a = 1 - prog(t, t1 - .1, t1 + .3);
   ctx.save(); ctx.globalAlpha = a; ctx.font = `700 30px ${MONO}`; ctx.letterSpacing = '6px'; ctx.textBaseline = 'middle';
-  const w = ctx.measureText(text).width + 50; ctx.fillStyle = 'rgba(14,11,9,0.78)'; ctx.fillRect(70, 62, w, 58); ctx.fillStyle = COL.red; ctx.fillRect(70, 62, 6, 58);
-  ctx.fillStyle = '#efe6d1'; ctx.fillText(text.slice(0, n), 96, 92); ctx.restore();
+  const w = ctx.measureText(text).width + 50; ctx.fillStyle = 'rgba(14,11,9,0.78)'; ctx.fillRect(110, 76, w, 58); ctx.fillStyle = COL.red; ctx.fillRect(110, 76, 6, 58);
+  ctx.fillStyle = '#efe6d1'; ctx.fillText(text.slice(0, n), 136, 106); track('text', 110, 76, w, 58); ctx.restore();
 }
 function grainAndVignette(f) {
   ctx.save(); ctx.globalAlpha = .07; ctx.globalCompositeOperation = 'overlay'; ctx.drawImage(GRAIN[f % 6], 0, 0, W, H); ctx.restore();
   const v = ctx.createRadialGradient(W / 2, H / 2, H * .45, W / 2, H / 2, W * .72); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,0.45)'); ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
 }
-function arrive(t, t0, dir = [0, 1], dur = .42) { if (!dir) return [0, 0, 0]; const p = E.out(prog(t, t0, t0 + dur)); return [(1 - p) * dir[0] * 1300, (1 - p) * dir[1] * 900, (1 - p) * .05]; }
+let MOV = false; // an element sliding in is in motion, not off frame
+function arrive(t, t0, dir = [0, 1], dur = .42) { MOV = false; if (!dir) return [0, 0, 0]; const p = E.out(prog(t, t0, t0 + dur)); MOV = p < .999; return [(1 - p) * dir[0] * 1300, (1 - p) * dir[1] * 900, (1 - p) * .05]; }
 function wrap(text, font, maxw) { ctx.font = font; const words = text.split(' '), lines = []; let cur = '';
   for (const w of words) { const tryl = cur ? cur + ' ' + w : w; if (ctx.measureText(tryl).width > maxw && cur) { lines.push(cur); cur = w; } else cur = tryl; } if (cur) lines.push(cur); return lines; }
 function chartSheet(title, sub, o = {}) {
   shadowOn(50, 24, .6); ctx.fillStyle = COL.paper; ctx.fillRect(80, 20, 1760, 1040); shadowOff(); paperRect(ctx, 80, 20, 1760, 1040);
   ctx.strokeStyle = 'rgba(42,34,27,.5)'; ctx.lineWidth = 1.2; ctx.strokeRect(110, 50, 1700, 980);
-  if (title) { ctx.fillStyle = COL.ink; ctx.font = `66px ${FELL}`; ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left'; ctx.fillText(title, 170, 150); }
+  if (title) { ctx.fillStyle = COL.ink; ctx.font = `66px ${FELL}`; ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left'; ctx.fillText(title, 170, 150); track('title', 170, 100, ctx.measureText(title).width, 66); }
   if (sub) { ctx.font = `700 20px ${MONO}`; ctx.letterSpacing = '4px'; ctx.fillStyle = COL.red; ctx.textAlign = 'left'; ctx.fillText(sub, 172, 190); ctx.letterSpacing = '0px'; }
 }
 function loupe(drawFn, x, y, r, m, a = 1) {
   if (a <= 0) return; ctx.save(); ctx.globalAlpha = a;
-  ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.clip(); ctx.fillStyle = COL.paper; ctx.fill(); ctx.translate(x, y); ctx.scale(m, m); ctx.translate(-x, -y); drawFn(); ctx.restore();
+  ctx.save(); ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.clip(); ctx.fillStyle = COL.paper; ctx.fill(); ctx.translate(x, y); ctx.scale(m, m); ctx.translate(-x, -y); const q = QA; QA = null; drawFn(); QA = q; ctx.restore();  // magnified copy is not a layout element
   const g = ctx.createRadialGradient(x - r * .3, y - r * .3, r * .1, x, y, r); g.addColorStop(0, 'rgba(255,255,255,0.10)'); g.addColorStop(1, 'rgba(255,255,255,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
   shadowOn(24, 12, .6); ctx.lineWidth = 22; ctx.strokeStyle = '#2b2722'; ctx.beginPath(); ctx.arc(x, y, r + 11, 0, 7); ctx.stroke(); shadowOff();
   ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(200,185,150,.6)'; ctx.beginPath(); ctx.arc(x, y, r + 20, Math.PI * 1.1, Math.PI * 1.6); ctx.stroke(); ctx.restore();
@@ -179,6 +188,7 @@ function node(t, t0, x, y, name, role, o = {}) {
   ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = o.q ? COL.red : (o.col ?? COL.ink);
   ctx.font = `${o.fs ?? (o.q ? 44 : 54)}px ${FELL}`; ctx.fillText(name, 0, role ? (o.q ? -2 : 4) : 16);
   if (role) { ctx.font = `${o.rs ?? 19}px ${MONO}`; ctx.fillStyle = o.q ? COL.red : 'rgba(42,34,27,.75)'; ctx.fillText(role, 0, 40); }
+  track('node', -w / 2, -h / 2, w, h);
   if (o.strike != null) { const s = E.out(prog(t, o.strike, o.strike + .3)); if (s > 0) { ctx.strokeStyle = COL.red; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(-w / 2 - 10, 8); ctx.lineTo(-w / 2 - 10 + (w + 20) * s, -8); ctx.stroke(); } }
   ctx.restore();
 }
@@ -186,7 +196,7 @@ function bigText(t, t0, text, x, y, o = {}) { // fade-up text block, wrapped
   const p = E.out(prog(t, t0, t0 + .5)); if (p <= 0) return; const font = `${o.italic ? 'italic ' : ''}${o.size ?? 64}px ${o.font ?? FELL}`;
   const lines = wrap(text, font, o.maxw ?? 1400); ctx.save(); ctx.globalAlpha *= p; ctx.font = font; ctx.fillStyle = o.col ?? COL.ink; ctx.textAlign = o.align ?? 'center'; ctx.textBaseline = 'alphabetic';
   const lh = (o.size ?? 64) * (o.lh ?? 1.22), y0 = y - (lines.length - 1) * lh / 2 + (1 - p) * 18;
-  lines.forEach((l, i) => ctx.fillText(l, x, y0 + i * lh)); ctx.restore(); return lines.length * lh;
+  lines.forEach((l, i) => { ctx.fillText(l, x, y0 + i * lh); const w = ctx.measureText(l).width, ax = ctx.textAlign === 'center' ? x - w / 2 : ctx.textAlign === 'right' ? x - w : x; track('text', ax, y0 + i * lh - (o.size ?? 64) * .8, w, (o.size ?? 64)); }); ctx.restore(); return lines.length * lh;
 }
 
 // ---------- shot renderers ----------
@@ -218,12 +228,13 @@ R.spread = (t, s) => { // 2-3 objects arriving one by one
 R.card = (t, s) => { // a typographic card on the desk: quote, question or statement
   const [z, cx, cy] = camPath(t, s, s.cam || { z: [1.0, 1.04] }); ctx.save(); cam(z, cx, cy);
   const [ox, oy, orot] = arrive(t, s.t0, s.arrive === undefined ? [0, 1] : s.arrive, .38);
-  const w = s.w ?? 1400, h = s.h ?? 640; ctx.translate(960 + ox, 540 + oy); ctx.rotate((s.rot ?? -.012) + orot);
+  const lines = s.lines || [{ text: s.text, at: s.t0 + .25 }], gap0 = s.gap ?? 120;
+  const w = s.w ?? 1400, h = s.h ?? Math.min(900, Math.max(640, (lines.length - 1) * gap0 + 300 + (s.kicker ? 90 : 0))); ctx.translate(960 + ox, 540 + oy); ctx.rotate((s.rot ?? -.012) + orot);
   shadowOn(46, 22, .6); ctx.fillStyle = COL.paper; ctx.fillRect(-w / 2, -h / 2, w, h); shadowOff(); paperRect(ctx, -w / 2, -h / 2, w, h);
   ctx.strokeStyle = 'rgba(42,34,27,.45)'; ctx.lineWidth = 1.2; ctx.strokeRect(-w / 2 + 26, -h / 2 + 26, w - 52, h - 52);
-  if (s.kicker) { ctx.font = `700 22px ${MONO}`; ctx.letterSpacing = '5px'; ctx.fillStyle = COL.red; ctx.textAlign = 'center'; ctx.fillText(s.kicker, 0, -h / 2 + 86); ctx.letterSpacing = '0px'; }
-  const lines = s.lines || [{ text: s.text, at: s.t0 + .25 }];
-  let y = s.ytop ?? (-((lines.length - 1) * (s.gap ?? 120)) / 2 + (s.kicker ? 30 : 0));
+  if (s.kicker) { ctx.font = `700 22px ${MONO}`; ctx.letterSpacing = '5px'; ctx.fillStyle = COL.red; ctx.textAlign = 'center'; ctx.fillText(s.kicker, 0, -h / 2 + 86); const kw = ctx.measureText(s.kicker).width; track('kicker', -kw / 2, -h / 2 + 64, kw, 28); ctx.letterSpacing = '0px'; }
+  let y = s.ytop ?? (-((lines.length - 1) * gap0) / 2 + (s.kicker ? 30 : 0));
+  if (s.kicker) y = Math.max(y, -h / 2 + 170);  // the first line always clears the kicker
   for (const L of lines) { bigText(t, L.at ?? s.t0 + .25, L.text, 0, y, { size: L.size ?? s.size ?? 70, italic: L.italic ?? s.italic, col: L.red ? COL.red : COL.ink, maxw: w - 180, font: L.mono ? MONO : FELL }); y += L.gap ?? s.gap ?? 120; }
   if (s.cite) { const p = E.out(prog(t, s.cite.at ?? s.t0 + .6, (s.cite.at ?? s.t0 + .6) + .4)); ctx.globalAlpha = p; ctx.font = `24px ${MONO}`; ctx.fillStyle = COL.inkSoft; ctx.textAlign = 'center'; ctx.fillText(s.cite.text, 0, h / 2 - 70); ctx.globalAlpha = 1; }
   ctx.restore();
@@ -237,7 +248,7 @@ R.list = (t, s) => { // chart sheet with items appearing one by one
   s.items.forEach((it, i) => { const p = E.out(prog(t, it.at, it.at + .4)); if (p <= 0) { y += gap; return; }
     ctx.save(); ctx.globalAlpha = p * (it.dim && t > it.dim ? .35 : 1); ctx.translate((1 - p) * -30, 0);
     ctx.fillStyle = it.red ? COL.red : COL.ink; ctx.font = `700 40px ${MONO}`; ctx.textAlign = 'left'; ctx.fillText(it.mark ?? String(i + 1).padStart(2, '0'), 200, y);
-    ctx.font = `${it.size ?? 56}px ${FELL}`; ctx.fillText(it.text, 300, y);
+    ctx.font = `${it.size ?? 56}px ${FELL}`; ctx.fillText(it.text, 300, y); track('text', 200, y - 46, 100 + ctx.measureText(it.text).width, 60);
     if (it.note) { ctx.font = `24px ${MONO}`; ctx.fillStyle = COL.inkSoft; ctx.fillText(it.note, 302, y + 42); }
     if (it.strike) { const sp = E.out(prog(t, it.strike, it.strike + .3)); if (sp > 0) { ctx.strokeStyle = COL.red; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(290, y - 18); ctx.lineTo(290 + sp * (ctx.measureText(it.text).width + 30), y - 18); ctx.stroke(); } }
     ctx.restore(); y += gap; });
@@ -251,10 +262,10 @@ R.compare = (t, s) => { // two or three columns with heads and items
   s.cols.forEach((c, i) => { const x = 160 + cw * i + cw / 2, p = E.out(prog(t, c.at, c.at + .4)); if (p <= 0) return;
     ctx.save(); ctx.globalAlpha = p * (c.dim && t > c.dim ? .35 : 1);
     if (i > 0) { ctx.strokeStyle = 'rgba(42,34,27,.35)'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(160 + cw * i, 250); ctx.lineTo(160 + cw * i, 960); ctx.stroke(); }
-    ctx.textAlign = 'center'; ctx.fillStyle = c.red ? COL.red : COL.ink; ctx.font = `${c.hsize ?? 58}px ${FELL}`; ctx.fillText(c.head, x, 300);
+    ctx.textAlign = 'center'; ctx.fillStyle = c.red ? COL.red : COL.ink; ctx.font = `${c.hsize ?? 58}px ${FELL}`; ctx.fillText(c.head, x, 300); { const hw = ctx.measureText(c.head).width; track('text', x - hw / 2, 250, hw, 60); }
     if (c.sub) { ctx.font = `700 20px ${MONO}`; ctx.letterSpacing = '3px'; ctx.fillStyle = COL.red; ctx.fillText(c.sub, x, 340); ctx.letterSpacing = '0px'; }
     let y = 440; for (const it of (c.items || [])) { const q = E.out(prog(t, it.at, it.at + .4)); if (q > 0) { ctx.globalAlpha = p * q * (c.dim && t > c.dim ? .35 : 1);
-      for (const l of wrap(it.text, `${it.size ?? 40}px ${it.mono ? MONO : FELL}`, cw - 80)) { ctx.fillStyle = it.red ? COL.red : COL.ink; ctx.fillText(l, x, y); y += (it.size ?? 40) * 1.25; } y += 28; } }
+      for (const l of wrap(it.text, `${it.size ?? 40}px ${it.mono ? MONO : FELL}`, cw - 80)) { ctx.fillStyle = it.red ? COL.red : COL.ink; ctx.fillText(l, x, y); const lw = ctx.measureText(l).width; track('text', x - lw / 2, y - 34, lw, 44); y += (it.size ?? 40) * 1.25; } y += 28; } }
     ctx.restore(); });
   if (s.stamp) stamp(t, s.stamp.at, s.stamp.x ?? 1460, s.stamp.y ?? 860, s.stamp.rot ?? -.1, s.stamp.text, s.stamp.size ?? 56, s.stamp.sub ?? null);
   ctx.restore();
@@ -266,7 +277,9 @@ function mapPin(t, t0, P, name, side = 'r', active = false, fs = 34) {
   ctx.fillStyle = active ? COL.red : COL.ink; ctx.beginPath(); ctx.arc(x, y, 7 * p, 0, 7); ctx.fill();
   if (name) { ctx.font = `${fs}px ${FELL}`; ctx.textBaseline = 'middle'; ctx.textAlign = side === 'r' ? 'left' : side === 'l' ? 'right' : 'center';
     const tx = x + (side === 'r' ? 22 : side === 'l' ? -22 : 0), ty = y + (side === 'b' ? 36 : side === 't' ? -36 : 0);
-    ctx.lineWidth = 7; ctx.strokeStyle = 'rgba(233,224,203,.92)'; ctx.strokeText(name, tx, ty); ctx.fillStyle = COL.ink; ctx.fillText(name, tx, ty); }
+    ctx.lineWidth = 7; ctx.strokeStyle = 'rgba(233,224,203,.92)'; ctx.strokeText(name, tx, ty); ctx.fillStyle = COL.ink; ctx.fillText(name, tx, ty);
+    const nw = ctx.measureText(name).width; track('pin', ctx.textAlign === 'left' ? tx : ctx.textAlign === 'right' ? tx - nw : tx - nw / 2, ty - fs * .6, nw, fs * 1.2); }
+  track('pin', x - 9, y - 9, 18, 18);
   ctx.restore();
 }
 function mapRoute(t, t0, t1, A, B, bend = .18, col = COL.red) {
@@ -339,7 +352,7 @@ R.timeline = (t, s) => {
     ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(x, TY - 14); ctx.lineTo(x, TY - 14 - up * p); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, TY, 10, 0, 7); ctx.fill();
     ctx.textAlign = m.side === 'right' ? 'left' : m.side === 'left' ? 'right' : 'center'; const ax = m.side === 'right' ? x + 16 : m.side === 'left' ? x - 16 : x;
-    ctx.font = `44px ${FELL}`; ctx.fillText(m.text, ax, TY - up - 50); ctx.font = `22px ${MONO}`; ctx.fillStyle = m.red ? COL.red : 'rgba(42,34,27,.8)'; ctx.fillText(m.sub ?? '', ax, TY - up - 18); ctx.restore(); }
+    ctx.font = `44px ${FELL}`; ctx.fillText(m.text, ax, TY - up - 50); { const mw = ctx.measureText(m.text).width; track('text', ctx.textAlign === 'center' ? ax - mw / 2 : ctx.textAlign === 'right' ? ax - mw : ax, TY - up - 88, mw, 50); } ctx.font = `22px ${MONO}`; ctx.fillStyle = m.red ? COL.red : 'rgba(42,34,27,.8)'; ctx.fillText(m.sub ?? '', ax, TY - up - 18); ctx.restore(); }
   for (const b of (s.brackets || [])) { if (b.until != null && t > b.until + .4) continue; const p = E.out(prog(t, b.at, b.at + .5)); if (p <= 0) continue;
     const xa = tx(b.a, span), xb = tx(b.b, span), y = TY + 110; ctx.save(); ctx.globalAlpha *= p * (b.until != null ? 1 - prog(t, b.until, b.until + .4) : 1);
     ctx.strokeStyle = COL.red; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(xa, y - 16); ctx.lineTo(xa, y); ctx.lineTo(lerp(xa, xb, p), y); if (p > .98) ctx.lineTo(xb, y - 16); ctx.stroke();
@@ -353,15 +366,15 @@ R.doubling = (t, s) => { // genealogical ancestors double each generation
   const gens = s.gens; // [[at, n], ...]
   const baseY = 900; node(t, s.t0 + .1, 960, baseY, 'you', null, { w: 160, h: 70, fs: 40 });
   for (let gI = 0; gI < gens.length; gI++) { const [at, n] = gens[gI]; const p = E.out(prog(t, at, at + .5)); if (p <= 0) continue;
-    const y = baseY - 150 * (gI + 1), cols = Math.min(n, 64), spread = Math.min(1500, 120 * cols), r = Math.max(4, 22 - gI * 3.5);
+    const rowH = 560 / gens.length, y = baseY - 40 - rowH * (gI + 1), cols = Math.min(n, 64), spread = Math.min(1280, 120 * cols), r = Math.max(4, 20 - gI * 3);
     ctx.save(); ctx.globalAlpha *= p;
     for (let i = 0; i < cols; i++) { const x = 960 - spread / 2 + spread * (i + .5) / cols; ctx.strokeStyle = 'rgba(42,34,27,.35)'; ctx.lineWidth = 1.5;
-      const prevCols = gI === 0 ? 1 : Math.min(gens[gI - 1][1], 64), pspread = gI === 0 ? 0 : Math.min(1500, 120 * prevCols), pi = Math.floor(i * prevCols / cols);
-      const px = gI === 0 ? 960 : 960 - pspread / 2 + pspread * (pi + .5) / prevCols, py = gI === 0 ? baseY - 35 : y + 150;
+      const prevCols = gI === 0 ? 1 : Math.min(gens[gI - 1][1], 64), pspread = gI === 0 ? 0 : Math.min(1280, 120 * prevCols), pi = Math.floor(i * prevCols / cols);
+      const px = gI === 0 ? 960 : 960 - pspread / 2 + pspread * (pi + .5) / prevCols, py = gI === 0 ? baseY - 35 : y + rowH;
       ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(x, y + r); ctx.stroke();
-      ctx.fillStyle = s.overlap && t > s.overlap && i % 3 === 1 ? COL.red : COL.ink; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); }
-    ctx.font = `700 34px ${MONO}`; ctx.textAlign = 'left'; ctx.fillStyle = COL.red; ctx.fillText(n.toLocaleString('en-US'), 1660, y + 12); ctx.restore(); }
-  if (s.caption) bigText(t, s.caption.at, s.caption.text, 960, 260, { size: 46, italic: true, col: COL.red });
+      ctx.fillStyle = s.overlap && t > s.overlap && i % 3 === 1 ? COL.red : COL.ink; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); track('node', x - r, y - r, 2 * r, 2 * r); }
+    ctx.font = `700 34px ${MONO}`; ctx.textAlign = 'left'; ctx.fillStyle = COL.red; ctx.fillText(n.toLocaleString('en-US'), 1660, y + 12); track('text', 1660, y - 18, 90, 36); ctx.restore(); }
+  if (s.caption) bigText(t, s.caption.at, s.caption.text, 960, 245, { size: 44, italic: true, col: COL.red });
   ctx.restore();
 };
 R.marbles = (t, s) => { // two bags: few colours from two jars vs many colours
@@ -410,7 +423,7 @@ R.verdict = (t, s) => { // four-tier verdict board
     ctx.save(); ctx.globalAlpha *= p * (s.focus != null && s.focus !== i && t > (s.focusAt ?? 0) ? .35 : 1);
     ctx.fillStyle = c; ctx.fillRect(x, 240, 370, 8); ctx.font = `48px ${FELL}`; ctx.fillStyle = c; ctx.textAlign = 'left'; ctx.fillText(h, x, 310);
     let y = 380; for (const it of s.items[i]) { if (t < it.at) continue; ctx.globalAlpha = p * E.out(prog(t, it.at, it.at + .4)) * (s.focus != null && s.focus !== i && t > (s.focusAt ?? 0) ? .35 : 1);
-      ctx.font = `33px ${SANS}`; ctx.fillStyle = COL.ink; for (const l of wrap(it.text, `33px ${SANS}`, 360)) { ctx.fillText(l, x, y); y += 42; } y += 30; }
+      ctx.font = `33px ${SANS}`; ctx.fillStyle = COL.ink; for (const l of wrap(it.text, `33px ${SANS}`, 360)) { ctx.fillText(l, x, y); track('text', x, y - 28, ctx.measureText(l).width, 36); y += 42; } y += 30; }
     ctx.restore(); });
   ctx.restore();
 };
@@ -419,11 +432,112 @@ R.endcard = (t, s) => { // like & subscribe, in the Case File look
   chartSheet(null, null); bigText(t, s.t0 + .2, 'Open the next file', 960, 330, { size: 84 });
   const bt = (x, at, text, red) => { const p = E.back(prog(t, at, at + .45)); if (p <= 0) return; const press = s.press && t > s.press[text] && t < s.press[text] + .25 ? .92 : 1;
     ctx.save(); ctx.translate(x, 620); ctx.scale(p * press, p * press); shadowOn(14, 6, .3); ctx.fillStyle = red ? COL.red : '#f2ead8'; ctx.fillRect(-210, -60, 420, 120); shadowOff();
-    ctx.strokeStyle = COL.ink; ctx.lineWidth = 3; ctx.strokeRect(-210, -60, 420, 120); ctx.fillStyle = red ? '#f6efe0' : COL.ink; ctx.font = `700 40px ${MONO}`; ctx.letterSpacing = '4px'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, 2); ctx.restore(); };
+    ctx.strokeStyle = COL.ink; ctx.lineWidth = 3; ctx.strokeRect(-210, -60, 420, 120); track('node', -210, -60, 420, 120); ctx.fillStyle = red ? '#f6efe0' : COL.ink; ctx.font = `700 40px ${MONO}`; ctx.letterSpacing = '4px'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, 2); ctx.restore(); };
   bt(560, s.like, 'LIKE', false); bt(960, s.share, 'SHARE', false); bt(1360, s.sub, 'SUBSCRIBE', true);
   if (s.press) for (const [k, at] of Object.entries(s.press)) { if (t > at && t < at + .6) { const x = { LIKE: 560, SHARE: 960, SUBSCRIBE: 1360 }[k]; stamp(t, at, x + 120, 720, -.12, 'DONE', 30, null); } }
   ctx.restore();
   const f = prog(t, END - .8, END); if (f > 0) { ctx.fillStyle = `rgba(0,0,0,${f})`; ctx.fillRect(0, 0, W, H); }
+};
+
+
+// ---------- v3: 16:9 frames, footage, self-framing maps ----------
+const FRAMEW = 1720, FRAMEH = 968; // the mat window sits exactly inside the safe area
+const BLUR = {};
+function blurOf(key, img) { if (BLUR[key]) return BLUR[key]; const c = off(384, 216), g = c.getContext('2d'); g.filter = 'blur(10px) brightness(.55) saturate(.8)';
+  const W0 = img.width, H0 = img.height, A = 16 / 9; let cw = W0, ch = W0 / A; if (ch > H0) { ch = H0; cw = H0 * A; } g.drawImage(img, (W0 - cw) / 2, (H0 - ch) / 2, cw, ch, -20, -12, 424, 240); BLUR[key] = c; return c; }
+function cropRect(img, cx, cy, z, A) { // largest A-rect inside the image, zoomed by z, centred near (cx,cy), clamped inside the image
+  const W0 = img.width, H0 = img.height; let cw = W0, ch = W0 / A; if (ch > H0) { ch = H0; cw = H0 * A; } cw /= z; ch /= z;
+  const x = clamp(cx * W0 - cw / 2, 0, W0 - cw), y = clamp(cy * H0 - ch / 2, 0, H0 - ch); return [x, y, cw, ch]; }
+function drawWindow(img, key, mode, cam, t, s, bleed) { // draws the image into the 16:9 window; returns uv->screen mapper
+  const ww = bleed ? W : FRAMEW, wh = bleed ? H : FRAMEH, wx = (W - ww) / 2, wy = (H - wh) / 2, A = ww / wh;
+  const p = E.io(prog(t, s.t0, s.t1));
+  ctx.save(); ctx.beginPath(); ctx.rect(wx, wy, ww, wh); ctx.clip();
+  if (mode === 'fit') { // whole image visible over a blurred copy of itself
+    ctx.drawImage(blurOf(key, img), wx, wy, ww, wh);
+    const sc = Math.min(ww * .94 / img.width, wh * .94 / img.height) * lerp(cam.z[0], cam.z[1], p), iw = img.width * sc, ih = img.height * sc;
+    const ix = wx + (ww - iw) / 2, iy = wy + (wh - ih) / 2;
+    shadowOn(30, 12, .55); ctx.fillStyle = '#000'; ctx.fillRect(ix, iy, iw, ih); shadowOff(); ctx.drawImage(img, ix, iy, iw, ih);
+    if (s.tone) { ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = s.tone; ctx.fillRect(ix, iy, iw, ih); ctx.globalCompositeOperation = 'source-over'; }
+    ctx.restore(); track('image', ix, iy, iw, ih);
+    return (u, v) => [ix + u * iw, iy + v * ih];
+  }
+  const z = lerp(cam.z[0], cam.z[1], p), cx = lerp(cam.u[0], cam.u[1], p), cy = lerp(cam.v[0], cam.v[1], p);
+  const [sx, sy, cw, ch] = cropRect(img, cx, cy, Math.max(1, z), A);
+  ctx.drawImage(img, sx, sy, cw, ch, wx, wy, ww, wh);
+  if (s.tone) { ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = s.tone; ctx.fillRect(wx, wy, ww, wh); ctx.globalCompositeOperation = 'source-over'; }
+  ctx.restore(); track('image', wx, wy, ww, wh, !bleed);
+  return (u, v) => [wx + (u * img.width - sx) / cw * ww, wy + (v * img.height - sy) / ch * wh];
+}
+function matFrame(t, s) { // the print's mat and shadow on the desk
+  const wx = (W - FRAMEW) / 2, wy = (H - FRAMEH) / 2, b = 12;
+  shadowOn(40, 18, .6); ctx.fillStyle = '#efe9dc'; ctx.fillRect(wx - b, wy - b, FRAMEW + 2 * b, FRAMEH + 2 * b); shadowOff();
+}
+function overlays(t, s, map) {
+  for (const u of (s.underline || [])) { const p = E.out(prog(t, u.at, u.at + .8)); if (p > 0) { const a = map(u.u0, u.v), b = map(u.u1, u.v);
+    ctx.strokeStyle = COL.red; ctx.lineWidth = u.w ?? 5; ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(lerp(a[0], b[0], p), lerp(a[1], b[1], p)); ctx.stroke(); } }
+  for (const r of (s.ring || [])) { const p = E.out(prog(t, r.at, r.at + .7)); if (p > 0) { const c = map(r.u, r.v), e = map(r.u + r.du, r.v + r.dv);
+    ctx.strokeStyle = COL.red; ctx.lineWidth = 6; ctx.beginPath(); ctx.ellipse(c[0], c[1], Math.abs(e[0] - c[0]), Math.abs(e[1] - c[1]), -.04, -1.6, -1.6 + Math.PI * 2.1 * p); ctx.stroke(); } }
+}
+R.frame = (t, s) => {
+  const img = IMG[s.img]; const [ox, oy] = arrive(t, s.t0, s.arrive, .42);
+  ctx.save(); ctx.translate(ox, oy);
+  if (!s.bleed) matFrame(t, s);
+  const map = drawWindow(img, s.img, s.mode, s.cam, t, s, s.bleed);
+  overlays(t, s, map);
+  if (s.loupe) { const L = s.loupe, m = E.io(prog(t, L.at, L.at + .6)), tg = map(L.u, L.v), lx = lerp(tg[0] + 300, tg[0], m), ly = lerp(tg[1] + 200, tg[1], m);
+    loupe(() => drawWindow(img, s.img, s.mode, s.cam, t, s, s.bleed), lx, ly, L.r ?? 230, L.m ?? 1.7, E.out(prog(t, L.at, L.at + .25))); track('image', lx - 250, ly - 250, 500, 500); }
+  if (s.caption) label(t, s.caption.at ?? s.t0 + .5, s.caption.x ?? 1300, s.caption.y ?? 800, s.caption.rot ?? .015, s.caption.head ?? '', s.caption.lines, { size: s.caption.size ?? 22 });
+  if (s.stamp) stamp(t, s.stamp.at, s.stamp.x ?? 1380, s.stamp.y ?? 830, s.stamp.rot ?? -.08, s.stamp.text, s.stamp.size ?? 60, s.stamp.sub ?? null, true);
+  ctx.restore();
+  if (s.strip) strip(t, s.t0 + .1, s.t1, s.strip);
+};
+R.page = (t, s) => { // a document on the desk, always whole and inside the safe area
+  const img = IMG[s.img], ar = img.width / img.height, h = Math.min(930, 1640 / ar), w = h * ar; const [ox, oy, orot] = arrive(t, s.t0, s.arrive, .42);
+  const z = lerp(s.zoom?.[0] ?? 1, s.zoom?.[1] ?? 1.03, E.io(prog(t, s.t0, s.t1)));
+  ctx.save(); ctx.translate(960 + ox, 540 + oy); ctx.scale(z, z); ctx.translate(-960, -540);
+  const S = sheet(img, 960, 540, h, (s.rot ?? 0) + orot, s.kind ?? 'page', s.o || {});
+  const map = (u, v) => S.pt(u, v); overlays(t, s, map);
+  if (s.loupe) { const L = s.loupe, m = E.io(prog(t, L.at, L.at + .6)), tg = S.pt(L.u, L.v), lx = lerp(tg[0] + 300, tg[0], m), ly = lerp(tg[1] + 200, tg[1], m);
+    loupe(() => sheet(img, 960, 540, h, s.rot ?? 0, s.kind ?? 'page', s.o || {}), lx, ly, L.r ?? 230, L.m ?? 1.7, E.out(prog(t, L.at, L.at + .25))); }
+  if (s.stamp) stamp(t, s.stamp.at, s.stamp.x ?? 960, s.stamp.y ?? 600, s.stamp.rot ?? -.12, s.stamp.text, s.stamp.size ?? 70, s.stamp.sub ?? null, s.stamp.onDesk ?? false);
+  ctx.restore();
+  if (s.caption) label(t, s.caption.at ?? s.t0 + .5, s.caption.x ?? 1350, s.caption.y ?? 640, s.caption.rot ?? .015, s.caption.head ?? '', s.caption.lines, { size: s.caption.size ?? 24 });
+  if (s.strip) strip(t, s.t0 + .1, s.t1, s.strip);
+};
+const VCACHE = new Map();
+function vframe(key, i) { const k = key + '/' + i; if (VCACHE.has(k)) return VCACHE.get(k);
+  const p = new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error('frame ' + k)); im.src = `vid/${key}/${String(i + 1).padStart(4, '0')}.jpg`; });
+  VCACHE.set(k, p); if (VCACHE.size > 90) VCACHE.delete(VCACHE.keys().next().value); return p; }
+const VREADY = {};
+R.footage = (t, s) => {
+  const img = VREADY[s.id]; if (!img) return; const [ox, oy] = arrive(t, s.t0, s.arrive, .42);
+  ctx.save(); ctx.translate(ox, oy); if (!s.bleed) matFrame(t, s);
+  drawWindow(img, null, 'cover', s.cam, t, s, s.bleed); ctx.restore();
+  if (s.strip) strip(t, s.t0 + .1, s.t1, s.strip);
+};
+R.map = (t, s) => { // camera fits the pins/routes/areas in play, and the map always fills the frame
+  const M = s.world ? window.WORLD : window.MAP, CANV = s.world ? WORLDC : MAPC;
+  const PP = k => { const p = M.pins[k]; return [p[0] + MX, p[1] + MY]; };
+  let bx0 = 1e9, by0 = 1e9, bx1 = -1e9, by1 = -1e9; const inc = (x, y) => { bx0 = Math.min(bx0, x); by0 = Math.min(by0, y); bx1 = Math.max(bx1, x); by1 = Math.max(by1, y); };
+  for (const k of (s.fit || [])) { const [x, y] = PP(k); inc(x, y); }
+  for (const a of (s.areas || [])) { const [x, y] = PP(a.k); inc(x - a.rx, y - a.ry - (a.ly ? 40 : 0)); inc(x + a.rx, y + a.ry); }
+  const pad = s.pad ?? 170, zmin = Math.max(W / M.w, H / M.h) * 1.001;
+  let z = Math.min(W / (bx1 - bx0 + 2 * pad), H / (by1 - by0 + 2 * pad)); z = clamp(z, zmin, s.zmax ?? 3.2);
+  const z0 = Math.max(zmin, z * (s.pull ?? .9)); const p = E.io(prog(t, s.t0, s.t1)), zz = lerp(z0, z, p);
+  const cx = clamp((bx0 + bx1) / 2, MX + W / (2 * zz), MX + M.w - W / (2 * zz)), cy = clamp((by0 + by1) / 2, MY + H / (2 * zz), MY + M.h - H / (2 * zz));
+  ctx.save(); cam(zz, cx, cy, s.stamps ? Math.max(0, ...s.stamps.map(st => stampShake(t, st.at))) : 0, t);
+  ctx.drawImage(CANV, MX, MY, M.w, M.h); track('map', MX, MY, M.w, M.h, false);
+  for (const a of (s.areas || [])) { const p2 = E.out(prog(t, a.at, a.at + .8)); if (p2 <= 0) continue; const [x, y] = PP(a.k);
+    ctx.save(); ctx.globalAlpha *= p2 * .5; ctx.fillStyle = a.col ?? COL.red; ctx.beginPath(); ctx.ellipse(x, y, a.rx * p2, a.ry * p2, a.rot ?? 0, 0, 7); ctx.fill(); ctx.restore();
+    if (a.label) { ctx.save(); ctx.globalAlpha *= p2; const fs = (a.fs ?? 34) / Math.max(1, zz / 1.6); ctx.font = `italic ${fs}px ${FELL}`; ctx.textAlign = 'center'; ctx.fillStyle = COL.ink; ctx.lineWidth = 6 / zz * 1.6; ctx.strokeStyle = 'rgba(233,224,203,.9)';
+      ctx.strokeText(a.label, x + (a.lx ?? 0), y + (a.ly ?? 0)); ctx.fillText(a.label, x + (a.lx ?? 0), y + (a.ly ?? 0)); const lw = ctx.measureText(a.label).width; track('pin', x + (a.lx ?? 0) - lw / 2, y + (a.ly ?? 0) - fs, lw, fs * 1.2); ctx.restore(); } }
+  const sc = 1.6 / zz; // keep pins and labels a constant size on screen
+  for (const r of (s.routes || [])) { ctx.save(); ctx.lineWidth = 4.5 * sc; mapRoute(t, r.at, r.at + (r.dur ?? 1), PP(r.a), PP(r.b), r.bend ?? .18, r.col); ctx.restore(); }
+  for (const pn of (s.pins || [])) { const [x, y] = PP(pn.k); ctx.save(); ctx.translate(x, y); ctx.scale(sc, sc); mapPin(t, pn.at, [0, 0], pn.name, pn.side ?? 'r', pn.active, pn.fs ?? 34); ctx.restore(); }
+  for (const st of (s.stamps || [])) { const [x, y] = PP(st.k); ctx.save(); ctx.translate(x, y); ctx.scale(sc, sc); stamp(t, st.at, st.dx ?? 0, st.dy ?? 70, st.rot ?? -.1, st.text, st.size ?? 34, st.sub ?? null); ctx.restore(); }
+  ctx.restore();
+  if (s.years) yearCard(t, s.t0 + .1, s.years);
+  if (s.strip) strip(t, s.t0 + .1, s.t1, s.strip);
 };
 
 // ---------- frame ----------
@@ -433,12 +547,14 @@ function shotAt(t) { if (SH[lastIdx] && t >= SH[lastIdx].t0 && t < SH[lastIdx].t
 window.renderFrame = (i) => {
   const t = i / FPS; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; shadowOff();
   ctx.drawImage(DESK, 0, 0);
-  const s = shotAt(t); try { R[s.type](t, s); } catch (e) { console.error('shot', s.id, e); throw e; }
+  const s = shotAt(t); MOV = false; try { R[s.type](t, s); } catch (e) { console.error('shot', s.id, e); throw e; }
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; grainAndVignette(i);
 };
-window.captureFrame = (frame, type = 'image/png', quality = 0.95) => { window.renderFrame(frame); return C.toDataURL(type, quality); };
+async function prepare(i) { const t = i / FPS, s = shotAt(t); if (s.type === 'footage') { const fi = clamp(Math.floor((t - s.t0) * FPS), 0, s.frames - 1); VREADY[s.id] = await vframe(s.clip, fi); } }
+window.captureFrame = async (frame, type = 'image/png', quality = 0.95) => { await prepare(frame); window.renderFrame(frame); return C.toDataURL(type, quality); };
+window.qaFrame = async (frame) => { await prepare(frame); QA = []; window.renderFrame(frame); const b = QA; QA = null; return b; };
 const NEED = [...new Set(SH.flatMap(s => [s.img, s.side, ...(s.items || []).map(x => x.img)]).filter(Boolean))];
-window.READY = loadFonts().then(() => Promise.all(NEED.map(loadImg))).then(() => document.fonts.ready).then(() => {
-  buildTextures(); window.renderFrame(0); return { frames: FRAMES, fps: FPS, width: W, height: H, renderer: 'canvas2d' };
+window.READY = loadFonts().then(() => Promise.all(NEED.map(loadImg))).then(() => document.fonts.ready).then(async () => {
+  buildTextures(); await prepare(0); window.renderFrame(0); return { frames: FRAMES, fps: FPS, width: W, height: H, renderer: 'canvas2d' };
 });
 </script></body></html>
