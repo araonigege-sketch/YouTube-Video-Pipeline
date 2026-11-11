@@ -41,6 +41,19 @@ Update this file whenever the owner gives new standing instructions.
 - **No B-roll more than twice per video**, except the few images or clips that are integral to the story.
 - **Moving footage** (Pexels, archives): yes, as each script demands, with no fixed percentage, but only the most
   premium, exceptional clips that elevate the video, and each must fit its line exactly.
+- **B-roll first, text only when essential (owner, 2026-11-11).** v3 of the pre-Adamites episode felt like reading:
+  46% of the runtime was text cards/lists, footage only 6.6%. A text-only shot is allowed only when the words are the
+  point: a verbatim scripture or source quote, a translation or original-language word, a key number or date, the
+  verdict board, the closing question and CTA. Everything else gets a picture. Limits enforced by the builder report:
+  text-only shots ≤ 15% of runtime, never two text-only shots in a row, captions over B-roll instead of a card where
+  a label is needed.
+- **Cinematic, top-notch visuals, never generic.** Prefer long shots, aerial and drone views, slow cinematic camera
+  moves and high-quality video (1080p+, ideally 4K sources) over stills; reject generic stock (offices, smiling
+  models, obvious stock poses). Search with cinematic terms (aerial, drone, wide, golden hour, slow motion) and preview
+  every clip before using it.
+- **Every key subject gets its own visual.** Whoever or whatever the story keeps returning to (e.g. Neanderthals in
+  the pre-Adamites episode: a skull, a museum reconstruction, a cave site) must be shown, not only named or marked on
+  a map. The shot list declares `SUBJECTS` and the builder flags any subject with no picture.
 - **Use maps and visual elements** (timelines, stat cards, diagrams) wherever they help viewers follow and keep watching.
 - **Voice:** either a real narrator the owner supplies (Milly for Joel's Notebook) or TTS. The vidIQ "George"
   voice (`JBFqnCBsd6RMkjVDRZzb`, "Warm, Captivating Storyteller") was approved as "perfect" for TTS narration.

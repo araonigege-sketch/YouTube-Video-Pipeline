@@ -252,6 +252,27 @@ for s in out:
     for t in beat_times({k: v for k, v in s.items() if k not in ('t0', 't1', 'cam', 'reframes')}):
         if t >= s['t1'] - .2 and not any(o['_use'] == s['_use'] and o['t0'] <= t < o['t1'] - .2 for o in out): lost.append((s['id'], s['type'], round(t - s['t1'], 2), s['anchor'][:48]))
 print('timed elements that never show (at/after shot end):', len(lost)); [print('   ', x) for x in lost]
+# B-roll first (owner, 2026-11-11): text-only shots at most 15% of runtime, never two in a row
+TEXT_ONLY = ('card', 'list', 'compare', 'verdict')
+T_ALL = out[-1]['t1']; t_txt = sum(s['t1'] - s['t0'] for s in out if s['type'] in TEXT_ONLY)
+runs, cur = [], []
+for s in out + [dict(type='end')]:
+    if s['type'] in TEXT_ONLY: cur.append(s)
+    else:
+        if len(cur) > 1: runs.append(cur)
+        cur = []
+moving = sum(s['t1'] - s['t0'] for s in out if s['type'] == 'footage')
+print(f"text-only shots: {t_txt / T_ALL * 100:.0f}% of runtime (limit 15%); footage: {moving / T_ALL * 100:.0f}%; text runs of 2+: {len(runs)}")
+for r in runs[:15]: print(f"    #{r[0]['id']}-#{r[-1]['id']} ({len(r)} shots, {r[-1]['t1'] - r[0]['t0']:.1f}s) '{r[0]['anchor'][:44]}'")
+# every key subject needs its own picture: SUBJECTS = {'name': (narration word stem, [image/clip keys showing it])}
+SUBJ = globals().get('SUBJECTS', {})
+shown = set()
+for s in out:
+    shown |= {s.get('img'), s.get('src')} | {x.get('img') for x in s.get('items', []) if isinstance(x, dict)}
+for name, (stem, keys) in SUBJ.items():
+    n = sum(1 for t in TOK if t.startswith(stem))
+    have = [k for k in keys if k in shown]
+    print(f"subject {name}: named {n}x, shown in {len(have)} visual(s)" + ('' if have else '  <-- NO PICTURE'))
 INTEGRAL = {'pa_title', 'pa_hand', 'hands', 'skull'}  # the title page and the two key pieces of evidence, recalled in the verdict
 uses = {}
 for s in out:

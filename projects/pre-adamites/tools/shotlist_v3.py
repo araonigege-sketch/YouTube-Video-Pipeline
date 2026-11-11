@@ -343,3 +343,7 @@ add(card("We can date the bones", lines=[('We can date the bones.', None, dict(s
 add(sheet("Whether he was the start of human life", 'muller_heaven', .45, .2, (1.5, 1.6), arrive=(0, 1), detail=[(.45, .2), (.5, .24)]))
 add(card("So, what do you think?", kicker='YOUR VERDICT', lines=[('What do you think?', None, dict(size=72)), ('the very first human?', '@the very first', dict(size=60)), ('a man God chose from among others?', '@a man God chose', dict(size=60)), ('a figure who speaks for all of us?', '@a figure who speaks', dict(size=60)), ('Tell me in the comments.', '@Tell me in', dict(size=52, red=True, mono=True))], gap=100, ytop=-200))
 add(("And if you want me to open more files", 'endcard', dict(like='@hit like', share='@share it', sub='@and subscribe', press={'LIKE': '@hit like|+0.5', 'SHARE': '@share it|+0.5', 'SUBSCRIBE': '@and subscribe|+0.5'})))
+
+# key subjects the story keeps returning to: (narration word stem, visuals that show it). The builder flags any with no picture.
+SUBJECTS = {'Neanderthals': ('neanderthal', []), 'Denisovans': ('denisovan', []), 'La Peyrère': ('peyr', ['pa_title', 'pa_hand']),
+            'Göbekli Tepe': ('gobekli', ['gobekli', 'gobekli_pillar'])}
