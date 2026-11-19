@@ -37,6 +37,15 @@ def credits(P: Path) -> str:
     lines += ["", "FOOTAGE"]
     for who, pages in sorted(by_creator.items(), key=lambda kv: kv[0].lower()):
         lines.append(f"{who}: " + " ".join(pages))
+    af = P / "media/archive/credits.json"
+    if af.exists():
+        arch = json.loads(af.read_text())
+        used_a = [Path(s["src"]).stem for s in edit["shots"] if str(s.get("src", "")).startswith("archive/")]
+        if used_a:
+            lines += ["", "PHOTOS"]
+            for k in dict.fromkeys(used_a):
+                if k in arch:
+                    lines.append(f"{arch[k]['title']}: {arch[k]['credit']} {arch[k]['page']}")
     for extra in edit.get("credits_extra", []):
         lines.append(extra)
     return "\n".join(lines) + "\n"

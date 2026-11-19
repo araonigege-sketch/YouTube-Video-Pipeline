@@ -118,7 +118,7 @@ def get(slug: str, ids: list[str]):
     P = _p(slug)
     _, db = _db(P)
     dest = P / "media/broll"
-    cf = dest / "credits.json"
+    cf = dest / os.environ.get("BROLL_CREDITS", "credits.json")   # parallel workers write separate files, merged after
     credits = json.loads(cf.read_text()) if cf.exists() else {}
     for cid in ids:
         c = db[cid]

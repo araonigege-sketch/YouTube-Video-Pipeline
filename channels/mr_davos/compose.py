@@ -43,7 +43,7 @@ HERE = Path(__file__).resolve().parent
 FONT_DIR = Path("/usr/share/fonts/opentype/inter")
 FONTS = {"Inter-Medium.otf": 500, "Inter-SemiBold.otf": 600, "Inter-Bold.otf": 700,
          "InterDisplay-Bold.otf": 700, "InterDisplay-Black.otf": 900, "InterDisplay-Light.otf": 300}
-PAGES = ("chapter", "roadmap", "define", "split", "illus", "black")
+PAGES = ("chapter", "roadmap", "define", "split", "illus", "photo", "black")
 
 
 def load(P: Path):
@@ -248,6 +248,19 @@ class Davos(Composition):
             prev = k
         self.away(f"#{gid}", t1)
 
+    def chips(self, g, t0, t1):
+        """A row of pill chips over darkened footage, each appearing as it is spoken."""
+        gid = self.nid("cp")
+        cols = [self.p[k] for k in ("c1", "c2", "c3", "accent", "c4", "c5")]
+        chips = "".join(f'<div class="chip" id="{gid}c{k}" style="--c:{cols[k % len(cols)]}">{html.escape(it["t"])}</div>'
+                        for k, it in enumerate(g["items"]))
+        self.add(gid, t0, t1, f'<div class="scrim"></div><div class="chip-row">{chips}</div>')
+        self.tw(f'tl.fromTo("#{gid} .scrim",{{opacity:0}},{{opacity:1,duration:0.5}},{t0:.3f});')
+        for k, it in enumerate(g["items"]):
+            ta = self.t(it["a"], t0, 0.1) if "a" in it else t0 + 0.5 * k
+            self.rise(f"#{gid}c{k}", ta, 0.45, 16)
+        self.away(f"#{gid}", t1)
+
     def quote(self, g, t0, t1):
         gid = self.nid("qt")
         inner = (f'<div class="scrim"></div><div class="qt-wrap"><div class="qt-mark" style="color:{self.p["accent"]}">“</div>'
@@ -317,6 +330,30 @@ class Davos(Composition):
     def illus(self, s, t0, t1):
         from . import illus
         getattr(illus, s["name"])(self, s, t0, t1)
+
+    def photo(self, s, t0, t1):
+        """Archive photo: sharp and framed over a blurred, darkened copy of itself, slow push, small credit line."""
+        gid = self.nid("ph")
+        src = self.asset(self.proj / "media" / s["src"])
+        credit = s.get("credit") or self.archive_credit(s["src"])
+        cap = f'<div class="ph-cap">{html.escape(s["caption"])}</div>' if s.get("caption") else ""
+        inner = (f'<div class="ph-bg" style="background-image:url({src})"></div>'
+                 f'<div class="ph-frame"><img src="{src}"/></div>{cap}'
+                 f'<div class="ph-credit">{html.escape(credit)}</div>')
+        self.add(gid, t0, t1, inner, z=10, cls="page")
+        z = s.get("zoom", 0.06)
+        self.tw(f'tl.fromTo("#{gid} .ph-frame",{{scale:1}},{{scale:{1 + z},duration:{t1 - t0:.3f},ease:"none"}},{t0:.3f});')
+        self.tw(f'tl.fromTo("#{gid} .ph-frame",{{opacity:0}},{{opacity:1,duration:0.35}},{t0:.3f});')
+        if cap:
+            self.rise(f"#{gid} .ph-cap", t0, 0.5, 12, 0.3)
+
+    def archive_credit(self, src: str) -> str:
+        cf = self.proj / "media/archive/credits.json"
+        if cf.exists():
+            d = json.loads(cf.read_text()).get(Path(src).stem)
+            if d:
+                return "Photo: " + d["credit"]
+        return ""
 
     def black(self, s, t0, t1):
         pass
@@ -390,19 +427,28 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .sp-row{{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:26px;opacity:0}}
 .sp-t{{font-family:"Inter Display";font-weight:700;font-size:48px}}
 .sp-v{{font-family:"Inter Display";font-weight:800;font-size:56px;color:{p['accent']}}}
+.chip-row{{position:absolute;left:100px;right:100px;top:50%;transform:translateY(-50%);display:flex;flex-wrap:wrap;justify-content:center;gap:26px}}
+.chip{{opacity:0;padding:22px 40px;border-radius:999px;font-family:"Inter Display";font-weight:700;font-size:50px;color:var(--c);
+  background:color-mix(in srgb,var(--c) 16%,rgba(10,11,13,.55));border:2px solid var(--c);box-shadow:0 10px 40px rgba(0,0,0,.35)}}
+.ph-bg{{position:absolute;inset:-60px;background-size:cover;background-position:center;filter:blur(38px) brightness(.32) saturate(1.1)}}
+.ph-frame{{position:absolute;left:50%;top:50%;width:1460px;height:900px;margin:-450px 0 0 -730px;display:flex;align-items:center;justify-content:center}}
+.ph-frame img{{max-width:1460px;max-height:900px;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.6);outline:1px solid rgba(255,255,255,.12)}}
+.ph-cap{{position:absolute;left:110px;bottom:70px;font-family:"Inter Display";font-weight:700;font-size:44px;text-shadow:0 3px 20px rgba(0,0,0,.7)}}
+.ph-credit{{position:absolute;right:46px;bottom:30px;font-weight:500;font-size:19px;letter-spacing:.04em;color:rgba(244,242,238,.62)}}
 .cta{{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;gap:28px}}
 .cta-btn{{display:flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;font-weight:700;font-size:40px;
   background:rgba(20,22,26,.78);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.4)}}
 """
 
 
-TEXT_KINDS = ("big", "label", "questions", "quote")
+TEXT_KINDS = ("big", "label", "questions", "quote", "chips")
 
 
 def build_overlay(P, edit, ch, words, shots, log=print) -> tuple[Path, list[float]]:
     a, b = edit["range"]
     end = b - a
     c = Davos(words, P / "build/hf", ch, a)
+    c.proj = P
     for s in shots:
         if s.get("page"):
             if s["page"] not in PAGES:

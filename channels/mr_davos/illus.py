@@ -164,7 +164,7 @@ def ladder(c, s, t0, t1):
                     f'<div id="{gid}n{k}" style="position:absolute;right:{1920 - x0 + 50}px;top:{y - 26}px;opacity:0;'
                     f'font-family:\'Inter Display\';font-weight:800;font-size:44px;color:{col}">{k + 1:02d}</div>')
     title = (f'<div style="position:absolute;left:0;right:0;top:64px;text-align:center;font-weight:600;font-size:28px;'
-             f'letter-spacing:.3em;color:#C9CCD1">{html.escape(s.get("title", "THE LADDER"))}</div>')
+             f'letter-spacing:.3em;text-transform:uppercase;color:#C9CCD1">{html.escape(s.get("title", "THE LADDER"))}</div>')
     c.add(gid, t0, t1, c.stage() + _svg(rails + "".join(bars)) + "".join(labs) + title, z=10, cls="page")
     c.draw(f"#{gid}r1", t0 + 0.05, 0.8, 1)
     c.draw(f"#{gid}r2", t0 + 0.15, 0.8, 1)
@@ -173,7 +173,12 @@ def ladder(c, s, t0, t1):
     prev = None
     for k, r in enumerate(rungs):
         col = p.get(r.get("color", "c1"), r.get("color", p["c1"]))
-        ta = t0 + 0.6 if k <= s.get("lit", -1) else (c.t(r["a"], t0, 0.1) if "a" in r else t0 + 0.8 + 0.8 * k)
+        if k <= s.get("lit", -1):
+            ta = t0 + 0.6
+        elif "a" in r:
+            ta = c.t(r["a"], t0, 0.1)
+        else:
+            continue                      # not reached yet in this appearance: stays unlit
         c.tw(f'tl.to("#{gid}b{k}",{{attr:{{fill:"{col}",stroke:"{col}"}},fillOpacity:0.85,duration:0.45}},{ta:.3f});')
         c.rise(f"#{gid}l{k}", ta, 0.5, 14)
         c.rise(f"#{gid}n{k}", ta, 0.5, 14)
@@ -221,16 +226,108 @@ def hours(c, s, t0, t1):
                  f'font-weight:700;font-size:40px;color:{p["c1"]}">{s.get("per_month", 80)} hours a month · {s["months"]} months</div>')
     c.add(gid, t0, t1, c.stage() + _svg(track + months + ticks) + lab_have + lab_need + lab_gap + lab_m, z=10, cls="page")
     c.tw(f'tl.fromTo("#{gid} svg",{{opacity:0}},{{opacity:1,duration:0.4}},{t0:.3f});')
-    th = c.t(s["have_at"], t0, 0.1) if "have_at" in s else t0 + 0.3
+    th = _at(c, s["have_at"], t0) if "have_at" in s else t0 + 0.3
     c.tw(f'tl.fromTo("#{gid}have",{{scaleX:0}},{{scaleX:1,duration:0.8,ease:"power3.out"}},{th:.3f});')
     c.rise(f"#{gid}lh", th, 0.5, 14, 0.3)
-    tn = c.t(s["need_at"], th, 0.1) if "need_at" in s else th + 1.2
+    tn = _at(c, s["need_at"], t0) if "need_at" in s else th + 1.2
     c.rise(f"#{gid}ln", tn, 0.5, 14)
     c.tw(f'tl.fromTo("#{gid}gap",{{opacity:0}},{{opacity:1,duration:0.5}},{tn:.3f});')
-    tg = c.t(s["gap_at"], tn, 0.1) if "gap_at" in s else tn + 1.2
+    tg = _at(c, s["gap_at"], t0) if "gap_at" in s else tn + 1.2
     c.rise(f"#{gid}lg", tg, 0.6, 18)
     if s.get("months"):
-        tf = c.t(s["fill_at"], tg, 0.1) if "fill_at" in s else tg + 1.5
+        tf = _at(c, s["fill_at"], t0) if "fill_at" in s else tg + 1.5
         dur = max(1.0, (c.t(s["fill_end"], tf, 0.0) - tf) if "fill_end" in s else 3.0)
         c.tw(f'tl.to("#{gid} .{gid}m",{{opacity:0.9,duration:0.12,stagger:{dur / s["months"]:.3f}}},{tf:.3f});')
         c.rise(f"#{gid}lm", tf, 0.5, 12)
+
+
+def _at(c, x, base):
+    """Anchor: number = seconds after base; "phrase" = when it is spoken (searching from base)."""
+    return base + float(x) if isinstance(x, (int, float)) else c.t(x, base, 0.1)
+
+
+def bars(c, s, t0, t1):
+    """Vertical bar chart drawn bar by bar. s.items: [{label, value, text, a, color}], s.max, s.title, s.note."""
+    p = c.p
+    gid = c.nid("bc")
+    items = s["items"]
+    n = len(items)
+    vmax = s.get("max") or max(it["value"] for it in items) * 1.15
+    X0, X1, Y0, Y1 = 360, 1560, 860, 250
+    slot = (X1 - X0) / n
+    bw = min(220, slot * 0.56)
+    base = f'<line x1="{X0 - 40}" y1="{Y0}" x2="{X1 + 40}" y2="{Y0}" stroke="rgba(244,242,238,.35)" stroke-width="2"/>'
+    rects, labs = [], []
+    for k, it in enumerate(items):
+        col = p.get(it.get("color", "c1"), it.get("color", p["c1"]))
+        h = (Y0 - Y1) * it["value"] / vmax
+        x = X0 + slot * k + (slot - bw) / 2
+        rects.append(f'<rect id="{gid}r{k}" x="{x:.0f}" y="{Y0 - h:.0f}" width="{bw:.0f}" height="{h:.0f}" rx="14" '
+                     f'fill="{col}" fill-opacity=".88" style="transform-origin:{x + bw / 2:.0f}px {Y0}px"/>')
+        labs.append(f'<div id="{gid}v{k}" style="position:absolute;left:{x - 60:.0f}px;width:{bw + 120:.0f}px;top:{Y0 - h - 92:.0f}px;'
+                    f'text-align:center;opacity:0;font-family:\'Inter Display\';font-weight:900;font-size:60px;color:{col}">'
+                    f'{html.escape(it.get("text", str(it["value"])))}</div>'
+                    f'<div id="{gid}l{k}" style="position:absolute;left:{x - 80:.0f}px;width:{bw + 160:.0f}px;top:{Y0 + 22}px;'
+                    f'text-align:center;opacity:0;font-weight:600;font-size:30px;letter-spacing:.08em;color:#C9CCD1">'
+                    f'{html.escape(it["label"])}</div>')
+    title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:90px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.24em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+    note = (f'<div id="{gid}n" style="position:absolute;left:0;right:0;top:965px;text-align:center;font-weight:500;font-size:24px;'
+            f'letter-spacing:.12em;color:#8A9096;opacity:0">{html.escape(s.get("note", ""))}</div>')
+    c.add(gid, t0, t1, c.stage() + _svg(base + "".join(rects)) + "".join(labs) + title + note, z=10, cls="page")
+    c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
+    c.tw(f'tl.fromTo("#{gid} line",{{opacity:0}},{{opacity:1,duration:0.4}},{t0:.3f});')
+    for k, it in enumerate(items):
+        ta = _at(c, it["a"], t0) if "a" in it else t0 + 0.5 + 0.7 * k
+        c.tw(f'tl.fromTo("#{gid}r{k}",{{scaleY:0}},{{scaleY:1,duration:0.8,ease:"power3.out"}},{ta:.3f});')
+        c.rise(f"#{gid}v{k}", ta, 0.5, 14, 0.45)
+        c.rise(f"#{gid}l{k}", ta, 0.4, 8)
+    for k, it in enumerate(items):
+        if "dim_at" in it:
+            c.tw(f'tl.to("#{gid}r{k},#{gid}v{k}",{{opacity:0.35,duration:0.4}},{_at(c, it["dim_at"], t0):.3f});')
+    if s.get("note"):
+        c.rise(f"#{gid}n", _at(c, s.get("note_at", 1.0), t0), 0.5, 8)
+
+
+def timeline(c, s, t0, t1):
+    """Horizontal timeline; points light left to right. s.points: [{t, sub, a, color}], s.title, s.total {t, sub, a}."""
+    p = c.p
+    gid = c.nid("tl")
+    pts = s["points"]
+    n = len(pts)
+    X0, X1, Y = 230, 1690, 520
+    xs = [X0 + (X1 - X0) * k / max(1, n - 1) for k in range(n)]
+    track = f'<line x1="{X0}" y1="{Y}" x2="{X1}" y2="{Y}" stroke="rgba(244,242,238,.16)" stroke-width="6" stroke-linecap="round"/>'
+    segs = "".join(_line(f"{gid}s{k}", f"M{xs[k]} {Y} L{xs[k + 1]} {Y}", p.get(pts[k + 1].get("color", "c1"), p["c1"]), 6)
+                   for k in range(n - 1))
+    dots = "".join(f'<circle id="{gid}d{k}" cx="{xs[k]:.0f}" cy="{Y}" r="18" fill="{p.get(pt.get("color", "c1"), p["c1"])}" '
+                   f'style="transform-origin:{xs[k]:.0f}px {Y}px" opacity="0"/>' for k, pt in enumerate(pts))
+    labs = "".join(
+        f'<div id="{gid}l{k}" style="position:absolute;left:{xs[k] - 190:.0f}px;width:380px;top:{Y - 150}px;text-align:center;opacity:0">'
+        f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:66px;color:{p.get(pt.get("color", "c1"), p["c1"])}">{html.escape(pt["t"])}</div></div>'
+        f'<div id="{gid}u{k}" style="position:absolute;left:{xs[k] - 190:.0f}px;width:380px;top:{Y + 46}px;text-align:center;opacity:0;'
+        f'font-weight:600;font-size:26px;line-height:1.3;letter-spacing:.06em;color:#C9CCD1">{html.escape(pt.get("sub", ""))}</div>'
+        for k, pt in enumerate(pts))
+    title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.24em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+    total = ""
+    if s.get("total"):
+        tt = s["total"]
+        total = (f'<div id="{gid}T" style="position:absolute;left:0;right:0;top:770px;text-align:center;opacity:0">'
+                 f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:110px;color:{p["accent"]}">{html.escape(tt["t"])}</div>'
+                 f'<div style="font-weight:600;font-size:28px;letter-spacing:.22em;text-transform:uppercase;color:#E8E6E1;margin-top:8px">'
+                 f'{html.escape(tt.get("sub", ""))}</div></div>')
+    c.add(gid, t0, t1, c.stage() + _svg(track + segs + dots) + labs + title + total, z=10, cls="page")
+    c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
+    c.tw(f'tl.fromTo("#{gid} line",{{opacity:0}},{{opacity:1,duration:0.4}},{t0:.3f});')
+    prev_t = t0
+    for k, pt in enumerate(pts):
+        ta = _at(c, pt["a"], prev_t - 0.5) if "a" in pt else t0 + 0.4 + 0.9 * k
+        if k:
+            c.draw(f"#{gid}s{k - 1}", ta - 0.35, 0.45, 1)
+        c.tw(f'tl.fromTo("#{gid}d{k}",{{opacity:0,scale:0.2}},{{opacity:1,scale:1,duration:0.45,ease:"back.out(2)"}},{ta:.3f});')
+        c.rise(f"#{gid}l{k}", ta, 0.5, 14)
+        c.rise(f"#{gid}u{k}", ta, 0.5, 10, 0.15)
+        prev_t = ta
+    if s.get("total"):
+        c.rise(f"#{gid}T", _at(c, s["total"]["a"], prev_t - 0.5) if "a" in s["total"] else prev_t + 1.0, 0.7, 20)

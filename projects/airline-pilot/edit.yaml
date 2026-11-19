@@ -1,17 +1,18 @@
 # Mr. Davos ep1 — "How Hard Is It to Actually Become an Airline Pilot?"
 # Shots are anchored to the narration (words.json). B-roll ids: media/broll/credits.json.
-range: [0, 99.0]          # test section: cold open → roadmap → chapter 1 → pre-flight
+range: [0, 840.5]         # full episode (narration ends 838.1)
 
 shots:
   # ---- cold open
   - {at: 0, src: broll/pe33185163.mp4, from: 3, move: push, hold: establishing aerial}
   - {at: "You’re at the airport", src: broll/pe854549.mp4, from: 0.5, move: push}
-  - {at: "and two people walk", src: broll/pe3736790.mp4, from: 7, move: none}
+  # two real airline pilots (white shirts, caps, roller bags) cross the Delta departures board at 4.0–6.6 s
+  - {at: "and two people walk", src: broll/pe12903808.mp4, from: 3.8, move: none}
   - {at: "White shirts", src: broll/pe39609970.mp4, from: 1, move: push}
   - {at: "gold stripes", src: broll/pe38132855.mp4, from: 6, move: push}
   - {at: "a small rolling bag", src: broll/pe7423657.mp4, from: 2, move: none}
-  - {at: "They walk like", src: broll/pe6036726.mp4, from: 2, move: none}
-  - {at: "And half the people", src: broll/pe12903808.mp4, from: 1, move: left}
+  - {at: "They walk like", src: broll/pe3736790.mp4, from: 7, move: none}
+  - {at: "And half the people", src: broll/pe854549.mp4, from: 3.5, move: pull}
   - {at: "Those are airline pilots", src: broll/pe4690486.mp4, from: 6, move: push}
   - {at: "In about forty minutes", src: broll/pe27848568.mp4, from: 5, move: none}
   - {at: "fifty cars", src: broll/pe4589467.mp4, from: 0.5, move: none}
@@ -46,6 +47,323 @@ shots:
   - {at: "Then they run checklists", src: broll/pe7540494.mp4, from: 2, move: none}
   - {at: "do if something", src: broll/pe3678391.mp4, from: 4, move: none}
 
+  # ---- autopilot + meals
+  - {at: "Now, you’ve probably heard", src: broll/pe13879887.mp4, from: 5, move: push}
+  - {at: "Well, that’s only half", src: broll/pe34375179.mp4, from: 2, move: none}
+  - {at: "The autopilot does", src: broll/pe4690484.mp4, from: 10, move: push}
+  - {at: "watch it the whole", src: broll/pe15462822.mp4, from: 1, move: none}
+  - {at: "Think of it like cruise", src: broll/pe35666229.mp4, from: 2, move: push}
+  - {at: "You still wouldn’t take", src: broll/pe16127349.mp4, from: 3, move: none}
+  - {at: "Fun detail", src: broll/pe16668715.mp4, from: 2, move: push}
+  - {at: "eat different meals", src: broll/pe30226009.mp4, from: 2, move: push}
+  - {at: "Because if one meal", src: broll/pe13782053.mp4, from: 20, move: none}
+  # ---- chapter 2: pay
+  - {at: "So, what does a job like", page: chapter, n: 2, title: "What they earn"}
+  - {at: "Many pilots begin at regional", src: broll/pe32603368.mp4, from: 1, move: none}
+  - {at: "United Express or", src: broll/pe38380911.mp4, from: 2, move: push}
+  - {at: "They’re often paid by", src: broll/pe36895992.mp4, from: 4, move: left}
+  - at: "A US government report"
+    page: illus
+    name: bars
+    title: "First-year regional first officers · hourly pay"
+    note: "Inflation-adjusted · US government report"
+    note_at: "after adjusting"
+    items:
+      - {label: "2021", value: 52, text: "$52", a: "52 dollars", color: c2}
+      - {label: "2024", value: 93, text: "$93", a: "about 93 dollars", color: accent}
+  - at: "At 93 dollars an hour"
+    page: split
+    src: broll/pe5466780.mp4
+    from: 1
+    title: "The first-year math"
+    items:
+      - {t: "Pay per flight hour", v: "$93", a: "At 93 dollars"}
+      - {t: "Guaranteed hours / month", v: "75", a: "with 75 hours"}
+      - {t: "First-year pay", v: "≈ $84,000", a: "that’s almost 84,000"}
+  - {at: "In your first year", src: broll/pe36267343.mp4, from: 1, move: none}
+  - {at: "At the top, a senior", src: broll/pe34455606.mp4, from: 1, move: none}
+  - {at: "can earn over 400,000", src: broll/pe34889079.mp4, from: 1, move: none}
+  - {at: "But that takes years", src: broll/pe19959329.mp4, from: 8, move: push}
+  - {at: "The US government puts", src: broll/pe18796817.mp4, from: 10, move: right, hold: big number lands on this shot}
+  - {at: "mixing newer pilots", src: broll/pe19959735.mp4, from: 1, move: none}
+  # ---- who can fly
+  - {at: "So with pay like that", src: broll/pe12478546.mp4, from: 4, move: push}
+  - {at: "Mostly, yes", src: broll/pe8085790.mp4, from: 3, move: push}
+  - {at: "Basic math and some", src: broll/pe6549275.mp4, from: 1, move: none}
+  - {at: "what matters more is", src: broll/pe4690486.mp4, from: 18, move: push}
+  - {at: "communicating clearly", src: broll/pe35892354.mp4, from: 6, move: none}
+  - {at: "What about a degree", src: broll/pe8061030.mp4, from: 1, move: none}
+  - {at: "generally don’t require", src: broll/pe7490417.mp4, from: 1, move: push}
+  - {at: "And what about glasses", src: broll/pe5241181.mp4, from: 0.5, move: push}
+  - {at: "Glasses and contacts", src: broll/pe5241181.mp4, from: 6, move: none}
+  - at: "But airline pilots also need"
+    page: define
+    term: "First-class medical"
+    phon: "/ˌfɜːrst klæs ˈmɛdɪkəl/"
+    pos: "noun · FAA"
+    text: "The top medical certificate the FAA issues. Airline pilots need one: it checks hearing, colour vision, heart health and other conditions."
+  - {at: "So check your medical", src: broll/pe5453380.mp4, from: 2, move: push}
+  - {at: "before spending serious", src: broll/pe6266262.mp4, from: 1, move: none}
+  - {at: "You don’t want a surprise", src: broll/pe7735496.mp4, from: 1, move: push}
+  # ---- chapter 3: flight school
+  - {at: "Okay, let’s say you pass", page: chapter, n: 3, title: "How hard flight school is"}
+  - {at: "Let’s follow Jake", src: broll/pe17118516.mp4, from: 1, move: push, hold: label over the introduction}
+  - {at: "An instructor sits beside", src: broll/pe15231633.mp4, from: 0, move: push}
+  - {at: "and shows him the controls", src: broll/pe15462822.mp4, from: 1.5, move: push, hold: pause in the narration}
+  - {at: "how to talk to air", src: broll/pe13278456.mp4, from: 2, move: push}
+  - {at: "and how to take off", src: broll/pe1685454.mp4, from: 1, move: none}
+  - {at: "Then, after enough practice", src: broll/pe9722409.mp4, from: 0.5, move: push, hold: the day every pilot remembers}
+  - {at: "The instructor climbs out", src: broll/pe6739601.mp4, from: 1, move: push, hold: the instructor leaves}
+  - {at: "That’s his first solo", src: broll/pe17118520.mp4, from: 1, move: none, hold: the first solo takeoff}
+  - {at: "Just him, the runway", src: broll/pe32260379.mp4, from: 2, move: none}
+  - at: "From there, Jake climbs"
+    page: illus
+    name: ladder
+    title: "The ladder"
+    rungs:
+      - {t: "Private pilot", sub: "40 h minimum", a: "The first is the private", color: c3}
+      - {t: "Instrument rating", sub: "Fly by instruments", color: c1}
+      - {t: "Commercial pilot", sub: "250 h · paid flying", color: c2}
+      - {t: "Airline Transport Pilot", sub: "1,500 h · airline jobs", color: accent}
+  - {at: "Under the standard US training", src: broll/pe17118517.mp4, from: 2, move: push}
+  - {at: "or as few as 35", src: broll/pe15231633.mp4, from: 4.5, move: none}
+  - {at: "Most students need more", src: broll/pe8105603.mp4, from: 2, move: none}
+  - {at: "With it, Jake can take", src: broll/pe32343192.mp4, from: 0, move: none}
+  - {at: "but he can’t operate", src: broll/pe34894994.mp4, from: 4, move: push}
+  # ---- instrument rating
+  - {at: "Next problem", src: broll/pe33847363.mp4, from: 0, move: push}
+  - {at: "and can’t see the horizon", src: broll/pe5703847.mp4, from: 2, move: none}
+  - {at: "His body starts lying", src: broll/pe4690484.mp4, from: 26, move: none}
+  - {at: "his inner ear can tell", src: broll/pe16127349.mp4, from: 11, move: none}
+  - {at: "or turning when", src: broll/pe33847363.mp4, from: 7, move: none}
+  - at: "So the instrument rating"
+    page: illus
+    name: ladder
+    title: "The ladder"
+    lit: 0
+    rungs:
+      - {t: "Private pilot", sub: "40 h minimum", color: c3}
+      - {t: "Instrument rating", sub: "Fly by instruments", a: "So the instrument rating", color: c1}
+      - {t: "Commercial pilot", sub: "250 h · paid flying", a: "Then comes the commercial", color: c2}
+      - {t: "Airline Transport Pilot", sub: "1,500 h · airline jobs", color: accent}
+  - {at: "On the standard US route", src: broll/pe36666798.mp4, from: 3, move: none}
+  - {at: "with some approved programs", src: broll/pe32603368.mp4, from: 7, move: push}
+  - {at: "He also adds a multi-engine", src: broll/pe11578014.mp4, from: 0, move: none}
+  - {at: "because the passenger jets", src: broll/pe35014054.mp4, from: 9, move: none, hold: takeoff roll}
+  # ---- checkride
+  - {at: "And each major certificate", src: broll/pe8085790.mp4, from: 22, move: push}
+  - {at: "including a practical", src: broll/pe8060959.mp4, from: 4, move: none}
+  - at: "called a checkride"
+    page: define
+    term: "Checkride"
+    phon: "/ˈtʃɛk.raɪd/"
+    pos: "noun · aviation"
+    text: "The practical flying exam for a pilot certificate or rating: an examiner rides along and grades every manoeuvre and decision."
+  - {at: "He’s practiced every", src: broll/pe8105603.mp4, from: 32, move: none}
+  - {at: "But today, an examiner", src: broll/pe8060959.mp4, from: 1, move: push}
+  - {at: "Halfway through", src: broll/pe1595757.mp4, from: 1.6, move: push}
+  - {at: "to simulate an engine", src: broll/pe36971603.mp4, from: 4, move: push}
+  - {at: "Jake must pick a place", src: broll/pe38834873.mp4, from: 2, move: none}
+  - {at: "set up the glide", src: broll/pe8551732.mp4, from: 6, move: none}
+  - {at: "That’s what makes flight school", src: broll/pe17118516.mp4, from: 8, move: none}
+  - {at: "Doing something right once", src: broll/pe35225359.mp4, from: 6, move: push}
+  - {at: "Doing it reliably under", src: broll/pe6467678.mp4, from: 0.5, move: none}
+  - {at: "So, in an intensive", src: broll/pe15061550.mp4, from: 3, move: push, hold: big number lands on this shot}
+  - {at: "Can he finally fly", src: broll/pe37870259.mp4, from: 8, move: none}
+  - {at: "But before we get to why", src: broll/pe6266262.mp4, from: 6, move: push}
+  # ---- chapter 4: cost
+  - {at: "Who pays for all of this", page: chapter, n: 4, title: "What it costs"}
+  - {at: "Every hour in the air", src: broll/pe17118517.mp4, from: 14, move: push, hold: refuelling the trainer}
+  - {at: "plus books and exam", src: broll/pe9034460.mp4, from: 1, move: none}
+  - at: "One major US flight school"
+    page: split
+    src: broll/pe9722409.mp4
+    from: 2
+    title: "One major US flight school"
+    items:
+      - {t: "Advertised tuition", v: "$123,995", a: "advertises 123,995"}
+      - {t: "From", v: "Zero experience", a: "from zero experience"}
+      - {t: "To", v: "Commercial + instructor", a: "through commercial pilot"}
+      - {t: "Not included", v: "Everything else", a: "And that still doesn’t"}
+  - {at: "So how do people pay", src: broll/pe5466780.mp4, from: 5, move: push}
+  - {at: "loans, scholarships", src: broll/pe7735496.mp4, from: 6, move: none}
+  - {at: "or military training", src: broll/pe19028313.mp4, from: 1, move: none}
+  # ---- chapter 5: getting hired
+  - {at: "Okay, now, back to Jake", page: chapter, n: 5, title: "How you get hired"}
+  - {at: "Why can’t he fly for an airline yet", src: broll/pe13973018.mp4, from: 44, move: push}
+  - {at: "Because of one number", src: broll/pe40885596.mp4, from: 1, move: push}
+  - at: "To fly for a US passenger"
+    page: illus
+    name: ladder
+    title: "The ladder"
+    lit: 2
+    rungs:
+      - {t: "Private pilot", sub: "40 h minimum", color: c3}
+      - {t: "Instrument rating", sub: "Fly by instruments", color: c1}
+      - {t: "Commercial pilot", sub: "250 h · paid flying", color: c2}
+      - {t: "Airline Transport Pilot", sub: "1,500 h · airline jobs", a: "Airline Transport Pilot certificate", color: accent}
+  - {at: "That rule followed", src: broll/pe10675969.mp4, from: 4, move: none}
+  - {at: "Congress changed the law", src: broll/pe29188235.mp4, from: 2, move: push}
+  - {at: "into these jobs", src: broll/pe29188237.mp4, from: 2, move: push}
+  - at: "So let’s do the math"
+    page: illus
+    name: hours
+    have_at: "Jake has about 250"
+    need_at: "He needs 1,500"
+    gap_at: "That’s 1,250"
+  - {at: "Why does it matter so much", src: broll/pe12478546.mp4, from: 30, move: none}
+  - {at: "Because knowing how a plane", src: broll/pe13879887.mp4, from: 30, move: none}
+  - {at: "as knowing what to do", src: broll/pe5703847.mp4, from: 12, move: push}
+  - {at: "the radio gets busy", src: broll/pe13278456.mp4, from: 10, move: none}
+  - {at: "That kind of judgment", src: broll/pe28806755.mp4, from: 1, move: none, hold: sunset silhouette}
+  # ---- Sully
+  - {at: "Take Chesley", page: photo, src: archive/sully.jpg, caption: "Chesley “Sully” Sullenberger"}
+  - {at: "He flew fighter jets", src: broll/pe18872865.mp4, from: 1, move: none}
+  - {at: "then joined an airline", src: broll/pe35080296.mp4, from: 0.5, move: push}
+  - {at: "On January 15", src: broll/pe35046644.mp4, from: 1, move: none}
+  - {at: "caused both engines", src: broll/pe33873344.mp4, from: 12, move: push}
+  - {at: "shortly after leaving", src: broll/pe5565202.mp4, from: 20, move: right}
+  - {at: "He landed it on the Hudson", page: photo, src: archive/hudson_grego.jpg, zoom: 0.08}
+  - {at: "and all 155 people", page: photo, src: archive/hudson_usace1.jpg, zoom: 0.06}
+  - {at: "Later, he told Katie", page: photo, src: archive/hudson_cg.jpg, zoom: 0.07}
+  - {at: "making “small", page: photo, src: archive/hudson_grego.jpg, zoom: 0.14}
+  - {at: "On that day, the balance", src: broll/pe6641647.mp4, from: 2, move: push, hold: closing the Sully story}
+  - {at: "Jake isn’t Sully", src: broll/pe1685454.mp4, from: 4, move: none}
+  - {at: "But the example shows", src: broll/pe37658114.mp4, from: 14, move: none}
+  - {at: "Every hour is another", src: broll/pe16127307.mp4, from: 10, move: push}
+  # ---- filling the gap
+  - {at: "So how does Jake fill", src: broll/pe14109775.mp4, from: 20, move: none}
+  - {at: "One common route is to teach", src: broll/pe6739601.mp4, from: 6, move: none}
+  - {at: "Jake earns a flight instructor", src: broll/pe9034460.mp4, from: 4, move: push}
+  - {at: "Every eligible hour", src: broll/pe32343190.mp4, from: 1, move: none}
+  - at: "At 80 hours a month"
+    page: illus
+    name: hours
+    have_at: 0.1
+    need_at: 0.2
+    gap_at: 0.3
+    months: 16
+    per_month: 80
+    fill_at: "1,250 hours takes"
+    fill_end: "And he’s getting paid"
+  - {at: "Other pilots take different", src: broll/pe19028313.mp4, from: 4, move: none}
+  - {at: "The military pays for", src: broll/pe18872865.mp4, from: 7, move: none}
+  - at: "may be eligible for a restricted"
+    page: illus
+    name: bars
+    title: "Hours before an airline job (US)"
+    items:
+      - {label: "Standard", value: 1500, text: "1,500", a: 0.2, color: accent}
+      - {label: "US military", value: 750, text: "750", a: "as few as 750", color: c3}
+      - {label: "Aviation degree", value: 1000, text: "1,000", a: "can qualify at 1,000", color: c2}
+  - {at: "Airlines also run career", src: broll/pe37870259.mp4, from: 20, move: none}
+  - {at: "Delta’s Propel", src: broll/pe11489996.mp4, from: 10, move: push}
+  - {at: "where some participants", src: broll/pe18796817.mp4, from: 30, move: none, hold: pipelines label}
+  # ---- outside the US
+  - {at: "Outside the US", src: broll/pe27602660.mp4, from: 2, move: push}
+  - {at: "pilots may join airlines", src: broll/pe14132852.mp4, from: 2, move: none}
+  - {at: "after commercial and instrument", src: broll/pe6672302.mp4, from: 1, move: push}
+  - {at: "and multi-crew", src: broll/pe35014054.mp4, from: 2, move: none}
+  - {at: "They build experience toward", src: broll/pe38117150.mp4, from: 6, move: none, hold: takeoff}
+  # ---- age
+  - {at: "So, Jake hits 1,500", src: broll/pe36666798.mp4, from: 12, move: none}
+  - {at: "Is he hired", src: broll/pe19959735.mp4, from: 5, move: none}
+  - at: "Remember how old Jake"
+    page: illus
+    name: timeline
+    title: "Jake’s age"
+    points:
+      - {t: "18", sub: "Walks into flight school", a: "Eighteen", color: c3}
+      - {t: "≈ 20", sub: "1,500 hours", a: "makes him about twenty", color: c1}
+      - {t: "21", sub: "Earliest US airline first officer", a: "is twenty-one", color: accent}
+  - {at: "So Jake keeps teaching", src: broll/pe32183339.mp4, from: 8, move: none}
+  - at: "Becoming a captain takes"
+    page: split
+    src: broll/pe39609970.mp4
+    from: 3
+    title: "To become captain"
+    items:
+      - {t: "Age", v: "23+", a: "at least twenty-three"}
+      - {t: "Licence", v: "Unrestricted ATP", a: "hold an unrestricted"}
+      - {t: "Airline experience", v: "Qualifying", a: "gain qualifying"}
+      - {t: "Evaluations", v: "Passed", a: "pass further"}
+      - {t: "A captain seat", v: "Open", a: "and wait for a captain"}
+  # ---- getting hired
+  - {at: "But first, Jake has to get", src: broll/pe7643457.mp4, from: 2, move: none}
+  - {at: "That means technical", src: broll/pe5438891.mp4, from: 1, move: push}
+  - {at: "aptitude tests", src: broll/pe6672302.mp4, from: 8, move: none}
+  - {at: "a simulator evaluation", src: broll/pe5139201.mp4, from: 2, move: push}
+  - {at: "and background and medical", src: broll/pe5453380.mp4, from: 8, move: none}
+  - {at: "Airlines want to know", src: broll/pe4774976.mp4, from: 2, move: push}
+  - {at: "and whether he speaks", src: broll/pe7643457.mp4, from: 12, move: push}
+  - {at: "Timing matters too", src: broll/pe29576548.mp4, from: 2, move: none}
+  - at: "In both 2022"
+    page: illus
+    name: bars
+    title: "Pilots hired by major US airlines"
+    items:
+      - {label: "2022", value: 12500, text: "12,000+", a: "In both 2022", color: c1}
+      - {label: "2023", value: 12500, text: "12,000+", a: "and 2023", color: c1}
+      - {label: "2024", value: 4700, text: "< 5,000", a: "In 2024", color: c4}
+      - {label: "2025", value: 4700, text: "< 5,000", a: "and 2025", color: c4}
+  - {at: "Hiring rises and falls", src: broll/pe32907181.mp4, from: 8, move: none}
+  - {at: "so qualified pilots", src: broll/pe4774976.mp4, from: 14, move: none}
+  - {at: "And once Jake is hired", src: broll/pe8085791.mp4, from: 4, move: push}
+  - {at: "A small training plane is", src: broll/pe14109775.mp4, from: 4, move: none}
+  - {at: "Boeing 737, so", src: broll/pe38117150.mp4, from: 20, move: none}
+  - {at: "the specific type", src: broll/pe5139201.mp4, from: 14, move: push}
+  - {at: "and another practical evaluation", src: broll/pe6467678.mp4, from: 2, move: none}
+  - {at: "before he begins regular", src: broll/pe40951800.mp4, from: 3, move: none}
+  # ---- adding it up
+  - at: "So, let’s add it up"
+    page: illus
+    name: timeline
+    title: "Jake’s road to the right seat"
+    points:
+      - {t: "1 yr", sub: "Intensive training", a: "About a year", color: c3}
+      - {t: "16 mo", sub: "Building hours", a: "Sixteen months", color: c1}
+      - {t: "21", sub: "Old enough", a: "More time until", color: c2}
+      - {t: "Hired", sub: "Interviews + type training", a: "then hiring and airline", color: c5}
+    total: {t: "≈ 3 years", sub: "if everything goes smoothly", a: "in roughly three years"}
+  - {at: "Plenty take longer", src: broll/pe12814642.mp4, from: 1, move: none}
+  - {at: "training, delays", src: broll/pe34375179.mp4, from: 10, move: none}
+  # ---- trade-offs
+  - {at: "And like any dream job", src: broll/pe28806755.mp4, from: 7, move: push}
+  - at: "Airlines run heavily on seniority"
+    page: define
+    term: "Seniority"
+    phon: "/ˌsiː.niˈɒr.ə.ti/"
+    pos: "noun · airline"
+    text: "How long you’ve been at the airline. It decides your schedule, home base, aircraft and vacation choices."
+  - {at: "New pilots may work", src: broll/pe29576548.mp4, from: 9, move: push}
+  - {at: "spend nights in hotels", src: broll/pe19919756.mp4, from: 3, move: none}
+  - {at: "and face recurring", src: broll/pe7540494.mp4, from: 6, move: none}
+  - {at: "In the US, pilots at Part", src: broll/pe8164311.mp4, from: 1, move: push}
+  - {at: "must retire from", src: broll/pe10675969.mp4, from: 12, move: none}
+  # ---- verdict
+  - {at: "So, how hard is it to actually", src: broll/pe33185163.mp4, from: 9, move: push}
+  - {at: "Honestly, it’s hard", src: broll/pe34455606.mp4, from: 6, move: none}
+  - {at: "But it isn’t a mystery", src: broll/pe12814642.mp4, from: 5, move: none}
+  - {at: "It takes a passing medical", src: broll/pe16668715.mp4, from: 9, move: none}
+  - {at: "a ladder of licenses", src: broll/pe11578014.mp4, from: 2, move: none}
+  - {at: "significant money", src: broll/pe4393482.mp4, from: 2, move: none}
+  - {at: "lots of flying experience", src: broll/pe32343192.mp4, from: 2, move: none}
+  - {at: "Some people find the training", src: broll/pe36971603.mp4, from: 14, move: none}
+  - {at: "Others struggle with the cost", src: broll/pe6549275.mp4, from: 9, move: none}
+  - {at: "Others meet the qualifications", src: broll/pe8164311.mp4, from: 5, move: none}
+  - {at: "for the right opportunity", src: broll/pe19919756.mp4, from: 14, move: none}
+  - {at: "But there’s more than one road", src: broll/pe38834873.mp4, from: 12, move: push}
+  - {at: "And if this is you", src: broll/pe17118520.mp4, from: 14, move: none}
+  - {at: "book a discovery flight", src: broll/pe10856373.mp4, from: 1, move: none}
+  - {at: "where an instructor lets", src: broll/pe32183339.mp4, from: 30, move: push}
+  - {at: "It’s a way to find out", src: broll/pe34894994.mp4, from: 1, move: none}
+  - {at: "before committing to years", src: broll/pe36267343.mp4, from: 6, move: none}
+  # ---- callback: the two pilots again
+  - {at: "So, the next time you see", src: broll/pe12903808.mp4, from: 3.6, move: none, hold: callback to the two pilots}
+  - {at: "you’ll know exactly what", src: broll/pe34003527.mp4, from: 12, move: push}
+  - {at: "After everything you just", src: broll/pe3678391.mp4, from: 9, move: none, hold: final question}
+  - {at: "And if you want more breakdowns", src: broll/pe28674756.mp4, from: 6, move: none, speed: 0.5, hold: end card}
+
 text:
   - {at: "150", until: ">board.", kind: big, text: "150", sub: "People on board"}
   - at: "Do you need to be"
@@ -57,3 +375,28 @@ text:
       - {t: "What does it *cost*?", a: "How much does"}
       - {t: "How *long* does it take?", a: "and how long"}
   - {at: "you could still be years", until: ">Why?", kind: label, text: "Licensed to fly. *Still years away.*"}
+
+  - {at: "United Express", until: ">Eagle.", kind: label, text: "Regional airlines", sub: "United Express · American Eagle"}
+  - {at: "400,000", until: ">year.", kind: big, text: "$400,000+", sub: "A year · senior long-haul captain"}
+  - {at: "232,000", until: ">veterans.", kind: big, text: "$232,000", sub: "Median US airline pilot pay"}
+  - {at: "Let’s follow Jake", until: ">school.", kind: label, text: "Meet *Jake*", sub: "18 · never flown a plane"}
+  - {at: "That’s his first solo", until: ">heartbeat.", kind: label, text: "The first *solo*"}
+  - {at: "at least 40 hours", until: ">schools.", kind: big, text: "40 hours", sub: "Minimum flight time · private pilot"}
+  - {at: "at least 250 hours", until: ">fewer.", kind: big, text: "250 hours", sub: "Commercial pilot minimum"}
+  - {at: "to simulate an engine", until: ">graded.", kind: label, text: "Simulated *engine failure*"}
+  - {at: "Doing it reliably", until: ">another.", kind: label, text: "Right once ≠ *right every time*", pos: center}
+  - {at: "in about a year", until: ">year.", kind: big, pre: "Commercial pilot in", text: "≈ 1 year"}
+  - {at: "Savings", until: ">shortly.", kind: chips, items: [{t: "Savings", a: "Savings"}, {t: "Family help", a: "family help"}, {t: "Loans", a: "loans"}, {t: "Scholarships", a: "scholarships"}, {t: "Military", a: "or military"}]}
+  - {at: "1,500.", until: ">1,500.", kind: big, text: "1,500", sub: "Hours"}
+  - {at: "a regional airline crash", until: ">2009.", kind: label, text: "Colgan Air Flight 3407", sub: "February 2009 · near Buffalo, New York"}
+  - {at: "Congress changed", until: ">certificate.", kind: label, text: "The *1,500-hour* rule", sub: "Airline Safety Act · 2010"}
+  - {at: "On January 15", until: ">2009,", kind: label, text: "January 15, *2009*", sub: "US Airways Flight 1549"}
+  - {at: "155 people", until: ">survived.", kind: big, text: "155", sub: "On board · all survived"}
+  - {at: "small, regular deposits", until: ">experience.”", kind: quote, text: "Small, regular deposits in this *bank of experience*.", who: "Chesley “Sully” Sullenberger · CBS News, 2009"}
+  - {at: "such as United’s", until: ">job.", kind: label, text: "Airline pipelines", sub: "United Aviate · Delta Propel · American Cadet Academy"}
+  - {at: "In the UK and much", until: ">training.", kind: label, text: "UK & Europe", sub: "First officer with a few hundred hours"}
+  - {at: "Boeing 737", until: ">fly,", kind: label, text: "Boeing *737*", sub: "Type rating: training for one aircraft"}
+  - {at: "retire from those", until: ">65.", kind: big, text: "65", sub: "Mandatory retirement · US airlines"}
+
+credits_extra:
+  - "Facts: GAO report on regional airline first-officer pay (2024); BLS Occupational Outlook (median airline pilot pay); FAA 14 CFR Part 61 & 121; airline hiring figures as narrated."
