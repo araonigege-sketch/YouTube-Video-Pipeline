@@ -71,3 +71,17 @@ The owner supplies the **script and voiceover** for every episode. The edit is b
 - Accent: yellow-gold `#FACC15` with an Inter-style sans, to be confirmed on the first test render.
 - The soft low hits the references use under chapter cards and numbers stay **off**.
 - B-roll share: about 65–70%.
+
+## Built devices (channels/mr_davos)
+Text over footage: `big` (headline number), `label` (lower-left key term), `questions` (stack that steps back),
+`chips` (list spoken item by item), `quote`. Pages: `chapter`, `roadmap` (numbered tiles = the chapters), `define`
+(cream dictionary card), `split` (footage left, black list right), `photo` (framed archive photo over its own blur,
+credit line), `illus` → `cockpit`, `ladder` (re-enter with `lit:`), `hours` (gap, optional month-by-month fill),
+`bars`, `timeline`. Illustrations play to their end state: never cut inside one.
+
+## Sourcing notes (learned on ep1)
+- Shots are previewed on contact sheets (`python -m pipeline.broll sheet`) before download; every in-point is checked
+  on a mid-frame sheet of the built base before the full render.
+- Some Pexels clips serve 720p video under an `hd_1920_1080` filename: always check the downloaded height.
+- Split-screen backgrounds need a clip at least as long as the page (the builder now holds the last frame instead
+  of drifting, but a frozen frame is not premium).
