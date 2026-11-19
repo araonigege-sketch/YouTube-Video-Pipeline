@@ -13,3 +13,5 @@ projects/*/vo/*.wav
 pipeline/reedit/models/
 projects/*/media/**/*.mp4
 projects/*/media/broll/_pexels/
+projects/*/media/archive/*.jpg
+projects/*/media/archive/*.png
