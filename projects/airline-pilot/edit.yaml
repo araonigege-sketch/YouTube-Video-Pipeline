@@ -6,7 +6,7 @@ shots:
   # ---- cold open
   - {at: 0, src: broll/pe33185163.mp4, from: 3, move: push, hold: establishing aerial}
   - {at: "You’re at the airport", src: broll/pe854549.mp4, from: 0.5, move: push}
-  - {at: "and two people walk", src: broll/pe3736790.mp4, from: 1, move: none}
+  - {at: "and two people walk", src: broll/pe3736790.mp4, from: 7, move: none}
   - {at: "White shirts", src: broll/pe39609970.mp4, from: 1, move: push}
   - {at: "gold stripes", src: broll/pe38132855.mp4, from: 6, move: push}
   - {at: "a small rolling bag", src: broll/pe7423657.mp4, from: 2, move: none}
@@ -19,7 +19,7 @@ shots:
   - {at: "So how do you become", src: broll/pe16127307.mp4, from: 2, move: right}
   - {at: "Do you need perfect", src: broll/pe28674756.mp4, from: 1, move: none, speed: 0.5}
   - {at: "and how long", src: broll/pe13782053.mp4, from: 8, move: none}
-  - {at: "And here’s the part", src: broll/pe13973018.mp4, from: 20, move: none}
+  - {at: "And here’s the part", src: broll/pe13973018.mp4, from: 36, move: none}
   - {at: "Even after you earn", src: broll/pe34003527.mp4, from: 4, move: push}
   - {at: "you could still be years", src: broll/pe11489996.mp4, from: 4, move: push, hold: reveal line + label}
   # ---- roadmap + chapter 1

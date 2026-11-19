@@ -137,3 +137,100 @@ def cockpit(c, s, t0, t1):
         # the badges trade seats along an arc
         c.tw(f'tl.to("#{gid}b0",{{keyframes:[{{x:175,y:-70,duration:0.45,ease:"power2.out"}},{{x:350,y:0,duration:0.45,ease:"power2.in"}}]}},{tsw:.3f});')
         c.tw(f'tl.to("#{gid}b1",{{keyframes:[{{x:-175,y:70,duration:0.45,ease:"power2.out"}},{{x:-350,y:0,duration:0.45,ease:"power2.in"}}]}},{tsw:.3f});')
+
+
+def ladder(c, s, t0, t1):
+    """The licence ladder: rungs light bottom-up as each is named.
+    s.rungs: [{t: "Private pilot", sub: "40 h minimum", a: "phrase", color: c3}, ...] (bottom first);
+    s.lit: index of a rung already lit when the page opens (re-entering the ladder later in the episode)."""
+    p = c.p
+    gid = c.nid("ld")
+    rungs = s["rungs"]
+    n = len(rungs)
+    top, bot, x0, x1 = 170, 900, 640, 1280
+    step = (bot - top) / max(1, n - 1)
+    rails = _line(f"{gid}r1", f"M{x0} {bot + 60} L{x0} {top - 50}", "rgba(244,242,238,.45)", 3) + \
+        _line(f"{gid}r2", f"M{x1} {bot + 60} L{x1} {top - 50}", "rgba(244,242,238,.45)", 3)
+    bars, labs = [], []
+    for k, r in enumerate(rungs):
+        y = bot - k * step
+        col = p.get(r.get("color", "c1"), r.get("color", p["c1"]))
+        bars.append(f'<rect id="{gid}b{k}" x="{x0}" y="{y - 9}" width="{x1 - x0}" height="18" rx="9" '
+                    f'fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>')
+        labs.append(f'<div id="{gid}l{k}" style="position:absolute;left:{x1 + 60}px;top:{y - 44}px;opacity:0">'
+                    f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:46px;color:{col}">{html.escape(r["t"])}</div>'
+                    f'<div style="font-weight:600;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:#C9CCD1;margin-top:6px">'
+                    f'{html.escape(r.get("sub", ""))}</div></div>'
+                    f'<div id="{gid}n{k}" style="position:absolute;right:{1920 - x0 + 50}px;top:{y - 26}px;opacity:0;'
+                    f'font-family:\'Inter Display\';font-weight:800;font-size:44px;color:{col}">{k + 1:02d}</div>')
+    title = (f'<div style="position:absolute;left:0;right:0;top:64px;text-align:center;font-weight:600;font-size:28px;'
+             f'letter-spacing:.3em;color:#C9CCD1">{html.escape(s.get("title", "THE LADDER"))}</div>')
+    c.add(gid, t0, t1, c.stage() + _svg(rails + "".join(bars)) + "".join(labs) + title, z=10, cls="page")
+    c.draw(f"#{gid}r1", t0 + 0.05, 0.8, 1)
+    c.draw(f"#{gid}r2", t0 + 0.15, 0.8, 1)
+    c.tw(f'tl.fromTo("#{gid} rect",{{opacity:0,scaleX:0.6,transformOrigin:"50% 50%"}},'
+         f'{{opacity:1,scaleX:1,duration:0.45,stagger:0.08,ease:"power2.out"}},{t0 + 0.4:.3f});')
+    prev = None
+    for k, r in enumerate(rungs):
+        col = p.get(r.get("color", "c1"), r.get("color", p["c1"]))
+        ta = t0 + 0.6 if k <= s.get("lit", -1) else (c.t(r["a"], t0, 0.1) if "a" in r else t0 + 0.8 + 0.8 * k)
+        c.tw(f'tl.to("#{gid}b{k}",{{attr:{{fill:"{col}",stroke:"{col}"}},fillOpacity:0.85,duration:0.45}},{ta:.3f});')
+        c.rise(f"#{gid}l{k}", ta, 0.5, 14)
+        c.rise(f"#{gid}n{k}", ta, 0.5, 14)
+        if prev is not None:
+            c.tw(f'tl.to("#{gid}l{prev}",{{opacity:0.45,duration:0.4}},{ta:.3f});')
+        prev = k
+
+
+def hours(c, s, t0, t1):
+    """The 1,500-hour wall. A track from 0 to s.need (1500); Jake's hours (s.have, 250) fill in mint; the gap glows coral
+    with its size; optional s.months: the gap then fills month by month (s.per_month hours each) from s.fill_at."""
+    p = c.p
+    gid = c.nid("hr")
+    need, have = s.get("need", 1500), s.get("have", 250)
+    X0, X1, Y = 200, 1720, 560
+    W = X1 - X0
+    xh = X0 + W * have / need
+    track = (f'<rect x="{X0}" y="{Y - 26}" width="{W}" height="52" rx="26" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.16)"/>'
+             f'<rect id="{gid}have" x="{X0}" y="{Y - 26}" width="{xh - X0}" height="52" rx="26" fill="{p["c3"]}" transform-origin="{X0} {Y}"/>'
+             f'<rect id="{gid}gap" x="{xh + 6}" y="{Y - 26}" width="{X1 - xh - 6}" height="52" rx="26" fill="{p["c4"]}" fill-opacity=".22" '
+             f'stroke="{p["c4"]}" stroke-width="2" stroke-dasharray="10 8"/>')
+    months = ""
+    if s.get("months"):
+        m = s["months"]
+        per = s.get("per_month", 80)
+        for k in range(m):
+            xa = xh + 6 + (X1 - xh - 6) * k / m
+            wa = (X1 - xh - 6) / m - 4
+            months += f'<rect class="{gid}m" x="{xa:.1f}" y="{Y - 22}" width="{wa:.1f}" height="44" rx="8" fill="{p["c1"]}" opacity="0"/>'
+    ticks = "".join(f'<text x="{X0 + W * v / need:.0f}" y="{Y + 84}" fill="#9AA0A6" font-family="Inter" font-weight="600" font-size="26" '
+                    f'text-anchor="middle">{v:,}</text>' for v in (0, 500, 1000, 1500))
+    lab_have = (f'<div id="{gid}lh" style="position:absolute;left:{xh - 200}px;width:400px;top:{Y - 170}px;text-align:center;opacity:0">'
+                f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:78px;color:{p["c3"]}">{have:,}</div>'
+                f'<div style="font-weight:600;font-size:24px;letter-spacing:.18em;color:#C9CCD1">HOURS NOW</div></div>')
+    lab_need = (f'<div id="{gid}ln" style="position:absolute;left:{X1 - 300}px;width:400px;top:{Y - 170}px;text-align:center;opacity:0">'
+                f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:78px;color:{p["accent"]}">{need:,}</div>'
+                f'<div style="font-weight:600;font-size:24px;letter-spacing:.18em;color:#C9CCD1">HOURS NEEDED</div></div>')
+    gap = need - have
+    lab_gap = (f'<div id="{gid}lg" style="position:absolute;left:{(xh + X1) / 2 - 300}px;width:600px;top:{Y + 120}px;text-align:center;opacity:0">'
+               f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:96px;color:{p["c4"]}">{gap:,}</div>'
+               f'<div style="font-weight:600;font-size:26px;letter-spacing:.18em;color:#C9CCD1">{html.escape(s.get("gap_label", "HOURS STILL TO GO"))}</div></div>')
+    lab_m = ""
+    if s.get("months"):
+        lab_m = (f'<div id="{gid}lm" style="position:absolute;left:0;right:0;top:{Y + 300}px;text-align:center;opacity:0;'
+                 f'font-weight:700;font-size:40px;color:{p["c1"]}">{s.get("per_month", 80)} hours a month · {s["months"]} months</div>')
+    c.add(gid, t0, t1, c.stage() + _svg(track + months + ticks) + lab_have + lab_need + lab_gap + lab_m, z=10, cls="page")
+    c.tw(f'tl.fromTo("#{gid} svg",{{opacity:0}},{{opacity:1,duration:0.4}},{t0:.3f});')
+    th = c.t(s["have_at"], t0, 0.1) if "have_at" in s else t0 + 0.3
+    c.tw(f'tl.fromTo("#{gid}have",{{scaleX:0}},{{scaleX:1,duration:0.8,ease:"power3.out"}},{th:.3f});')
+    c.rise(f"#{gid}lh", th, 0.5, 14, 0.3)
+    tn = c.t(s["need_at"], th, 0.1) if "need_at" in s else th + 1.2
+    c.rise(f"#{gid}ln", tn, 0.5, 14)
+    c.tw(f'tl.fromTo("#{gid}gap",{{opacity:0}},{{opacity:1,duration:0.5}},{tn:.3f});')
+    tg = c.t(s["gap_at"], tn, 0.1) if "gap_at" in s else tn + 1.2
+    c.rise(f"#{gid}lg", tg, 0.6, 18)
+    if s.get("months"):
+        tf = c.t(s["fill_at"], tg, 0.1) if "fill_at" in s else tg + 1.5
+        dur = max(1.0, (c.t(s["fill_end"], tf, 0.0) - tf) if "fill_end" in s else 3.0)
+        c.tw(f'tl.to("#{gid} .{gid}m",{{opacity:0.9,duration:0.12,stagger:{dur / s["months"]:.3f}}},{tf:.3f});')
+        c.rise(f"#{gid}lm", tf, 0.5, 12)
