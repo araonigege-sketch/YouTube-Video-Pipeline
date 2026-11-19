@@ -39,7 +39,7 @@ def _scan_new(url: str) -> str | None:
 
 
 def candidates(url: str) -> list[str]:
-    m = re.search(r"video-files/(\d+)/(\d+)[-_].*?(\d+)fps\.mp4", url)
+    m = re.search(r"video-files/(\d+)/(\d+)[-_].*_(\d+)fps\.mp4", url)   # greedy: "…_30fps" → 30, not 0
     if not m:
         return [url]
     vid, fid, fps = m.groups()

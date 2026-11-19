@@ -1,6 +1,6 @@
 {
  "policy": "docs/music.md",
- "note": "Licences: Deliberate Thought, Perspectives and Lightless Dawn verified CC BY 3.0 on their Wikimedia Commons file pages (2026-11-19). Thinking Out Loud, Ambiment and Long Time Coming: Kevin MacLeod catalogue tracks released CC BY (incompetech.com); Commons check was rate-limited — re-verify on incompetech.com before publishing.",
+ "note": "All six tracks verified CC BY 3.0 on their Wikimedia Commons file pages (2026-11-19); audio from the Internet Archive copies of the same Kevin MacLeod album tracks.",
  "tracks": [
   {
    "section": "cold open + roadmap",
@@ -42,7 +42,7 @@
    "artist": "Kevin MacLeod",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0/",
-   "source": "https://incompetech.com",
+   "source": "https://commons.wikimedia.org/wiki/File:Thinking_Out_Loud_(ISRC_USUAN1100043).mp3",
    "audio_from": "https://archive.org/details/kevin-macleod_medium-electronic_2014_fullalbum",
    "profile": "83 bpm, steady, low voice-band",
    "credit": "\"Thinking Out Loud\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
@@ -57,7 +57,7 @@
    "artist": "Kevin MacLeod",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0/",
-   "source": "https://incompetech.com",
+   "source": "https://commons.wikimedia.org/wiki/File:Ambiment_(ISRC_USUAN1100630).mp3",
    "audio_from": "https://archive.org/details/Kevin-MacLeod_The-Ambient_2014_FullAlbum",
    "profile": "gentle ambient, weak pulse",
    "credit": "\"Ambiment\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
@@ -72,7 +72,7 @@
    "artist": "Kevin MacLeod",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0/",
-   "source": "https://incompetech.com",
+   "source": "https://commons.wikimedia.org/wiki/File:Long_Time_Coming_(ISRC_USUAN1100173).mp3",
    "audio_from": "https://archive.org/details/kevin-macleod_medium-electronic_2014_fullalbum",
    "profile": "strong regular pulse",
    "credit": "\"Long Time Coming\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
@@ -87,7 +87,7 @@
    "artist": "Kevin MacLeod",
    "license": "CC BY 3.0",
    "license_url": "https://creativecommons.org/licenses/by/3.0/",
-   "source": "https://incompetech.com",
+   "source": "https://commons.wikimedia.org/wiki/File:Thinking_Out_Loud_(ISRC_USUAN1100043).mp3",
    "audio_from": "https://archive.org/details/kevin-macleod_medium-electronic_2014_fullalbum",
    "profile": "83 bpm, steady",
    "credit": "\"Thinking Out Loud\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"

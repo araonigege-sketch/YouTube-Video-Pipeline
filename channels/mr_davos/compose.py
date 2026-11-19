@@ -136,7 +136,8 @@ def _footage(P: Path, s: dict, n: int, fps: int, ch, clip: Path, width=1920):
         fit = f"scale={width}:1080:force_original_aspect_ratio=increase:flags=lanczos,crop={width}:1080"
         mv = "null"
         tail = f",pad=1920:1080:0:0:color={ch['palette']['stage']}"
-    vf = f"{pts}fps={fps},{fit},{mv},{_grade(ch)}{tail},setsar=1,format=yuv420p"
+    # tpad: if a source still runs short, hold its last frame so the timeline can never drift
+    vf = f"{pts}fps={fps},{fit},{mv},{_grade(ch)}{tail},tpad=stop_mode=clone:stop_duration=30,setsar=1,format=yuv420p"
     ffmpeg(["-ss", f"{start:.3f}", "-i", src, "-vf", vf, "-frames:v", n, "-an", "-c:v", "libx264", "-preset", "veryfast",
             "-crf", "14", "-r", fps, clip])
 

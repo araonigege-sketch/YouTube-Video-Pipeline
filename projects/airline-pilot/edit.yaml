@@ -113,7 +113,7 @@ shots:
   - {at: "how to talk to air", src: broll/pe13278456.mp4, from: 2, move: push}
   - {at: "and how to take off", src: broll/pe1685454.mp4, from: 1, move: none}
   - {at: "Then, after enough practice", src: broll/pe9722409.mp4, from: 0.5, move: push, hold: the day every pilot remembers}
-  - {at: "The instructor climbs out", src: broll/pe6739601.mp4, from: 1, move: push, hold: the instructor leaves}
+  - {at: "The instructor climbs out", src: broll/pe10856373.mp4, from: 4, move: push, hold: alone in the sky}
   - {at: "That’s his first solo", src: broll/pe17118520.mp4, from: 1, move: none, hold: the first solo takeoff}
   - {at: "Just him, the runway", src: broll/pe32260379.mp4, from: 2, move: none}
   - at: "From there, Jake climbs"
@@ -152,14 +152,14 @@ shots:
   - {at: "because the passenger jets", src: broll/pe35014054.mp4, from: 9, move: none, hold: takeoff roll}
   # ---- checkride
   - {at: "And each major certificate", src: broll/pe8085790.mp4, from: 22, move: push}
-  - {at: "including a practical", src: broll/pe8060959.mp4, from: 4, move: none}
+  - {at: "including a practical", src: broll/pe15061550.mp4, from: 14, move: push}
   - at: "called a checkride"
     page: define
     term: "Checkride"
     phon: "/ˈtʃɛk.raɪd/"
     pos: "noun · aviation"
     text: "The practical flying exam for a pilot certificate or rating: an examiner rides along and grades every manoeuvre and decision."
-  - {at: "He’s practiced every", src: broll/pe8105603.mp4, from: 32, move: none}
+  - {at: "He’s practiced every", src: broll/pe32343190.mp4, from: 3, move: none}
   - {at: "But today, an examiner", src: broll/pe8060959.mp4, from: 1, move: push}
   - {at: "Halfway through", src: broll/pe1595757.mp4, from: 1.6, move: push}
   - {at: "to simulate an engine", src: broll/pe36971603.mp4, from: 4, move: push}
@@ -177,8 +177,8 @@ shots:
   - {at: "plus books and exam", src: broll/pe9034460.mp4, from: 1, move: none}
   - at: "One major US flight school"
     page: split
-    src: broll/pe9722409.mp4
-    from: 2
+    src: broll/pe8105603.mp4
+    from: 30
     title: "One major US flight school"
     items:
       - {t: "Advertised tuition", v: "$123,995", a: "advertises 123,995"}
@@ -233,7 +233,7 @@ shots:
   - {at: "Every hour is another", src: broll/pe16127307.mp4, from: 10, move: push}
   # ---- filling the gap
   - {at: "So how does Jake fill", src: broll/pe14109775.mp4, from: 20, move: none}
-  - {at: "One common route is to teach", src: broll/pe6739601.mp4, from: 6, move: none}
+  - {at: "One common route is to teach", src: broll/pe7490417.mp4, from: 4, move: none}
   - {at: "Jake earns a flight instructor", src: broll/pe9034460.mp4, from: 4, move: push}
   - {at: "Every eligible hour", src: broll/pe32343190.mp4, from: 1, move: none}
   - at: "At 80 hours a month"
@@ -263,8 +263,8 @@ shots:
   - {at: "Outside the US", src: broll/pe27602660.mp4, from: 2, move: push}
   - {at: "pilots may join airlines", src: broll/pe14132852.mp4, from: 2, move: none}
   - {at: "after commercial and instrument", src: broll/pe6672302.mp4, from: 1, move: push}
-  - {at: "and multi-crew", src: broll/pe35014054.mp4, from: 2, move: none}
-  - {at: "They build experience toward", src: broll/pe38117150.mp4, from: 6, move: none, hold: takeoff}
+  - {at: "and multi-crew", src: broll/pe4589467.mp4, from: 3, move: none}
+  - {at: "They build experience toward", src: broll/pe34889079.mp4, from: 4, move: none, hold: contrails}
   # ---- age
   - {at: "So, Jake hits 1,500", src: broll/pe36666798.mp4, from: 12, move: none}
   - {at: "Is he hired", src: broll/pe19959735.mp4, from: 5, move: none}
@@ -279,8 +279,8 @@ shots:
   - {at: "So Jake keeps teaching", src: broll/pe32183339.mp4, from: 8, move: none}
   - at: "Becoming a captain takes"
     page: split
-    src: broll/pe39609970.mp4
-    from: 3
+    src: broll/pe37658114.mp4
+    from: 18
     title: "To become captain"
     items:
       - {t: "Age", v: "23+", a: "at least twenty-three"}
@@ -290,9 +290,9 @@ shots:
       - {t: "A captain seat", v: "Open", a: "and wait for a captain"}
   # ---- getting hired
   - {at: "But first, Jake has to get", src: broll/pe7643457.mp4, from: 2, move: none}
-  - {at: "That means technical", src: broll/pe5438891.mp4, from: 1, move: push}
+  - {at: "That means technical", src: broll/pe6036726.mp4, from: 3, move: none}
   - {at: "aptitude tests", src: broll/pe6672302.mp4, from: 8, move: none}
-  - {at: "a simulator evaluation", src: broll/pe5139201.mp4, from: 2, move: push}
+  - {at: "a simulator evaluation", src: broll/pe35080296.mp4, from: 2, move: push}
   - {at: "and background and medical", src: broll/pe5453380.mp4, from: 8, move: none}
   - {at: "Airlines want to know", src: broll/pe4774976.mp4, from: 2, move: push}
   - {at: "and whether he speaks", src: broll/pe7643457.mp4, from: 12, move: push}
@@ -308,10 +308,10 @@ shots:
       - {label: "2025", value: 4700, text: "< 5,000", a: "and 2025", color: c4}
   - {at: "Hiring rises and falls", src: broll/pe32907181.mp4, from: 8, move: none}
   - {at: "so qualified pilots", src: broll/pe4774976.mp4, from: 14, move: none}
-  - {at: "And once Jake is hired", src: broll/pe8085791.mp4, from: 4, move: push}
+  - {at: "And once Jake is hired", src: broll/pe8061030.mp4, from: 6, move: none}
   - {at: "A small training plane is", src: broll/pe14109775.mp4, from: 4, move: none}
-  - {at: "Boeing 737, so", src: broll/pe38117150.mp4, from: 20, move: none}
-  - {at: "the specific type", src: broll/pe5139201.mp4, from: 14, move: push}
+  - {at: "Boeing 737, so", src: broll/pe35014054.mp4, from: 12, move: push}
+  - {at: "the specific type", src: broll/pe36895992.mp4, from: 14, move: push}
   - {at: "and another practical evaluation", src: broll/pe6467678.mp4, from: 2, move: none}
   - {at: "before he begins regular", src: broll/pe40951800.mp4, from: 3, move: none}
   # ---- adding it up
@@ -338,7 +338,7 @@ shots:
   - {at: "New pilots may work", src: broll/pe29576548.mp4, from: 9, move: push}
   - {at: "spend nights in hotels", src: broll/pe19919756.mp4, from: 3, move: none}
   - {at: "and face recurring", src: broll/pe7540494.mp4, from: 6, move: none}
-  - {at: "In the US, pilots at Part", src: broll/pe8164311.mp4, from: 1, move: push}
+  - {at: "In the US, pilots at Part", src: broll/pe27848568.mp4, from: 12, move: none}
   - {at: "must retire from", src: broll/pe10675969.mp4, from: 12, move: none}
   # ---- verdict
   - {at: "So, how hard is it to actually", src: broll/pe33185163.mp4, from: 9, move: push}
@@ -350,7 +350,7 @@ shots:
   - {at: "lots of flying experience", src: broll/pe32343192.mp4, from: 2, move: none}
   - {at: "Some people find the training", src: broll/pe36971603.mp4, from: 14, move: none}
   - {at: "Others struggle with the cost", src: broll/pe6549275.mp4, from: 9, move: none}
-  - {at: "Others meet the qualifications", src: broll/pe8164311.mp4, from: 5, move: none}
+  - {at: "Others meet the qualifications", src: broll/pe40885596.mp4, from: 3, move: push}
   - {at: "for the right opportunity", src: broll/pe19919756.mp4, from: 14, move: none}
   - {at: "But there’s more than one road", src: broll/pe38834873.mp4, from: 12, move: push}
   - {at: "And if this is you", src: broll/pe17118520.mp4, from: 14, move: none}
