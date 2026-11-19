@@ -1,0 +1,44 @@
+# Mr. Davos: premium faceless documentary. Rules and reasoning: STYLE.md (same folder).
+name: Mr. Davos
+composer: mr_davos
+
+fps: 30
+
+palette:
+  stage: "#0A0B0D"        # chapter cards, split panels, illustration stage
+  text: "#F4F2EE"
+  muted: "#9AA0A6"
+  accent: "#FACC15"       # key numbers (one accent for figures)
+  # illustration colours: each concept keeps its colour through the episode
+  c1: "#38BDF8"           # sky blue
+  c2: "#8B7CFF"           # violet
+  c3: "#34D399"           # mint
+  c4: "#FF7A59"           # coral
+  c5: "#F472B6"           # rose
+  cream: "#F3EEE3"        # definition cards
+  ink: "#16181C"
+
+grade:                    # applied to every footage shot
+  contrast: 1.05
+  saturation: 1.08
+  gamma: 0.98
+  vignette: 0.42          # radians; 0 = off
+  sharpen: 0.35
+
+motion:
+  push: 0.06              # slow push-in/pull-out over a shot (fraction of zoom)
+  pan: 0.07               # lateral drift for move: left/right
+
+retention:
+  min_shot: 1.6
+  max_shot: 4.6           # owner: change B-roll every 3–4 s (pages and illustrations exempt)
+  max_uses: 2             # owner: never use a B-roll clip more than twice
+
+audio:
+  voice_lufs: -16
+  music_lufs: -33         # bed level before ducking (pauses ≈ 13 dB under the voice, ≈ 17 dB under speech)
+  duck_ratio: 4
+  dip_db: -14             # music dip into chapter cards
+  master_lufs: -14
+
+end_cta: true             # owner's rule: like & subscribe prompt at the end, no SFX

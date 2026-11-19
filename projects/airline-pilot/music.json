@@ -1,0 +1,35 @@
+{
+  "policy": "docs/music.md — licence verified on each track's Wikimedia Commons file page; audio downloaded from the Internet Archive copy of the same Kevin MacLeod album track.",
+  "tracks": [
+    {
+      "section": "cold open + roadmap",
+      "file": "music/Deliberate_Thought.mp3",
+      "start": 0.0,
+      "end": 57.4,
+      "offset": 0.0,
+      "title": "Deliberate Thought",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Deliberate_Thought_(ISRC_USUAN1100261).mp3",
+      "audio_from": "https://archive.org/details/Kevin-MacLeod_Light-Electronic_2014_FullAlbum",
+      "profile": "136 bpm pulse, dark (387 Hz centroid), steady (LRA 4.9), low voice-band energy",
+      "credit": "\"Deliberate Thought\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "section": "chapter 1: what pilots do",
+      "file": "music/Perspectives.mp3",
+      "start": 57.2,
+      "end": 838.5,
+      "offset": 0.0,
+      "title": "Perspectives",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Perspectives_(ISRC_USUAN1300027).mp3",
+      "audio_from": "https://archive.org/details/Kevin-MacLeod_The-Ambient_2014_FullAlbum",
+      "profile": "ambient, very steady (LRA 3.8), moderate pulse, 734 Hz centroid",
+      "credit": "\"Perspectives\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+    }
+  ]
+}

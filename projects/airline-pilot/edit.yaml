@@ -1,0 +1,59 @@
+# Mr. Davos ep1 — "How Hard Is It to Actually Become an Airline Pilot?"
+# Shots are anchored to the narration (words.json). B-roll ids: media/broll/credits.json.
+range: [0, 99.0]          # test section: cold open → roadmap → chapter 1 → pre-flight
+
+shots:
+  # ---- cold open
+  - {at: 0, src: broll/pe33185163.mp4, from: 3, move: push, hold: establishing aerial}
+  - {at: "You’re at the airport", src: broll/pe854549.mp4, from: 0.5, move: push}
+  - {at: "and two people walk", src: broll/pe3736790.mp4, from: 1, move: none}
+  - {at: "White shirts", src: broll/pe39609970.mp4, from: 1, move: push}
+  - {at: "gold stripes", src: broll/pe38132855.mp4, from: 6, move: push}
+  - {at: "a small rolling bag", src: broll/pe7423657.mp4, from: 2, move: none}
+  - {at: "They walk like", src: broll/pe6036726.mp4, from: 2, move: none}
+  - {at: "And half the people", src: broll/pe12903808.mp4, from: 1, move: left}
+  - {at: "Those are airline pilots", src: broll/pe4690486.mp4, from: 6, move: push}
+  - {at: "In about forty minutes", src: broll/pe27848568.mp4, from: 5, move: none}
+  - {at: "fifty cars", src: broll/pe4589467.mp4, from: 0.5, move: none}
+  - {at: "with around 150", src: broll/pe3740039.mp4, from: 2, move: push}
+  - {at: "So how do you become", src: broll/pe16127307.mp4, from: 2, move: right}
+  - {at: "Do you need perfect", src: broll/pe28674756.mp4, from: 1, move: none, speed: 0.5}
+  - {at: "and how long", src: broll/pe13782053.mp4, from: 8, move: none}
+  - {at: "And here’s the part", src: broll/pe13973018.mp4, from: 20, move: none}
+  - {at: "Even after you earn", src: broll/pe34003527.mp4, from: 4, move: push}
+  - {at: "you could still be years", src: broll/pe11489996.mp4, from: 4, move: push, hold: reveal line + label}
+  # ---- roadmap + chapter 1
+  - at: "In this video"
+    page: roadmap
+    items:
+      - {t: "What pilots do", a: "what pilots do"}
+      - {t: "What they earn", a: "what they earn"}
+      - {t: "How hard flight school is", a: "how hard flight"}
+      - {t: "What it costs", a: "what it costs"}
+      - {t: "How you get hired", a: "and how you finally"}
+  - {at: "So, what does an airline", page: chapter, n: 1, title: "What pilots do"}
+  - {at: "On almost every airliner", src: broll/pe38132855.mp4, from: 30, move: push}
+  - {at: "The one on the left", page: illus, name: cockpit, phase: seats}
+  - {at: "Both pilots are fully", src: broll/pe1595757.mp4, from: 0.3, move: push}
+  - {at: "and on most trips", src: broll/pe32907181.mp4, from: 3, move: none}
+  - {at: "One flies", page: illus, name: cockpit, phase: swap}
+  # ---- pre-flight
+  - {at: "Their work starts", src: broll/pe19959329.mp4, from: 2, move: push}
+  - {at: "the weather", src: broll/pe35225359.mp4, from: 2, move: none}
+  - {at: "and maintenance notes", src: broll/pe40477335.mp4, from: 3, move: push}
+  - {at: "the plane, checking", src: broll/pe35892354.mp4, from: 0, move: none}
+  - {at: "engines, and anything", src: broll/pe33873344.mp4, from: 4, move: push}
+  - {at: "Then they run checklists", src: broll/pe7540494.mp4, from: 2, move: none}
+  - {at: "do if something", src: broll/pe3678391.mp4, from: 4, move: none}
+
+text:
+  - {at: "150", until: ">board.", kind: big, text: "150", sub: "People on board"}
+  - at: "Do you need to be"
+    until: ">take?"
+    kind: questions
+    items:
+      - {t: "A genius?", a: "Do you need to be"}
+      - {t: "Perfect eyesight?", a: "Do you need perfect"}
+      - {t: "What does it *cost*?", a: "How much does"}
+      - {t: "How *long* does it take?", a: "and how long"}
+  - {at: "you could still be years", until: ">Why?", kind: label, text: "Licensed to fly. *Still years away.*"}

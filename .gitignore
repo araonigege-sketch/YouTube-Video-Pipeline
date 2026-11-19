@@ -11,3 +11,5 @@ pipeline/reedit/models/*.tflite
 projects/*/source/
 projects/*/vo/*.wav
 pipeline/reedit/models/
+projects/*/media/**/*.mp4
+projects/*/media/broll/_pexels/

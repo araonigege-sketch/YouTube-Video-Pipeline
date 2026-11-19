@@ -1,0 +1,11 @@
+title: How Hard Is It to Actually Become an Airline Pilot?
+channel: mr_davos
+script_doc: https://docs.google.com/document/d/1rTCkbHAwMQTOsDuNbdjB-nohA2MvjZeOqcc9s41s77c
+voice:
+  - {file: vo/vo.wav, text: vo/vo.txt}   # owner's recording, Drive id 1MjxM9oFF38UZjQuDGbpcL4I1WEihMwlW
+lexicon:
+  sullenberger: "S AH L AH N B ER G ER"
+  couric: "K UH R IH K"
+  laguardia: "L AH G W AA R D IY AH"
+  checkride: "CH EH K R AY D"
+  checklists: "CH EH K L IH S T S"
