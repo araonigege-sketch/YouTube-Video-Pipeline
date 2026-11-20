@@ -331,3 +331,167 @@ def timeline(c, s, t0, t1):
         prev_t = ta
     if s.get("total"):
         c.rise(f"#{gid}T", _at(c, s["total"]["a"], prev_t - 0.5) if "a" in s["total"] else prev_t + 1.0, 0.7, 20)
+
+
+def loop(c, s, t0, t1):
+    """A catch-22 drawn as two nodes chasing each other round a loop.
+    s.a / s.b: {t, sub, at, color}; s.title; arrows draw a→b then b→a (s.close_at), the loop then keeps turning."""
+    p = c.p
+    gid = c.nid("lp")
+    A, B = s["a"], s["b"]
+    ca, cb = p.get(A.get("color", "c1"), p["c1"]), p.get(B.get("color", "c4"), p["c4"])
+    xa, xb, y = 640, 1280, 540
+    node = lambda id_, x, col, n: (f'<div id="{gid}{id_}" style="position:absolute;left:{x - 190}px;top:{y - 190}px;width:380px;height:380px;'
+                                   f'border-radius:50%;border:3px solid {col};background:radial-gradient(circle,{col}26,{col}0d 70%);'
+                                   f'display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0">'
+                                   f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:54px;color:{col}">{html.escape(n["t"])}</div>'
+                                   f'<div style="font-weight:600;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:#C9CCD1;'
+                                   f'margin-top:12px;max-width:280px">{html.escape(n.get("sub", ""))}</div></div>')
+    arcs = (_line(f"{gid}ab", f"M{xa + 60} {y - 200} C {xa + 220} {y - 330}, {xb - 220} {y - 330}, {xb - 60} {y - 200}", ca, 6)
+            + _line(f"{gid}ba", f"M{xb - 60} {y + 200} C {xb - 220} {y + 330}, {xa + 220} {y + 330}, {xa + 60} {y + 200}", cb, 6)
+            + f'<path id="{gid}h1" d="M{xb - 92} {y - 222} L{xb - 58} {y - 198} L{xb - 98} {y - 186}" stroke="{ca}" stroke-width="6" opacity="0"/>'
+            + f'<path id="{gid}h2" d="M{xa + 92} {y + 222} L{xa + 58} {y + 198} L{xa + 98} {y + 186}" stroke="{cb}" stroke-width="6" opacity="0"/>')
+    title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:70px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+    c.add(gid, t0, t1, c.stage() + _svg(arcs) + node("A", xa, ca, A) + node("B", xb, cb, B) + title, z=10, cls="page")
+    c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
+    ta = _at(c, A.get("at", 0.3), t0)
+    c.tw(f'tl.fromTo("#{gid}A",{{opacity:0,scale:0.7}},{{opacity:1,scale:1,duration:0.6,ease:"back.out(1.6)"}},{ta:.3f});')
+    tb = _at(c, B.get("at", 1.2), t0)
+    c.draw(f"#{gid}ab", tb - 0.5, 0.6, 1)
+    c.tw(f'tl.to("#{gid}h1",{{opacity:1,duration:0.2}},{tb + 0.05:.3f});')
+    c.tw(f'tl.fromTo("#{gid}B",{{opacity:0,scale:0.7}},{{opacity:1,scale:1,duration:0.6,ease:"back.out(1.6)"}},{tb:.3f});')
+    tc = _at(c, s.get("close_at", 2.4), t0)
+    c.draw(f"#{gid}ba", tc, 0.7, 1)
+    c.tw(f'tl.to("#{gid}h2",{{opacity:1,duration:0.2}},{tc + 0.6:.3f});')
+    # the trap keeps turning: nodes pulse in turn until the page ends
+    k, t = 0, tc + 1.0
+    while t < t1 - 0.6:
+        c.tw(f'tl.fromTo("#{gid}{"A" if k % 2 == 0 else "B"}",{{scale:1}},{{scale:1.06,duration:0.45,yoyo:true,repeat:1,ease:"sine.inOut"}},{t:.3f});')
+        k += 1
+        t += 1.1
+
+
+def waterfall(c, s, t0, t1):
+    """Crew-share waterfall: the gross bar, deductions peeling off, then the remainder split into crew shares.
+    s.gross {text, at}; s.steps [{t, frac, at, color}] (fractions of gross removed); s.shares {at, split [weights], labels}; s.note."""
+    p = c.p
+    gid = c.nid("wf")
+    X0, Y0, H = 260, 790, 520           # baseline and full-bar height
+    bw, gap = 230, 70
+    cols = [s["gross"]] + s["steps"] + [{"t": s["shares"].get("t", "Crew shares")}]
+    xs = [X0 + k * (bw + gap) for k in range(len(cols))]
+    rects, labs = [], []
+    top = Y0 - H
+    rects.append(f'<rect id="{gid}g" x="{xs[0]}" y="{top}" width="{bw}" height="{H}" rx="12" fill="{p["accent"]}" fill-opacity=".9" '
+                 f'style="transform-origin:{xs[0] + bw / 2}px {Y0}px"/>')
+    labs.append(f'<div id="{gid}lg" style="position:absolute;left:{xs[0] - 40}px;width:{bw + 80}px;top:{top - 86}px;text-align:center;opacity:0;'
+                f'font-family:\'Inter Display\';font-weight:900;font-size:56px;color:{p["accent"]}">{html.escape(s["gross"]["text"])}</div>'
+                f'<div id="{gid}ng" style="position:absolute;left:{xs[0] - 50}px;width:{bw + 100}px;top:{Y0 + 22}px;text-align:center;opacity:0;'
+                f'font-weight:600;font-size:26px;color:#C9CCD1">{html.escape(s["gross"].get("t", "Catch sold"))}</div>')
+    level = top
+    for k, st in enumerate(s["steps"], start=1):
+        h = H * st["frac"]
+        col = p.get(st.get("color", "c4"), p["c4"])
+        rects.append(f'<rect id="{gid}s{k}" x="{xs[k]}" y="{level}" width="{bw}" height="{h}" rx="10" fill="{col}" fill-opacity=".85"/>')
+        rects.append(f'<line id="{gid}c{k}" x1="{xs[k - 1] + bw}" y1="{level}" x2="{xs[k]}" y2="{level}" stroke="rgba(244,242,238,.35)" '
+                     f'stroke-width="2" stroke-dasharray="6 6" opacity="0"/>')
+        labs.append(f'<div id="{gid}n{k}" style="position:absolute;left:{xs[k] - 50}px;width:{bw + 100}px;top:{Y0 + 22}px;text-align:center;opacity:0;'
+                    f'font-weight:600;font-size:26px;line-height:1.25;color:#C9CCD1">{html.escape(st["t"])}</div>')
+        level += h
+    last = len(cols) - 1
+    rem = Y0 - level
+    split = s["shares"].get("split", [1.5, 1.2, 1, 1, 0.7])
+    tot = sum(split)
+    yy = level
+    for j, wgt in enumerate(split):
+        hh = rem * wgt / tot
+        rects.append(f'<rect class="{gid}sh" x="{xs[last]}" y="{yy:.1f}" width="{bw}" height="{hh - 4:.1f}" rx="8" '
+                     f'fill="{p["c3"] if j < len(split) - 1 else p["c1"]}" fill-opacity="{0.9 - 0.1 * j:.2f}" opacity="0"/>')
+        yy += hh
+    rects.append(f'<line id="{gid}c{last}" x1="{xs[last - 1] + bw}" y1="{level}" x2="{xs[last]}" y2="{level}" stroke="rgba(244,242,238,.35)" '
+                 f'stroke-width="2" stroke-dasharray="6 6" opacity="0"/>')
+    labs.append(f'<div id="{gid}n{last}" style="position:absolute;left:{xs[last] - 50}px;width:{bw + 100}px;top:{Y0 + 22}px;text-align:center;opacity:0;'
+                f'font-weight:600;font-size:26px;line-height:1.25;color:#C9CCD1">{html.escape(cols[last]["t"])}</div>')
+    if s["shares"].get("labels"):
+        hi, lo = s["shares"]["labels"]
+        labs.append(f'<div id="{gid}hl" style="position:absolute;left:{xs[last] + bw + 24}px;top:{level - 6}px;opacity:0;font-weight:700;font-size:24px;color:{p["c3"]}">{html.escape(hi)}</div>'
+                    f'<div id="{gid}ll" style="position:absolute;left:{xs[last] + bw + 24}px;top:{Y0 - 40}px;opacity:0;font-weight:700;font-size:24px;color:{p["c1"]}">{html.escape(lo)}</div>')
+    base = f'<line x1="{X0 - 40}" y1="{Y0}" x2="{xs[last] + bw + 40}" y2="{Y0}" stroke="rgba(244,242,238,.35)" stroke-width="2"/>'
+    note = (f'<div id="{gid}nt" style="position:absolute;left:0;right:0;top:960px;text-align:center;font-weight:500;font-size:24px;'
+            f'letter-spacing:.1em;color:#8A9096;opacity:0">{html.escape(s.get("note", ""))}</div>')
+    title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:70px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+    c.add(gid, t0, t1, c.stage() + _svg(base + "".join(rects)) + "".join(labs) + note + title, z=10, cls="page")
+    c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
+    tg = _at(c, s["gross"].get("at", 0.3), t0)
+    c.tw(f'tl.fromTo("#{gid}g",{{scaleY:0}},{{scaleY:1,duration:0.8,ease:"power3.out"}},{tg:.3f});')
+    c.rise(f"#{gid}lg", tg, 0.5, 14, 0.4)
+    c.rise(f"#{gid}ng", tg, 0.4, 8)
+    for k, st in enumerate(s["steps"], start=1):
+        ts = _at(c, st["at"], t0)
+        c.tw(f'tl.to("#{gid}c{k}",{{opacity:1,duration:0.3}},{ts:.3f});')
+        c.tw(f'tl.fromTo("#{gid}s{k}",{{opacity:0,x:-{bw + gap}}},{{opacity:1,x:0,duration:0.7,ease:"power2.inOut"}},{ts:.3f});')
+        c.rise(f"#{gid}n{k}", ts, 0.4, 8, 0.2)
+    tsh = _at(c, s["shares"]["at"], t0)
+    c.tw(f'tl.to("#{gid}c{last}",{{opacity:1,duration:0.3}},{tsh:.3f});')
+    c.tw(f'tl.fromTo("#{gid} .{gid}sh",{{opacity:0,x:-40}},{{opacity:1,x:0,duration:0.4,stagger:0.18}},{tsh:.3f});')
+    c.rise(f"#{gid}n{last}", tsh, 0.4, 8, 0.2)
+    if s["shares"].get("labels"):
+        tl_ = _at(c, s["shares"].get("labels_at", 1.2), tsh)
+        c.rise(f"#{gid}hl", tl_, 0.4, 8)
+        c.rise(f"#{gid}ll", tl_, 0.4, 8, 0.3)
+    if s.get("note"):
+        c.rise(f"#{gid}nt", _at(c, s.get("note_at", 2.0), t0), 0.5, 8)
+
+
+_GEAR = {
+    # 400x300 icon boxes, drawn on by stroke
+    "trawl": [("M40 80 L130 80 L150 60 L160 80 L190 80 L180 100 L50 100 Z", 4),            # boat
+              ("M180 95 L260 150 M180 95 L250 200", 3),                                       # warps
+              ("M250 150 L370 120 L370 230 L250 200 Z M370 120 L395 175 L370 230", 3),       # net
+              ("M265 160 L360 135 M265 185 L360 200 M300 145 L300 205 M335 137 L335 215", 2)],  # mesh
+    "longline": [("M30 70 L120 70 L140 50 L150 70 L170 70 L160 90 L40 90 Z", 4),
+                 ("M160 85 Q240 110 390 110", 3),
+                 ("M200 98 L200 150 M200 150 q0 14 -10 14 M250 104 L250 160 M250 160 q0 14 -10 14 "
+                  "M300 108 L300 165 M300 165 q0 14 -10 14 M350 110 L350 170 M350 170 q0 14 -10 14", 3)],
+    "pot": [("M20 70 Q200 40 380 70", 2),                                                    # sea surface
+            ("M200 70 L200 150", 2),                                                           # buoy line
+            ("M120 160 L280 160 L280 260 L120 260 Z M120 160 L160 135 L320 135 L280 160 M320 135 L320 235 L280 260", 3),
+            ("M140 180 L260 180 M140 210 L260 210 M140 240 L260 240 M160 160 L160 260 M200 160 L200 260 M240 160 L240 260", 1.5),
+            ("M10 275 L390 275", 2)],
+}
+
+
+def gear(c, s, t0, t1):
+    """Three ways to fish, drawn as each is named. s.items: [{kind: trawl|longline|pot, t, sub, a, color}]."""
+    p = c.p
+    gid = c.nid("gr")
+    items = s["items"]
+    cards = []
+    for k, it in enumerate(items):
+        col = p.get(it.get("color", "c1"), p["c1"])
+        x = 130 + k * 570
+        paths = "".join(_line(f"{gid}p{k}_{j}", d, col, w) for j, (d, w) in enumerate(_GEAR[it["kind"]]))
+        cards.append(
+            f'<div id="{gid}c{k}" style="position:absolute;left:{x}px;top:250px;width:520px;height:600px;border-radius:24px;opacity:0;'
+            f'background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.09)">'
+            f'<svg viewBox="0 0 400 300" width="440" height="330" style="position:absolute;left:40px;top:40px" fill="none" '
+            f'stroke-linecap="round" stroke-linejoin="round">{paths}</svg>'
+            f'<div style="position:absolute;left:44px;right:30px;top:410px;font-family:\'Inter Display\';font-weight:800;font-size:54px;color:{col}">'
+            f'{html.escape(it["t"])}</div>'
+            f'<div style="position:absolute;left:44px;right:30px;top:485px;font-weight:600;font-size:27px;line-height:1.3;color:#C9CCD1">'
+            f'{html.escape(it.get("sub", ""))}</div></div>')
+    title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+    c.add(gid, t0, t1, c.stage() + "".join(cards) + title, z=10, cls="page")
+    c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
+    prev = None
+    for k, it in enumerate(items):
+        ta = _at(c, it.get("a", 0.4 + 1.0 * k), t0)
+        c.rise(f"#{gid}c{k}", ta, 0.5, 24)
+        for j in range(len(_GEAR[it["kind"]])):
+            c.draw(f"#{gid}p{k}_{j}", ta + 0.2 + 0.25 * j, 0.7, 1)
+        if prev is not None:
+            c.tw(f'tl.to("#{gid}c{prev}",{{opacity:0.45,duration:0.4}},{ta:.3f});')
+        prev = k

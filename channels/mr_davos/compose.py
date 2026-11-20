@@ -338,7 +338,9 @@ class Davos(Composition):
         src = self.asset(self.proj / "media" / s["src"])
         credit = s.get("credit") or self.archive_credit(s["src"])
         cap = f'<div class="ph-cap">{html.escape(s["caption"])}</div>' if s.get("caption") else ""
-        inner = (f'<div class="ph-bg" style="background-image:url({src})"></div>'
+        # share-alike photos are shown unmodified on the plain stage (no blurred derivative behind them)
+        bg = (self.stage() if s.get("bg") == "stage" else f'<div class="ph-bg" style="background-image:url({src})"></div>')
+        inner = (bg +
                  f'<div class="ph-frame"><img src="{src}"/></div>{cap}'
                  f'<div class="ph-credit">{html.escape(credit)}</div>')
         self.add(gid, t0, t1, inner, z=10, cls="page")

@@ -1,0 +1,50 @@
+{
+ "noaa_line3896": {
+  "title": "line3896",
+  "credit": "NOAA Photo Library (Flickr), CC BY 2.0",
+  "page": "https://www.flickr.com/photos/51647007@N08/5182061940",
+  "license": "CC BY 2.0"
+ },
+ "noaa_line4036": {
+  "title": "line4036",
+  "credit": "NOAA Photo Library (Flickr), CC BY 2.0",
+  "page": "https://www.flickr.com/photos/51647007@N08/5123525879",
+  "license": "CC BY 2.0"
+ },
+ "seiners": {
+  "title": "Seiners at work",
+  "credit": "jkbrooks85 (Flickr), CC BY 2.0",
+  "page": "https://www.flickr.com/photos/68679992@N00/9324694738",
+  "license": "CC BY 2.0"
+ },
+ "kodiak1": {
+  "title": "Kodiak fishing boats",
+  "credit": "jkbrooks85 (Flickr), CC BY 2.0",
+  "page": "https://www.flickr.com/photos/68679992@N00/5858281979",
+  "license": "CC BY 2.0"
+ },
+ "kodiak2": {
+  "title": "210712 Kodiak fishing boat",
+  "credit": "jkbrooks85 (Flickr), CC BY 2.0",
+  "page": "https://www.flickr.com/photos/68679992@N00/51312201114",
+  "license": "CC BY 2.0"
+ },
+ "sig1": {
+  "title": "Sig Hansen",
+  "credit": "Tim Dorr (Flickr), CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/60723528@N00/2457682716",
+  "license": "CC BY-SA 2.0"
+ },
+ "cga_suit": {
+  "title": "130311-G-MR731-070",
+  "credit": "US Coast Guard Academy (Flickr), Public domain",
+  "page": "https://www.flickr.com/photos/43228104@N07/8592822460",
+  "license": "Public domain"
+ },
+ "dod_suit": {
+  "title": "180611-G-G0213-0003",
+  "credit": "U.S. Department of Defense Current Photos (Flickr), Public domain",
+  "page": "https://www.flickr.com/photos/39955793@N07/28899403358",
+  "license": "Public domain"
+ }
+}

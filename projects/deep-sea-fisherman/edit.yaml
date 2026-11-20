@@ -1,0 +1,351 @@
+# Mr. Davos ep2 — "What Does It Take to Be a Deep-Sea Fisherman?"
+# Shots are anchored to the narration (words.json). B-roll ids: media/broll/credits.json; photos: media/archive/credits.json.
+range: [0, 717.5]         # full episode (narration ends 715.6)
+
+shots:
+  # ---- cold open
+  - {at: 0, src: broll/pe37259189.mp4, from: 4, move: push}
+  - {at: "A fishing boat climbs", src: broll/pe37292896.mp4, from: 2, move: none}
+  - {at: "the size of a house", src: broll/pe4441578.mp4, from: 22, move: none}
+  - {at: "of the Bering Sea", src: broll/pe40302723.mp4, from: 2, move: push}
+  - {at: "Ice covers the railings", src: broll/pe40302721.mp4, from: 3, move: none}
+  - {at: "A crew in orange", page: photo, src: archive/seiners.jpg, zoom: 0.08}
+  - {at: "and it’s packed with crab", src: broll/pe8351612.mp4, from: 1, move: push}
+  - {at: "Every person on that deck", src: broll/pe10972175.mp4, from: 1, move: push}
+  - {at: "a share of that catch", src: broll/pe16455963.mp4, from: 2, move: push}
+  - {at: "And here’s the strange part", src: broll/pe37266384.mp4, from: 1, move: none}
+  - {at: "While they’re out there", src: broll/pe31621496.mp4, from: 3, move: none}
+  - {at: "paid until the catch", src: broll/pe8354407.mp4, from: 2, move: push}
+  - {at: "But it also looks like", src: broll/pe9206125.mp4, from: 1, move: push}
+  - {at: "No degree", src: broll/pe31684701.mp4, from: 4, move: none}
+  - {at: "So, what does it actually", src: broll/pe15367540.mp4, from: 2, move: none}
+  - {at: "Do you need special", src: broll/pe8824205.mp4, from: 1, move: push}
+  - {at: "How does a total", src: broll/pe16685626.mp4, from: 1, move: none}
+  - {at: "How dangerous is it", src: broll/pe35230426.mp4, from: 1, move: none}
+  - {at: "And is the money", src: broll/pe8351576.mp4, from: 1, move: push}
+  - at: "In this video"
+    page: roadmap
+    items:
+      - {t: "The job", a: "In this video"}
+      - {t: "Getting hired", a: "follow one beginner"}
+      - {t: "The first trip", a: "to his first"}
+      - {t: "The danger", a: "and find out"}
+      - {t: "The money", a: "what it really"}
+      - {t: "The career", a: "really takes"}
+
+  # ---- chapter 1: what the job is
+  - {at: "So, what is a deep-sea", page: chapter, n: 1, title: "What the job is"}
+  - {at: "Well, it’s someone who works", src: broll/pe2882104.mp4, from: 2, move: push}
+  - {at: "that travels far offshore", src: broll/pe14888819.mp4, from: 2, move: none}
+  - {at: "often staying out", src: broll/pe34374379.mp4, from: 1, move: push}
+  - {at: "and they’re definitely not", src: broll/px181376.mp4, from: 3, move: push}
+  - {at: "And there are different kinds", src: broll/pe31684888.mp4, from: 2, move: none}
+  - at: "Trawlers drag"
+    page: illus
+    name: gear
+    title: "Three ways to fish"
+    items:
+      - {kind: trawl, t: "Trawlers", sub: "Drag huge nets through the water", a: "Trawlers drag", color: c1}
+      - {kind: longline, t: "Longliners", sub: "Miles of line, thousands of baited hooks", a: "Longliners set", color: c3}
+      - {kind: pot, t: "Pot boats", sub: "Steel traps dropped to the seafloor", a: "Pot boats drop", color: c4}
+  - {at: "The biggest trawlers", src: broll/pe37075268.mp4, from: 5, move: push}
+  - {at: "about as long", src: broll/pe19308348.mp4, from: 2, move: push, hold: label on the size}
+  - {at: "packed, and frozen", src: broll/pe8351858.mp4, from: 1, move: push}
+  - {at: "ever returns to port", src: broll/pe9238936.mp4, from: 2, move: none}
+  - {at: "You’ll find this work", src: broll/pe10496570.mp4, from: 3, move: none}
+  - {at: "from Gulf of Mexico", src: broll/pe13830590.mp4, from: 2, move: push}
+  - {at: "Pay, rules, and conditions", src: broll/pe19264828.mp4, from: 2, move: none}
+  - {at: "fishery and country", src: broll/px154926.mp4, from: 1, move: none}
+  - {at: "But Alaska is one", src: broll/pe5429930.mp4, from: 1, move: push}
+  - {at: "so that’s where most", src: broll/pe17338810.mp4, from: 4, move: none}
+  - {at: "And the job isn’t just", src: broll/pe37266384.mp4, from: 8, move: push}
+  - {at: "Crews also sort", src: broll/pe19905377.mp4, from: 2, move: none}
+  - {at: "keep machinery running", src: broll/pe37293049.mp4, from: 2, move: none}
+  - {at: "On a commercial fishing", src: broll/pe8352265.mp4, from: 1, move: push}
+  - {at: "part sailor", src: broll/pe8824615.mp4, from: 1, move: none}
+  - at: "Every boat has a ranking"
+    page: illus
+    name: ladder
+    title: "The pecking order"
+    rungs:
+      - {t: "The greenhorn", sub: "Newest on board · no experience", a: "The greenhorn.", color: c4}
+      - {t: "Deckhands", sub: "The working crew", a: "Then come the deckhands", color: c3}
+      - {t: "Deck boss", sub: "Runs the crew on deck", a: "The deck boss", color: c1}
+      - {t: "Engineer", sub: "Keeps the engines alive", a: "The engineer keeps", color: c2}
+      - {t: "Captain", sub: "Decides where to fish", a: "The captain decides", color: accent}
+
+  # ---- chapter 2: getting hired
+  - {at: "So, let’s say a guy named", page: chapter, n: 2, title: "Getting hired"}
+  - {at: "He’s 23", src: broll/pe32971137.mp4, from: 2, move: push, hold: introduction label}
+  - {at: "Well, on paper", src: broll/pe4996576.mp4, from: 1, move: push}
+  - at: "The US Bureau of Labor"
+    page: split
+    src: broll/pe14888819.mp4
+    from: 14
+    title: "On paper"
+    items:
+      - {t: "Formal education", v: "None required", a: "with no formal"}
+      - {t: "Alaska crewmember licence", v: "$60 a year", a: "which costs 60"}
+      - {t: "Non-residents", v: "$220 a year", a: "and 220"}
+  - at: "Job ads also ask"
+    page: split
+    src: broll/pe31684701.mp4
+    from: 20
+    title: "Job ads ask for"
+    items:
+      - {t: "Lifting", v: "50 lb, over and over", a: "lifting 50 pounds"}
+      - {t: "Hours", v: "Long, cold & wet", a: "long hours in cold"}
+      - {t: "Drug test", v: "Pass", a: "and passing a drug"}
+  - {at: "Wait, that’s it", src: broll/pe4812976.mp4, from: 1, move: push}
+  - {at: "Then why is getting hired", src: broll/pe16685626.mp4, from: 6, move: none}
+  - {at: "Well, because nobody", src: broll/pe9246616.mp4, from: 1, move: push}
+  - {at: "Picture a small crew", src: broll/pe4441578.mp4, from: 27, move: none}
+  - {at: "If one new person", src: broll/pe8823674.mp4, from: 0.5, move: none}
+  - {at: "everyone suffers", src: broll/pe35230426.mp4, from: 5, move: none}
+  - {at: "So captains prefer", src: broll/pe8822535.mp4, from: 1, move: push}
+  - {at: "or people someone they trust", src: broll/pe5054302.mp4, from: 2, move: none}
+  - at: "And that creates a trap"
+    page: illus
+    name: loop
+    title: "The greenhorn trap"
+    a: {t: "Experience", sub: "needed to be trusted", at: "You need experience", color: c1}
+    b: {t: "Trust", sub: "needed to get experience", at: "But how do you get", color: c4}
+    close_at: "if nobody trusts"
+  - {at: "There are a few ways", src: broll/px218506.mp4, from: 4, move: none}
+  - {at: "The first way is the factory", src: broll/pe37075268.mp4, from: 22, move: push}
+  - {at: "Big factory-trawler companies", src: broll/pe28638128.mp4, from: 1, move: push}
+  - {at: "hire entry-level", src: broll/pe19905377.mp4, from: 9, move: none}
+  - {at: "The second way is summer", src: broll/px181376.mp4, from: 10, move: none}
+  - {at: "In Bristol Bay", src: broll/pe5429928.mp4, from: 2, move: push}
+  - {at: "sockeye salmon run", src: broll/pe25951216.mp4, from: 2, move: none}
+  - {at: "a thousand boats", src: broll/pe31684888.mp4, from: 10, move: none}
+  - {at: "Those drift boats", src: broll/pe15367540.mp4, from: 10, move: none}
+  - {at: "and many captains hire", src: broll/pe8822475.mp4, from: 1, move: push}
+  - {at: "And the third way", src: broll/pe9206125.mp4, from: 7, move: none}
+  - {at: "in places like Dutch", page: photo, src: archive/kodiak1.jpg, zoom: 0.07, caption: "Kodiak, Alaska"}
+  - {at: "or Seattle’s Fishermen’s", src: broll/pe32971137.mp4, from: 20, move: none}
+  - {at: "asking boat after boat", src: broll/px44927.mp4, from: 10, move: none}
+  - {at: "All it takes is one yes", src: broll/pe34374379.mp4, from: 6, move: none}
+  - {at: "Daniel goes the factory", src: broll/pe31708327.mp4, from: 6, move: none}
+  - {at: "He applies to", src: broll/pe28638128.mp4, from: 7, move: push}
+  - {at: "and signs his first", src: broll/px217053.mp4, from: 5, move: push}
+  - {at: "And now he’s about", src: broll/pe5998185.mp4, from: 12, move: none}
+
+  # ---- chapter 3: the first trip
+  - {at: "The ship loads fuel", page: chapter, n: 3, title: "The first trip"}
+  - {at: "then heads out", src: broll/pe40327699.mp4, from: 2, move: push}
+  - {at: "The captain uses sonar", src: broll/pe8822536.mp4, from: 1, move: push}
+  - {at: "and experience to decide", src: broll/pe8824615.mp4, from: 7, move: push}
+  - {at: "Then the real work", src: broll/pe10972175.mp4, from: 6, move: none}
+  - {at: "The trawl net is hauled", src: broll/px182082.mp4, from: 1, move: push}
+  - {at: "and the catch slides", src: broll/pe16455963.mp4, from: 7, move: none}
+  - {at: "That’s where Daniel works", src: broll/pe5564669.mp4, from: 6, move: push}
+  - {at: "the crew sorts them", src: broll/pe8352634.mp4, from: 1, move: none}
+  - {at: "packs them", src: broll/pe10039777.mp4, from: 1, move: push}
+  - {at: "Then the next haul", src: broll/pe8351575.mp4, from: 1, move: push}
+  - {at: "Over and over", src: broll/pe39073348.mp4, from: 1, move: none}
+  - {at: "three in the morning", src: broll/pe11336559.mp4, from: 9, move: none}
+  - {at: "And the schedule", src: broll/pe2882104.mp4, from: 10, move: push}
+  - {at: "Job postings on factory", src: broll/pe40302723.mp4, from: 10, move: none, hold: big number}
+  - {at: "When your shift ends", src: broll/pe4880287.mp4, from: 1, move: push}
+  - {at: "and you wake up", src: broll/pe32820623.mp4, from: 2, move: none}
+  - {at: "There’s no commute", src: broll/pe31621496.mp4, from: 12, move: none}
+  - {at: "That’s Daniel’s first big", src: broll/pe37259189.mp4, from: 22, move: none}
+  - {at: "The hardest part usually", src: broll/pe6815635.mp4, from: 2, move: none}
+  - {at: "It’s the exhaustion", src: broll/pe8823674.mp4, from: 3.5, move: push}
+  - {at: "day after day", src: broll/px71122.mp4, from: 3, move: none}
+  - {at: "And on top of all that", src: broll/pe36035565.mp4, from: 2.2, move: none}
+  - {at: "How to move around", src: broll/pe27672274.mp4, from: 1, move: none}
+  - {at: "How to keep clear", src: broll/pe4996576.mp4, from: 3, move: none}
+  - {at: "Hand signals", src: broll/pe8822535.mp4, from: 6, move: push}
+  - {at: "And what to do in an emergency", src: broll/pe3932140.mp4, from: 4, move: none}
+  - {at: "It’s the middle of the night", src: broll/pe7714436.mp4, from: 0.5, move: none}
+  - {at: "The ship is leaning", src: broll/px201766.mp4, from: 4, move: none}
+  - {at: "and the crew has to abandon", src: broll/px205011.mp4, from: 10, move: none}
+  - {at: "Can you get into", page: photo, src: archive/cga_suit.jpg, zoom: 0.07}
+  - {at: "Honestly, most people", src: broll/pe31635462.mp4, from: 2, move: push}
+  - {at: "But that’s the goal", src: broll/pe3932140.mp4, from: 18, move: none}
+  - at: "These thick, waterproof"
+    page: define
+    term: "Gumby suit"
+    phon: "/ˈɡʌm.bi suːt/"
+    pos: "noun · fishing slang"
+    text: "A thick, waterproof, full-body survival suit (an immersion suit) that keeps you afloat and alive in freezing water."
+  - {at: "Safety trainers", src: broll/pe31635462.mp4, from: 7.5, move: none, hold: big number}
+  - {at: "In the dark", src: broll/px205009.mp4, from: 6, move: none}
+
+  # ---- chapter 4: the danger
+  - {at: "Which brings us to the big", page: chapter, n: 4, title: "How dangerous it is"}
+  - {at: "How dangerous is this job", src: broll/px353078.mp4, from: 10, move: push}
+  - {at: "Here’s the honest answer", page: photo, src: archive/kodiak2.jpg, zoom: 0.08}
+  - {at: "most dangerous jobs in America", src: broll/px201766.mp4, from: 12, move: none}
+  - at: "In 2024, fishing"
+    page: illus
+    name: bars
+    title: "Fatal injury rate · 2024"
+    note: "US Bureau of Labor Statistics"
+    note_at: "according to the Bureau"
+    items:
+      - {label: "All US workers", value: 1, text: "1×", a: "In 2024", color: c1}
+      - {label: "Fishing & hunting", value: 27, text: "≈ 27×", a: "27 times", color: c4}
+  - {at: "The biggest dangers", page: photo, src: archive/dod_suit.jpg, zoom: 0.07}
+  - {at: "people falling overboard", src: broll/pe6815635.mp4, from: 10, move: none}
+  - {at: "And what makes it dangerous", src: broll/px205009.mp4, from: 20, move: none}
+  - {at: "It’s ordinary things", src: broll/pe8824205.mp4, from: 5, move: none}
+  - {at: "A wet deck", src: broll/pe27672274.mp4, from: 5, move: none}
+  - {at: "Heavy gear", src: broll/pe36035565.mp4, from: 1, move: none}
+  - {at: "Freezing water", src: broll/pe40302721.mp4, from: 12, move: push}
+  - {at: "But here’s what TV", page: photo, src: archive/noaa_line3896.jpg, zoom: 0.08}
+  - at: "In the 1990s"
+    page: illus
+    name: timeline
+    title: "Bering Sea crab fleet"
+    points:
+      - {t: "1990s", sub: "≈ 8 deaths a year", a: "In the 1990s", color: c4}
+      - {t: "1999", sub: "Coast Guard dock checks", a: "Then in 1999", color: c1}
+      - {t: "2005", sub: "Quota system", a: "And in 2005", color: c2}
+      - {t: "Today", sub: "< 1 death a year", a: "Since then", color: c3}
+  - {at: "So the danger is real", src: broll/pe9246616.mp4, from: 6, move: push}
+  - {at: "but good boats", src: broll/pe29062367.mp4, from: 1, move: push}
+
+  # ---- chapter 5: the money
+  - {at: "Which leaves one question", page: chapter, n: 5, title: "The money"}
+  - {at: "Well, remember how Daniel", src: broll/pe8351612.mp4, from: 4.3, move: none}
+  - {at: "On a lot of fishing", src: broll/px6412.mp4, from: 3, move: push}
+  - at: "Instead, you get a crew"
+    page: define
+    term: "Crew share"
+    phon: "/kruː ʃɛər/"
+    pos: "noun · fishing"
+    text: "Instead of a fixed salary, each crew member is paid a percentage of what the catch sells for."
+  - at: "Let’s say a boat sells"
+    page: illus
+    name: waterfall
+    title: "Where $100,000 goes"
+    gross: {text: "$100,000", t: "Catch sold", at: "sells a trip’s"}
+    steps:
+      - {t: "Fuel, bait, food", frac: 0.18, at: "First, shared costs", color: c4}
+      - {t: "Boat & owner", frac: 0.40, at: "The boat and its owner", color: c2}
+    shares: {at: "What’s left is divided", split: [3, 3, 2.5, 1.5], labels: ["Experienced crew: bigger shares", "Greenhorn: smaller share"], labels_at: "and experienced crew", t: "Crew shares"}
+    note: "Illustration only · every boat’s deal is different"
+    note_at: "Every boat’s deal"
+  - {at: "Now, what does that look", src: broll/px44927.mp4, from: 4, move: push}
+  - {at: "Well, Glacier Fish", src: broll/pe10507115.mp4, from: 10, move: push}
+  - {at: "advertises that its", src: broll/pe8352470.mp4, from: 3.8, move: none, hold: big number}
+  - {at: "depending on what the catch", src: broll/pe8354407.mp4, from: 10, move: push}
+  - {at: "And since you live", src: broll/pe4880287.mp4, from: 5, move: none}
+  - {at: "But your paycheck also", src: broll/px71122.mp4, from: 10, move: none}
+  - at: "A few years ago"
+    page: illus
+    name: bars
+    title: "Bering Sea snow crab · season catch limit"
+    note: "Relative to the 2024–25 reopening · ADF&G"
+    note_at: "Then for the 2026"
+    items:
+      - {label: "2022–23", value: 0.02, text: "Closed", a: "shut the fishery", color: c4}
+      - {label: "2023–24", value: 0.02, text: "Closed", a: "for two seasons", color: c4}
+      - {label: "2024–25", value: 1, text: "Reopened", a: "It reopened", color: c1}
+      - {label: "2025–26", value: 1.9, text: "≈ 2×", a: "nearly doubled", color: c3}
+      - {label: "2026–27", value: 1.05, text: "−45%", a: "it dropped again", color: accent}
+  - {at: "So the same hard work", src: broll/pe35612661.mp4, from: 10, move: none}
+  - {at: "can pay very", src: broll/pe36886876.mp4, from: 2, move: none}
+  - {at: "Your effort matters", src: broll/pe8351576.mp4, from: 4.3, move: push, hold: the line lands on one shot}
+  - {at: "And money isn’t the only", src: broll/pe29062367.mp4, from: 5, move: none}
+  - {at: "Daniel will miss birthdays", src: broll/pe7424535.mp4, from: 1, move: push}
+  - {at: "He’ll share tight spaces", src: broll/pe5564669.mp4, from: 2, move: none}
+  - {at: "often without phone signal", src: broll/pe35612661.mp4, from: 2, move: none}
+  - {at: "Yet plenty of people", src: broll/px218506.mp4, from: 25, move: none}
+  - {at: "The friendships on a good", src: broll/pe5054302.mp4, from: 7, move: push}
+  - {at: "There’s real pride", src: broll/pe9238936.mp4, from: 7, move: none}
+  - {at: "and in coming home", src: broll/px217053.mp4, from: 12, move: none}
+  - {at: "For some people", src: broll/pe17338810.mp4, from: 12, move: push}
+  - {at: "For others, that’s exactly", src: broll/px154926.mp4, from: 6, move: none}
+
+  # ---- chapter 6: the career
+  - {at: "So, can Daniel turn", page: chapter, n: 6, title: "The career"}
+  - {at: "He can, but there’s no", src: broll/pe40327699.mp4, from: 9, move: none}
+  - {at: "Each contract builds", src: broll/pe31708327.mp4, from: 9, move: none}
+  - {at: "That’s how a processor", src: broll/pe4812976.mp4, from: 8, move: none}
+  - {at: "maybe on a crab boat", page: photo, src: archive/noaa_line4036.jpg, zoom: 0.07}
+  - {at: "There, the crew baits", src: broll/pe8824133.mp4, from: 6, move: push}
+  - {at: "hauls them back", src: broll/pe37293049.mp4, from: 4, move: none}
+  - {at: "Only the big males", src: broll/pe8351575.mp4, from: 4, move: none}
+  - {at: "Females and small crab", src: broll/pe39073348.mp4, from: 6, move: push}
+  - at: "From deckhand, the paths split"
+    page: illus
+    name: ladder
+    title: "The career ladder"
+    rungs:
+      - {t: "Processor", sub: "The factory route in", color: c4}
+      - {t: "Deckhand", sub: "Sea time + references", a: "From deckhand", color: c3}
+      - {t: "Deck boss  ·  Engineer", sub: "Runs the deck  ·  keeps the engines running", a: "Some move up", color: c1}
+      - {t: "Relief skipper", sub: "Runs the boat while the captain sleeps", a: "The best deck crew", color: c2}
+      - {t: "Captain", sub: "Bigger vessels: Coast Guard licence", a: "And some eventually", color: accent}
+    lit: 0
+  - {at: "Take Sig Hansen", page: photo, src: archive/sig1.jpg, bg: stage, caption: "Sig Hansen · Captain, F/V Northwestern"}
+  - {at: "His father was a Norwegian", src: broll/px6412.mp4, from: 14, move: none}
+  - at: "Sig started fishing"
+    page: illus
+    name: timeline
+    title: "Sig Hansen"
+    points:
+      - {t: "14", sub: "Starts on the family boat", a: "Sig started fishing", color: c3}
+      - {t: "22", sub: "Relief skipper", a: "By 22", color: c1}
+      - {t: "24", sub: "Runs the Northwestern", a: "By 24", color: accent}
+  - {at: "But wait, notice", src: broll/px236316.mp4, from: 2, move: none}
+  - {at: "Most people don’t", src: broll/pe8352265.mp4, from: 6, move: none, hold: the factory contract}
+  - {at: "It’s how outsiders", src: broll/pe10496570.mp4, from: 16, move: push}
+  - {at: "And if Daniel decides", src: broll/pe7543407.mp4, from: 4, move: push}
+  - {at: "skills like machinery", src: broll/pe4941367.mp4, from: 6, move: none}
+  - {at: "and fish processing", src: broll/pe8352470.mp4, from: 1, move: none}
+  - {at: "So, what does it take to be", src: broll/px211661.mp4, from: 8, move: none}
+  - {at: "It takes endurance", src: broll/pe36886876.mp4, from: 8, move: none}
+  - {at: "the ability to work", src: broll/pe19264828.mp4, from: 8, move: none}
+  - {at: "a healthy respect", src: broll/px205011.mp4, from: 30, move: none}
+  - {at: "So yeah, on paper", src: broll/pe32820623.mp4, from: 7, move: none}
+  - {at: "Getting hired, and proving", src: broll/pe8822475.mp4, from: 6, move: none}
+  - {at: "And the real test", src: broll/px353078.mp4, from: 4, move: none}
+  - {at: "If this sounds like you", src: broll/pe8351738.mp4, from: 1, move: none}
+  - {at: "Look for legitimate", src: broll/pe25951216.mp4, from: 8, move: none}
+  - {at: "In the US, the State", src: broll/pe5429930.mp4, from: 4, move: push}
+  - {at: "And before you accept", src: broll/pe8351858.mp4, from: 6, move: none}
+  - {at: "make sure you", src: broll/pe8351738.mp4, from: 6, move: push}
+  - {at: "So, the next time", src: broll/pe37292896.mp4, from: 12, move: none}
+  - {at: "you’ll know what it took", src: broll/pe13830590.mp4, from: 8, move: push}
+  - {at: "Knowing what you know", src: broll/px182082.mp4, from: 6, move: none}
+  - {at: "on a fishing boat", src: broll/px211661.mp4, from: 2, move: none}
+  - {at: "And if you want more", src: broll/pe5429928.mp4, from: 9, move: push}
+  - {at: "hit like and", src: broll/px236316.mp4, from: 10, move: none, hold: like & subscribe end card}
+
+text:
+  - {at: "No degree", until: ">school.", kind: chips, items: [{t: "No degree", a: "No degree"}, {t: "No exam", a: "No exam"}, {t: "No years of school", a: "No years"}]}
+  - at: "Do you need special"
+    until: ">worth it?"
+    kind: questions
+    items:
+      - {t: "Special *qualifications*?", a: "Do you need special"}
+      - {t: "How do beginners get *hired*?", a: "How does a total"}
+      - {t: "How *dangerous* is it?", a: "How dangerous is it"}
+      - {t: "Is the *money* worth it?", a: "And is the money"}
+  - {at: "about as long as a football", until: ">fish are", kind: label, text: "About as long as a *football field*", pos: center}
+  - {at: "But Alaska is one", until: ">from.", kind: label, text: "Alaska", sub: "Where most of our examples come from"}
+  - {at: "part factory worker", until: ">mechanic.", kind: chips, items: [{t: "Factory worker", a: "part factory"}, {t: "Sailor", a: "part sailor"}, {t: "Mechanic", a: "and part mechanic"}]}
+  - {at: "He’s 23", until: ">need?", kind: label, text: "Meet *Daniel*", sub: "23 · never worked on a boat"}
+  - {at: "The first way is the factory", until: ">factory.", dur: 2.4, kind: label, text: "Way 1 · *The factory*"}
+  - {at: "The second way", until: ">salmon.", dur: 2.4, kind: label, text: "Way 2 · *Summer salmon*"}
+  - {at: "limited to 32 feet", until: ">feet,", dur: 2.2, kind: label, text: "32 feet", sub: "Bristol Bay drift boats"}
+  - {at: "And the third way", until: ">Harbor,", kind: label, text: "Way 3 · *Walking the docks*"}
+  - {at: "16-hour shifts", until: ">months.", kind: big, text: "16 hours", sub: "A day · 7 days a week · ~2-month contracts"}
+  - {at: "You already live at work", until: ">work.", dur: 2.0, kind: label, text: "You already *live at work*", pos: center}
+  - {at: "sixty seconds or less", until: ">drills.", kind: big, text: "60 seconds", sub: "Or less · the drill target"}
+  - {at: "A wet deck", until: ">help.", kind: chips, items: [{t: "Wet deck + sudden wave", a: "A wet deck"}, {t: "Heavy gear + tired crew", a: "Heavy gear"}, {t: "Freezing water + hours from help", a: "Freezing water"}]}
+  - {at: "3,600 and 5,000", until: ">worth.", kind: big, text: "$3,600–$5,000", sub: "Per trip · entry-level processor average · Glacier Fish Co."}
+  - {at: "And since you live", until: ">covered.", kind: label, text: "Room & food *covered*"}
+  - {at: "Daniel will miss birthdays", until: ">signal.", kind: chips, items: [{t: "Birthdays", a: "birthdays"}, {t: "Holidays", a: "holidays"}, {t: "Evenings at home", a: "ordinary evenings"}, {t: "No phone signal", a: "often without"}]}
+  - {at: "It takes endurance", until: ">ocean.", kind: chips, items: [{t: "Endurance", a: "It takes endurance"}, {t: "Discipline", a: "discipline"}, {t: "A strong stomach", a: "a strong stomach"}, {t: "Teamwork", a: "the ability"}, {t: "Respect for the ocean", a: "a healthy respect"}]}
+  - {at: "Getting hired, and proving", until: ">story.", kind: label, text: "Getting in: *simple*. Getting hired: *another story*.", pos: center}
+  - {at: "In the US, the State", until: ">page.", kind: label, text: "State of Alaska", sub: "Seafood jobs page"}
+  - {at: "how your share", until: ">paid.", kind: label, text: "Know how your *share* is paid"}
+
+credits_extra:
+  - "Facts: US Bureau of Labor Statistics (Occupational Outlook; Census of Fatal Occupational Injuries 2024); Alaska Dept. of Fish & Game (crewmember licence fees; Bering Sea snow crab catch limits); US Coast Guard (crab fleet dockside checks, 1999); Glacier Fish Company (entry-level processor pay); figures as narrated."

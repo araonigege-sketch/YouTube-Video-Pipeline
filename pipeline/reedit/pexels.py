@@ -25,6 +25,8 @@ def _scan_new(url: str) -> str | None:
     if not m:
         return None
     vid, fid, w, h, fps = m.groups()
+    if int(h) >= 1080:              # new-style names state the real size: the linked file is already full HD
+        return url
     fid, ar = int(fid), int(w) / int(h)
     sizes = dict.fromkeys([(1920, 1080), (round(1080 * ar / 2) * 2, 1080), (2048, 1080), (2560, 1440), (round(1440 * ar / 2) * 2, 1440)]
                           # non-16:9 sources get renditions a few pixels off the exact aspect (e.g. 1910x1080, 1920x1086)
