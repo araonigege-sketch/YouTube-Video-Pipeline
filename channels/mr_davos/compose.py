@@ -531,10 +531,25 @@ def check(P: Path, log=print) -> int:
     shots = plan_shots(edit, words, ch["fps"])
     r = ch["retention"]
     warn = 0
+    # multi-shot packages (e.g. DVIDS B-roll reels in media/pd/) are counted per shot inside the reel, not per file;
+    # media/pd/shots.json holds each reel's scene cuts ({"file.mp4": [{"s": 0.0, "e": 10.9}, ...]})
+    sj = P / "media/pd/shots.json"
+    reels = json.loads(sj.read_text()) if sj.exists() else {}
     uses: dict[str, int] = {}
-    for s in edit["shots"]:
-        if s.get("src"):
-            uses[s["src"]] = uses.get(s["src"], 0) + 1
+    for s in shots:
+        if not s.get("src"):
+            continue                                   # photos and split backgrounds count too
+        key = s["src"]
+        segs = reels.get(Path(key).name) if key.startswith("pd/") else None
+        if segs:
+            a = float(s.get("from", 0))
+            b = a + (s["t1"] - s["t0"]) * float(s.get("speed", 1.0))
+            seg = next((k for k, g in enumerate(segs) if g["s"] - 0.05 <= a < g["e"]), None)
+            if seg is None or b > segs[seg]["e"] + 0.05:
+                log(f"!  {s['t0']:7.2f}s  {key} from {a:.1f} to {b:.1f} crosses a scene cut in the reel")
+                warn += 1
+            key = f"{key}#{seg}"
+        uses[key] = uses.get(key, 0) + 1
     for src, n in uses.items():
         if n > r["max_uses"]:
             log(f"!! {src} used {n}× (max {r['max_uses']})")

@@ -8,18 +8,18 @@ shots:
   - {at: "Somewhere along the US-Mexico", src: broll/pe12901588.mp4, from: 2, move: push}
   - {at: "a white truck with", page: photo, src: archive/truck.jpg, zoom: 0.08}
   - {at: "dirt road in the middle", src: broll/pe9324160.mp4, from: 10, move: none}
-  - {at: "An agent stands beside", src: broll/pe9121276.mp4, from: 3, move: push}
+  - {at: "An agent stands beside", src: pd/dvids_agent_responds.mp4, from: 56.3, move: push}
   - {at: "A few miles away", page: photo, src: archive/horse.jpg, zoom: 0.08}
   - {at: "Someone else is bouncing", page: photo, src: archive/atv.jpg, zoom: 0.08}
   - {at: "And on a distant ridge", page: photo, src: archive/ridge.jpg, zoom: 0.08}
   - {at: "watching miles of empty", src: broll/pe30848103.mp4, from: 10, move: none}
   - {at: "Now imagine this is your", src: broll/pe35529632.mp4, from: 2, move: none}
   - {at: "No office building", src: broll/pe31441058.mp4, from: 1, move: push}
-  - {at: "Just you, your radio", src: broll/pe19405094.mp4, from: 2, move: none}
+  - {at: "Just you, your radio", src: pd/dvids_agent_responds.mp4, from: 15, move: none}
   - {at: "It looks like a lonely", src: broll/pe7142972.mp4, from: 4, move: push}
-  - {at: "And yet right now", page: photo, src: archive/atvs.jpg, zoom: 0.07}
+  - {at: "And yet right now", src: pd/dvids_111254657.mp4, from: 9, move: none}
   - {at: "and new agents can qualify", src: broll/pe4275306.mp4, from: 3, move: push}
-  - {at: "So, how do you actually", src: broll/pe12901596.mp4, from: 2, move: none}
+  - {at: "So, how do you actually", src: broll/pe17039762.mp4, from: 3, move: none}
   - {at: "Do you need to speak", src: broll/pe6269220.mp4, from: 2, move: none}
   - {at: "And here’s the part most", src: broll/pe10617219.mp4, from: 2, move: push}
   - {at: "knocked out more applicants", src: broll/pe6124804.mp4, from: 3, move: none}
@@ -52,19 +52,19 @@ shots:
   - {at: "That means thousands", src: broll/pe28617174.mp4, from: 15, move: none}
   - {at: "with Mexico and Canada", src: broll/pe18494116.mp4, from: 5, move: none}
   - {at: "plus stretches of coastline", src: broll/pe38802575.mp4, from: 10, move: none}
-  - {at: "Their job is to enforce", page: photo, src: archive/enforce.jpg, zoom: 0.07}
+  - {at: "Their job is to enforce", src: pd/dvids_agent_responds.mp4, from: 130, move: none}
   - {at: "That includes catching", page: photo, src: archive/checkpoint_k9.jpg, zoom: 0.07}
   - {at: "and running highway checkpoints", page: photo, src: archive/checkpoint.jpg, zoom: 0.07}
   - {at: "And how do you find anyone", src: broll/pe30848100.mp4, from: 5, move: push}
   - {at: "Some of it is high-tech", page: photo, src: archive/tower.jpg, zoom: 0.08}
-  - {at: "drones, and aircraft", src: broll/pe32321666.mp4, from: 1, move: none}
-  - {at: "But a lot of it is surprisingly", src: broll/pe17530623.mp4, from: 4, move: none}
+  - {at: "drones, and aircraft", src: pd/dvids_sasabe.mp4, from: 60, move: none}
+  - {at: "But a lot of it is surprisingly", src: pd/dvids_agent_responds.mp4, from: 74, move: none}
   - {at: "Here’s a fun one", src: broll/pe9318013.mp4, from: 3, move: push}
   - {at: "agents drag old tires", src: broll/pe9324160.mp4, from: 30, move: none}
   - {at: "These are literally called", src: broll/pe9318013.mp4, from: 14, move: none}
   - {at: "Later, they come back", src: broll/pe15814654.mp4, from: 6, move: push}
   - {at: "Then they follow the trail", page: photo, src: archive/sign.jpg, zoom: 0.07}
-  - {at: "Bent grass", src: broll/pe4836220.mp4, from: 2, move: push}
+  - {at: "Bent grass", src: pd/dvids_agent_responds.mp4, from: 97, move: none}
   - {at: "A thread on a branch", src: broll/pe7358235.mp4, from: 3, move: none}
   - at: "This skill is called sign"
     page: define
@@ -77,8 +77,8 @@ shots:
   - {at: "So sometimes, your most", src: broll/pe11794065.mp4, from: 2, move: none}
   - {at: "It’s a footprint in the dirt", src: broll/pe15814654.mp4, from: 1, move: push}
   - {at: "And not every agent works", src: broll/pe6294575.mp4, from: 2, move: none}
-  - {at: "There are stations along", page: photo, src: archive/north.jpg, zoom: 0.07}
-  - {at: "North Dakota", src: broll/pe18494116.mp4, from: 12, move: none}
+  - {at: "There are stations along", src: pd/dvids_swanton.mp4, from: 141, move: push}
+  - {at: "North Dakota", page: photo, src: archive/north.jpg, zoom: 0.07}
   - {at: "where winter patrols", page: photo, src: archive/snowmobile.jpg, zoom: 0.08}
 
   # ---- chapter 2: the pay
@@ -104,9 +104,10 @@ shots:
       - {label: "Retention · 3 yrs", value: 30, text: "$30,000", a: "up to 30,000", color: c3}
       - {label: "Total", value: 50, text: "≈ $50,000", a: "potentially 50,000", color: accent}
   - {at: "As usual, the biggest", src: broll/pe32383787.mp4, from: 5, move: none}
-  - {at: "And then there’s retirement", src: broll/pe30848103.mp4, from: 30, move: push, hold: pension label}
+  - {at: "And then there’s retirement", src: broll/pe34887479.mp4, from: 12, move: push, hold: pension label}
   - {at: "or after 25 years", src: broll/pe27952579.mp4, from: 2, move: none, hold: pension label}
-  - {at: "By spring 2026", page: photo, src: archive/ranks.jpg, zoom: 0.07}
+  - {at: "By spring 2026", src: pd/dvids_111254657.mp4, from: 101.7, move: push, hold: big number}
+  - {at: "the most since it was", src: pd/dvids_111254657.mp4, from: 110, move: none}
 
   # ---- chapter 3: who can apply
   - {at: "So, who can apply", page: chapter, n: 3, title: "Who can apply"}
@@ -145,8 +146,8 @@ shots:
   - {at: "Then the fitness test", src: broll/pe7675446.mp4, from: 2, move: none}
   - {at: "Can you do 20 push-ups", src: broll/pe8544666.mp4, from: 1, move: push}
   - {at: "Then 25 sit-ups", src: broll/pe6970183.mp4, from: 3, move: none}
-  - {at: "Then step up and down", src: broll/pe7675446.mp4, from: 9, move: none}
-  - {at: "for five straight", src: broll/pe8691954.mp4, from: 6, move: none}
+  - {at: "Then step up and down", src: broll/pe8691954.mp4, from: 2, move: none}
+  - {at: "for five straight", src: broll/pe7675446.mp4, from: 12, move: none}
   - {at: "Twenty push-ups doesn’t", src: broll/pe6022762.mp4, from: 4, move: none}
   - {at: "Well, a lot of people underestimate", src: broll/pe38667750.mp4, from: 2, move: none}
   - {at: "CBP even publishes", src: broll/pe3140468.mp4, from: 7, move: push}
@@ -167,7 +168,7 @@ shots:
   - {at: "The polygraph.", src: broll/pe7230284.mp4, from: 25, move: push}
   - {at: "Jordan sits in a room", src: broll/pe6997936.mp4, from: 3, move: none}
   - {at: "answering questions about", src: broll/pe6124804.mp4, from: 8, move: push}
-  - {at: "and whether he’s ever", src: broll/pe7230284.mp4, from: 40, move: none}
+  - {at: "and whether he’s ever", src: broll/pe7643457.mp4, from: 2, move: none}
   - {at: "And this is where a huge", src: broll/pe10617219.mp4, from: 8, move: none}
   - at: "For years, only about"
     page: illus
@@ -179,8 +180,8 @@ shots:
       - {label: "For years", value: 25, text: "≈ 1 in 4", a: "one in four", color: c4}
       - {label: "2024 (GAO)", value: 40, text: "≈ 40%", a: "about 40 percent", color: c1}
   - {at: "Still, that means most", src: broll/pe7643457.mp4, from: 10, move: none}
-  - {at: "And not passing doesn’t", src: broll/pe5311252.mp4, from: 3, move: none}
-  - {at: "Some results simply", src: broll/pe7643457.mp4, from: 16, move: push}
+  - {at: "And not passing doesn’t", src: broll/pe4293960.mp4, from: 8, move: none}
+  - {at: "Some results simply", src: broll/pe5311252.mp4, from: 3, move: push}
   - at: "Why so strict"
     page: illus
     name: timeline
@@ -196,7 +197,7 @@ shots:
   # ---- chapter 5: the academy
   - {at: "Then one day, the call", src: broll/pe7581309.mp4, from: 1, move: push, hold: the call comes}
   - {at: "There’s still the academy", page: chapter, n: 5, title: "The academy"}
-  - {at: "Every new agent trains", page: photo, src: archive/academy.jpg, zoom: 0.07}
+  - {at: "Every new agent trains", src: pd/dvids_111254657.mp4, from: 41, move: none, hold: big number}
   - {at: "Recruits live on site", page: photo, src: archive/recruits.jpg, zoom: 0.07}
   - {at: "arrest procedures, firearms", src: broll/pe6090907.mp4, from: 2, move: none}
   - {at: "driving, physical", page: photo, src: archive/tactics.jpg, zoom: 0.07}
@@ -207,27 +208,27 @@ shots:
   - {at: "So much for", src: broll/pe7945188.mp4, from: 20, move: none}
   - {at: "So, Jordan graduates", page: photo, src: archive/graduation.jpg, zoom: 0.07}
   - {at: "And this is a big one", src: broll/pe26860602.mp4, from: 6, move: push}
-  - {at: "But the Border Patrol assigns", src: broll/pe12901588.mp4, from: 9, move: none}
+  - {at: "But the Border Patrol assigns", src: pd/dvids_agent_responds.mp4, from: 279.3, move: push}
   - {at: "and that may or may not", src: broll/pe9317155.mp4, from: 3, move: none}
   - {at: "Relocation may be required", src: broll/pe4555432.mp4, from: 3, move: push}
   - {at: "So suddenly, Jordan is googling", src: broll/pe33845057.mp4, from: 2, move: none}
   - {at: "with one main road", src: broll/pe33845059.mp4, from: 2, move: push}
   - {at: "that can climb", src: broll/pe7490013.mp4, from: 20, move: none}
-  - {at: "Welcome to federal", src: broll/pe33845054.mp4, from: 10, move: none}
+  - {at: "Welcome to federal", src: pd/dvids_111254657.mp4, from: 88, move: none}
 
   # ---- chapter 6: the first night
   - {at: "Now picture his first night", page: chapter, n: 6, title: "The first night"}
-  - {at: "It starts with a briefing", src: broll/pe38779103.mp4, from: 3, move: push}
-  - {at: "then he heads out", page: photo, src: archive/night_tahoe.jpg, zoom: 0.07}
-  - {at: "His radio crackles", src: broll/pe19405094.mp4, from: 5, move: push}
-  - {at: "A sensor has picked up", src: broll/pe38779095.mp4, from: 2, move: none}
+  - {at: "It starts with a briefing", src: pd/dvids_111254657.mp4, from: 98.5, move: none}
+  - {at: "then he heads out", src: pd/dvids_111194102.mp4, from: 55, move: none}
+  - {at: "His radio crackles", src: pd/dvids_agent_responds.mp4, from: 12, move: none}
+  - {at: "A sensor has picked up", src: pd/dvids_agent_responds.mp4, from: 82, move: none}
   - {at: "Out there in the dark", src: broll/pe2894897.mp4, from: 2, move: none}
   - {at: "Or it could be someone", src: broll/pe32320459.mp4, from: 1, move: none}
-  - {at: "Either way, guess who", src: broll/pe31720444.mp4, from: 10, move: none}
+  - {at: "Either way, guess who", src: pd/dvids_agent_responds.mp4, from: 31.5, move: none}
   - {at: "Yep. Jordan", src: broll/pe27952578.mp4, from: 1, move: push}
   - {at: "But here’s what most people", src: broll/pe9317419.mp4, from: 30, move: none}
   - {at: "A lot of shifts", src: broll/pe7142972.mp4, from: 16, move: none}
-  - {at: "There are long hours", src: broll/pe9121284.mp4, from: 2, move: none}
+  - {at: "There are long hours", src: pd/dvids_agent_responds.mp4, from: 170, move: none}
   - {at: "routine checks, and then", page: photo, src: archive/laptop.jpg, zoom: 0.07}
   - {at: "To be fair", src: broll/pe8298330.mp4, from: 15, move: none}
   - {at: "And then, sometimes, an ordinary", src: broll/pe33650283.mp4, from: 50, move: none}
@@ -239,10 +240,10 @@ shots:
   - {at: "The car was burning", src: broll/pe7490013.mp4, from: 40, move: none}
   - {at: "The Border Patrol even has", page: photo, src: archive/borstar.jpg, zoom: 0.07}
   - {at: "for lost hikers", src: broll/pe37845415.mp4, from: 2, move: none}
-  - {at: "And that’s the part of this", src: broll/pe30848100.mp4, from: 20, move: none}
+  - {at: "And that’s the part of this", src: pd/dvids_agent_responds.mp4, from: 229, move: none}
   - {at: "One day, Jordan might spend", src: broll/pe9317155.mp4, from: 20, move: none}
   - {at: "The next, he might make", page: photo, src: archive/enforce.jpg, zoom: 0.07}
-  - {at: "Knowing you have the authority", src: broll/pe9121276.mp4, from: 10, move: push}
+  - {at: "Knowing you have the authority", src: pd/dvids_agent_responds.mp4, from: 148, move: push}
   - {at: "Using it well", src: broll/pe27952579.mp4, from: 5, move: none, hold: judgment line}
 
   # ---- chapter 7: the career
@@ -255,11 +256,11 @@ shots:
       - {t: "GL-5 / GL-7", sub: "Entry level", a: "The job is a career", color: c1}
       - {t: "Step up each year", sub: "No new application at each step", a: "Agents can move up", color: c3}
       - {t: "GS-12 · Journeyman", sub: "≈ $92,000 base in many locations", a: "At GS-12", color: accent}
-  - {at: "From there, paths branch", page: photo, src: archive/k9.jpg, zoom: 0.07}
+  - {at: "From there, paths branch", src: pd/dvids_swanton.mp4, from: 73, move: none}
   - {at: "Horse patrol", page: photo, src: archive/horse3.jpg, zoom: 0.07}
   - {at: "BORTAC, the tactical", page: photo, src: archive/bortac.jpg, zoom: 0.07}
   - {at: "Intelligence, training", src: broll/pe38779095.mp4, from: 6, move: none}
-  - {at: "Those specialist roles", src: broll/pe31751419.mp4, from: 3, move: none}
+  - {at: "Those specialist roles", src: pd/dvids_111254657.mp4, from: 53, move: none}
   - {at: "And some go all the way", src: broll/pe29188206.mp4, from: 10, move: none}
   - {at: "Rodney Scott joined", page: photo, src: archive/scott.jpg, caption: "Rodney Scott"}
   - at: "He rose through the ranks"
@@ -272,7 +273,7 @@ shots:
       - {t: "2025", sub: "Commissioner of CBP", a: "2025, Commissioner", color: accent}
     total: {t: "30+ years", sub: "from trainee to the top", a: "More than 30"}
   - {at: "Of course, there are trade-offs", src: broll/pe4555432.mp4, from: 10, move: none}
-  - {at: "Remote postings", src: broll/pe33845057.mp4, from: 18, move: none}
+  - {at: "Remote postings", src: pd/dvids_swanton.mp4, from: 10.3, move: none}
   - {at: "Nights, weekends", src: broll/pe3197867.mp4, from: 3, move: push}
   - {at: "The heat, the cold", src: broll/pe34887479.mp4, from: 5, move: none}
   - {at: "And this is a job at the center", src: broll/pe29188206.mp4, from: 3, move: push}
@@ -283,20 +284,19 @@ shots:
   - {at: "Well, not a college", src: broll/pe7945188.mp4, from: 5, move: none}
   - {at: "You need citizenship", src: broll/pe31441058.mp4, from: 3, move: none}
   - {at: "solid fitness", src: broll/pe6022762.mp4, from: 10, move: none}
-  - {at: "Then six months at the academy", page: photo, src: archive/graduates.jpg, zoom: 0.12}
-  - {at: "and the willingness", src: broll/pe11189038.mp4, from: 2, move: none}
-  - {at: "And maybe the hardest part", src: broll/pe9121284.mp4, from: 8, move: push}
+  - {at: "Then six months at the academy", src: pd/dvids_111254657.mp4, from: 73, move: none}
+  - {at: "And maybe the hardest part", src: pd/dvids_agent_responds.mp4, from: 284, move: none}
   - {at: "Because getting the badge", page: photo, src: archive/badge.jpg, zoom: 0.07}
-  - {at: "Handling the responsibility", src: broll/pe27980028.mp4, from: 10, move: none}
+  - {at: "Handling the responsibility", src: pd/dvids_sasabe.mp4, from: 86, move: none}
   - {at: "If you’re thinking about it", src: broll/pe6614805.mp4, from: 3.2, move: push}
-  - {at: "download CBP’s free", src: broll/pe38667750.mp4, from: 7, move: none}
+  - {at: "on USAJOBS", src: broll/pe38667750.mp4, from: 7, move: none}
   - {at: "and be completely honest", src: broll/pe5311252.mp4, from: 8, move: none}
-  - {at: "So, the next time you see", page: photo, src: archive/truck.jpg, zoom: 0.14}
+  - {at: "So, the next time you see", src: pd/dvids_agent_responds.mp4, from: 243.2, move: push}
   - {at: "you’ll know exactly", src: broll/pe30245088.mp4, from: 5, move: push}
   - {at: "And, knowing what you know", src: broll/pe8624838.mp4, from: 3, move: none}
-  - {at: "Let me know in the comments", src: broll/pe27980031.mp4, from: 2, move: none}
+  - {at: "Let me know in the comments", src: pd/dvids_swanton.mp4, from: 6.35, move: none}
   - {at: "careers most people", src: broll/pe18762626.mp4, from: 2, move: none}
-  - {at: "please like this video", src: broll/pe27980028.mp4, from: 2, move: none, hold: like & subscribe end card}
+  - {at: "please like this video", src: pd/dvids_sasabe.mp4, from: 100, move: none, hold: like & subscribe end card}
 
 text:
   - at: "Do you need a degree"
@@ -375,4 +375,5 @@ text:
   - {at: "start with the official", until: ">process.", kind: label, text: "USAJOBS · CBP fitness plan · *total honesty*"}
 
 credits_extra:
+  - "Footage: U.S. Customs and Border Protection via DVIDS (public domain): B-roll Border Patrol Agent Responds to Reported Activity (Otay Ranch, CA, 2026); USBP Operations - Northern Border Swanton Sector (2025); U.S. Border Patrol Academy, Artesia, NM (2025); Arizona National Guard Assists Border Patrol near Sasabe, AZ (2018); DVIDS 111194102."
   - "Facts: U.S. Customs and Border Protection (pay, incentives, hiring steps, academy, fitness test); Border Patrol Pay Reform Act of 2014; US Government Accountability Office (2024 polygraph report); Anti-Border Corruption Act of 2010; CBP (Amado, Arizona rescue, May 30, 2022); figures as narrated."
