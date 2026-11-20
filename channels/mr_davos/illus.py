@@ -495,3 +495,56 @@ def gear(c, s, t0, t1):
         if prev is not None:
             c.tw(f'tl.to("#{gid}c{prev}",{{opacity:0.45,duration:0.4}},{ta:.3f});')
         prev = k
+
+
+def org(c, s, t0, t1):
+    """Who-does-what chart: a parent agency with child boxes drawn in as each is named, plus an optional separate box.
+    s.root {t, sub, at, color}; s.kids [{t, sub, at, color}] (2–3); s.aside {t, sub, at, color} (a separate agency, drawn
+    apart with a dashed outline); s.title. Lines draw from the root to each child as it appears."""
+    p = c.p
+    gid = c.nid("og")
+    R, kids, aside = s["root"], s["kids"], s.get("aside")
+    col = lambda n, d: p.get(n.get("color", d), p[d])
+    W = 1920 if not aside else 1460                     # width the tree uses; the aside sits in the right-hand column
+    rx, ry, rw, rh = W // 2, 300, 760, 170
+    n = len(kids)
+    kw, kh, ky = 460, 230, 690
+    step = W * (0.46 if n == 2 else 0.31)
+    xs = [int(W / 2 + (k - (n - 1) / 2) * step) for k in range(n)]
+
+    def box(id_, cx, cy, w, h, node, color, dashed=False):
+        bd = f"3px {'dashed' if dashed else 'solid'} {color}"
+        return (f'<div id="{gid}{id_}" style="position:absolute;left:{cx - w // 2}px;top:{cy - h // 2}px;width:{w}px;height:{h}px;'
+                f'border-radius:22px;border:{bd};background:linear-gradient(180deg,{color}22,{color}08);opacity:0;'
+                f'display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 26px;box-sizing:border-box">'
+                f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:46px;line-height:1.1;color:{color}">{html.escape(node["t"])}</div>'
+                f'<div style="font-weight:600;font-size:24px;letter-spacing:.12em;text-transform:uppercase;color:#C9CCD1;margin-top:12px;line-height:1.35">'
+                f'{html.escape(node.get("sub", ""))}</div></div>')
+
+    lines = "".join(_line(f"{gid}l{k}", f"M{rx} {ry + rh // 2} C {rx} {ry + rh // 2 + 120}, {x} {ky - kh // 2 - 120}, {x} {ky - kh // 2}",
+                          col(kd, "c1"), 4) for k, (x, kd) in enumerate(zip(xs, kids)))
+    html_ = c.stage() + _svg(lines) + box("r", rx, ry, rw, rh, R, col(R, "accent"))
+    html_ += "".join(box(f"k{k}", x, ky, kw, kh, kd, col(kd, "c1")) for k, (x, kd) in enumerate(zip(xs, kids)))
+    if aside:
+        html_ += (f'<div id="{gid}sep" style="position:absolute;left:{W}px;top:200px;width:2px;height:680px;opacity:0;'
+                  f'background:linear-gradient(180deg,transparent,#ffffff30,transparent)"></div>')
+        html_ += box("a", W + (1920 - W) // 2, 540, 380, 300, aside, col(aside, "c4"), dashed=True)
+    html_ += (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:70px;text-align:center;font-weight:600;font-size:30px;'
+              f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+    c.add(gid, t0, t1, html_, z=10, cls="page")
+    c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
+    c.tw(f'tl.fromTo("#{gid}r",{{opacity:0,y:-20}},{{opacity:1,y:0,duration:0.6,ease:"power3.out"}},{_at(c, R.get("at", 0.3), t0):.3f});')
+    for k, kd in enumerate(kids):
+        ta = _at(c, kd.get("at", 1.0 + 0.8 * k), t0)
+        c.draw(f"#{gid}l{k}", ta - 0.4, 0.6, 1)
+        c.tw(f'tl.fromTo("#{gid}k{k}",{{opacity:0,y:24}},{{opacity:1,y:0,duration:0.55,ease:"power3.out"}},{ta:.3f});')
+    if aside:
+        ta = _at(c, aside.get("at", 3.0), t0)
+        c.tw(f'tl.to("#{gid}sep",{{opacity:1,duration:0.5}},{ta - 0.2:.3f});')
+        c.tw(f'tl.fromTo("#{gid}a",{{opacity:0,x:30}},{{opacity:1,x:0,duration:0.6,ease:"power3.out"}},{ta:.3f});')
+    for hl in s.get("highlight", []):           # {kid: index, at}: the others step back
+        th = _at(c, hl["at"], t0)
+        for k in range(n):
+            if k != hl["kid"]:
+                c.tw(f'tl.to("#{gid}k{k}",{{opacity:0.35,duration:0.4}},{th:.3f});')
+        c.tw(f'tl.to("#{gid}k{hl["kid"]}",{{scale:1.06,duration:0.5,ease:"power2.out"}},{th:.3f});')

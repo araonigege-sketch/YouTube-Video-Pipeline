@@ -429,8 +429,8 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .sp-title{{font-weight:600;font-size:30px;letter-spacing:.24em;text-transform:uppercase;color:{p['muted']};margin-bottom:60px}}
 .sp-rows{{display:flex;flex-direction:column;gap:44px}}
 .sp-row{{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:26px;opacity:0}}
-.sp-t{{font-family:"Inter Display";font-weight:700;font-size:48px}}
-.sp-v{{font-family:"Inter Display";font-weight:800;font-size:56px;color:{p['accent']}}}
+.sp-t{{font-family:"Inter Display";font-weight:700;font-size:48px;flex-shrink:0;margin-right:44px}}
+.sp-v{{font-family:"Inter Display";font-weight:800;font-size:56px;color:{p['accent']};text-align:right;line-height:1.12}}
 .chip-row{{position:absolute;left:100px;right:100px;top:50%;transform:translateY(-50%);display:flex;flex-wrap:wrap;justify-content:center;gap:26px}}
 .chip{{opacity:0;padding:22px 40px;border-radius:999px;font-family:"Inter Display";font-weight:700;font-size:50px;color:var(--c);
   background:color-mix(in srgb,var(--c) 16%,rgba(10,11,13,.55));border:2px solid var(--c);box-shadow:0 10px 40px rgba(0,0,0,.35)}}
