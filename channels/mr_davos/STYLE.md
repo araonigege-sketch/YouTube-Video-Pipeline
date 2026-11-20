@@ -85,3 +85,13 @@ credit line), `illus` → `cockpit`, `ladder` (re-enter with `lit:`), `hours` (g
 - Some Pexels clips serve 720p video under an `hd_1920_1080` filename: always check the downloaded height.
 - Split-screen backgrounds need a clip at least as long as the page (the builder now holds the last frame instead
   of drifting, but a frozen frame is not premium).
+
+## Lessons from ep3 (owner feedback, 2026-11-20)
+- **Check the voiceover against the script before building.** Run `python -m pipeline.align.vo_diff <project>` after
+  alignment and report every real mismatch to the owner (numbers first: they also appear on screen). Never let the
+  aligner paper over a spoken number that differs from the script.
+- **"Never more than twice" counts the footage, not the file.** Clips from the same Pexels shoot (same person, same
+  horse, same town, same aerial run) read as the same footage: count them together. Photos follow the same rule.
+- **A wrong person is worse than no person.** When the line describes a specific role (an agent, a pilot, a fisherman),
+  never cut to a civilian stand-in. Use real footage of that role (public-domain government video, licensed clips),
+  a real photo, an illustration, or a neutral establishing shot instead.
