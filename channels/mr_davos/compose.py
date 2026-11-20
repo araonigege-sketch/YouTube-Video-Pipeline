@@ -224,7 +224,8 @@ class Davos(Composition):
         pos = {"left": "left:110px;bottom:120px", "center": "left:0;right:0;bottom:120px;text-align:center",
                "top": "left:110px;top:110px"}[g.get("pos", "left")]
         inner = (f'<div class="lb-shade"></div><div class="lb" style="position:absolute;{pos}">'
-                 f'<div class="lb-bar" style="background:{g.get("color", self.p["accent"])}"></div>'
+                 f'<div class="lb-bar" style="background:{g.get("color", self.p["accent"])}'
+                 f'{";display:none" if g.get("pos") == "center" else ""}"></div>'
                  f'<div class="lb-text">{_mark(g["text"], self.p["accent"])}</div>{sub}</div>')
         self.add(gid, t0, t1, inner)
         self.tw(f'tl.fromTo("#{gid} .lb-shade",{{opacity:0}},{{opacity:1,duration:0.5}},{t0:.3f});')

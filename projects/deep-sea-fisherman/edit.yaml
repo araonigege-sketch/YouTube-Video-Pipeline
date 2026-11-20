@@ -334,7 +334,7 @@ text:
   - {at: "The first way is the factory", until: ">factory.", dur: 2.4, kind: label, text: "Way 1 · *The factory*"}
   - {at: "The second way", until: ">salmon.", dur: 2.4, kind: label, text: "Way 2 · *Summer salmon*"}
   - {at: "limited to 32 feet", until: ">feet,", dur: 2.2, kind: label, text: "32 feet", sub: "Bristol Bay drift boats"}
-  - {at: "And the third way", until: ">Harbor,", kind: label, text: "Way 3 · *Walking the docks*"}
+  - {at: "And the third way", until: ">school:", kind: label, text: "Way 3 · *Walking the docks*"}
   - {at: "16-hour shifts", until: ">months.", kind: big, text: "16 hours", sub: "A day · 7 days a week · ~2-month contracts"}
   - {at: "You already live at work", until: ">work.", dur: 2.0, kind: label, text: "You already *live at work*", pos: center}
   - {at: "sixty seconds or less", until: ">drills.", kind: big, text: "60 seconds", sub: "Or less · the drill target"}
