@@ -57,6 +57,11 @@ projects/<slug>/
   2–3 s: trim to single shots and crop corner credits.
 - PixVerse image2video warps people after about 3–4 s; the plate type holds the last frame after that.
 - jsdelivr is blocked: GSAP and fonts come from `node_modules` (`npm install` in the repo root).
+- Word timing: `python -m pipeline.align.whisper_align <audio> <script.txt> <words.json>` (faster-whisper small.en, needs the
+  Hugging Face CDN hosts, now allowed) is far tighter than PocketSphinx on long natural reads (sentence ends ~0.1 s).
+- Wikimedia Commons often refuses this sandbox outright (429 on API and files; `thumb.wikimedia.org` is not allowed).
+  For CC photos, search Openverse (`api.openverse.org`) and download from `live.staticflickr.com`.
+- Pexels: some clips serve 720p under a 1080p filename; check heights after download (`pipeline.broll get` prints them).
 - API keys come from environment secrets (`ELEVENLABS_API_KEY`, `PIXABAY_API_KEY`); never ask for them in chat.
 
 ## Layout

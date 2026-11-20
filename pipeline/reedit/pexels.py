@@ -26,7 +26,10 @@ def _scan_new(url: str) -> str | None:
         return None
     vid, fid, w, h, fps = m.groups()
     fid, ar = int(fid), int(w) / int(h)
-    sizes = dict.fromkeys([(1920, 1080), (round(1080 * ar / 2) * 2, 1080), (2048, 1080), (2560, 1440), (round(1440 * ar / 2) * 2, 1440)])
+    sizes = dict.fromkeys([(1920, 1080), (round(1080 * ar / 2) * 2, 1080), (2048, 1080), (2560, 1440), (round(1440 * ar / 2) * 2, 1440)]
+                          # non-16:9 sources get renditions a few pixels off the exact aspect (e.g. 1910x1080, 1920x1086)
+                          + [(round(1080 * ar) + k, 1080) for k in range(-12, 13, 2)]
+                          + [(1920, round(1920 / ar) + k) for k in range(-8, 9, 2)])
     for d in sorted(range(-25, 26), key=abs):
         for W, H in sizes:
             c = f"{V}/{vid}/{fid + d}_{W}_{H}_{fps}fps.mp4"
@@ -36,7 +39,7 @@ def _scan_new(url: str) -> str | None:
 
 
 def candidates(url: str) -> list[str]:
-    m = re.search(r"video-files/(\d+)/(\d+)[-_].*?(\d+)fps\.mp4", url)
+    m = re.search(r"video-files/(\d+)/(\d+)[-_].*_(\d+)fps\.mp4", url)   # greedy: "…_30fps" → 30, not 0
     if not m:
         return [url]
     vid, fid, fps = m.groups()
