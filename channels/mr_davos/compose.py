@@ -136,8 +136,11 @@ def _footage(P: Path, s: dict, n: int, fps: int, ch, clip: Path, width=1920):
         fit = f"scale={width}:1080:force_original_aspect_ratio=increase:flags=lanczos,crop={width}:1080"
         mv = "null"
         tail = f",pad=1920:1080:0:0:color={ch['palette']['stage']}"
+    # look: night = day-for-night (darker, cooler, desaturated) for daylight shots the narration places at night
+    look = (",eq=brightness=-0.1:saturation=0.55:gamma=0.9:contrast=1.06,colorbalance=rs=-0.12:gs=-0.02:bs=0.16:rm=-0.06:bm=0.1"
+            ",vignette=angle=0.62") if s.get("look") == "night" else ""
     # tpad: if a source still runs short, hold its last frame so the timeline can never drift
-    vf = f"{pts}fps={fps},{fit},{mv},{_grade(ch)}{tail},tpad=stop_mode=clone:stop_duration=30,setsar=1,format=yuv420p"
+    vf = f"{pts}fps={fps},{fit},{mv},{_grade(ch)}{look}{tail},tpad=stop_mode=clone:stop_duration=30,setsar=1,format=yuv420p"
     ffmpeg(["-ss", f"{start:.3f}", "-i", src, "-vf", vf, "-frames:v", n, "-an", "-c:v", "libx264", "-preset", "veryfast",
             "-crf", "14", "-r", fps, clip])
 
@@ -154,7 +157,7 @@ def build_base(P: Path, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
             raise PipelineError(f"shot {i} ({s['at']!r}) has no duration")
         clip = out / f"s{i:03d}.mp4"
         key = short_hash(s.get("src"), s.get("from"), s.get("move"), s.get("speed"), s.get("page"), n, ch["grade"],
-                         ch["motion"], "v2")
+                         ch["motion"], "v2", s.get("look"))
         kf = clip.with_suffix(".key")
         if not (clip.exists() and kf.exists() and kf.read_text() == key):
             if s.get("page") == "split":

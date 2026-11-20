@@ -220,11 +220,11 @@ shots:
   - {at: "Now picture his first night", page: chapter, n: 6, title: "The first night"}
   - {at: "It starts with a briefing", src: pd/dvids_111254657.mp4, from: 98.5, move: none}
   - {at: "then he heads out", src: pd/dvids_111194102.mp4, from: 55, move: none}
-  - {at: "His radio crackles", src: pd/dvids_agent_responds.mp4, from: 12, move: none}
-  - {at: "A sensor has picked up", src: pd/dvids_agent_responds.mp4, from: 82, move: none}
+  - {at: "His radio crackles", src: pd/dvids_agent_responds.mp4, from: 12, move: none, look: night}
+  - {at: "A sensor has picked up", src: pd/dvids_agent_responds.mp4, from: 82, move: none, look: night}
   - {at: "Out there in the dark", src: broll/pe2894897.mp4, from: 2, move: none}
   - {at: "Or it could be someone", src: broll/pe32320459.mp4, from: 1, move: none}
-  - {at: "Either way, guess who", src: pd/dvids_agent_responds.mp4, from: 31.5, move: none}
+  - {at: "Either way, guess who", src: pd/dvids_agent_responds.mp4, from: 31.5, move: none, look: night}
   - {at: "Yep. Jordan", src: broll/pe27952578.mp4, from: 1, move: push}
   - {at: "But here’s what most people", src: broll/pe9317419.mp4, from: 30, move: none}
   - {at: "A lot of shifts", src: broll/pe7142972.mp4, from: 16, move: none}
