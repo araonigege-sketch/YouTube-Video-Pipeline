@@ -1,6 +1,6 @@
 # Mr. Davos ep3 — "So You Want to Be a Border Patrol Agent"
 # Shots are anchored to the narration (words.json). B-roll ids: media/broll/credits.json; photos: media/archive/credits.json.
-range: [0, 727.0]         # full episode (narration ends 725.2)
+range: [0, 728.6]         # full episode (narration ends 726.7; 4:16 line re-recorded, +1.54 s)
 
 shots:
   # ---- cold open
