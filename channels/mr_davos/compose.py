@@ -27,6 +27,8 @@ Owner rules enforced here: hard cuts only, no SFX, no subtitles, no clip used mo
 from __future__ import annotations
 
 import html
+
+from channels.mr_davos.typo import esc
 import json
 import re
 import sys
@@ -180,7 +182,7 @@ def build_base(P: Path, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
 # ---------------------------------------------------------------- overlay (HyperFrames)
 def _mark(text: str, color: str) -> str:
     """*word* -> accent colour."""
-    return re.sub(r"\*(.+?)\*", lambda m: f'<span style="color:{color}">{m.group(1)}</span>', html.escape(text))
+    return re.sub(r"\*(.+?)\*", lambda m: f'<span style="color:{color}">{m.group(1)}</span>', esc(text))
 
 
 class Davos(Composition):
@@ -211,7 +213,7 @@ class Davos(Composition):
         sub = f'<div class="big-sub">{_mark(g["sub"], self.p["accent"])}</div>' if g.get("sub") else ""
         pre = f'<div class="big-pre">{_mark(g["pre"], self.p["accent"])}</div>' if g.get("pre") else ""
         inner = (f'<div class="scrim"></div><div class="big-wrap">{pre}<div class="big" style="color:{col}">'
-                 f'{html.escape(g["text"])}</div>{sub}</div>')
+                 f'{esc(g["text"])}</div>{sub}</div>')
         self.add(gid, t0, t1, inner)
         self.tw(f'tl.fromTo("#{gid} .scrim",{{opacity:0}},{{opacity:1,duration:0.5}},{t0:.3f});')
         if pre:
@@ -224,9 +226,11 @@ class Davos(Composition):
     def label(self, g, t0, t1):
         gid = self.nid("lb")
         sub = f'<div class="lb-sub">{_mark(g["sub"], self.p["accent"])}</div>' if g.get("sub") else ""
-        pos = {"left": "left:110px;bottom:120px", "center": "left:0;right:0;bottom:120px;text-align:center",
+        # "center" sits in the upper third: the bottom centre is where viewers' subtitles appear
+        pos = {"left": "left:110px;bottom:120px", "center": "left:0;right:0;top:120px;text-align:center",
                "top": "left:110px;top:110px"}[g.get("pos", "left")]
-        inner = (f'<div class="lb-shade"></div><div class="lb" style="position:absolute;{pos}">'
+        shade = "lb-shade lb-shade-top" if g.get("pos") in ("center", "top") else "lb-shade"
+        inner = (f'<div class="{shade}"></div><div class="lb" style="position:absolute;{pos}">'
                  f'<div class="lb-bar" style="background:{g.get("color", self.p["accent"])}'
                  f'{";display:none" if g.get("pos") == "center" else ""}"></div>'
                  f'<div class="lb-text">{_mark(g["text"], self.p["accent"])}</div>{sub}</div>')
@@ -257,7 +261,7 @@ class Davos(Composition):
         """A row of pill chips over darkened footage, each appearing as it is spoken."""
         gid = self.nid("cp")
         cols = [self.p[k] for k in ("c1", "c2", "c3", "accent", "c4", "c5")]
-        chips = "".join(f'<div class="chip" id="{gid}c{k}" style="--c:{cols[k % len(cols)]}">{html.escape(it["t"])}</div>'
+        chips = "".join(f'<div class="chip" id="{gid}c{k}" style="--c:{cols[k % len(cols)]}">{esc(it["t"])}</div>'
                         for k, it in enumerate(g["items"]))
         self.add(gid, t0, t1, f'<div class="scrim"></div><div class="chip-row">{chips}</div>')
         self.tw(f'tl.fromTo("#{gid} .scrim",{{opacity:0}},{{opacity:1,duration:0.5}},{t0:.3f});')
@@ -270,7 +274,7 @@ class Davos(Composition):
         gid = self.nid("qt")
         inner = (f'<div class="scrim"></div><div class="qt-wrap"><div class="qt-mark" style="color:{self.p["accent"]}">“</div>'
                  f'<div class="qt-text">{_mark(g["text"], self.p["accent"])}</div>'
-                 f'<div class="qt-who">{html.escape(g.get("who", ""))}</div></div>')
+                 f'<div class="qt-who">{esc(g.get("who", ""))}</div></div>')
         self.add(gid, t0, t1, inner)
         self.tw(f'tl.fromTo("#{gid} .scrim",{{opacity:0}},{{opacity:1,duration:0.5}},{t0:.3f});')
         self.rise(f"#{gid} .qt-mark", t0, 0.5)
@@ -287,7 +291,7 @@ class Davos(Composition):
         n = s.get("n")
         num = f'<div class="ch-n">{n:02d}</div>' if n else ""
         inner = (self.stage() + f'<div class="ch-wrap">{num}<div class="ch-rule"></div>'
-                 f'<div class="ch-title">{html.escape(s["title"])}</div></div>')
+                 f'<div class="ch-title">{esc(s["title"])}</div></div>')
         self.add(gid, t0, t1, inner, z=10, cls="page")
         if n:
             self.rise(f"#{gid} .ch-n", t0, 0.5, 10, 0.1)
@@ -300,7 +304,7 @@ class Davos(Composition):
         gid = self.nid("rm")
         cols = [self.p[k] for k in ("c1", "c2", "c3", "accent", "c4", "c5")]
         tiles = "".join(f'<div class="rm-tile" id="{gid}t{k}" style="--c:{cols[k % len(cols)]}"><div class="rm-n">{k + 1:02d}</div>'
-                        f'<div class="rm-t">{html.escape(it["t"])}</div></div>' for k, it in enumerate(s["items"]))
+                        f'<div class="rm-t">{esc(it["t"])}</div></div>' for k, it in enumerate(s["items"]))
         self.add(gid, t0, t1, self.stage() + f'<div class="rm-row">{tiles}</div>', z=10, cls="page")
         for k, it in enumerate(s["items"]):
             ta = self.t(it["a"], t0, 0.15) if "a" in it else t0 + 0.4 + 0.5 * k
@@ -311,9 +315,9 @@ class Davos(Composition):
 
     def define(self, s, t0, t1):
         gid = self.nid("df")
-        inner = (f'<div class="df-page"><div class="df-term">{html.escape(s["term"])}</div>'
-                 f'<div class="df-phon">{html.escape(s.get("phon", ""))}<span class="df-pos">{html.escape(s.get("pos", "noun"))}</span></div>'
-                 f'<div class="df-rule"></div><div class="df-text">{html.escape(s["text"])}</div></div>')
+        inner = (f'<div class="df-page"><div class="df-term">{esc(s["term"])}</div>'
+                 f'<div class="df-phon">{esc(s.get("phon", ""))}<span class="df-pos">{esc(s.get("pos", "noun"))}</span></div>'
+                 f'<div class="df-rule"></div><div class="df-text">{esc(s["text"])}</div></div>')
         self.add(gid, t0, t1, inner, z=10, cls="page")
         self.rise(f"#{gid} .df-term", t0, 0.6, 18, 0.1)
         self.rise(f"#{gid} .df-phon", t0, 0.5, 10, 0.45)
@@ -323,8 +327,8 @@ class Davos(Composition):
     def split(self, s, t0, t1):
         gid = self.nid("sp")
         rows = "".join(f'<div class="sp-row" id="{gid}r{k}"><span class="sp-t">{_mark(it["t"], self.p["accent"])}</span>'
-                       f'<span class="sp-v">{html.escape(it.get("v", ""))}</span></div>' for k, it in enumerate(s["items"]))
-        title = f'<div class="sp-title">{html.escape(s.get("title", ""))}</div>' if s.get("title") else ""
+                       f'<span class="sp-v">{esc(it.get("v", ""))}</span></div>' for k, it in enumerate(s["items"]))
+        title = f'<div class="sp-title">{esc(s.get("title", ""))}</div>' if s.get("title") else ""
         self.add(gid, t0, t1, f'<div class="sp-panel">{title}<div class="sp-rows">{rows}</div></div>', z=10, cls="page")
         if title:
             self.rise(f"#{gid} .sp-title", t0, 0.5, 14, 0.1)
@@ -341,16 +345,23 @@ class Davos(Composition):
         gid = self.nid("ph")
         src = self.asset(self.proj / "media" / s["src"])
         credit = s.get("credit") or self.archive_credit(s["src"])
-        cap = f'<div class="ph-cap">{html.escape(s["caption"])}</div>' if s.get("caption") else ""
-        # share-alike photos are shown unmodified on the plain stage (no blurred derivative behind them)
-        bg = (self.stage() if s.get("bg") == "stage" else f'<div class="ph-bg" style="background-image:url({src})"></div>')
-        inner = (bg +
-                 f'<div class="ph-frame"><img src="{src}"/></div>{cap}'
-                 f'<div class="ph-credit">{html.escape(credit)}</div>')
-        self.add(gid, t0, t1, inner, z=10, cls="page")
+        cap = f'<div class="ph-cap">{esc(s["caption"])}</div>' if s.get("caption") else ""
         z = s.get("zoom", 0.06)
-        self.tw(f'tl.fromTo("#{gid} .ph-frame",{{scale:1}},{{scale:{1 + z},duration:{t1 - t0:.3f},ease:"none"}},{t0:.3f});')
-        self.tw(f'tl.fromTo("#{gid} .ph-frame",{{opacity:0}},{{opacity:1,duration:0.35}},{t0:.3f});')
+        if s.get("frame") or s.get("bg") == "stage":
+            # framed: sharp photo over a blurred copy (share-alike photos go on the plain stage, unmodified)
+            bg = (self.stage() if s.get("bg") == "stage" else f'<div class="ph-bg" style="background-image:url({src})"></div>')
+            inner = (bg + f'<div class="ph-frame"><img src="{src}"/></div>{cap}'
+                     f'<div class="ph-credit">{esc(credit)}</div>')
+            target = ".ph-frame"
+        else:
+            # default: full-bleed, slow push from a chosen focus point, credit on the image's lower edge
+            origin = s.get("origin", "50% 50%")
+            inner = (f'<div class="ph-fill"><img src="{src}" style="transform-origin:{origin};object-position:{origin}"/></div>'
+                     f'<div class="ph-foot"></div>{cap}<div class="ph-credit ph-credit-fill">{esc(credit)}</div>')
+            target = ".ph-fill img"
+        self.add(gid, t0, t1, inner, z=10, cls="page")
+        self.tw(f'tl.fromTo("#{gid} {target}",{{scale:1}},{{scale:{1 + z},duration:{t1 - t0:.3f},ease:"none"}},{t0:.3f});')
+        self.tw(f'tl.fromTo("#{gid} {target}",{{opacity:0}},{{opacity:1,duration:0.35}},{t0:.3f});')
         if cap:
             self.rise(f"#{gid} .ph-cap", t0, 0.5, 12, 0.3)
 
@@ -396,6 +407,7 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .big-pre{{font-weight:600;font-size:34px;letter-spacing:.22em;text-transform:uppercase;color:{p['text']};opacity:.9;margin-bottom:22px}}
 .big-sub{{font-weight:600;font-size:38px;letter-spacing:.22em;text-transform:uppercase;margin-top:26px;color:{p['text']}}}
 .lb-shade{{position:absolute;left:0;right:0;bottom:0;height:420px;background:linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0))}}
+.lb-shade-top{{top:0;bottom:auto;background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,0))}}
 .lb{{display:flex;flex-direction:column;gap:12px;padding-left:28px}}
 .lb-bar{{position:absolute;left:0;top:6px;bottom:6px;width:5px;border-radius:3px;transform-origin:bottom}}
 .lb-text{{font-family:"Inter Display";font-weight:700;font-size:64px;line-height:1.05;letter-spacing:-0.01em;text-shadow:0 3px 24px rgba(0,0,0,.5)}}
@@ -442,6 +454,10 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .ph-frame img{{max-width:1460px;max-height:900px;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.6);outline:1px solid rgba(255,255,255,.12)}}
 .ph-cap{{position:absolute;left:110px;bottom:70px;font-family:"Inter Display";font-weight:700;font-size:44px;text-shadow:0 3px 20px rgba(0,0,0,.7)}}
 .ph-credit{{position:absolute;right:46px;bottom:30px;font-weight:500;font-size:19px;letter-spacing:.04em;color:rgba(244,242,238,.62)}}
+.ph-fill{{position:absolute;inset:0;overflow:hidden;background:#000}}
+.ph-fill img{{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(1.06)}}
+.ph-foot{{position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,0))}}
+.ph-credit-fill{{font-size:21px;color:rgba(244,242,238,.82);text-shadow:0 2px 10px rgba(0,0,0,.8)}}
 .cta{{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;gap:28px}}
 .cta-btn{{display:flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;font-weight:700;font-size:40px;
   background:rgba(20,22,26,.78);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.4)}}

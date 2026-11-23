@@ -12,6 +12,8 @@ from __future__ import annotations
 
 import html
 
+from channels.mr_davos.typo import esc
+
 
 def _svg(inner: str) -> str:
     return (f'<svg viewBox="0 0 1920 1080" width="1920" height="1080" style="position:absolute;inset:0" '
@@ -63,9 +65,9 @@ def _stripes(n: int, color: str) -> str:
 def _seat_label(gid, side, name, sub, stripes, color):
     pos = "right:1440px;text-align:right" if side == "L" else "left:1440px"
     return (f'<div id="{gid}lab{side}" style="position:absolute;{pos};top:575px;width:520px;opacity:0">'
-            f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:54px;letter-spacing:.06em;color:{color}">{html.escape(name)}</div>'
+            f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:54px;letter-spacing:.06em;color:{color}">{esc(name)}</div>'
             f'<div style="margin:16px 0 18px">{_stripes(stripes, color)}</div>'
-            f'<div style="font-weight:600;font-size:26px;letter-spacing:.18em;text-transform:uppercase;color:#C9CCD1;white-space:nowrap">{html.escape(sub)}</div></div>')
+            f'<div style="font-weight:600;font-size:26px;letter-spacing:.18em;text-transform:uppercase;color:#C9CCD1;white-space:nowrap">{esc(sub)}</div></div>')
 
 
 def _light_seat(c, gid, side, color, t):
@@ -158,13 +160,13 @@ def ladder(c, s, t0, t1):
         bars.append(f'<rect id="{gid}b{k}" x="{x0}" y="{y - 9}" width="{x1 - x0}" height="18" rx="9" '
                     f'fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>')
         labs.append(f'<div id="{gid}l{k}" style="position:absolute;left:{x1 + 60}px;top:{y - 44}px;opacity:0">'
-                    f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:46px;color:{col}">{html.escape(r["t"])}</div>'
+                    f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:46px;color:{col}">{esc(r["t"])}</div>'
                     f'<div style="font-weight:600;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:#C9CCD1;margin-top:6px">'
-                    f'{html.escape(r.get("sub", ""))}</div></div>'
+                    f'{esc(r.get("sub", ""))}</div></div>'
                     f'<div id="{gid}n{k}" style="position:absolute;right:{1920 - x0 + 50}px;top:{y - 26}px;opacity:0;'
                     f'font-family:\'Inter Display\';font-weight:800;font-size:44px;color:{col}">{k + 1:02d}</div>')
     title = (f'<div style="position:absolute;left:0;right:0;top:64px;text-align:center;font-weight:600;font-size:28px;'
-             f'letter-spacing:.3em;text-transform:uppercase;color:#C9CCD1">{html.escape(s.get("title", "THE LADDER"))}</div>')
+             f'letter-spacing:.3em;text-transform:uppercase;color:#C9CCD1">{esc(s.get("title", "THE LADDER"))}</div>')
     c.add(gid, t0, t1, c.stage() + _svg(rails + "".join(bars)) + "".join(labs) + title, z=10, cls="page")
     c.draw(f"#{gid}r1", t0 + 0.05, 0.8, 1)
     c.draw(f"#{gid}r2", t0 + 0.15, 0.8, 1)
@@ -219,7 +221,7 @@ def hours(c, s, t0, t1):
     gap = need - have
     lab_gap = (f'<div id="{gid}lg" style="position:absolute;left:{(xh + X1) / 2 - 300}px;width:600px;top:{Y + 120}px;text-align:center;opacity:0">'
                f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:96px;color:{p["c4"]}">{gap:,}</div>'
-               f'<div style="font-weight:600;font-size:26px;letter-spacing:.18em;color:#C9CCD1">{html.escape(s.get("gap_label", "HOURS STILL TO GO"))}</div></div>')
+               f'<div style="font-weight:600;font-size:26px;letter-spacing:.18em;color:#C9CCD1">{esc(s.get("gap_label", "HOURS STILL TO GO"))}</div></div>')
     lab_m = ""
     if s.get("months"):
         lab_m = (f'<div id="{gid}lm" style="position:absolute;left:0;right:0;top:{Y + 300}px;text-align:center;opacity:0;'
@@ -266,14 +268,14 @@ def bars(c, s, t0, t1):
                      f'fill="{col}" fill-opacity=".88" style="transform-origin:{x + bw / 2:.0f}px {Y0}px"/>')
         labs.append(f'<div id="{gid}v{k}" style="position:absolute;left:{x - 60:.0f}px;width:{bw + 120:.0f}px;top:{Y0 - h - 92:.0f}px;'
                     f'text-align:center;opacity:0;font-family:\'Inter Display\';font-weight:900;font-size:60px;color:{col}">'
-                    f'{html.escape(it.get("text", str(it["value"])))}</div>'
+                    f'{esc(it.get("text", str(it["value"])))}</div>'
                     f'<div id="{gid}l{k}" style="position:absolute;left:{x - 80:.0f}px;width:{bw + 160:.0f}px;top:{Y0 + 22}px;'
                     f'text-align:center;opacity:0;font-weight:600;font-size:30px;letter-spacing:.08em;color:#C9CCD1">'
-                    f'{html.escape(it["label"])}</div>')
+                    f'{esc(it["label"])}</div>')
     title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:90px;text-align:center;font-weight:600;font-size:30px;'
-             f'letter-spacing:.24em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+             f'letter-spacing:.24em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
     note = (f'<div id="{gid}n" style="position:absolute;left:0;right:0;top:965px;text-align:center;font-weight:500;font-size:24px;'
-            f'letter-spacing:.12em;color:#8A9096;opacity:0">{html.escape(s.get("note", ""))}</div>')
+            f'letter-spacing:.12em;color:#8A9096;opacity:0">{esc(s.get("note", ""))}</div>')
     c.add(gid, t0, t1, c.stage() + _svg(base + "".join(rects)) + "".join(labs) + title + note, z=10, cls="page")
     c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
     c.tw(f'tl.fromTo("#{gid} line",{{opacity:0}},{{opacity:1,duration:0.4}},{t0:.3f});')
@@ -304,19 +306,19 @@ def timeline(c, s, t0, t1):
                    f'style="transform-origin:{xs[k]:.0f}px {Y}px" opacity="0"/>' for k, pt in enumerate(pts))
     labs = "".join(
         f'<div id="{gid}l{k}" style="position:absolute;left:{xs[k] - 190:.0f}px;width:380px;top:{Y - 150}px;text-align:center;opacity:0">'
-        f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:66px;color:{p.get(pt.get("color", "c1"), p["c1"])}">{html.escape(pt["t"])}</div></div>'
+        f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:66px;color:{p.get(pt.get("color", "c1"), p["c1"])}">{esc(pt["t"])}</div></div>'
         f'<div id="{gid}u{k}" style="position:absolute;left:{xs[k] - 190:.0f}px;width:380px;top:{Y + 46}px;text-align:center;opacity:0;'
-        f'font-weight:600;font-size:26px;line-height:1.3;letter-spacing:.06em;color:#C9CCD1">{html.escape(pt.get("sub", ""))}</div>'
+        f'font-weight:600;font-size:26px;line-height:1.3;letter-spacing:.06em;color:#C9CCD1">{esc(pt.get("sub", ""))}</div>'
         for k, pt in enumerate(pts))
     title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:600;font-size:30px;'
-             f'letter-spacing:.24em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+             f'letter-spacing:.24em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
     total = ""
     if s.get("total"):
         tt = s["total"]
         total = (f'<div id="{gid}T" style="position:absolute;left:0;right:0;top:770px;text-align:center;opacity:0">'
-                 f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:110px;color:{p["accent"]}">{html.escape(tt["t"])}</div>'
+                 f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:110px;color:{p["accent"]}">{esc(tt["t"])}</div>'
                  f'<div style="font-weight:600;font-size:28px;letter-spacing:.22em;text-transform:uppercase;color:#E8E6E1;margin-top:8px">'
-                 f'{html.escape(tt.get("sub", ""))}</div></div>')
+                 f'{esc(tt.get("sub", ""))}</div></div>')
     c.add(gid, t0, t1, c.stage() + _svg(track + segs + dots) + labs + title + total, z=10, cls="page")
     c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
     c.tw(f'tl.fromTo("#{gid} line",{{opacity:0}},{{opacity:1,duration:0.4}},{t0:.3f});')
@@ -344,15 +346,15 @@ def loop(c, s, t0, t1):
     node = lambda id_, x, col, n: (f'<div id="{gid}{id_}" style="position:absolute;left:{x - 190}px;top:{y - 190}px;width:380px;height:380px;'
                                    f'border-radius:50%;border:3px solid {col};background:radial-gradient(circle,{col}26,{col}0d 70%);'
                                    f'display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0">'
-                                   f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:54px;color:{col}">{html.escape(n["t"])}</div>'
+                                   f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:54px;color:{col}">{esc(n["t"])}</div>'
                                    f'<div style="font-weight:600;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:#C9CCD1;'
-                                   f'margin-top:12px;max-width:280px">{html.escape(n.get("sub", ""))}</div></div>')
+                                   f'margin-top:12px;max-width:280px">{esc(n.get("sub", ""))}</div></div>')
     arcs = (_line(f"{gid}ab", f"M{xa + 60} {y - 200} C {xa + 220} {y - 330}, {xb - 220} {y - 330}, {xb - 60} {y - 200}", ca, 6)
             + _line(f"{gid}ba", f"M{xb - 60} {y + 200} C {xb - 220} {y + 330}, {xa + 220} {y + 330}, {xa + 60} {y + 200}", cb, 6)
             + f'<path id="{gid}h1" d="M{xb - 92} {y - 222} L{xb - 58} {y - 198} L{xb - 98} {y - 186}" stroke="{ca}" stroke-width="6" opacity="0"/>'
             + f'<path id="{gid}h2" d="M{xa + 92} {y + 222} L{xa + 58} {y + 198} L{xa + 98} {y + 186}" stroke="{cb}" stroke-width="6" opacity="0"/>')
     title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:70px;text-align:center;font-weight:600;font-size:30px;'
-             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
     c.add(gid, t0, t1, c.stage() + _svg(arcs) + node("A", xa, ca, A) + node("B", xb, cb, B) + title, z=10, cls="page")
     c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
     ta = _at(c, A.get("at", 0.3), t0)
@@ -386,9 +388,9 @@ def waterfall(c, s, t0, t1):
     rects.append(f'<rect id="{gid}g" x="{xs[0]}" y="{top}" width="{bw}" height="{H}" rx="12" fill="{p["accent"]}" fill-opacity=".9" '
                  f'style="transform-origin:{xs[0] + bw / 2}px {Y0}px"/>')
     labs.append(f'<div id="{gid}lg" style="position:absolute;left:{xs[0] - 40}px;width:{bw + 80}px;top:{top - 86}px;text-align:center;opacity:0;'
-                f'font-family:\'Inter Display\';font-weight:900;font-size:56px;color:{p["accent"]}">{html.escape(s["gross"]["text"])}</div>'
+                f'font-family:\'Inter Display\';font-weight:900;font-size:56px;color:{p["accent"]}">{esc(s["gross"]["text"])}</div>'
                 f'<div id="{gid}ng" style="position:absolute;left:{xs[0] - 50}px;width:{bw + 100}px;top:{Y0 + 22}px;text-align:center;opacity:0;'
-                f'font-weight:600;font-size:26px;color:#C9CCD1">{html.escape(s["gross"].get("t", "Catch sold"))}</div>')
+                f'font-weight:600;font-size:26px;color:#C9CCD1">{esc(s["gross"].get("t", "Catch sold"))}</div>')
     level = top
     for k, st in enumerate(s["steps"], start=1):
         h = H * st["frac"]
@@ -397,7 +399,7 @@ def waterfall(c, s, t0, t1):
         rects.append(f'<line id="{gid}c{k}" x1="{xs[k - 1] + bw}" y1="{level}" x2="{xs[k]}" y2="{level}" stroke="rgba(244,242,238,.35)" '
                      f'stroke-width="2" stroke-dasharray="6 6" opacity="0"/>')
         labs.append(f'<div id="{gid}n{k}" style="position:absolute;left:{xs[k] - 50}px;width:{bw + 100}px;top:{Y0 + 22}px;text-align:center;opacity:0;'
-                    f'font-weight:600;font-size:26px;line-height:1.25;color:#C9CCD1">{html.escape(st["t"])}</div>')
+                    f'font-weight:600;font-size:26px;line-height:1.25;color:#C9CCD1">{esc(st["t"])}</div>')
         level += h
     last = len(cols) - 1
     rem = Y0 - level
@@ -412,16 +414,16 @@ def waterfall(c, s, t0, t1):
     rects.append(f'<line id="{gid}c{last}" x1="{xs[last - 1] + bw}" y1="{level}" x2="{xs[last]}" y2="{level}" stroke="rgba(244,242,238,.35)" '
                  f'stroke-width="2" stroke-dasharray="6 6" opacity="0"/>')
     labs.append(f'<div id="{gid}n{last}" style="position:absolute;left:{xs[last] - 50}px;width:{bw + 100}px;top:{Y0 + 22}px;text-align:center;opacity:0;'
-                f'font-weight:600;font-size:26px;line-height:1.25;color:#C9CCD1">{html.escape(cols[last]["t"])}</div>')
+                f'font-weight:600;font-size:26px;line-height:1.25;color:#C9CCD1">{esc(cols[last]["t"])}</div>')
     if s["shares"].get("labels"):
         hi, lo = s["shares"]["labels"]
-        labs.append(f'<div id="{gid}hl" style="position:absolute;left:{xs[last] + bw + 24}px;top:{level - 6}px;opacity:0;font-weight:700;font-size:24px;color:{p["c3"]}">{html.escape(hi)}</div>'
-                    f'<div id="{gid}ll" style="position:absolute;left:{xs[last] + bw + 24}px;top:{Y0 - 40}px;opacity:0;font-weight:700;font-size:24px;color:{p["c1"]}">{html.escape(lo)}</div>')
+        labs.append(f'<div id="{gid}hl" style="position:absolute;left:{xs[last] + bw + 24}px;top:{level - 6}px;opacity:0;font-weight:700;font-size:24px;color:{p["c3"]}">{esc(hi)}</div>'
+                    f'<div id="{gid}ll" style="position:absolute;left:{xs[last] + bw + 24}px;top:{Y0 - 40}px;opacity:0;font-weight:700;font-size:24px;color:{p["c1"]}">{esc(lo)}</div>')
     base = f'<line x1="{X0 - 40}" y1="{Y0}" x2="{xs[last] + bw + 40}" y2="{Y0}" stroke="rgba(244,242,238,.35)" stroke-width="2"/>'
     note = (f'<div id="{gid}nt" style="position:absolute;left:0;right:0;top:960px;text-align:center;font-weight:500;font-size:24px;'
-            f'letter-spacing:.1em;color:#8A9096;opacity:0">{html.escape(s.get("note", ""))}</div>')
+            f'letter-spacing:.1em;color:#8A9096;opacity:0">{esc(s.get("note", ""))}</div>')
     title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:70px;text-align:center;font-weight:600;font-size:30px;'
-             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
     c.add(gid, t0, t1, c.stage() + _svg(base + "".join(rects)) + "".join(labs) + note + title, z=10, cls="page")
     c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
     tg = _at(c, s["gross"].get("at", 0.3), t0)
@@ -479,11 +481,11 @@ def gear(c, s, t0, t1):
             f'<svg viewBox="0 0 400 300" width="440" height="330" style="position:absolute;left:40px;top:40px" fill="none" '
             f'stroke-linecap="round" stroke-linejoin="round">{paths}</svg>'
             f'<div style="position:absolute;left:44px;right:30px;top:410px;font-family:\'Inter Display\';font-weight:800;font-size:54px;color:{col}">'
-            f'{html.escape(it["t"])}</div>'
+            f'{esc(it["t"])}</div>'
             f'<div style="position:absolute;left:44px;right:30px;top:485px;font-weight:600;font-size:27px;line-height:1.3;color:#C9CCD1">'
-            f'{html.escape(it.get("sub", ""))}</div></div>')
+            f'{esc(it.get("sub", ""))}</div></div>')
     title = (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:600;font-size:30px;'
-             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+             f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
     c.add(gid, t0, t1, c.stage() + "".join(cards) + title, z=10, cls="page")
     c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
     prev = None
@@ -517,9 +519,9 @@ def org(c, s, t0, t1):
         return (f'<div id="{gid}{id_}" style="position:absolute;left:{cx - w // 2}px;top:{cy - h // 2}px;width:{w}px;height:{h}px;'
                 f'border-radius:22px;border:{bd};background:linear-gradient(180deg,{color}22,{color}08);opacity:0;'
                 f'display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 26px;box-sizing:border-box">'
-                f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:46px;line-height:1.1;color:{color}">{html.escape(node["t"])}</div>'
+                f'<div style="font-family:\'Inter Display\';font-weight:800;font-size:46px;line-height:1.1;color:{color}">{esc(node["t"])}</div>'
                 f'<div style="font-weight:600;font-size:24px;letter-spacing:.12em;text-transform:uppercase;color:#C9CCD1;margin-top:12px;line-height:1.35">'
-                f'{html.escape(node.get("sub", ""))}</div></div>')
+                f'{esc(node.get("sub", ""))}</div></div>')
 
     lines = "".join(_line(f"{gid}l{k}", f"M{rx} {ry + rh // 2} C {rx} {ry + rh // 2 + 120}, {x} {ky - kh // 2 - 120}, {x} {ky - kh // 2}",
                           col(kd, "c1"), 4) for k, (x, kd) in enumerate(zip(xs, kids)))
@@ -530,7 +532,7 @@ def org(c, s, t0, t1):
                   f'background:linear-gradient(180deg,transparent,#ffffff30,transparent)"></div>')
         html_ += box("a", W + (1920 - W) // 2, 540, 380, 300, aside, col(aside, "c4"), dashed=True)
     html_ += (f'<div id="{gid}t" style="position:absolute;left:0;right:0;top:70px;text-align:center;font-weight:600;font-size:30px;'
-              f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{html.escape(s.get("title", ""))}</div>')
+              f'letter-spacing:.26em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
     c.add(gid, t0, t1, html_, z=10, cls="page")
     c.rise(f"#{gid}t", t0, 0.5, 10, 0.1)
     c.tw(f'tl.fromTo("#{gid}r",{{opacity:0,y:-20}},{{opacity:1,y:0,duration:0.6,ease:"power3.out"}},{_at(c, R.get("at", 0.3), t0):.3f});')
