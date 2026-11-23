@@ -131,8 +131,18 @@ only stay if the visuals match. **If a shot doesn't match its line and doesn't l
 ## Lessons from ep4 (CEO, 2026-11-23)
 - Named people: when Wikimedia/Flickr rate-limit this sandbox (429 + retry-after 600 for hours), ask the owner early;
   they will supply portraits. Owner-supplied photos carry no on-screen credit (source unknown) and are listed as such.
-- Check every supplied portrait against a second known photo of the same person before using it; leave out any that
-  don't clearly match (ep4: one "Furner" image did not match the badge-named two-shot, so it was not used).
+- Check every supplied portrait against a second known photo of the same person before using it. If one doesn't clearly
+  match, ask the owner instead of silently dropping it (ep4: a Furner photo looked different; the owner confirmed it).
+- Owner-supplied photos need no credit, on screen or in the description (owner, 2026-11-23).
 - One good two-shot can serve twice: full frame for the handover, then `scale:` + `origin:` to open cropped on one face.
 - Portraits inside illustrations (versus cards) get their credit line on the card; describe.py lists them too.
 - New pages: `doors` (three routes, re-entered per chapter), `dots` (n people, one chosen), `versus` (two cards + photo reveal).
+
+## Owner review of ep4 (2026-11-23): approved as premium, two misses to fix in every future episode
+- **News moments get news visuals.** When the script reports a news event (a scandal, a resignation, a firing, a recall)
+  or cites an outlet ("CNBC reported…"), show a news reel or a news screenshot/headline from that outlet. Put it **in a
+  framed box**, not full-screen, for a few seconds. Ep4 missed this at ~8:44 (Huang resigning, "CNBC reported that the
+  board had decided he had to go"): generic B-roll ran where a boxed CNBC clip or headline belonged. Plan these moments
+  when reading the script, and ask the owner for the reel or screenshot if this sandbox can't reach the source.
+- **Weak portrait of a famous person → ask the owner.** The ep4 Steve Jobs photo (Flickr, dim stage shot) was not good
+  enough. If the best licensed photo of a named person isn't premium, ask the owner early for better ones instead of using it.
