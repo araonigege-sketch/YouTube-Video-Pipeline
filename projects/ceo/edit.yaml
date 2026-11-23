@@ -439,7 +439,7 @@ text:
   - {at: "Over the next three decades", until: ">development.", kind: label, text: "Engineering · a car plant · HR · *product*", pos: top}
   - {at: "A few months later", until: ">Congress.", kind: label, text: "The U.S. *Congress*", sub: "2014"}
   - {at: "8.5 years on average", until: ">five.", kind: big, text: "8.5 years", sub: "Average tenure · CEOs who stepped down in 2025"}
-  - {at: "about 54 years old", until: ">before.", kind: big, text: "54", sub: "Average age of new CEOs"}
+  - {at: "about 54 years old", until: ">average.", kind: big, text: "54", sub: "Average age of new CEOs"}
   - {at: "84 percent had never", until: ">before.", kind: big, text: "84%", sub: "Had never been a CEO before"}
   - at: "The right boss"
     until: ">ready."
