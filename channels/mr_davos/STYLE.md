@@ -127,3 +127,12 @@ only stay if the visuals match. **If a shot doesn't match its line and doesn't l
 **Process**
 - Run `python -m pipeline.align.vo_diff` after alignment and report every spoken-vs-script mismatch before building.
 - Review in-point contact sheets for meaning, not just framing, before rendering.
+
+## Lessons from ep4 (CEO, 2026-11-23)
+- Named people: when Wikimedia/Flickr rate-limit this sandbox (429 + retry-after 600 for hours), ask the owner early;
+  they will supply portraits. Owner-supplied photos carry no on-screen credit (source unknown) and are listed as such.
+- Check every supplied portrait against a second known photo of the same person before using it; leave out any that
+  don't clearly match (ep4: one "Furner" image did not match the badge-named two-shot, so it was not used).
+- One good two-shot can serve twice: full frame for the handover, then `scale:` + `origin:` to open cropped on one face.
+- Portraits inside illustrations (versus cards) get their credit line on the card; describe.py lists them too.
+- New pages: `doors` (three routes, re-entered per chapter), `dots` (n people, one chosen), `versus` (two cards + photo reveal).
