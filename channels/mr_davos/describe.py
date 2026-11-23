@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -40,7 +41,8 @@ def credits(P: Path) -> str:
     af = P / "media/archive/credits.json"
     if af.exists():
         arch = json.loads(af.read_text())
-        used_a = [Path(s["src"]).stem for s in edit["shots"] if str(s.get("src", "")).startswith("archive/")]
+        # every archive image the edit references: photo pages, split backgrounds, portraits inside illustrations
+        used_a = [Path(m).stem for m in re.findall(r"archive/[\w.-]+\.(?:jpg|jpeg|png)", (P / "edit.yaml").read_text())]
         if used_a:
             lines += ["", "PHOTOS"]
             for k in dict.fromkeys(used_a):

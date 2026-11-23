@@ -195,7 +195,7 @@ shots:
   - at: "It picked Tim Cook"
     page: illus
     name: versus
-    a: {t: "The operator", role: "", at: 0.0, color: c1, reveal: {name: "Tim Cook", sub: "CEO · 2011", img: archive/cook2.jpg, pos: "22% 38%", at: 0.15}}
+    a: {t: "The operator", role: "", at: 0.0, color: c1, reveal: {name: "Tim Cook", sub: "CEO · 2011", img: archive/cook_sq.jpg, pos: "50% 40%", at: 0.15}}
     b: {t: "The engineer", role: "", at: 0.1, color: c3, reveal: {name: "John Ternus", sub: "CEO · announced April 2026", img: archive/ternus.jpg, pos: "50% 25%", at: "John Ternus, an engineer"}}
   - {at: "and spent the next 25", src: broll/pe8126367.mp4, from: 2, move: push}
   - {at: "from the iPad", src: broll/pe5008497.mp4, from: 2, move: push}
@@ -395,7 +395,8 @@ text:
   - {at: "Same title", until: ">job.", kind: label, text: "Same title. *Very different job.*", pos: center}
   - {at: "only 59 got", until: ">managers.", kind: big, text: "59", sub: "New CEOs · top 500 US public companies · 2025"}
   - {at: "about 2.1 million", until: ">world.", kind: big, text: "2.1 million", sub: "Walmart workers worldwide"}
-  - {at: "named Doug McMillon", until: ">trucks.", kind: label, text: "Doug *McMillon*", sub: "Hourly warehouse job · 1984"}
+  - {at: "named Doug McMillon", until: ">McMillon", kind: label, text: "Doug *McMillon*"}
+  - {at: "took an hourly job", until: ">trucks.", kind: label, text: "Hourly *warehouse* job", sub: "1984"}
   - {at: "Thirty years later", until: ">company.", kind: label, text: "CEO of *Walmart*", sub: "2014 · thirty years later"}
   - {at: "John Furner", until: ">started?", kind: label, text: "John *Furner*", sub: "Walmart CEO · 2026"}
   - {at: "Bentonville, Arkansas", until: ">Arkansas.", kind: label, text: "Bentonville, *Arkansas*", sub: "Walmart garden center"}

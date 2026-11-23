@@ -689,11 +689,14 @@ def versus(c, s, t0, t1):
             ph = (f'<div style="width:220px;height:220px;border-radius:110px;margin:0 auto;overflow:hidden;border:4px solid {cl};'
                   f'box-shadow:0 0 50px {cl}55"><img src="{img}" style="width:100%;height:100%;object-fit:cover;'
                   f'object-position:{rv.get("pos", "50% 30%")}"/></div>') if img else ""
+            cr = c.archive_credit(rv["img"]) if rv.get("img") else ""
             photo = (f'<div id="{gid}r{k}" style="position:absolute;inset:0;padding-top:70px;text-align:center;opacity:0;'
                      f'background:linear-gradient(180deg,#121418,#0D0F12);border-radius:28px">{ph}'
                      f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:62px;color:{cl};margin-top:34px">{esc(rv["name"])}</div>'
                      f'<div style="font-weight:600;font-size:26px;letter-spacing:.18em;text-transform:uppercase;color:#E8E6E1;margin-top:12px">'
-                     f'{esc(rv.get("sub", ""))}</div></div>')
+                     f'{esc(rv.get("sub", ""))}</div>'
+                     f'<div style="position:absolute;left:0;right:0;bottom:22px;font-size:17px;color:#9AA0A6;opacity:.85">'
+                     f'{esc(cr)}</div></div>')
         parts.append(
             f'<div id="{gid}c{k}" style="position:absolute;left:{x - cw // 2}px;top:{top}px;width:{cw}px;height:{ch_}px;border-radius:28px;'
             f'border:3px solid {cl};background:linear-gradient(180deg,{cl}1F,{cl}06);opacity:0;box-sizing:border-box;overflow:hidden">'
