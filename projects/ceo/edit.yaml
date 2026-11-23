@@ -171,7 +171,7 @@ shots:
   - {at: "So what about school", src: broll/pe7945769.mp4, from: 1, move: none}
   - {at: "But when one professor", src: broll/pe6952154.mp4, from: 1, move: none, hold: the study}
   - {at: "fewer than 12 percent", src: broll/pe4319342.mp4, from: 5, move: none, hold: big number}
-  - {at: "Furner studied at", page: photo, src: archive/uark.jpg, zoom: 0.07}
+  - {at: "Furner studied at", page: photo, src: archive/uark.jpg, zoom: 0.07, origin: "52% 35%"}
   - {at: "A bachelor’s degree is typical", src: broll/pe7685212.mp4, from: 14, move: push}
   - {at: "But there’s no degree", src: broll/pe8170593.mp4, from: 1, move: none}
   - {at: "If there were, business", src: broll/pe12245077.mp4, from: 20, move: push}
