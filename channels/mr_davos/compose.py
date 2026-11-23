@@ -360,7 +360,8 @@ class Davos(Composition):
                      f'<div class="ph-foot"></div>{cap}<div class="ph-credit ph-credit-fill">{esc(credit)}</div>')
             target = ".ph-fill img"
         self.add(gid, t0, t1, inner, z=10, cls="page")
-        self.tw(f'tl.fromTo("#{gid} {target}",{{scale:1}},{{scale:{1 + z},duration:{t1 - t0:.3f},ease:"none"}},{t0:.3f});')
+        s0 = float(s.get("scale", 1.0))           # >1 opens already cropped toward `origin` (e.g. one person in a two-shot)
+        self.tw(f'tl.fromTo("#{gid} {target}",{{scale:{s0}}},{{scale:{s0 + z},duration:{t1 - t0:.3f},ease:"none"}},{t0:.3f});')
         self.tw(f'tl.fromTo("#{gid} {target}",{{opacity:0}},{{opacity:1,duration:0.35}},{t0:.3f});')
         if cap:
             self.rise(f"#{gid} .ph-cap", t0, 0.5, 12, 0.3)

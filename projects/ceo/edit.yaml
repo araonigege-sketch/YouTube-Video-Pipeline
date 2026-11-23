@@ -98,13 +98,12 @@ shots:
   - {at: "And some of those stories", src: broll/pe2746004.mp4, from: 5, move: none}
   - {at: "Look at Walmart", page: photo, src: archive/store.jpg, zoom: 0.08}
   - {at: "about 2.1 million", src: broll/pe20682093.mp4, from: 10, move: push, hold: big number}
-  - {at: "In 1984, a teenager", page: photo, src: archive/mcmillon.jpg, zoom: 0.07}
+  - {at: "In 1984, a teenager", page: photo, src: archive/mcmillon.jpg, zoom: 0.07, origin: "50% 35%"}
   - {at: "took an hourly job", page: photo, src: archive/dc_docks.jpg, zoom: 0.07}
   - {at: "unloading trucks", src: broll/pe6169116.mp4, from: 4, move: none}
   - {at: "Thirty years later", page: photo, src: archive/mcmillon_intl.jpg, zoom: 0.1, origin: "26% 30%"}
-  - {at: "Then in 2026, when McMillon", page: photo, src: archive/mcm_c.jpg, zoom: 0.08, origin: "80% 40%"}
-  - {at: "Walmart’s board picked", src: broll/pe7552419.mp4, from: 8, move: push}
-  - {at: "John Furner", page: photo, src: archive/furner.jpg, zoom: 0.07}
+  - {at: "Then in 2026, when McMillon", page: photo, src: archive/furner_mcmillon.jpg, zoom: 0.07, hold: the handover}
+  - {at: "John Furner", page: photo, src: archive/furner_mcmillon.jpg, scale: 1.9, zoom: 0.05, origin: "14% 28%"}
   - {at: "As an hourly worker in a Walmart garden", page: photo, src: archive/garden.jpg, zoom: 0.08}
   - {at: "Bentonville, Arkansas", src: broll/pe6508709.mp4, from: 3, move: push}
   - at: "So one of the biggest employers"
@@ -172,7 +171,7 @@ shots:
   - {at: "So what about school", src: broll/pe7945769.mp4, from: 1, move: none}
   - {at: "But when one professor", src: broll/pe6952154.mp4, from: 1, move: none, hold: the study}
   - {at: "fewer than 12 percent", src: broll/pe4319342.mp4, from: 5, move: none, hold: big number}
-  - {at: "Furner studied at", page: photo, src: archive/furner.jpg, zoom: 0.06}
+  - {at: "Furner studied at", page: photo, src: archive/uark.jpg, zoom: 0.07}
   - {at: "A bachelor’s degree is typical", src: broll/pe7685212.mp4, from: 14, move: push}
   - {at: "But there’s no degree", src: broll/pe8170593.mp4, from: 1, move: none}
   - {at: "If there were, business", src: broll/pe12245077.mp4, from: 20, move: push}
