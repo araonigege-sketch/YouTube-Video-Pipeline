@@ -95,3 +95,35 @@ credit line), `illus` → `cockpit`, `ladder` (re-enter with `lit:`), `hours` (g
 - **A wrong person is worse than no person.** When the line describes a specific role (an agent, a pilot, a fisherman),
   never cut to a civilian stand-in. Use real footage of that role (public-domain government video, licensed clips),
   a real photo, an illustration, or a neutral establishing shot instead.
+
+## Standing decisions (owner, 2026-11-23): the premium bar
+The airline-pilot episode (80%+ retention, approved untouched) is the standard. People come for the information but
+only stay if the visuals match. **If a shot doesn't match its line and doesn't look like a premium choice, it doesn't go in.**
+
+**Visuals**
+- The opening minutes decide retention: no placeholder landscapes there. Lead with the real subject.
+- Every shot must show the thing being said: a real border wall for "the US-Mexico border", a real coastline patrol for
+  "coastlines", a burning vehicle (ideally with responders) for "an SUV caught fire", stranded people for "people
+  stranded in the desert", seniors/veterans for "retirement". Generic open ground, paths and skies are not acceptable stand-ins.
+- Introduce people with a look-alike: "Meet Jordan, 26, warehouse worker" shows someone who fits. (Missed with Daniel in ep2.)
+- Banned: generic gavel/judge stock for courts. Use cinematic courthouse or courtroom shots instead.
+- Pages that hold a while (split screens, long illustrations next to footage) need the most interesting footage, not filler.
+- Archive photos run **full-screen** (2048 px CBP/Flickr renditions), slow push, attribution on the image's lower edge.
+  The small framed box is only for share-alike photos and images too small to fill the frame.
+- No clip used in two different episodes (check `python -m pipeline.broll ledger`). Inside an episode, "max twice"
+  counts the shoot, not the file; photos count too.
+
+**Sources, in order**
+1. Public-domain government footage and photos (DVIDS reels the owner downloads into Drive; CBP and other agency Flickr).
+2. The owner's Movie Clips folder in Drive (film B-roll; picture only, never their audio; skip anything under 720p).
+3. Pexels / Pixabay for scenery and objects. Never as a stand-in for a specific role.
+4. News reels and news footage: **sparingly, inside a framed box** (not full-screen), credited.
+
+**On-screen text**
+- Clean and sparse. Nothing in the bottom-centre caption zone: viewers' subtitles live there.
+  No sentence-style lines along the bottom; key concepts only, lower-left labels or upper third.
+- Curly apostrophes and quotes everywhere (automatic in the composer).
+
+**Process**
+- Run `python -m pipeline.align.vo_diff` after alignment and report every spoken-vs-script mismatch before building.
+- Review in-point contact sheets for meaning, not just framing, before rendering.
