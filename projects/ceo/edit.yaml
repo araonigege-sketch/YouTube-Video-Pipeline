@@ -103,7 +103,7 @@ shots:
   - {at: "unloading trucks", src: broll/pe6169116.mp4, from: 4, move: none}
   - {at: "Thirty years later", page: photo, src: archive/mcmillon_intl.jpg, zoom: 0.1, origin: "26% 30%"}
   - {at: "Then in 2026, when McMillon", page: photo, src: archive/furner_mcmillon.jpg, zoom: 0.07, hold: the handover}
-  - {at: "John Furner", page: photo, src: archive/furner_mcmillon.jpg, scale: 1.9, zoom: 0.05, origin: "14% 28%"}
+  - {at: "John Furner", page: photo, src: archive/furner.jpg, zoom: 0.07, origin: "45% 35%"}
   - {at: "As an hourly worker in a Walmart garden", page: photo, src: archive/garden.jpg, zoom: 0.08}
   - {at: "Bentonville, Arkansas", src: broll/pe6508709.mp4, from: 3, move: push}
   - at: "So one of the biggest employers"
