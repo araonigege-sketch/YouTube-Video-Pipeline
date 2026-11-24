@@ -16,3 +16,7 @@ projects/*/media/broll/_pexels/
 projects/*/media/archive/*.jpg
 projects/*/media/archive/*.png
 projects/*/music/**/*.mp3
+/build/
+projects/*/vo/**/*.wav
+projects/*/media/archive/*.jpeg
+projects/_pencil_test/

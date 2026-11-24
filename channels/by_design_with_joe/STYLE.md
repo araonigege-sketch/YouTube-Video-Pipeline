@@ -21,6 +21,12 @@ follows. Keep the two style guides in step: when the owner adds a rule for Mr. D
   - **Named people need excellent portraits.** If the best licensed photo of a named person (a shipping CEO, a
     founder, an official) isn't premium, **ask the owner early** for better ones instead of using it. Check every
     supplied portrait against a second known photo of the same person. Owner-supplied photos carry no credit.
+- **Illustrations and the maths are drawn in CineCode's coloured pencils (owner, 2026-11-24).** This is the one
+  visual difference from Mr. Davos. Graphs, charts, comparisons, maps, routes, sums and diagrams are drawn mark by
+  mark in coloured pencil on warm cream paper (CineCode `dataviz` grammar: graphite-grain strokes, handwritten notes
+  pinned to the marks, a pencil tip drawing each line), using **several pencil colours** (each concept keeps its
+  colour through the episode). They still play through to their end state before the next shot (rule 8).
+  Footage, text over footage, chapter cards and the like & subscribe prompt stay exactly as in Mr. Davos.
 - **Shipping & logistics sourcing notes:** a wrong vessel or vehicle is as bad as a wrong person. When the line names
   a specific ship type (container ship, tanker, bulk carrier, Ro-Ro, LNG carrier), port, canal, aircraft or truck,
   show that exact thing. Named ships, ports and events (e.g. a real grounding) need real footage or photos of them.

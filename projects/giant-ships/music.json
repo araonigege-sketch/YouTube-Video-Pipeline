@@ -1,0 +1,34 @@
+{
+ "policy": "docs/music.md",
+ "note": "Licences: CC BY 3.0 on each track's Wikimedia Commons file page (found via Openverse's index of Commons audio, 2026-11-24; Commons itself rate-limits this sandbox). Audio from the Internet Archive copies of the same Kevin MacLeod albums. First use on this channel.",
+ "tracks": [
+  {
+   "section": "cold open",
+   "file": "music/Space_1990.mp3",
+   "start": 0.0,
+   "end": 81.6,
+   "offset": 0.0,
+   "title": "Space 1990",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64736301",
+   "audio_from": "https://archive.org/details/Kevin-MacLeod_The-Ambient_2014_FullAlbum",
+   "credit": "\"Space 1990\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "ch1 how big is big",
+   "file": "music/Spacial_Harvest.mp3",
+   "start": 81.2,
+   "end": 260.0,
+   "offset": 20.0,
+   "title": "Spacial Harvest",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64741236",
+   "audio_from": "https://archive.org/details/Kevin-MacLeod_The-Ambient_2014_FullAlbum",
+   "credit": "\"Spacial Harvest\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  }
+ ]
+}

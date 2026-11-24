@@ -1,0 +1,6 @@
+title: Why The World’s Biggest Ships Almost Never Come to America
+channel: by_design_with_joe
+script_doc: https://docs.google.com/document/d/1XSGhUuaerCxFhyo8Tc9vpwx79j-e5NSIrNqv-1groeM
+voice:
+  - {file: vo/vo.wav, text: vo/vo.txt}   # owner's recording, Drive folder "By Design With Joe/Why Giant Ships Almost Never Come to America":
+                                         # main read (title cut, starts at "Hey there") + 2 re-recorded lines, built by vo/splice.py

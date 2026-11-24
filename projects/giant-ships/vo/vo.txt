@@ -1,0 +1,101 @@
+Hey there! Take a quick look around you. Your phone, your shoes, the chair you’re sitting on. There’s a good chance most of it crossed an ocean inside a big steel box on a container ship.
+
+And some of those container ships are unbelievably big. The biggest one in the world right now is about 400 meters long. If you stood it up on one end, it would be taller than the Eiffel Tower.
+
+Now, America is one of the biggest shoppers on the planet. And here’s the funny part: the modern shipping container was born in America. Back in 1956, a trucking businessman named Malcom McLean loaded 58 containers onto an old tanker in New Jersey and sent it to Texas. That idea changed world trade forever. So you’d think the biggest container ships would be showing up at American ports all the time, right?
+
+Well, they almost never do. In fact, back in 2015, one of these giants did come to America. It got a welcome party, with speeches, cameras and hundreds of guests. A few months later, it was gone.
+
+So, what’s keeping them away? Are American ports too small? Is there a bridge in the way? Or do shipping companies just not want to come? In this video, we’ll find out what’s really going on, and why it might finally be changing.
+
+First, how big are we talking? One of the current record holders is a ship called the MSC Irina. She started sailing in 2023, and she has a capacity of 24,346 TEU.
+
+Now, TEU sounds fancy, but it’s really simple. It stands for “twenty-foot equivalent unit.” That’s one standard 20-foot container, the steel box you’ve probably seen on the back of a truck. A lot of containers are actually 40 feet long, and those count as two TEU. So when a ship has a capacity of 24,346 TEU, it means it has space for the equivalent of 24,346 of those 20-foot boxes. That’s how the shipping world measures ships and ports, so that’s what we’ll use too.
+
+Let’s put that in perspective. If you lined up 24,346 of those 20-foot boxes end to end, you’d get a line about 92 miles long. That’s roughly the distance from New York City to Philadelphia. One ship.
+
+And she isn’t alone. Companies like MSC, OOCL, ONE and Evergreen have built whole fleets of ships of more than 20,000 TEU. People in the industry call them ultra-large container vessels.
+
+Why build ships this big? Because a ship twice as big doesn’t need twice the crew, and it doesn’t burn twice the fuel. The more containers you can move on one ship, the cheaper each one is to move. But there’s one condition, and remember it, because it’s going to matter a lot later: the ship has to carry enough paying cargo.
+
+So, where do shipping companies find enough cargo for these giants? Mostly on one route: Asia to Europe. Shanghai, Singapore, through the Suez Canal, then Rotterdam, Antwerp, Hamburg, and back again.
+
+And the ports on that route are enormous. In 2025, the Port of Shanghai handled about 55 million TEU. Rotterdam, Europe’s biggest port, handled about 14 million. The Port of Los Angeles, the busiest in America, handled about 10.2 million.
+
+Now, wait. That doesn’t mean America doesn’t buy much. It buys a lot. But America spreads its cargo across its Pacific, Atlantic and Gulf Coast ports, from Los Angeles and Seattle to New York, Savannah and Houston. For a giant ship, what matters isn’t how much a whole country buys. It’s how much cargo it can pick up and drop off on one route.
+
+That’s where the giants live. But even if a shipping company wanted to send one to America, could it? Let’s start with the East Coast.
+
+Let’s say you’re shipping a container of shoes from Shanghai to New York. You have two main choices. You can sail west, go through the Suez Canal in Egypt, and cross the Atlantic. Or you can sail east across the Pacific and take a shortcut through the Panama Canal.
+
+For this trip, Panama is usually the quicker way. But there’s a catch. To get through, ships have to fit inside giant water elevators called locks. A lock is basically a huge concrete box. The ship sails in, the gates close, the water level changes, and the ship gets lifted or lowered to the next level. And like any box, it has a size limit.
+
+When the canal opened in 1914, its locks could only take ships up to 965 feet long and 106 feet wide. For about a hundred years, that limit decided how big a lot of ships could be. Then in 2016, Panama opened a new, much bigger set of locks. In 2021, it raised the maximum ship length to 370.33 meters.
+
+Okay, now compare that with the Irina. The limit is about 370 meters. The Irina is about 400. So she’s roughly 30 meters too long. That’s about the length of a blue whale.
+
+The width is even worse. The widest container ship ever to squeeze through the new locks was Evergreen’s Triton, at 51.2 meters wide. The Irina is 61.3. That’s ten extra meters of ship trying to get through a door built to the inch.
+
+So for the biggest ships in the world, the Panama shortcut is closed. Not “inconvenient.” Closed.
+
+Now, you might ask, “Okay, Joe, why not go the other way, through Suez?” Good question. The Suez Canal has no locks at all, so it can take these giants. But from Shanghai, that route to New York usually takes a couple of days longer, and every extra day at sea means more fuel and more cost. And even if a giant made it across, it still has to get into the port. Which brings us to a bridge in New Jersey.
+
+The Bayonne Bridge opened in 1931. It sits right over the waterway ships use to reach some of the busiest container terminals on the East Coast, in Newark and Elizabeth.
+
+When it opened, the bridge left 151 feet of space between the water and the road. Back then, that was plenty. But container ships kept growing. And growing. By the 2010s, that bridge meant the biggest port on the East Coast could only take ships of under 10,000 TEU. When a record-breaking ship called the COSCO Development visited the East Coast in 2017, it skipped New York completely.
+
+So, what do you do when your bridge is too low? The Port Authority did something almost nobody had done before. Engineers built a new road 64 feet higher, inside the bridge’s existing steel arch, while cars kept driving on the old road underneath. That’s like changing your car tires while driving on the highway.
+
+The new clearance was 215 feet. The project was supposed to cost $1.3 billion. It ended up costing nearly $1.7 billion. And on top of that, a separate project spent $2.1 billion making the harbor channels deeper.
+
+Let’s do the math. $1.7 billion plus $2.1 billion is about $3.8 billion. And after all that money, the port was built to welcome ships of up to about 18,000 TEU. Now, to be precise, what really decides whether a ship fits under a bridge is how tall it stands above the water, not its TEU. But ships of around 18,000 TEU are roughly the biggest class the upgrade was designed for. Not 24,000. Eighteen. America raised the ceiling, and the ships just kept getting taller.
+
+That’s why East Coast records are still well below the world’s biggest ships. In 2021, the 16,000-TEU CMA CGM Marco Polo became the largest container ship ever to visit the U.S. East Coast. More recently, Charleston welcomed the OOCL Iris, at 16,828 TEU. Serious ships. Just not the Irina.
+
+Now, I can already see someone typing in the comments, “Joe, the West Coast doesn’t have a Panama Canal problem. Ships from Asia just sail straight across the Pacific.” And you’re right.
+
+In June 2020, the MSC Isabella, with a capacity of 23,656 TEU, docked at the Port of Los Angeles. It was the biggest container ship ever to call there. And the dockworkers set a world record: 18,465 container moves in a single ship visit, using nine giant cranes.
+
+So, the West Coast can physically handle these ships. Then why don’t the giants come every week?
+
+To answer that, let’s go back to that welcome party. On December 26, 2015, the CMA CGM Benjamin Franklin, a 1,300-foot ship with a capacity of 18,000 TEU, arrived at the Port of Los Angeles. It was the largest container ship ever to call at a North American port. The mayor came to welcome it. Up to nine cranes worked on it at the same time, the most the port had ever used on one ship. In 56 hours, about 11,200 containers were moved.
+
+Then in February 2016, the ship visited neighboring Long Beach for its official inauguration. Jacques Saadé, the head of the French shipping company CMA CGM, was there, along with more than 600 guests. A few weeks later, the company announced it would put six of these 18,000-TEU giants on a regular route between Asia and the U.S. West Coast.
+
+But there were warning signs. At Long Beach, the ship could only be partly loaded, because the cranes there weren’t tall enough to reach the top of a fully stacked ship. And the bigger problem was money. The Pacific already had too many ships chasing too little cargo. Spot rates, the price to ship one 40-foot container from Asia to the West Coast, had fallen to about $750 to $800. That was roughly half what it had been two years earlier.
+
+About six weeks after announcing the plan, CMA CGM called it off, blaming weak market conditions on the Pacific. The Benjamin Franklin was moved to a route between Asia and Northern Europe. So, America could host the ship. The real question was whether there was enough well-paid cargo to keep sending it. And at the time, there wasn’t.
+
+Here’s why that matters so much. Let’s imagine you run a bakery, and you deliver bread across town. You have two choices. A huge truck that carries 1,000 loaves and costs $500 per trip. Or a small van that carries 100 loaves and costs $100 per trip.
+
+Which is cheaper? The truck costs $500 for 1,000 loaves. That’s 50 cents a loaf. The van costs $100 for 100 loaves. That’s $1 a loaf. Easy, the big truck wins.
+
+But wait. What if the neighborhood you’re delivering to only needs 300 loaves? The truck still costs $500, but now it only carries 300 loaves. That’s about $1.67 a loaf. Suddenly, the small van is the better deal.
+
+Ships work the same way. Imagine a 24,000-TEU ship that’s only 70% full. It carries 16,800 TEU of cargo. Now imagine a 16,000-TEU ship that’s 95% full. It carries 15,200 TEU. The bigger ship has 8,000 TEU of extra space, but it only carries 1,600 TEU more. That doesn’t mean the bigger ship always loses. It depends on freight rates and running costs. But it shows why filling the space matters more than simply having the biggest ship.
+
+The Asia-Europe route also helps the giants in another way. It’s one of the longest container routes in the world, so the savings add up over every mile. One loop between East Asia and Europe commonly uses 11 ships. A loop between Asia and the U.S. West Coast might only need five to seven. Shorter trip, smaller savings.
+
+Then there’s the trip home. America buys far more than it sells back. In 2025, the Port of Los Angeles took in about 5.3 million TEU of loaded imports, but sent out only about a quarter as much in loaded exports. A lot of the space going back to Asia gets filled with empty containers that need to be returned and filled again. Moving them is necessary, but an empty box doesn’t earn what a loaded one does.
+
+Now, to be fair, Europe has this problem too. Ships heading from Europe back to Asia also carry far less than they bring. So the imbalance on its own doesn’t explain why the giants prefer Europe. It’s the combination: a longer route, a network of huge ports built around these ships, and the money on those particular services.
+
+And then there’s the land side. Stephen Ng, then a director at OOCL, put it simply at an industry conference years ago: “Without terminal productivity, we will hesitate to put large vessels into those ports.” In plain English, a ship can only move as fast as the dock it’s parked at.
+
+Think about it. When a giant ship arrives, it can drop thousands and thousands of containers on a terminal in one visit. Every single one needs a crane to lift it, a spot in the yard to sit, and a truck or train to take it away. If any part of that slows down, containers pile up and the next ship waits at sea.
+
+You might remember what that looked like during the pandemic. At the peak, in January 2022, a record 109 container ships were waiting to get into Los Angeles and Long Beach. One hundred and nine ships, all waiting for their turn. The money a giant ship saves at sea can disappear fast if it gets stuck on land.
+
+So, is America losing out? Not necessarily. Smaller ships have real advantages. They can visit more ports, and they can sail more often, so your stuff arrives on a steadier schedule. When the bigger Panama locks opened, the canal authority itself expected the best size for container ships to be between 8,500 and 10,000 TEU. Not the giants. The workhorses.
+
+And giant ships come with giant risks. In March 2021, the Ever Given, a 400-meter mega-ship, got stuck sideways in the Suez Canal and blocked one of the world’s most important trade routes for six days. When a small ship has a bad day, it’s a delay. When a giant has a bad day, it’s world news.
+
+But here’s the twist. Ten years after the Benjamin Franklin left, the giants are showing up again. In the busy shipping months of August, September and October 2026, MSC put two of its biggest ships, the MSC Nela and the MSC Arina, each of about 24,000 TEU, on a service from Asia to Long Beach. The port’s own CEO said the ships on that route are normally smaller. And Long Beach is on track to handle more than 10 million TEU this year, for the first time ever.
+
+Is this the start of a new era, or just a busy season? Honestly, it’s too early to say. The real test isn’t whether these ships can come to America. They already have. It’s whether they keep coming when things calm down, and whether other shipping companies follow.
+
+So, what’s the big lesson here? A canal built in 1914. A bridge built in 1931. A shorter trip that reduces some of the financial advantages of giant ships. Ports that have to move thousands of containers in hours. And a trade that sends a lot of empty boxes back. The world’s biggest ships could come to America. They just usually have a better place to be.
+
+Because in shipping, the most impressive ship isn’t always the one that carries the most containers. It’s the one that carries the right number of containers, to the right place, at the right cost.
+
+So, what do you think? Will American ports ever see these giants as often as ports in Asia and Europe do? Let me know in the comments. And if you want me to make more videos like this breaking down the shipping and logistics industry, please like and subscribe. Thanks for watching.

@@ -337,8 +337,10 @@ class Joe(Composition):
             self.rise(f"#{gid}r{k}", ta, 0.5, 16)
 
     def illus(self, s, t0, t1):
-        from . import illus
-        getattr(illus, s["name"])(self, s, t0, t1)
+        # coloured-pencil pages (sketches.py) first: this channel's illustrations and maths are drawn in pencil
+        from . import illus, sketches
+        fn = getattr(sketches, s["name"], None) or getattr(illus, s["name"])
+        fn(self, s, t0, t1)
 
     def photo(self, s, t0, t1):
         """Archive photo: sharp and framed over a blurred, darkened copy of itself, slow push, small credit line."""
@@ -395,7 +397,8 @@ class Joe(Composition):
         p = self.p
         faces = "".join(f'@font-face{{font-family:"{"Inter Display" if n.startswith("InterDisplay") else "Inter"}";'
                         f'src:url(assets/fonts/{n});font-weight:{w};}}' for n, w in FONTS.items())
-        return faces + f"""
+        from . import pencil
+        return faces + pencil.css() + f"""
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:{p['text']}}}
 #root{{position:relative;width:1920px;height:1080px;overflow:hidden}}
@@ -495,7 +498,8 @@ def build_overlay(P, edit, ch, words, shots, log=print) -> tuple[Path, list[floa
     for d in edit.get("music_dips", []):
         c.dips.append(resolve(words, d, 0.0) - a)
     c.els.insert(0, f'<video id="base" class="clip" src="assets/base.mp4" muted data-start="0" data-duration="{end:.3f}"></video>')
-    fonts = {n: FONT_DIR / n for n in FONTS}
+    from . import pencil
+    fonts = {**{n: FONT_DIR / n for n in FONTS}, **pencil.fonts()}
     path = c.write(c.css(), end, fonts=fonts)
     log(f"overlay: {len(edit.get('text', []))} text, {sum(1 for s in shots if s.get('page'))} pages, {len(c.js)} tweens")
     return path, c.dips
@@ -583,7 +587,7 @@ def check(P: Path, log=print) -> int:
         if d > r["max_shot"] and not s.get("hold"):
             log(f"!  {s['t0']:7.2f}s  {d:4.1f}s shot ({s['src']}) — longer than {r['max_shot']}s (add `hold: reason` to keep)")
             warn += 1
-        if d < r["min_shot"]:
+        if d < r["min_shot"] and not s.get("quick"):     # `quick: reason` = a deliberate rapid list ("your phone, your shoes…")
             log(f"!  {s['t0']:7.2f}s  {d:4.1f}s shot ({s['src']}) — very short")
             warn += 1
     a, b = edit["range"]

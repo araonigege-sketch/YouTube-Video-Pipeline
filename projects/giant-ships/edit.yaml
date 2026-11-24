@@ -1,0 +1,98 @@
+# By Design With Joe ep1 — "Why The World’s Biggest Ships Almost Never Come to America"
+# Mr. Davos blueprint (channels/by_design_with_joe/STYLE.md); illustrations and maths in coloured pencil (sketches.py).
+range: [0, 144.4]
+
+shots:
+  # ---------------------------------------------------------------- cold open
+  - {at: 0, src: broll/pe7647259.mp4, from: 0.5, move: push}                   # Hey there! Take a quick look around you
+  - {at: "Your phone", src: broll/pe8060389.mp4, from: 2, move: push, quick: list}
+  - {at: "your shoes", src: broll/pe3757014.mp4, from: 9, move: none, quick: list}
+  - {at: "the chair you’re sitting", src: broll/pe10159563.mp4, from: 3, move: push}
+  - {at: "There’s a good chance", src: broll/pe37287417.mp4, from: 2, move: push}  # crossed an ocean
+  - {at: "inside a big steel box", src: broll/pe6618019.mp4, from: 4, move: none}
+  - {at: "on a container ship", src: broll/pe26893765.mp4, from: 2, move: push}
+  - {at: "And some of those container ships", src: broll/pe26893760.mp4, from: 4, move: push}
+  - {at: "unbelievably big", src: broll/pe36375963.mp4, from: 4, move: left}
+  - {at: "The biggest one in the world", page: illus, name: p_stand, a_len: "400 meters", a_stand: "stood it up", a_tower: "taller than"}
+  - {at: "Now, America is one", src: broll/pe6565795.mp4, from: 1, move: push}  # biggest shoppers
+  - {at: "And here’s the funny part", src: broll/pe34625520.mp4, from: 12, move: right}   # Long Beach harbour
+  - {at: "the modern shipping container was born", src: broll/pe34625523.mp4, from: 6, move: push}
+  - at: "Back in 1956"
+    page: illus
+    name: p_map
+    topo: us-atlas/nation-10m.json
+    object: nation
+    borders: {topo: us-atlas/states-10m.json, object: states}
+    projection: conic
+    rotate: [96, 0]
+    parallels: [29.5, 45.5]
+    fit: [[-100, 24], [-70, 42]]
+    places:
+      - {name: Newark, ll: [-74.15, 40.68], label: "Newark, N.J.", a: "Malcom McLean", dx: 20, dy: -14}
+      - {name: Houston, ll: [-95.0, 29.6], label: "Houston, Texas", a: "loaded 58", dx: -24, dy: -20, anchor: end}
+    routes:
+      - legs: [Newark, [-73.6, 39.9], [-74.6, 37.0], [-75.0, 35.2], [-78.5, 32.4], [-79.9, 28.5], [-79.9, 25.0], [-80.8, 24.3],
+               [-82.4, 24.35], [-83.6, 25.6], [-87.5, 28.6], [-93.2, 29.0], Houston]
+        color: blue
+        a: "onto an old tanker"
+        dur: 2.6
+        label: "58 containers"
+        lx: 1180
+        ly: 660
+        la: "58 containers"
+    notes:
+      - {t: "1956", x: 140, y: 170, size: 96, weight: 700, a: 0.2}
+      - {t: "Malcom McLean", x: 140, y: 250, size: 60, color: graphite, a: "Malcom McLean"}
+  - {at: "That idea changed world trade", src: broll/pe35908063.mp4, from: 8, move: push}
+  - {at: "So you’d think the biggest", src: broll/pe6857819.mp4, from: 6, move: left}
+  - {at: "at American ports", src: broll/pe34625520.mp4, from: 46, move: push}
+  - {at: "Well, they almost never do", src: broll/pe5091870.mp4, from: 2, move: push}
+  - {at: "In fact, back in 2015", page: photo, src: archive/bf_garcetti.jpg, zoom: 0.07}
+  - {at: "speeches, cameras", src: broll/pe30048693.mp4, from: 0.5, move: none}   # NEWS BOX goes here (owner: reel of the 2015 welcome)
+  - {at: "A few months later", src: broll/pe26893751.mp4, from: 4, move: none}
+  - {at: "So, what’s keeping them away", src: broll/pe35907909.mp4, from: 10, move: push}
+  - {at: "Is there a bridge in the way", src: broll/pe19106507.mp4, from: 3, move: push}
+  - {at: "Or do shipping companies", src: broll/pe26893767.mp4, from: 26, move: push}
+  - {at: "In this video", src: broll/pe35907894.mp4, from: 6, move: push}
+  - {at: "and why it might finally", src: broll/pe35908063.mp4, from: 30, move: right}
+  # ---------------------------------------------------------------- 1. how big
+  - {at: "First, how big", page: chapter, n: 1, title: "How big is big?"}
+  - {at: "One of the current record holders", page: photo, src: archive/irina_hd.jpg, zoom: 0.06, origin: "40% 50%"}
+  - {at: "She started sailing", src: broll/pe26893760.mp4, from: 20, move: push, hold: "big number reads over it"}
+  - {at: "Now, TEU sounds fancy", src: broll/pe6618335.mp4, from: 2, move: push}
+  - {at: "It stands for", page: illus, name: p_teu, a_box: "one standard", a_truck: "back of a truck", a_forty: "40 feet", a_two: "count as two"}
+  - {at: "So when a ship has a capacity", src: broll/pe10391545.mp4, from: 3, move: push}
+  - {at: "24,346 TEU, it means", src: broll/pe26893767.mp4, from: 3, move: push}
+  - {at: "it means it has space", src: broll/pe32750413.mp4, from: 4, move: push}
+  - {at: "of those 20-foot boxes", src: broll/pe26893765.mp4, from: 14, move: push}
+  - {at: "That’s how the shipping world", src: broll/pe30281175.mp4, from: 2, move: push}
+  - {at: "so that’s what we’ll use", src: broll/pe37100800.mp4, from: 2, move: right}
+  - {at: "Let’s put that in perspective", src: broll/pe30261704.mp4, from: 3, move: push}
+  - at: "If you lined up"
+    page: illus
+    name: p_map
+    topo: us-atlas/states-10m.json
+    object: states
+    projection: mercator
+    fit: [[-76.4, 39.55], [-73.2, 41.15]]
+    places:
+      - {name: NYC, ll: [-74.0, 40.71], label: "New York City", a: 0.6, dx: 22, dy: 50, size: 52}
+      - {name: Philadelphia, ll: [-75.16, 39.95], label: "Philadelphia", a: 1.0, dx: -22, dy: 60, anchor: end, size: 52}
+    routes:
+      - {legs: [NYC, Philadelphia], color: orange, a: "end to end", dur: 2.4, w: 16, arrow: false,
+         label: "≈ 92 miles", lx: 860, ly: 330, la: "92 miles", size: 76}
+    notes:
+      - {t: "24,346 boxes, end to end", x: 120, y: 160, size: 72, weight: 700, a: "24,346", color: orange}
+      - {t: "One ship.", x: 120, y: 980, size: 80, weight: 700, a: "One ship", color: blue}
+
+text:
+  - {at: "In fact, back in 2015", kind: label, text: "CMA CGM *Benjamin Franklin*", sub: "Los Angeles · December 2015", until: "speeches, cameras"}
+  - kind: questions
+    at: "Are American ports"
+    until: ">want to come?"
+    items:
+      - {t: "Ports too small?", a: "Are American ports"}
+      - {t: "A bridge in the way?", a: "Is there a bridge"}
+      - {t: "Don’t want to come?", a: "Or do shipping companies"}
+  - {at: "MSC Irina", kind: label, text: "MSC *Irina*", sub: "In service since 2023", dur: 3.6}
+  - {at: "24,346 TEU", kind: big, text: "24,346", sub: "TEU", until: ">TEU."}
