@@ -11,7 +11,7 @@ Chosen clips go to projects/<slug>/media/broll/<id>.mp4 and are credited in medi
       Three frames per candidate, labelled id / source size / length, for picking by eye.
   python -m pipeline.broll get <slug> <id> [<id> ...]
       Download the best rendition (Pexels: 1080p+ via pexels.py; Pixabay: large/medium) and record the credit.
-  python -m pipeline.broll ledger [--scan]
+  python -m pipeline.broll ledger [--scan] [--channel <name>]
       Clips already used by this channel's episodes (never repeat a clip across episodes).
 """
 from __future__ import annotations
@@ -141,10 +141,24 @@ def get(slug: str, ids: list[str]):
     cf.write_text(json.dumps(credits, indent=1))
 
 
-def ledger(scan: bool = False):
-    """Clip ids used by every Mr. Davos-style project (shots.yaml `src: broll/<id>`)."""
+def _channel(project: Path) -> str | None:
+    ep = project / "episode.yaml"
+    if not ep.exists():
+        return None
+    m = re.search(r"^channel:\s*([\w-]+)", ep.read_text(), re.M)
+    return m.group(1).replace("-", "_") if m else None
+
+
+def ledger(scan: bool = False, channel: str | None = None):
+    """Clip ids used by every Mr. Davos-style project (edit.yaml `src: broll/<id>`).
+
+    `channel` limits the ledger to one channel's episodes: the cross-episode "no clip twice" rule is per channel
+    (By Design With Joe may reuse Mr. Davos clips, owner 2026-11-24)."""
     used: dict[str, list[str]] = {}
+    want = channel.replace("-", "_") if channel else None
     for ep in sorted((ROOT / "projects").glob("*/edit.yaml")):
+        if want and _channel(ep.parent) != want:
+            continue
         txt = ep.read_text()
         for cid in sorted(set(re.findall(r"broll/((?:pe|px|ar|nw)[\w-]+)", txt))):
             used.setdefault(cid, []).append(ep.parent.name)
@@ -161,7 +175,7 @@ def main(argv=None):
     a = sp.add_parser("pexels"); a.add_argument("slug"); a.add_argument("tag"); a.add_argument("pairs", nargs="+")
     a = sp.add_parser("sheet"); a.add_argument("slug"); a.add_argument("out"); a.add_argument("ids", nargs="*"); a.add_argument("--tag")
     a = sp.add_parser("get"); a.add_argument("slug"); a.add_argument("ids", nargs="+")
-    a = sp.add_parser("ledger"); a.add_argument("--scan", action="store_true")
+    a = sp.add_parser("ledger"); a.add_argument("--scan", action="store_true"); a.add_argument("--channel")
     a = ap.parse_args(argv)
     if a.cmd == "pixabay":
         pixabay(a.slug, a.query, a.n, a.min_h)
@@ -172,7 +186,7 @@ def main(argv=None):
     elif a.cmd == "get":
         get(a.slug, a.ids)
     else:
-        ledger(a.scan)
+        ledger(a.scan, a.channel)
 
 
 if __name__ == "__main__":
