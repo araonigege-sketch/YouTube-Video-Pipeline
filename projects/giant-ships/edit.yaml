@@ -49,7 +49,7 @@ shots:
   - {at: "at American ports", src: broll/pe34625520.mp4, from: 46, move: push}
   - {at: "Well, they almost never do", src: broll/pe5091870.mp4, from: 2, move: push}
   - {at: "In fact, back in 2015", page: photo, src: archive/bf_32667466117.jpg, bg: stage, zoom: 0.04}   # BY-SA: framed, unmodified
-  - {at: "speeches, cameras", src: broll/pe30048693.mp4, from: 0.5, move: none}   # NEWS BOX goes here (owner: reel of the 2015 welcome)
+  - {at: "speeches, cameras", page: photo, frame: true, zoom: 0.03, h: 700, src: archive/news_nbc_bf.jpg, box: "NBC News · December 2015"}
   - {at: "A few months later", src: broll/pe26893751.mp4, from: 4, move: none}
   - {at: "So, what’s keeping them away", src: broll/pe35907909.mp4, from: 10, move: push}
   - {at: "Is there a bridge in the way", src: broll/pe19106507.mp4, from: 3, move: push}
@@ -223,7 +223,8 @@ shots:
   - {at: "But ships of around 18,000", src: broll/pe38927905.mp4, from: 3, move: push, hold: "big number"}
   - {at: "America raised the ceiling", src: broll/pe35801366.mp4, from: 22, move: push}
   - {at: "That’s why East Coast records", src: broll/pe3075997.mp4, from: 4, move: push}
-  - {at: "In 2021, the 16,000-TEU", page: photo, src: archive/marcopolo_kemme.jpg, zoom: 0.06}   # NEWS BOX goes here when reachable (Marco Polo on the East Coast, 2021)
+  - {at: "In 2021, the 16,000-TEU", page: photo, src: archive/marcopolo_kemme.jpg, zoom: 0.06}
+  - {at: "became the largest container ship ever to visit", page: photo, frame: true, zoom: 0.03, src: archive/news_cbs_marcopolo.jpg, box: "CBS New York · May 2021", h: 480}
   - at: "More recently, Charleston"
     page: illus
     name: p_bars
@@ -239,13 +240,13 @@ shots:
   - {at: "Joe, the West Coast", src: broll/pe18127796.mp4, from: 2, move: push}
   - {at: "Ships from Asia just sail", src: broll/pe37287417.mp4, from: 24, move: push}
   - {at: "In June 2020, the MSC Isabella", page: photo, src: archive/isabella_kt.jpg, bg: stage, zoom: 0.04}
-  - {at: "It was the biggest container ship ever to call there", src: broll/pe30522941.mp4, from: 3, move: push}
+  - {at: "It was the biggest container ship ever to call there", page: photo, frame: true, zoom: 0.03, h: 860, src: archive/news_fw_isabella.jpg, box: "FreightWaves · June 2020"}
   - {at: "And the dockworkers set", src: broll/pe36375963.mp4, from: 16, move: left, hold: "big number"}
   - {at: "using nine giant cranes", src: broll/pe29967105.mp4, from: 3, move: push}
   - {at: "So, the West Coast can physically", src: broll/pe6414069.mp4, from: 6, move: push}
   - {at: "Then why don’t the giants", src: broll/pe13425337.mp4, from: 12, move: push}
   - {at: "To answer that, let’s go back", page: photo, src: archive/bf_kt.jpg, bg: stage, zoom: 0.04}
-  - {at: "On December 26, 2015", src: broll/pe31731844.mp4, from: 40, move: none}       # NEWS BOX goes here when reachable (Benjamin Franklin arrives in LA)
+  - {at: "On December 26, 2015", page: photo, frame: true, zoom: 0.03, h: 700, src: archive/news_nbc_bf.jpg, box: "NBC News · December 2015"}
   - {at: "a 1,300-foot ship", src: broll/pe15833309.mp4, from: 3, move: push, hold: "facts on screen"}
   - {at: "It was the largest container ship ever to call at a North American", src: broll/pe6618037.mp4, from: 4, move: push}
   - {at: "The mayor came to welcome it", src: broll/pe30048693.mp4, from: 3, move: none}   # NEWS BOX goes here (mayor's welcome)
@@ -253,7 +254,7 @@ shots:
   - {at: "In 56 hours", src: broll/pe11736687.mp4, from: 2, move: push, hold: "chips build"}
   - {at: "Then in February 2016", page: photo, src: archive/polb_sunset.jpg, zoom: 0.06, origin: "50% 55%"}
   - {at: "Jacques Saadé", page: photo, src: archive/owner_saade.jpg, frame: true, h: 780, zoom: 0.05}
-  - {at: "A few weeks later, the company announced", src: broll/pe35907909.mp4, from: 30, move: push}   # NEWS BOX goes here when reachable (six-ship plan)
+  - {at: "A few weeks later, the company announced", page: photo, frame: true, zoom: 0.03, h: 860, src: archive/news_fw_plan.jpg, box: "American Shipper · March 2016"}
   - {at: "six of these 18,000-TEU giants", src: broll/pe36838174.mp4, from: 6, move: push, hold: "slow push on a giant"}
   - {at: "But there were warning signs", src: broll/pe37292896.mp4, from: 4, move: none}
   - {at: "At Long Beach, the ship could only be partly", src: broll/pe13681970.mp4, from: 2, move: push}
@@ -330,7 +331,7 @@ shots:
     swarm: {n: 109, box: [[-118.5, 33.45], [-117.85, 33.70]], a: "a record 109", dur: 4.5, label: "109 ships", lx: 1200, ly: 980}
     notes:
       - {t: "January 2022", x: 120, y: 160, size: 80, weight: 700, a: 0.3}
-      - {t: "all waiting their turn", x: 120, y: 250, size: 58, color: red, a: "all waiting for their turn"}
+  - {at: "One hundred and nine ships", page: photo, frame: true, zoom: 0.03, h: 860, src: archive/news_fw_queue.jpg, box: "FreightWaves · January 2022"}
   - {at: "The money a giant ship saves", src: broll/pe15160223.mp4, from: 16, move: push}
   - {at: "if it gets stuck on land", src: broll/pe39129901.mp4, from: 60, move: push}
   # ---------------------------------------------------------------- 7. is America losing out?
@@ -408,7 +409,7 @@ text:
   - {at: "Without terminal productivity", kind: quote, text: "Without terminal productivity, we will hesitate to put large vessels into those ports.", who: "Stephen Ng, then a director at OOCL", until: ">into those ports.”"}
   - {at: "Not 24,000", kind: big, pre: "Not 24,000", text: "18,000", sub: "TEU · what the upgrade was built for", until: ">Eighteen."}
   - {at: "COSCO Development", kind: label, text: "COSCO *Development*", sub: "Record-breaker, 2017", dur: 3.6, pos: top}
-  - {at: "CMA CGM Marco Polo", kind: label, text: "CMA CGM *Marco Polo*", sub: "16,000 TEU · East Coast record, 2021", dur: 4}
+  - {at: "CMA CGM Marco Polo", kind: label, text: "CMA CGM *Marco Polo*", sub: "16,000 TEU · East Coast record, 2021", dur: 2.4}
   - {at: "MSC Isabella", kind: label, text: "MSC *Isabella*", sub: "23,656 TEU", dur: 4}
   - {at: "the Ever Given, a 400-meter", kind: label, text: "*Ever Given*", sub: "Suez Canal · March 2021", dur: 4}
   - {at: "The port’s own CEO", kind: label, text: "Mario *Cordero*", sub: "CEO, Port of Long Beach", dur: 3.4}

@@ -154,5 +154,35 @@
   "credit": "",
   "page": "https://www.bbc.com/news/world-middle-east-56547201",
   "license": "news screenshot (boxed, credited on screen as BBC News)"
+ },
+ "news_nbc_bf": {
+  "title": "NBC News, Dec 2015: Biggest Container Ship to Visit U.S. Barely Clears Golden Gate Bridge",
+  "credit": "",
+  "page": "https://www.nbcnews.com/business/business-news/biggest-container-ship-visit-u-s-barely-clears-golden-gate-n488641",
+  "license": "news screenshot (boxed; outlet credited on screen)"
+ },
+ "news_cbs_marcopolo": {
+  "title": "CBS New York, 20 May 2021: Port Authority Welcomes Largest Container Ship To Ever Call On East Coast",
+  "credit": "",
+  "page": "https://www.cbsnews.com/newyork/news/port-authority-largest-container-ship/",
+  "license": "news screenshot (boxed; outlet credited on screen)"
+ },
+ "news_fw_plan": {
+  "title": "FreightWaves / American Shipper, 4 Mar 2016: CMA CGM to deploy 'giant' containerships in transpacific",
+  "credit": "",
+  "page": "https://www.freightwaves.com/news/cma-cgm-to-deploy-giant-containerships-in-transpacific",
+  "license": "news screenshot (boxed; outlet credited on screen)"
+ },
+ "news_fw_queue": {
+  "title": "FreightWaves, 7 Jan 2022: New year brings new all-time high for shipping's epic traffic jam",
+  "credit": "",
+  "page": "https://www.freightwaves.com/news/new-year-brings-new-all-time-high-for-shippings-epic-traffic-jam",
+  "license": "news screenshot (boxed; outlet credited on screen)"
+ },
+ "news_fw_isabella": {
+  "title": "FreightWaves / American Shipper, 19 Jun 2020: APM Terminals Pier 400 LA sets container-handling record",
+  "credit": "",
+  "page": "https://www.freightwaves.com/news/apm-terminals-pier-400-la-sets-container-handling-record",
+  "license": "news screenshot (boxed; outlet credited on screen)"
  }
 }
