@@ -47,7 +47,9 @@ def credits(P: Path) -> str:
             lines += ["", "PHOTOS"]
             for k in dict.fromkeys(used_a):
                 if k in arch and arch[k].get('credit'):
-                    lines.append(f"{arch[k]['title']}: {arch[k]['credit']} {arch[k]['page']}")
+                    line = f"{arch[k]['title']}: {arch[k]['credit']} {arch[k]['page']}".rstrip()
+                    if line not in lines:                      # the same photo can be used from two downloads
+                        lines.append(line)
     for extra in edit.get("credits_extra", []):
         lines.append(extra)
     return "\n".join(lines) + "\n"
