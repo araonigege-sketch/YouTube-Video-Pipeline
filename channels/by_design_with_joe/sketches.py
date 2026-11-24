@@ -34,7 +34,7 @@ def p_bars(c, s, t0, t1):
         ta += 0.9
     sh.line([(X0 - 50, Y0), (X1 + 40, Y0)], "graphite", ta, 0.7, w=4)
     if s.get("unit"):
-        sh.text(s["unit"], X1 + 40, Y0 + 70, "grey", ta + 0.5, size=40, weight=500, anchor="end")
+        sh.text(s["unit"], 165, 235, "grey", ta + 0.5, size=44, weight=500)
     for k, it in enumerate(items):
         tb = _at(c, it["a"], t0) if "a" in it else ta + 1.0 + 1.4 * k
         h = (Y0 - Y1) * it["value"] / vmax
@@ -297,7 +297,7 @@ def p_stand(c, s, t0, t1):
     lft = [(cx - half, base), (cx - half * 0.55, base - H * 0.25), (cx - half * 0.22, base - H * 0.55), (cx - 6, top + H * 0.1)]
     rgt = [(cx + half, base), (cx + half * 0.55, base - H * 0.25), (cx + half * 0.22, base - H * 0.55), (cx + 6, top + H * 0.1)]
     arch = [(cx - half * 0.62, base), *[(cx + half * 0.62 * math.cos(a), base - H * 0.1 * math.sin(a)) for a in [math.pi * (1 - k / 12) for k in range(13)]]]
-    d = 1.6
+    d = 1.2
     sh.line(lft, "brown", tt, d * 0.3, w=4)
     sh.line(rgt, "brown", tt + d * 0.3, d * 0.3, w=4)
     sh.lines([[(cx - half * 0.62, base - H * 0.25), (cx + half * 0.62, base - H * 0.25)],

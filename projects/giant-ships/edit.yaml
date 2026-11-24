@@ -13,11 +13,11 @@ shots:
   - {at: "on a container ship", src: broll/pe26893765.mp4, from: 2, move: push}
   - {at: "And some of those container ships", src: broll/pe26893760.mp4, from: 4, move: push}
   - {at: "unbelievably big", src: broll/pe36375963.mp4, from: 4, move: left}
-  - {at: "The biggest one in the world", page: illus, name: p_stand, a_len: "400 meters", a_stand: "stood it up", a_tower: "taller than"}
+  - {at: "The biggest one in the world", page: illus, name: p_stand, a_len: "400 meters", a_stand: "stood it up", a_tower: "it would be taller"}
   - {at: "Now, America is one", src: broll/pe6565795.mp4, from: 1, move: push}  # biggest shoppers
   - {at: "And here’s the funny part", src: broll/pe34625520.mp4, from: 12, move: right}   # Long Beach harbour
   - {at: "the modern shipping container was born", page: photo, src: archive/owner_sealand_longbeach.jpg, zoom: 0.06, origin: "45% 40%"}
-  - {at: "Back in 1956", page: photo, src: archive/owner_mclean.jpg, frame: true, zoom: 0.05}
+  - {at: "Back in 1956", page: photo, src: archive/owner_mclean.jpg, frame: true, h: 840, zoom: 0.05}
   - at: "loaded 58 containers"
     page: illus
     name: p_map
@@ -114,7 +114,7 @@ shots:
         label: "…and back again"
         lx: 700
         ly: 880
-        la: "and back again"
+        la: "Hamburg"
     notes:
       - {t: "Asia → Europe", x: 120, y: 160, size: 88, weight: 700, a: 0.3}
   - {at: "And the ports on that route", src: broll/pe36026534.mp4, from: 4, move: push}
@@ -172,10 +172,10 @@ shots:
       - {legs: [Shanghai, [122.5, 25], [114, 10], [104, 1.2], [95, 6], [80, 5.5], [52, 12.5], [43.4, 12.6], [38, 21], [32.55, 29.9], [32.3, 31.3], [20, 34], [-5.6, 35.95], [-30, 38], NY],
          color: violet, a: "You can sail west", dur: 3.4, label: "West: via Suez", lx: 660, ly: 760, la: "and cross the Atlantic"}
       - {legs: [Shanghai, [140, 33], [180, 30], [-140, 22], [-100, 12], Panama, [-77, 13], [-74.5, 20], [-72, 32], NY],
-         color: blue, a: "Or you can sail east", dur: 3.4, label: "East: via Panama", lx: 1380, ly: 900, la: "take a shortcut"}
+         color: blue, a: "Or you can sail east", dur: 3.4, label: "East: via Panama", lx: 1330, ly: 600, la: "take a shortcut"}
     notes:
       - {t: "A box of shoes: Shanghai → New York", x: 120, y: 120, size: 64, weight: 700, a: 0.3}
-      - {t: "usually quicker", x: 1380, y: 980, size: 58, color: green, a: "usually the quicker way", rot: -3}
+      - {t: "usually quicker", x: 1330, y: 680, size: 58, color: green, a: "usually the quicker way", rot: -3}
   - {at: "But there’s a catch", src: broll/pe32210910.mp4, from: 2, move: push}
   - {at: "giant water elevators", src: broll/pe13458580.mp4, from: 3, move: push}
   - {at: "A lock is basically", page: illus, name: p_lock, a_in: "The ship sails in", a_gates: "the gates close", a_water: "the water level changes", a_lift: "lifted or lowered", a_limit: "size limit"}
@@ -194,7 +194,7 @@ shots:
   - {at: "And even if a giant made it across", src: broll/pe4970456.mp4, from: 90, move: push}
   # ---------------------------------------------------------------- 3. the bridge
   - {at: "Which brings us to a bridge", page: chapter, n: 3, title: "A bridge built in 1931"}
-  - {at: "The Bayonne Bridge opened", page: photo, src: archive/bayonne_bpl.jpg, frame: true, zoom: 0.05}
+  - {at: "The Bayonne Bridge opened", page: photo, src: archive/bayonne_bpl.jpg, frame: true, h: 860, zoom: 0.05}
   - {at: "It sits right over the waterway", page: photo, src: archive/bayonne_ship.jpg, zoom: 0.07, origin: "55% 55%"}
   - {at: "When it opened, the bridge left", page: illus, name: p_bridge, a_deck: "151 feet", a_plenty: "that was plenty", a_grow: "kept growing", a_limit: "under 10,000"}
   - {at: "When a record-breaking ship", page: photo, src: archive/cosco_sav2.jpg, zoom: 0.06, origin: "45% 45%"}   # NEWS BOX goes here when reachable (COSCO Development skips New York, 2017)
@@ -233,7 +233,7 @@ shots:
     items:
       - {label: "Marco Polo", value: 16000, text: "16,000", color: blue, a: 0.3, note: "2021"}
       - {label: "OOCL Iris", value: 16828, text: "16,828", color: teal, a: "OOCL Iris", note: "Charleston"}
-      - {label: "MSC Irina", value: 24346, text: "24,346", color: red, a: "Just not the Irina", note: "never came"}
+      - {label: "MSC Irina", value: 24346, text: "24,346", color: red, a: "Serious ships", note: "never came"}
   # ---------------------------------------------------------------- 4. the West Coast
   - {at: "Now, I can already see", page: chapter, n: 4, title: "The West Coast"}
   - {at: "Joe, the West Coast", src: broll/pe18127796.mp4, from: 2, move: push}
@@ -252,7 +252,7 @@ shots:
   - {at: "Up to nine cranes worked on it", src: broll/pe8782998.mp4, from: 2, move: push, hold: "chips build"}
   - {at: "In 56 hours", src: broll/pe11736687.mp4, from: 2, move: push, hold: "chips build"}
   - {at: "Then in February 2016", page: photo, src: archive/polb_sunset.jpg, zoom: 0.06, origin: "50% 55%"}
-  - {at: "Jacques Saadé", page: photo, src: archive/owner_saade.jpg, frame: true, zoom: 0.05}
+  - {at: "Jacques Saadé", page: photo, src: archive/owner_saade.jpg, frame: true, h: 780, zoom: 0.05}
   - {at: "A few weeks later, the company announced", src: broll/pe35907909.mp4, from: 30, move: push}   # NEWS BOX goes here when reachable (six-ship plan)
   - {at: "six of these 18,000-TEU giants", src: broll/pe36838174.mp4, from: 6, move: push, hold: "slow push on a giant"}
   - {at: "But there were warning signs", src: broll/pe37292896.mp4, from: 4, move: none}
@@ -361,7 +361,7 @@ shots:
   - {at: "the MSC Nela", page: photo, src: archive/nela_kt.jpg, bg: stage, zoom: 0.04}
   - {at: "the MSC Arina", page: photo, src: archive/arina_kt.jpg, bg: stage, zoom: 0.04}   # NEWS BOX goes here when reachable (MSC giants at Long Beach, 2026)
   - {at: "on a service from Asia to Long Beach", src: broll/pe27950171.mp4, from: 58, move: push}
-  - {at: "The port’s own CEO", page: photo, src: archive/owner_cordero_a.jpg, frame: true, zoom: 0.04}
+  - {at: "The port’s own CEO", page: photo, src: archive/owner_cordero_a.jpg, frame: true, h: 860, zoom: 0.04}
   - {at: "And Long Beach is on track", src: broll/pe31731844.mp4, from: 4, move: none, hold: "big number"}
   - {at: "Is this the start of a new era", src: broll/pe6472920.mp4, from: 4, move: push}
   - {at: "Honestly, it’s too early", src: broll/pe7687564.mp4, from: 16, move: push}
@@ -407,9 +407,10 @@ text:
   - {at: "It’s the combination", kind: chips, items: [{t: "A longer route", a: "a longer route"}, {t: "Huge ports built for them", a: "a network of huge ports"}, {t: "The money on those services", a: "the money on those"}], until: ">particular services."}
   - {at: "Without terminal productivity", kind: quote, text: "Without terminal productivity, we will hesitate to put large vessels into those ports.", who: "Stephen Ng, then a director at OOCL", until: ">into those ports.”"}
   - {at: "Not 24,000", kind: big, pre: "Not 24,000", text: "18,000", sub: "TEU · what the upgrade was built for", until: ">Eighteen."}
-  - {at: "COSCO Development", kind: label, text: "COSCO *Development*", sub: "Record-breaker, 2017", dur: 3.6}
+  - {at: "COSCO Development", kind: label, text: "COSCO *Development*", sub: "Record-breaker, 2017", dur: 3.6, pos: top}
   - {at: "CMA CGM Marco Polo", kind: label, text: "CMA CGM *Marco Polo*", sub: "16,000 TEU · East Coast record, 2021", dur: 4}
   - {at: "MSC Isabella", kind: label, text: "MSC *Isabella*", sub: "23,656 TEU", dur: 4}
   - {at: "the Ever Given, a 400-meter", kind: label, text: "*Ever Given*", sub: "Suez Canal · March 2021", dur: 4}
   - {at: "The port’s own CEO", kind: label, text: "Mario *Cordero*", sub: "CEO, Port of Long Beach", dur: 3.4}
   - {at: "more than 10 million TEU", kind: big, text: "10 million", sub: "TEU at Long Beach in 2026", until: ">for the first time ever."}
+  - {at: "370.33 meters", kind: big, text: "370.33 m", sub: "longest ship allowed, new locks (2021)", until: ">370.33 meters."}

@@ -363,7 +363,8 @@ class Joe(Composition):
         if s.get("frame") or s.get("bg") == "stage":
             # framed: sharp photo over a blurred copy (share-alike photos go on the plain stage, unmodified)
             bg = (self.stage() if s.get("bg") == "stage" else f'<div class="ph-bg" style="background-image:url({src})"></div>')
-            inner = (bg + f'<div class="ph-frame"><img src="{src}"/></div>{cap}'
+            hs = f' style="height:{int(s["h"])}px;width:auto;max-width:1600px;max-height:960px"' if s.get("h") else ""   # enlarge small photos
+            inner = (bg + f'<div class="ph-frame"><img src="{src}"{hs}/></div>{cap}'
                      f'<div class="ph-credit">{esc(credit)}</div>')
             target = ".ph-frame"
         else:
