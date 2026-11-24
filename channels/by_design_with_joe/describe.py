@@ -1,6 +1,8 @@
 """YouTube description credits for a By Design With Joe episode: music (CC BY lines) + footage creators, from the edit actually used.
 
-  python -m channels.by_design_with_joe.describe <project_dir>   → writes out/description.txt (credits block; the owner writes the rest)
+  python -m channels.by_design_with_joe.describe <project_dir>   → writes out/description.txt
+Ready to paste into YouTube: title, CHAPTERS (0:00 Intro + every chapter card, timed from the narration),
+the credits (music, footage, photos), then the three hashtags from episode.yaml `hashtags:`.
 """
 from __future__ import annotations
 
@@ -28,7 +30,15 @@ def credits(P: Path) -> str:
         c = cr.get(cid)
         if c:
             by_creator.setdefault(c["credit"], []).append(c["page"])
-    lines = ["MUSIC"]
+    ep = yaml.safe_load((P / "episode.yaml").read_text())
+    lines = [ep.get("title", ""), "", "CHAPTERS", "0:00 Intro"]
+    from pipeline.words import Words
+    W = Words.load(P / "words.json")
+    for s in edit["shots"]:
+        if s.get("page") == "chapter":
+            t = int(W.T(s["at"]) - a)
+            lines.append(f"{t // 60}:{t % 60:02d} {s['title']}")
+    lines += ["", "MUSIC"]
     if (P / "music.json").exists():
         seen = set()
         for t in json.loads((P / "music.json").read_text())["tracks"]:
@@ -52,6 +62,8 @@ def credits(P: Path) -> str:
                         lines.append(line)
     for extra in edit.get("credits_extra", []):
         lines.append(extra)
+    if ep.get("hashtags"):
+        lines += ["", " ".join(ep["hashtags"])]
     return "\n".join(lines) + "\n"
 
 
