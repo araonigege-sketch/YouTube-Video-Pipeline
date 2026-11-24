@@ -46,7 +46,7 @@ def credits(P: Path) -> str:
         if used_a:
             lines += ["", "PHOTOS"]
             for k in dict.fromkeys(used_a):
-                if k in arch:
+                if k in arch and arch[k].get('credit'):
                     lines.append(f"{arch[k]['title']}: {arch[k]['credit']} {arch[k]['page']}")
     for extra in edit.get("credits_extra", []):
         lines.append(extra)

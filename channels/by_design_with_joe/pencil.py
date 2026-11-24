@@ -93,6 +93,40 @@ def paper(path: Path, seed: int = 7) -> Path:
     return path
 
 
+def pencil_noise(d: Path) -> tuple[Path, Path]:
+    """Displacement noise (soft, ~30 px features, in R/G) and graphite grain (fine, in alpha) as 1920x1080 PNGs."""
+    dp, gp = d / "pencil_disp.png", d / "pencil_grain.png"
+    if dp.exists() and gp.exists():
+        return dp, gp
+    import numpy as np
+    d.mkdir(parents=True, exist_ok=True)
+    rng = np.random.default_rng(4)
+    W, H = 1920, 1080
+
+    def soft(scale, seed):
+        r = np.random.default_rng(seed).normal(0, 1, (H // scale + 2, W // scale + 2)).astype(np.float32)
+        return np.array(Image.fromarray(r).resize((W + 2 * scale, H + 2 * scale), Image.BICUBIC), np.float32)[scale:scale + H, scale:scale + W]
+
+    chans = []
+    for seed in (1, 2):
+        n = soft(28, seed) + 0.5 * soft(14, seed + 10)
+        n = n / (n.std() + 1e-6) * 0.16 + 0.5
+        chans.append(np.clip(n * 255, 0, 255).astype(np.uint8))
+    Image.fromarray(np.dstack([chans[0], chans[1], np.full((H, W), 128, np.uint8)]), "RGB").save(dp)
+    g = rng.normal(0, 1, (H, W)).astype(np.float32)
+    k = np.array([0.22, 0.56, 0.22], np.float32)          # ~0.6 px gaussian, separable
+    g = k[0] * np.roll(g, 1, 0) + k[1] * g + k[2] * np.roll(g, -1, 0)
+    g = k[0] * np.roll(g, 1, 1) + k[1] * g + k[2] * np.roll(g, -1, 1)
+    g2 = np.array(Image.fromarray(rng.normal(0, 1, (H // 2, W // 2)).astype(np.float32)).resize((W, H), Image.BILINEAR), np.float32)
+    n = g / (g.std() + 1e-6) + 0.5 * g2 / (g2.std() + 1e-6)
+    a = np.clip(1.08 + 3.4 * 0.12 * n, 0, 1)
+    rgba = np.zeros((H, W, 4), np.uint8)
+    rgba[..., :3] = 255
+    rgba[..., 3] = (a * 255).astype(np.uint8)
+    Image.fromarray(rgba, "RGBA").save(gp)
+    return dp, gp
+
+
 def ease_sine(u: float) -> float:
     return -(math.cos(math.pi * max(0.0, min(1.0, u))) - 1) / 2
 
@@ -393,10 +427,11 @@ class Sheet:
     def finish(self, title: str | None = None, extra_svg: str = ""):
         c, gid = self.c, self.gid
         pp = c.asset(paper(ROOT / "build/.fontcache/paper.png"))
+        # pencil texture: soft wobble + graphite grain (one noise octave each keeps renders fast)
         filt = (f'<defs><filter id="{gid}f" x="-2%" y="-2%" width="104%" height="104%">'
-                '<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="w"/>'
+                '<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="1" seed="4" result="w"/>'
                 '<feDisplacementMap in="SourceGraphic" in2="w" scale="2.4" xChannelSelector="R" yChannelSelector="G" result="d"/>'
-                '<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="11" result="g"/>'
+                '<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="11" result="g"/>'
                 '<feColorMatrix in="g" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.4 0 0 0 -0.62" result="ga"/>'
                 '<feComposite in="d" in2="ga" operator="in"/></filter></defs>')
         svg = (f'<svg class="pn-svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="position:absolute;inset:0;overflow:visible" '

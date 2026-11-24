@@ -1,6 +1,6 @@
 {
  "policy": "docs/music.md",
- "note": "Licences: CC BY 3.0 on each track's Wikimedia Commons file page (found via Openverse's index of Commons audio, 2026-11-24; Commons itself rate-limits this sandbox). Audio from the Internet Archive copies of the same Kevin MacLeod albums. First use on this channel.",
+ "note": "All eight tracks verified CC BY 3.0 on their Wikimedia Commons file pages (found through Openverse's index of Commons audio, 2026-11-24; Commons itself rate-limits this sandbox). Audio from the Internet Archive copies of the same Kevin MacLeod album tracks. First use on this channel.",
  "tracks": [
   {
    "section": "cold open",
@@ -17,10 +17,10 @@
    "credit": "\"Space 1990\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
   },
   {
-   "section": "ch1 how big is big",
+   "section": "1. how big is big",
    "file": "music/Spacial_Harvest.mp3",
    "start": 81.2,
-   "end": 260.0,
+   "end": 227.4,
    "offset": 20.0,
    "title": "Spacial Harvest",
    "artist": "Kevin MacLeod",
@@ -29,6 +29,90 @@
    "source": "https://commons.wikimedia.org/w/index.php?curid=64741236",
    "audio_from": "https://archive.org/details/Kevin-MacLeod_The-Ambient_2014_FullAlbum",
    "credit": "\"Spacial Harvest\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "2. the Panama canal",
+   "file": "music/Overriding_Concern.mp3",
+   "start": 227.0,
+   "end": 353.0,
+   "offset": 0.0,
+   "title": "Overriding Concern",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64755569",
+   "audio_from": "https://archive.org/details/kevin-macleod_medium-electronic_2014_fullalbum",
+   "credit": "\"Overriding Concern\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "3. the Bayonne Bridge",
+   "file": "music/Windswept.mp3",
+   "start": 352.6,
+   "end": 479.2,
+   "offset": 0.0,
+   "title": "Windswept",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64739257",
+   "audio_from": "https://archive.org/details/Kevin-MacLeod_Calming_2014_FullAlbum",
+   "credit": "\"Windswept\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "4. the West Coast",
+   "file": "music/Silver_Blue_Light.mp3",
+   "start": 478.8,
+   "end": 609.3,
+   "offset": 10.0,
+   "title": "Silver Blue Light",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64739902",
+   "audio_from": "https://archive.org/details/Kevin-MacLeod_Calming_2014_FullAlbum",
+   "credit": "\"Silver Blue Light\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "5. the money (bakery maths)",
+   "file": "music/Early_Riser.mp3",
+   "start": 608.9,
+   "end": 751.8,
+   "offset": 0.0,
+   "title": "Early Riser",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=88985402",
+   "audio_from": "https://archive.org/details/kevin-macleod_medium-electronic_2014_fullalbum",
+   "credit": "\"Early Riser\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "6-7. the land side, the risks",
+   "file": "music/Peace_of_Mind.mp3",
+   "start": 751.4,
+   "end": 849.3,
+   "offset": 60.0,
+   "title": "Peace of Mind",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64736451",
+   "audio_from": "https://archive.org/details/Kevin-MacLeod_The-Ambient_2014_FullAlbum",
+   "credit": "\"Peace of Mind\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+   "section": "8. the giants return + ending",
+   "file": "music/Clean_Soul.mp3",
+   "start": 848.9,
+   "end": 943.43,
+   "offset": 0.0,
+   "title": "Clean Soul",
+   "artist": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0/",
+   "source": "https://commons.wikimedia.org/w/index.php?curid=64735871",
+   "audio_from": "https://archive.org/details/Kevin-MacLeod_Calming_2014_FullAlbum",
+   "credit": "\"Clean Soul\" Kevin MacLeod (incompetech.com), licensed under Creative Commons: By Attribution 3.0 http://creativecommons.org/licenses/by/3.0/"
   }
  ]
 }

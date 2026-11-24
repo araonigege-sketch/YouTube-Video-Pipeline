@@ -27,6 +27,11 @@ follows. Keep the two style guides in step: when the owner adds a rule for Mr. D
   pinned to the marks, a pencil tip drawing each line), using **several pencil colours** (each concept keeps its
   colour through the episode). They still play through to their end state before the next shot (rule 8).
   Footage, text over footage, chapter cards and the like & subscribe prompt stay exactly as in Mr. Davos.
+- **Pencil kit** (`pencil.py`, pages in `sketches.py`): `p_bars`, `p_sum`, `p_map` (world/US maps, routes that wrap the map edge,
+  `swarm` of marks), `p_stand`, `p_teu`, `p_scale`, `p_lock`, `p_fit`, `p_bridge` (stage 1/2), `p_bakery`, `p_fill`, `p_loops`, `p_list`.
+  The pencil texture uses one noise octave per layer: renders at about 6× real time (2 octaves was 8×; pre-made noise images were slower).
+- **News moments:** footage shots take `box: "Outlet · date"` (framed window over a blurred copy + outlet tag); screenshots go on a
+  framed `photo` page with the same `box:` tag. bbc.com is reachable for captures (`news_bbc_*.jpg`); most other outlets need hosts added.
 - **Shipping & logistics sourcing notes:** a wrong vessel or vehicle is as bad as a wrong person. When the line names
   a specific ship type (container ship, tanker, bulk carrier, Ro-Ro, LNG carrier), port, canal, aircraft or truck,
   show that exact thing. Named ships, ports and events (e.g. a real grounding) need real footage or photos of them.

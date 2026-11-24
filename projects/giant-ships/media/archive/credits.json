@@ -28,5 +28,131 @@
   "credit": "kees torn, CC BY-SA 2.0",
   "page": "https://www.flickr.com/photos/68359921@N08/37150066235",
   "license": "CC BY-SA 2.0"
+ },
+ "cosco_sav2": {
+  "title": "COSCO Development arriving in Savannah, 2017",
+  "credit": "U.S. Army Corps of Engineers Savannah District, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/45417428@N05/33787633993",
+  "license": "CC BY 2.0"
+ },
+ "cosco_sav3": {
+  "title": "COSCO Development in Savannah, 2017",
+  "credit": "U.S. Army Corps of Engineers Savannah District, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/45417428@N05/34211512750",
+  "license": "CC BY 2.0"
+ },
+ "evergiven_markuse": {
+  "title": "Ever Given stuck in the Suez Canal, 24 March 2021 (Copernicus Sentinel-2)",
+  "credit": "Pierre Markuse, contains modified Copernicus Sentinel data 2021, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/pierre_markuse/51070311183",
+  "license": "CC BY 2.0"
+ },
+ "evergiven_sh": {
+  "title": "Ever Given stuck in the Suez Canal (Sentinel-2)",
+  "credit": "Sentinel Hub, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/158650882@N02/51329719336",
+  "license": "CC BY 2.0"
+ },
+ "marcopolo_kemme": {
+  "title": "CMA CGM Marco Polo, Hamburg",
+  "credit": "Gerhard Kemme, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/29463561@N07/9482961383",
+  "license": "CC BY 2.0"
+ },
+ "isabella_kt": {
+  "title": "MSC Isabella",
+  "credit": "kees torn, CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/68359921@N08/48902293493",
+  "license": "CC BY-SA 2.0"
+ },
+ "nela_kt": {
+  "title": "MSC Nela",
+  "credit": "kees torn, CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/68359921@N08/50012525131",
+  "license": "CC BY-SA 2.0"
+ },
+ "nela_kt2": {
+  "title": "MSC Nela",
+  "credit": "kees torn, CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/68359921@N08/50012525276",
+  "license": "CC BY-SA 2.0"
+ },
+ "arina_kt": {
+  "title": "MSC Arina",
+  "credit": "kees torn, CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/68359921@N08/49054304956",
+  "license": "CC BY-SA 2.0"
+ },
+ "bf_kt": {
+  "title": "CMA CGM Benjamin Franklin",
+  "credit": "kees torn, CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/68359921@N08/32667466117",
+  "license": "CC BY-SA 2.0"
+ },
+ "bayonne_ship": {
+  "title": "Ship and Bayonne Bridge",
+  "credit": "JackieI2020, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/27635119@N08/4585879546",
+  "license": "CC BY 2.0"
+ },
+ "bayonne_bpl": {
+  "title": "Bayonne Bridge, Bayonne, N.J. (postcard)",
+  "credit": "Boston Public Library, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/24029425@N06/8424154919",
+  "license": "CC BY 2.0"
+ },
+ "bayonne_venus": {
+  "title": "Venus over the Bayonne Bridge",
+  "credit": "Scott Hudson, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/11704283@N07/3256272833",
+  "license": "CC BY 2.0"
+ },
+ "cocoli": {
+  "title": "Container ship entering the Cocoli locks, Panama Canal",
+  "credit": "string_bass_dave, CC BY-SA 2.0",
+  "page": "https://www.flickr.com/photos/16069488@N00/49778830687",
+  "license": "CC BY-SA 2.0"
+ },
+ "polb_sunset": {
+  "title": "Sunset over the Port of Long Beach",
+  "credit": "jimnista, CC BY 2.0",
+  "page": "https://www.flickr.com/photos/25042046@N06/7343912796",
+  "license": "CC BY 2.0"
+ },
+ "owner_saade": {
+  "title": "Jacques Saad\u00e9",
+  "credit": "Ammar Abd Rabbo",
+  "page": "",
+  "license": "supplied by the owner; credit the photographer"
+ },
+ "owner_mclean": {
+  "title": "owner_mclean",
+  "credit": "",
+  "page": "",
+  "license": "supplied by the owner (no credit, owner 2026-11-23)"
+ },
+ "owner_cordero_a": {
+  "title": "owner_cordero_a",
+  "credit": "",
+  "page": "",
+  "license": "supplied by the owner (no credit, owner 2026-11-23)"
+ },
+ "owner_cordero_b": {
+  "title": "owner_cordero_b",
+  "credit": "",
+  "page": "",
+  "license": "supplied by the owner (no credit, owner 2026-11-23)"
+ },
+ "owner_sealand_longbeach": {
+  "title": "owner_sealand_longbeach",
+  "credit": "",
+  "page": "",
+  "license": "supplied by the owner (no credit, owner 2026-11-23)"
+ },
+ "news_bbc_evergiven": {
+  "title": "BBC News, 27 March 2021: Suez Canal: Wedged container ship 'could soon be refloated'",
+  "credit": "",
+  "page": "https://www.bbc.com/news/world-middle-east-56547201",
+  "license": "news screenshot (boxed, credited on screen as BBC News)"
  }
 }

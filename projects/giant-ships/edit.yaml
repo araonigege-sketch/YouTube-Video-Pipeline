@@ -1,6 +1,6 @@
 # By Design With Joe ep1 — "Why The World’s Biggest Ships Almost Never Come to America"
 # Mr. Davos blueprint (channels/by_design_with_joe/STYLE.md); illustrations and maths in coloured pencil (sketches.py).
-range: [0, 144.4]
+range: [0, 943.43]
 
 shots:
   # ---------------------------------------------------------------- cold open
@@ -16,8 +16,9 @@ shots:
   - {at: "The biggest one in the world", page: illus, name: p_stand, a_len: "400 meters", a_stand: "stood it up", a_tower: "taller than"}
   - {at: "Now, America is one", src: broll/pe6565795.mp4, from: 1, move: push}  # biggest shoppers
   - {at: "And here’s the funny part", src: broll/pe34625520.mp4, from: 12, move: right}   # Long Beach harbour
-  - {at: "the modern shipping container was born", src: broll/pe34625523.mp4, from: 6, move: push}
-  - at: "Back in 1956"
+  - {at: "the modern shipping container was born", page: photo, src: archive/owner_sealand_longbeach.jpg, zoom: 0.06, origin: "45% 40%"}
+  - {at: "Back in 1956", page: photo, src: archive/owner_mclean.jpg, frame: true, zoom: 0.05}
+  - at: "loaded 58 containers"
     page: illus
     name: p_map
     topo: us-atlas/nation-10m.json
@@ -27,22 +28,22 @@ shots:
     rotate: [96, 0]
     parallels: [29.5, 45.5]
     fit: [[-100, 24], [-70, 42]]
+    wipe: 0.7
     places:
-      - {name: Newark, ll: [-74.15, 40.68], label: "Newark, N.J.", a: "Malcom McLean", dx: 20, dy: -14}
-      - {name: Houston, ll: [-95.0, 29.6], label: "Houston, Texas", a: "loaded 58", dx: -24, dy: -20, anchor: end}
+      - {name: Newark, ll: [-74.15, 40.68], label: "Newark, N.J.", a: 0.3, dx: 20, dy: -14}
+      - {name: Houston, ll: [-95.0, 29.6], label: "Houston, Texas", a: "sent it to Texas", dx: -24, dy: -20, anchor: end}
     routes:
       - legs: [Newark, [-73.6, 39.9], [-74.6, 37.0], [-75.0, 35.2], [-78.5, 32.4], [-79.9, 28.5], [-79.9, 25.0], [-80.8, 24.3],
                [-82.4, 24.35], [-83.6, 25.6], [-87.5, 28.6], [-93.2, 29.0], Houston]
         color: blue
         a: "onto an old tanker"
-        dur: 2.6
+        dur: 2.2
         label: "58 containers"
         lx: 1180
         ly: 660
-        la: "58 containers"
+        la: 0.6
     notes:
       - {t: "1956", x: 140, y: 170, size: 96, weight: 700, a: 0.2}
-      - {t: "Malcom McLean", x: 140, y: 250, size: 60, color: graphite, a: "Malcom McLean"}
   - {at: "That idea changed world trade", src: broll/pe35908063.mp4, from: 8, move: push}
   - {at: "So you’d think the biggest", src: broll/pe6857819.mp4, from: 6, move: left}
   - {at: "at American ports", src: broll/pe34625520.mp4, from: 46, move: push}
@@ -85,7 +86,309 @@ shots:
       - {t: "24,346 boxes, end to end", x: 120, y: 160, size: 72, weight: 700, a: "24,346", color: orange}
       - {t: "One ship.", x: 120, y: 980, size: 80, weight: 700, a: "One ship", color: blue}
 
+  - {at: "And she isn’t alone", src: broll/pe6857819.mp4, from: 30, move: right}
+  - {at: "OOCL, ONE", src: broll/pe30262128.mp4, from: 4, move: push}
+  - {at: "and Evergreen have built", src: broll/pe18718832.mp4, from: 1, move: push, hold: "a 24,000-TEU giant"}                 # Ever Alot, a 24,000-TEU Evergreen
+  - {at: "People in the industry", page: define, term: "ULCV", phon: "/ˌjuː ɛl siː ˈviː/", text: "Ultra-large container vessel: the industry’s name for the biggest container ships, of 20,000 TEU and more."}
+  - {at: "Why build ships this big", page: illus, name: p_scale, a_crew: "twice the crew", a_fuel: "twice the fuel", a_cheaper: "The more containers", a_condition: "the ship has to carry"}
+  - {at: "So, where do shipping companies find", src: broll/pe41165816.mp4, from: 2, move: push}
+  - at: "Mostly on one route"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-110m.json
+    projection: equalEarth
+    fit: [[-12, -2], [135, 60]]
+    wipe: 0.8
+    places:
+      - {name: Shanghai, ll: [121.5, 31.2], label: Shanghai, a: "Shanghai", color: teal}
+      - {name: Singapore, ll: [103.8, 1.3], label: Singapore, a: "Singapore", color: teal, dy: 44}
+      - {name: Suez, ll: [32.5, 30.0], label: "Suez Canal", a: "through the Suez", dx: 16, dy: 10}
+      - {name: Rotterdam, ll: [4.4, 51.9], label: Rotterdam, a: "then Rotterdam", color: violet, dx: -16, dy: -26, anchor: end}
+      - {name: Antwerp, ll: [4.4, 51.2], label: Antwerp, a: "Antwerp", color: violet, dx: -16, dy: 34, anchor: end}
+      - {name: Hamburg, ll: [9.9, 53.5], label: Hamburg, a: "Hamburg", color: violet, dx: 16, dy: -20}
+    routes:
+      - legs: [Shanghai, [122.5, 25], [114, 10], Singapore, [95, 6], [80, 5.5], [52, 12.5], [43.4, 12.6], [38, 21], [32.55, 29.9], [32.3, 31.3], [20, 34], [-5.6, 35.95], [-10, 38.5], [-9.5, 43.5], [-5, 48.5], [1.5, 50.6], Rotterdam]
+        color: blue
+        a: "Shanghai, Singapore"
+        dur: 4.6
+        label: "…and back again"
+        lx: 700
+        ly: 880
+        la: "and back again"
+    notes:
+      - {t: "Asia → Europe", x: 120, y: 160, size: 88, weight: 700, a: 0.3}
+  - {at: "And the ports on that route", src: broll/pe36026534.mp4, from: 4, move: push}
+  - at: "In 2025, the Port of Shanghai"
+    page: illus
+    name: p_bars
+    title: "Container ports, 2025"
+    unit: "million TEU"
+    items:
+      - {label: "Shanghai", value: 55, text: "55M", color: teal, a: "55 million"}
+      - {label: "Rotterdam", value: 14, text: "14M", color: violet, a: "Rotterdam, Europe’s"}
+      - {label: "Los Angeles", value: 10.2, text: "10.2M", color: orange, a: "The Port of Los Angeles", note: "busiest in the U.S."}
+    ring: 2
+    ring_at: "10.2 million"
+  - {at: "Now, wait", src: broll/pe6565795.mp4, from: 5, move: push}
+  - at: "But America spreads its cargo"
+    page: illus
+    name: p_map
+    topo: us-atlas/nation-10m.json
+    object: nation
+    borders: {topo: us-atlas/states-10m.json, object: states}
+    projection: conic
+    rotate: [96, 0]
+    parallels: [29.5, 45.5]
+    fit: [[-124, 25], [-67, 48]]
+    wipe: 0.7
+    places:
+      - {name: LA, ll: [-118.25, 33.75], label: "Los Angeles", a: "from Los Angeles", color: orange, dx: 16, dy: 40}
+      - {name: Seattle, ll: [-122.35, 47.6], label: "Seattle", a: "and Seattle", color: orange, dx: 18}
+      - {name: NY, ll: [-74.0, 40.7], label: "New York", a: "to New York", color: orange, dx: -18, dy: -18, anchor: end}
+      - {name: Savannah, ll: [-81.1, 32.1], label: "Savannah", a: "Savannah", color: orange, dx: -18, anchor: end}
+      - {name: Houston, ll: [-95.0, 29.6], label: "Houston", a: "and Houston", color: orange, dx: -18, dy: 44, anchor: end}
+    notes:
+      - {t: "Pacific", x: 110, y: 640, size: 60, color: blue, a: "its Pacific", rot: -4}
+      - {t: "Atlantic", x: 1560, y: 760, size: 60, color: blue, a: "Atlantic", rot: -4}
+      - {t: "Gulf Coast", x: 880, y: 1010, size: 60, color: blue, a: "and Gulf Coast", rot: -2}
+  - {at: "For a giant ship, what matters", src: broll/pe35801366.mp4, from: 4, move: push}
+  - {at: "It’s how much cargo it can pick up", src: broll/pe6618019.mp4, from: 12, move: none, hold: "slow lift"}
+  - {at: "But even if a shipping company", src: broll/pe4970456.mp4, from: 20, move: push}
+  # ---------------------------------------------------------------- 2. Panama
+  - {at: "Let’s start with the East Coast", page: chapter, n: 2, title: "A canal built in 1914"}
+  - at: "Let’s say you’re shipping a container of shoes"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-110m.json
+    projection: equirect
+    rotate: [-25, 0]
+    wipe: 0.8
+    places:
+      - {name: Shanghai, ll: [121.5, 31.2], label: Shanghai, a: 0.6, color: teal}
+      - {name: NY, ll: [-74.0, 40.7], label: "New York", a: "to New York", color: orange, dx: -20, anchor: end}
+      - {name: Suez, ll: [32.5, 30.0], label: "Suez", a: "through the Suez Canal", dx: -14, dy: -18, anchor: end}
+      - {name: Panama, ll: [-79.7, 9.1], label: "Panama", a: "through the Panama Canal", dy: 40}
+    routes:
+      - {legs: [Shanghai, [122.5, 25], [114, 10], [104, 1.2], [95, 6], [80, 5.5], [52, 12.5], [43.4, 12.6], [38, 21], [32.55, 29.9], [32.3, 31.3], [20, 34], [-5.6, 35.95], [-30, 38], NY],
+         color: violet, a: "You can sail west", dur: 3.4, label: "West: via Suez", lx: 660, ly: 760, la: "and cross the Atlantic"}
+      - {legs: [Shanghai, [140, 33], [180, 30], [-140, 22], [-100, 12], Panama, [-77, 13], [-74.5, 20], [-72, 32], NY],
+         color: blue, a: "Or you can sail east", dur: 3.4, label: "East: via Panama", lx: 1380, ly: 900, la: "take a shortcut"}
+    notes:
+      - {t: "A box of shoes: Shanghai → New York", x: 120, y: 120, size: 64, weight: 700, a: 0.3}
+      - {t: "usually quicker", x: 1380, y: 980, size: 58, color: green, a: "usually the quicker way", rot: -3}
+  - {at: "But there’s a catch", src: broll/pe32210910.mp4, from: 2, move: push}
+  - {at: "giant water elevators", src: broll/pe13458580.mp4, from: 3, move: push}
+  - {at: "A lock is basically", page: illus, name: p_lock, a_in: "The ship sails in", a_gates: "the gates close", a_water: "the water level changes", a_lift: "lifted or lowered", a_limit: "size limit"}
+  - {at: "When the canal opened in 1914", src: broll/pe4085112.mp4, from: 2, move: push}
+  - {at: "965 feet long", src: broll/pe32210910.mp4, from: 14, move: push}
+  - {at: "For about a hundred years", src: broll/pe13458580.mp4, from: 14, move: push, hold: "slow lock reveal"}
+  - {at: "Then in 2016, Panama opened", page: photo, src: archive/cocoli.jpg, bg: stage, zoom: 0.04}
+  - {at: "In 2021, it raised the maximum", src: broll/pe35860981.mp4, from: 4, move: push, hold: "big number"}
+  - {at: "Okay, now compare that", page: photo, src: archive/irina_hd.jpg, zoom: 0.05, origin: "60% 50%"}
+  - {at: "The limit is about 370", page: illus, name: p_fit, a_ship: "The Irina is about 400", a_long: "30 meters too long", a_whale: "blue whale", a_triton: "The widest container ship", a_irina_w: "The Irina is 61.3", a_ten: "ten extra meters", a_closed: "shortcut is closed"}
+  - {at: "Now, you might ask", src: broll/pe37231586.mp4, from: 3, move: push}
+  - {at: "why not go the other way", src: broll/pe13425337.mp4, from: 2, move: push}
+  - {at: "The Suez Canal has no locks", src: broll/pe35562080.mp4, from: 10, move: push}
+  - {at: "But from Shanghai, that route", src: broll/pe41165816.mp4, from: 8, move: push}
+  - {at: "every extra day at sea", src: broll/pe4275306.mp4, from: 4, move: push}
+  - {at: "And even if a giant made it across", src: broll/pe4970456.mp4, from: 90, move: push}
+  # ---------------------------------------------------------------- 3. the bridge
+  - {at: "Which brings us to a bridge", page: chapter, n: 3, title: "A bridge built in 1931"}
+  - {at: "The Bayonne Bridge opened", page: photo, src: archive/bayonne_bpl.jpg, frame: true, zoom: 0.05}
+  - {at: "It sits right over the waterway", page: photo, src: archive/bayonne_ship.jpg, zoom: 0.07, origin: "55% 55%"}
+  - {at: "When it opened, the bridge left", page: illus, name: p_bridge, a_deck: "151 feet", a_plenty: "that was plenty", a_grow: "kept growing", a_limit: "under 10,000"}
+  - {at: "When a record-breaking ship", page: photo, src: archive/cosco_sav2.jpg, zoom: 0.06, origin: "45% 45%"}   # NEWS BOX goes here when reachable (COSCO Development skips New York, 2017)
+  - {at: "it skipped New York completely", page: photo, src: archive/cosco_sav3.jpg, zoom: 0.05}
+  - {at: "So, what do you do when your bridge", page: photo, src: archive/bayonne_venus.jpg, zoom: 0.06, origin: "50% 60%"}
+  - {at: "The Port Authority did something", src: broll/pe13702678.mp4, from: 2, move: push}
+  - {at: "Engineers built a new road", page: illus, name: p_bridge, stage: 2, a_raise: "64 feet higher", a_cars: "while cars kept driving", a_new: "215 feet"}
+  - at: "The project was supposed to cost"
+    page: illus
+    name: p_sum
+    title: "Let’s do the math"
+    x: 300
+    y: 360
+    lh: 140
+    size: 80
+    rows:
+      - {t: "Bridge, planned:", r: "$1.3 billion", rcolor: graphite, a: 0.4}
+      - {t: "Bridge, final:", r: "≈ $1.7 billion", rcolor: red, a: "It ended up costing"}
+      - {t: "Deeper channels:", r: "+ $2.1 billion", rcolor: blue, a: "a separate project"}
+      - {t: "Total:", r: "≈ $3.8 billion", rcolor: green, a: "is about $3.8", rule: 1150}
+      - {t: "→ ships up to ≈ 18,000 TEU", a: "18,000 TEU", color: orange}
+    strike: [{row: 0, a: "It ended up costing"}]
+    box: [{row: 3, a: "And after all that money"}]
+  - {at: "Now, to be precise", src: broll/pe19694219.mp4, from: 2, move: push}
+  - {at: "how tall it stands above the water", src: broll/pe19106507.mp4, from: 12, move: push}
+  - {at: "But ships of around 18,000", src: broll/pe38927905.mp4, from: 3, move: push, hold: "big number"}
+  - {at: "America raised the ceiling", src: broll/pe35801366.mp4, from: 22, move: push}
+  - {at: "That’s why East Coast records", src: broll/pe3075997.mp4, from: 4, move: push}
+  - {at: "In 2021, the 16,000-TEU", page: photo, src: archive/marcopolo_kemme.jpg, zoom: 0.06}   # NEWS BOX goes here when reachable (Marco Polo on the East Coast, 2021)
+  - at: "More recently, Charleston"
+    page: illus
+    name: p_bars
+    title: "Biggest ships on the U.S. East Coast"
+    unit: "TEU"
+    max: 26500
+    items:
+      - {label: "Marco Polo", value: 16000, text: "16,000", color: blue, a: 0.3, note: "2021"}
+      - {label: "OOCL Iris", value: 16828, text: "16,828", color: teal, a: "OOCL Iris", note: "Charleston"}
+      - {label: "MSC Irina", value: 24346, text: "24,346", color: red, a: "Just not the Irina", note: "never came"}
+  # ---------------------------------------------------------------- 4. the West Coast
+  - {at: "Now, I can already see", page: chapter, n: 4, title: "The West Coast"}
+  - {at: "Joe, the West Coast", src: broll/pe18127796.mp4, from: 2, move: push}
+  - {at: "Ships from Asia just sail", src: broll/pe37287417.mp4, from: 24, move: push}
+  - {at: "In June 2020, the MSC Isabella", page: photo, src: archive/isabella_kt.jpg, bg: stage, zoom: 0.04}
+  - {at: "It was the biggest container ship ever to call there", src: broll/pe30522941.mp4, from: 3, move: push}
+  - {at: "And the dockworkers set", src: broll/pe36375963.mp4, from: 16, move: left, hold: "big number"}
+  - {at: "using nine giant cranes", src: broll/pe29967105.mp4, from: 3, move: push}
+  - {at: "So, the West Coast can physically", src: broll/pe6414069.mp4, from: 6, move: push}
+  - {at: "Then why don’t the giants", src: broll/pe13425337.mp4, from: 12, move: push}
+  - {at: "To answer that, let’s go back", page: photo, src: archive/bf_kt.jpg, bg: stage, zoom: 0.04}
+  - {at: "On December 26, 2015", src: broll/pe31731844.mp4, from: 40, move: none}       # NEWS BOX goes here when reachable (Benjamin Franklin arrives in LA)
+  - {at: "a 1,300-foot ship", src: broll/pe15833309.mp4, from: 3, move: push, hold: "facts on screen"}
+  - {at: "It was the largest container ship ever to call at a North American", src: broll/pe6618037.mp4, from: 4, move: push}
+  - {at: "The mayor came to welcome it", src: broll/pe30048693.mp4, from: 3, move: none}   # NEWS BOX goes here (mayor's welcome)
+  - {at: "Up to nine cranes worked on it", src: broll/pe8782998.mp4, from: 2, move: push, hold: "chips build"}
+  - {at: "In 56 hours", src: broll/pe11736687.mp4, from: 2, move: push, hold: "chips build"}
+  - {at: "Then in February 2016", page: photo, src: archive/polb_sunset.jpg, zoom: 0.06, origin: "50% 55%"}
+  - {at: "Jacques Saadé", page: photo, src: archive/owner_saade.jpg, frame: true, zoom: 0.05}
+  - {at: "A few weeks later, the company announced", src: broll/pe35907909.mp4, from: 30, move: push}   # NEWS BOX goes here when reachable (six-ship plan)
+  - {at: "six of these 18,000-TEU giants", src: broll/pe36838174.mp4, from: 6, move: push, hold: "slow push on a giant"}
+  - {at: "But there were warning signs", src: broll/pe37292896.mp4, from: 4, move: none}
+  - {at: "At Long Beach, the ship could only be partly", src: broll/pe13681970.mp4, from: 2, move: push}
+  - {at: "because the cranes there", src: broll/pe36375968.mp4, from: 4, move: right}
+  - {at: "And the bigger problem was money", src: broll/pe4275306.mp4, from: 16, move: push}
+  - {at: "The Pacific already had too many ships", src: broll/pe4438522.mp4, from: 4, move: none}
+  - {at: "Spot rates", src: broll/pe33388036.mp4, from: 2, move: push, hold: "big number"}
+  - {at: "That was roughly half", src: broll/pe6585382.mp4, from: 3, move: push}
+  - {at: "About six weeks after announcing", src: broll/pe15160223.mp4, from: 4, move: push}   # NEWS BOX goes here when reachable (CMA CGM calls it off)
+  - {at: "blaming weak market conditions", src: broll/pe36285781.mp4, from: 6, move: push}
+  - {at: "The Benjamin Franklin was moved", src: broll/pe38927905.mp4, from: 12, move: push}
+  - {at: "So, America could host the ship", src: broll/pe10458402.mp4, from: 4, move: push}
+  - {at: "The real question was whether", src: broll/pe33637403.mp4, from: 2, move: push}
+  - {at: "And at the time, there wasn’t", src: broll/pe5091870.mp4, from: 10, move: push}
+  # ---------------------------------------------------------------- 5. the money
+  - {at: "Here’s why that matters so much", page: chapter, n: 5, title: "The money"}
+  - {at: "Let’s imagine you run a bakery", src: broll/pe7405923.mp4, from: 1, move: push}
+  - {at: "You have two choices. A huge truck", page: illus, name: p_bakery, a_truck: 0.2, a_van: "Or a small van", a_t1: "The truck costs $500 for", a_v1: "The van costs $100", a_win: "the big truck wins", a_300: "only needs 300", a_t2: "about $1.67", a_deal: "Suddenly, the small van"}
+  - {at: "Ships work the same way", src: broll/pe35562080.mp4, from: 30, move: push}
+  - at: "Imagine a 24,000-TEU ship"
+    page: illus
+    name: p_fill
+    ships:
+      - {label: "24,000-TEU ship", cap: 24000, full: 0.70, carried: "16,800 TEU", color: violet, a: 0.2, af: "only 70% full", ac: "It carries 16,800"}
+      - {label: "16,000-TEU ship", cap: 16000, full: 0.95, carried: "15,200 TEU", color: teal, a: "Now imagine a 16,000", af: "95% full", ac: "It carries 15,200"}
+    notes:
+      - {t: "8,000 TEU more space → only 1,600 TEU more cargo", a: "The bigger ship has 8,000", color: red, size: 58, y: 960}
+      - {t: "(freight rates and running costs decide)", a: "It depends on freight", color: grey, size: 48, y: 1040}
+  - {at: "The Asia-Europe route also helps", src: broll/pe36026534.mp4, from: 30, move: push}
+  - {at: "It’s one of the longest container routes", src: broll/pe4813182.mp4, from: 16, move: push}
+  - {at: "One loop between East Asia", page: illus, name: p_loops, a_left: 0.2, a_right: "A loop between Asia", a_note: "Shorter trip"}
+  - {at: "Then there’s the trip home", src: broll/pe7687564.mp4, from: 4, move: push}
+  - {at: "America buys far more", src: broll/pe19613427.mp4, from: 10, move: push}
+  - at: "In 2025, the Port of Los Angeles took in"
+    page: illus
+    name: p_bars
+    title: "Port of Los Angeles, 2025"
+    unit: "million TEU"
+    max: 6.2
+    items:
+      - {label: "Loaded imports", value: 5.3, text: "≈ 5.3M", color: orange, a: "5.3 million"}
+      - {label: "Loaded exports", value: 1.33, text: "≈ ¼ of that", color: blue, a: "a quarter as much"}
+  - {at: "A lot of the space going back", src: broll/pe32750413.mp4, from: 20, move: push}
+  - {at: "that need to be returned", src: broll/pe11736687.mp4, from: 0, move: right}
+  - {at: "Moving them is necessary", src: broll/pe10391545.mp4, from: 18, move: push, hold: "loading close-up"}
+  - {at: "Now, to be fair, Europe", src: broll/pe27048652.mp4, from: 2, move: push}
+  - {at: "Ships heading from Europe back", src: broll/pe35888034.mp4, from: 20, move: right}
+  - {at: "So the imbalance on its own", src: broll/pe36838174.mp4, from: 30, move: push}
+  - {at: "It’s the combination", src: broll/pe29927922.mp4, from: 10, move: push, hold: "chips build"}
+  # ---------------------------------------------------------------- 6. the land side
+  - {at: "And then there’s the land side", page: chapter, n: 6, title: "The land side"}
+  - {at: "put it simply at an industry", src: broll/pe3840442.mp4, from: 4, move: push, hold: "quote reads over it"}
+  - {at: "Without terminal productivity", src: broll/pe39129901.mp4, from: 10, move: push, hold: "quote reads over it"}
+  - {at: "In plain English", src: broll/pe29967105.mp4, from: 9, move: push}
+  - {at: "as fast as the dock", src: broll/pe10458402.mp4, from: 24, move: push}
+  - {at: "When a giant ship arrives", src: broll/pe8782998.mp4, from: 9, move: push}
+  - {at: "on a terminal in one visit", src: broll/pe30522941.mp4, from: 12, move: push}
+  - {at: "Every single one needs a crane", src: broll/pe13681970.mp4, from: 20, move: none}
+  - {at: "a spot in the yard", src: broll/pe32750417.mp4, from: 4, move: push}
+  - {at: "a truck or train", src: broll/pe33388036.mp4, from: 10, move: push}
+  - {at: "If any part of that slows down", src: broll/pe6585382.mp4, from: 14, move: push}
+  - {at: "the next ship waits at sea", src: broll/pe4438522.mp4, from: 20, move: none}
+  - {at: "You might remember what that looked like", src: broll/pe37231586.mp4, from: 8, move: push}
+  - at: "At the peak, in January 2022"
+    page: illus
+    name: p_map
+    topo: us-atlas/states-10m.json
+    object: states
+    projection: mercator
+    fit: [[-118.8, 33.3], [-117.6, 34.0]]
+    wipe: 0.7
+    places:
+      - {name: Ports, ll: [-118.22, 33.75], label: "Ports of LA & Long Beach", a: "Los Angeles and Long Beach", dx: 20, dy: -20}
+    swarm: {n: 109, box: [[-118.5, 33.45], [-117.85, 33.70]], a: "a record 109", dur: 4.5, label: "109 ships", lx: 1200, ly: 980}
+    notes:
+      - {t: "January 2022", x: 120, y: 160, size: 80, weight: 700, a: 0.3}
+      - {t: "all waiting their turn", x: 120, y: 250, size: 58, color: red, a: "all waiting for their turn"}
+  - {at: "The money a giant ship saves", src: broll/pe15160223.mp4, from: 16, move: push}
+  - {at: "if it gets stuck on land", src: broll/pe39129901.mp4, from: 60, move: push}
+  # ---------------------------------------------------------------- 7. is America losing out?
+  - {at: "So, is America losing out", page: chapter, n: 7, title: "Is America losing out?"}
+  - {at: "Not necessarily", src: broll/pe6414069.mp4, from: 20, move: push}
+  - {at: "They can visit more ports", src: broll/pe3840442.mp4, from: 20, move: push}
+  - {at: "so your stuff arrives", src: broll/pe8457853.mp4, from: 4, move: push}
+  - at: "When the bigger Panama locks opened"
+    page: illus
+    name: p_bars
+    title: "The canal’s own forecast (2016)"
+    unit: "TEU"
+    max: 26500
+    items:
+      - {label: "Best size", value: 10000, text: "8,500–10,000", color: green, a: "between 8,500", note: "the workhorses"}
+      - {label: "The giants", value: 24000, text: "24,000", color: grey, a: "Not the giants"}
+    ring: 0
+    ring_at: "The workhorses"
+  - {at: "And giant ships come with giant risks", src: broll/pe37292896.mp4, from: 12, move: none}
+  - {at: "In March 2021, the Ever Given", page: photo, src: archive/evergiven_markuse.jpg, zoom: 0.08, origin: "70% 55%"}
+  - {at: "and blocked one of the world", page: photo, src: archive/news_bbc_evergiven.jpg, frame: true, zoom: 0.03, box: "BBC News · 27 March 2021"}
+  - {at: "When a small ship has a bad day", src: broll/pe36285781.mp4, from: 30, move: push}
+  - {at: "When a giant has a bad day", page: photo, src: archive/evergiven_sh.jpg, bg: stage, zoom: 0.04}
+  # ---------------------------------------------------------------- 8. the twist
+  - {at: "But here’s the twist", page: chapter, n: 8, title: "The giants are back"}
+  - {at: "Ten years after the Benjamin Franklin", src: broll/pe9831955.mp4, from: 4, move: push}
+  - {at: "In the busy shipping months", src: broll/pe28100375.mp4, from: 30, move: push, hold: "establishing Long Beach"}
+  - {at: "the MSC Nela", page: photo, src: archive/nela_kt.jpg, bg: stage, zoom: 0.04}
+  - {at: "the MSC Arina", page: photo, src: archive/arina_kt.jpg, bg: stage, zoom: 0.04}   # NEWS BOX goes here when reachable (MSC giants at Long Beach, 2026)
+  - {at: "on a service from Asia to Long Beach", src: broll/pe27950171.mp4, from: 58, move: push}
+  - {at: "The port’s own CEO", page: photo, src: archive/owner_cordero_a.jpg, frame: true, zoom: 0.04}
+  - {at: "And Long Beach is on track", src: broll/pe31731844.mp4, from: 4, move: none, hold: "big number"}
+  - {at: "Is this the start of a new era", src: broll/pe6472920.mp4, from: 4, move: push}
+  - {at: "Honestly, it’s too early", src: broll/pe7687564.mp4, from: 16, move: push}
+  - {at: "The real test isn’t whether", src: broll/pe35860981.mp4, from: 16, move: push}
+  - {at: "It’s whether they keep coming", src: broll/pe29927922.mp4, from: 18, move: push}
+  - {at: "and whether other shipping companies", src: broll/pe15833309.mp4, from: 12, move: push}
+  - at: "So, what’s the big lesson"
+    page: illus
+    name: p_list
+    title: "The big lesson"
+    items:
+      - {t: "A canal built in 1914", a: "A canal built"}
+      - {t: "A bridge built in 1931", a: "A bridge built"}
+      - {t: "A shorter trip, smaller savings", a: "A shorter trip"}
+      - {t: "Ports moving thousands of boxes in hours", a: "Ports that have to move"}
+      - {t: "Empty boxes going back", a: "sends a lot of empty"}
+    end: {t: "They usually have a better place to be.", a: "They just usually"}
+  - {at: "Because in shipping, the most impressive", src: broll/pe37339158.mp4, from: 2, move: push}
+  - {at: "carries the most containers", src: broll/pe37339158.mp4, from: 24, move: none}
+  - {at: "It’s the one that carries the right number", src: broll/pe18718832.mp4, from: 7, move: push}
+  - {at: "to the right place", src: broll/pe4813182.mp4, from: 4, move: push}
+  - {at: "So, what do you think", src: broll/pe6472920.mp4, from: 14, move: push}
+  - {at: "as often as ports in Asia", src: broll/pe9831955.mp4, from: 20, move: push}
+  - {at: "Let me know in the comments", page: photo, src: archive/polb_sunset.jpg, zoom: 0.06, origin: "50% 50%"}
+
 text:
+  - {at: "Malcom McLean", kind: label, text: "Malcom *McLean*", sub: "Trucking businessman", dur: 3.4}
   - {at: "In fact, back in 2015", kind: label, text: "CMA CGM *Benjamin Franklin*", sub: "Came to Los Angeles in 2015", until: "speeches, cameras"}
   - kind: questions
     at: "Are American ports"
@@ -96,3 +399,17 @@ text:
       - {t: "Don’t want to come?", a: "Or do shipping companies"}
   - {at: "MSC Irina", kind: label, text: "MSC *Irina*", sub: "In service since 2023", dur: 3.6}
   - {at: "24,346 TEU", kind: big, text: "24,346", sub: "TEU", until: ">TEU."}
+  - {at: "18,465 container moves", kind: big, text: "18,465", sub: "container moves · one ship visit", until: ">using nine giant cranes"}
+  - {at: "a 1,300-foot ship", kind: chips, items: [{t: "1,300 ft", a: "1,300-foot"}, {t: "18,000 TEU", a: "capacity of 18,000"}], until: ">Port of Los Angeles."}
+  - {at: "Up to nine cranes worked", kind: chips, items: [{t: "9 cranes", a: "nine cranes"}, {t: "56 hours", a: "In 56 hours"}, {t: "11,200 containers", a: "about 11,200"}], until: ">were moved."}
+  - {at: "Jacques Saadé", kind: label, text: "Jacques *Saadé*", sub: "Head of CMA CGM", dur: 3.6}
+  - {at: "Spot rates", kind: big, pre: "Asia → West Coast, per 40-ft box", text: "$750–800", sub: "spot rate, early 2016", until: ">two years earlier."}
+  - {at: "It’s the combination", kind: chips, items: [{t: "A longer route", a: "a longer route"}, {t: "Huge ports built for them", a: "a network of huge ports"}, {t: "The money on those services", a: "the money on those"}], until: ">particular services."}
+  - {at: "Without terminal productivity", kind: quote, text: "Without terminal productivity, we will hesitate to put large vessels into those ports.", who: "Stephen Ng, then a director at OOCL", until: ">into those ports.”"}
+  - {at: "Not 24,000", kind: big, pre: "Not 24,000", text: "18,000", sub: "TEU · what the upgrade was built for", until: ">Eighteen."}
+  - {at: "COSCO Development", kind: label, text: "COSCO *Development*", sub: "Record-breaker, 2017", dur: 3.6}
+  - {at: "CMA CGM Marco Polo", kind: label, text: "CMA CGM *Marco Polo*", sub: "16,000 TEU · East Coast record, 2021", dur: 4}
+  - {at: "MSC Isabella", kind: label, text: "MSC *Isabella*", sub: "23,656 TEU", dur: 4}
+  - {at: "the Ever Given, a 400-meter", kind: label, text: "*Ever Given*", sub: "Suez Canal · March 2021", dur: 4}
+  - {at: "The port’s own CEO", kind: label, text: "Mario *Cordero*", sub: "CEO, Port of Long Beach", dur: 3.4}
+  - {at: "more than 10 million TEU", kind: big, text: "10 million", sub: "TEU at Long Beach in 2026", until: ">for the first time ever."}

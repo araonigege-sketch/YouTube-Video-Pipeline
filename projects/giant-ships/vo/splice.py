@@ -22,8 +22,10 @@ SR = 24000
 #                            pause before, pause after). Windows come from the Whisper word times of the main read.
 INSERTS = [
     ("fix_1146", (32.12, 32.72), (36.95, 37.80), 0.12, 0.12),     # "And here's the funny part ... born in America."
+    ("fix_1327", (93.86, 94.30), (98.62, 99.30), 0.12, 0.12),      # "and she has a capacity of 24,346 TEU." (main said 24,436)
     ("fix_1148", (115.24, 115.76), (125.88, 126.60), 0.12, 0.12),  # "So when a ship has a capacity of 24,346 ... boxes."
     ("fix_1229", (494.14, 494.36), (496.95, 497.58), 0.05, 0.16),  # "23,656 TEU" (MSC Isabella; the main read said 23,668)
+    ("fix_1347", (755.55, 755.64), (755.90, 755.99), 0.01, 0.03),  # "Ng" (Stephen Ng; the main read mispronounced it)
 ]
 TITLE_END = (3.80, 3.95)        # title "Why the world's biggest ships..." ends → "Hey there!"
 LEAD = 0.2

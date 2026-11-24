@@ -383,7 +383,7 @@ class Joe(Composition):
         cf = self.proj / "media/archive/credits.json"
         if cf.exists():
             d = json.loads(cf.read_text()).get(Path(src).stem)
-            if d:
+            if d and d.get("credit"):
                 return "Photo: " + d["credit"]
         return ""
 
@@ -395,7 +395,8 @@ class Joe(Composition):
         if not isinstance(s.get("box"), str):
             return
         gid = self.nid("nb")
-        self.add(gid, t0, t1, f'<div class="nb-tag">{esc(s["box"])}</div>', z=15)
+        cls = "nb-tag nb-top" if s.get("page") else "nb-tag"
+        self.add(gid, t0, t1, f'<div class="{cls}">{esc(s["box"])}</div>', z=15)
         self.rise(f"#{gid} .nb-tag", t0, 0.45, 10, 0.25)
 
     # ---------- like & subscribe (owner's rule), styled to the channel, no SFX
@@ -483,6 +484,7 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .ph-credit-fill{{font-size:21px;color:rgba(244,242,238,.82);text-shadow:0 2px 10px rgba(0,0,0,.8)}}
 .nb-tag{{position:absolute;left:263px;top:946px;font-weight:600;font-size:24px;letter-spacing:.16em;text-transform:uppercase;
   color:rgba(244,242,238,.9);text-shadow:0 2px 12px rgba(0,0,0,.6)}}
+.nb-top{{left:230px;top:34px}}
 .cta{{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;gap:28px}}
 .cta-btn{{display:flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;font-weight:700;font-size:40px;
   background:rgba(20,22,26,.78);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.4)}}
@@ -498,7 +500,7 @@ def build_overlay(P, edit, ch, words, shots, log=print) -> tuple[Path, list[floa
     c = Joe(words, P / "build/hf", ch, a)
     c.proj = P
     for s in shots:
-        if s.get("box") and not s.get("page"):
+        if s.get("box"):
             c.newsbox(s, s["t0"] - a, s["t1"] - a)
         if s.get("page"):
             if s["page"] not in PAGES:

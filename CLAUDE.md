@@ -63,6 +63,9 @@ projects/<slug>/
   For CC photos, search Openverse (`api.openverse.org`) and download from `live.staticflickr.com`.
 - Pexels: some clips serve 720p under a 1080p filename; check heights after download (`pipeline.broll get` prints them).
 - Flickr images (`live.staticflickr.com`) answer 429 to curl's default User-Agent: send a descriptive one (`youtube-video-pipeline/1.0 (...)`). CBP's public-domain photos: find them on Commons (titles carry the Flickr id), then fetch the 1024px rendition from www.flickr.com/photos/cbpphotos/<id>/. DVIDS refuses this sandbox (CloudFront block).
+- Flickr search results (Openverse) link only the 1024 px file: `python -m pipeline.flickr <photo page> <out.jpg>` fetches the largest
+  rendition (often the original). Openverse also finds Commons-hosted files' Flickr originals, which helps while Wikimedia 429s.
+- Openverse's audio index (`/v1/audio/?q=...&source=wikimedia_audio`) confirms a Kevin MacLeod track's Commons licence when Commons itself refuses.
 - API keys come from environment secrets (`ELEVENLABS_API_KEY`, `PIXABAY_API_KEY`); never ask for them in chat.
 
 ## Layout
