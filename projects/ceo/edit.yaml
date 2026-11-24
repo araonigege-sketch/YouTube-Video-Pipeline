@@ -1,0 +1,461 @@
+# Mr. Davos ep4 — "How Hard Is It to Actually Become a CEO?"
+# Shots are anchored to the narration (words.json). B-roll ids: media/broll/credits.json; photos: media/archive/credits.json.
+# Named people are shown only with real photos (owner rule: a wrong person is worse than no person).
+range: [0, 771.2]         # full episode (narration ends 770.84)
+
+shots:
+  # ---- cold open
+  - {at: 0, src: broll/pe6186015.mp4, from: 2, move: push, hold: phone in hand}
+  - {at: "Somewhere, one person sits", src: broll/pe36244308.mp4, from: 0, move: none}
+  - {at: "One person who answers", src: broll/pe6755158.mp4, from: 2, move: push}
+  - {at: "every update", src: broll/pe12245077.mp4, from: 4, move: left}
+  - {at: "That person is the CEO", src: broll/pe8572188.mp4, from: 2, move: push}
+  - {at: "Now, here’s something weird", src: broll/pe4480598.mp4, from: 1, move: none}
+  - {at: "You could become a CEO", src: broll/pe8939334.mp4, from: 1, move: push}
+  - {at: "Register a small company", src: broll/pe29906414.mp4, from: 5, move: push, hold: your-name card}
+  - {at: "There’s no exam", src: broll/pe8716796.mp4, from: 2, move: none}
+  - {at: "Congratulations", src: broll/pe7945769.mp4, from: 4, move: none}
+  - {at: "But try becoming CEO", src: broll/pe39690169.mp4, from: 0, move: push}
+  - {at: "Go to its careers page", src: broll/pe4828605.mp4, from: 5, move: push}
+  - {at: "find jobs for engineers", src: broll/pe7380236.mp4, from: 3, move: none, hold: job chips}
+  - {at: "You will never find", src: broll/pe4828605.mp4, from: 22, move: push, hold: posting label}
+  - {at: "Because at the world’s biggest", src: broll/pe36498297.mp4, from: 2, move: none}
+  - {at: "nobody gets the top job", src: broll/pe7643457.mp4, from: 3, move: push}
+  - {at: "You get chosen", src: broll/pe6951506.mp4, from: 2, move: none}
+  - {at: "you can get unchosen", src: broll/pe8135747.mp4, from: 4, move: push}
+  - {at: "So who does the choosing", src: broll/pe5716999.mp4, from: 3, move: push}
+  - {at: "Do you need a famous", src: broll/pe4301307.mp4, from: 22, move: none}
+  - {at: "And how long does it take", src: broll/pe38705490.mp4, from: 1, move: none}
+  - at: "In this video, we’ll follow"
+    page: roadmap
+    items:
+      - {t: "The warehouse floor", a: "from a warehouse floor"}
+      - {t: "The garden center", a: "a garden center"}
+      - {t: "The design studio", a: "a design studio"}
+      - {t: "The diner booth", a: "a booth in"}
+      - {t: "Who picks a CEO", a: "who picks a CEO"}
+      - {t: "What it pays", a: "what the job really"}
+      - {t: "The hardest part", a: "why getting the chair"}
+  - {at: "Let’s get started", src: broll/pe36182398.mp4, from: 2, move: push}
+
+  # ---- chapter 1: what a CEO does
+  - {at: "First, what does a CEO", page: chapter, n: 1, title: "What a CEO actually does"}
+  - at: "Well, CEO stands for"
+    page: define
+    term: "CEO"
+    phon: "/ˌsiː.iːˈoʊ/"
+    pos: "noun · business"
+    text: "Chief executive officer: the highest-ranking manager in a company. Sets the direction, decides where the money goes, and picks the team that runs everything else."
+  - {at: "The CEO sets the direction", src: broll/pe8572174.mp4, from: 3, move: push}
+  - {at: "and picks the team", src: broll/pe8371030.mp4, from: 20, move: none}
+  - {at: "But the job changes", src: broll/pe34421322.mp4, from: 2, move: push}
+  - {at: "If you run a five-person", src: broll/pe28988753.mp4, from: 1, move: push, hold: bakery list}
+  - {at: "the person who mops", src: broll/pe6195524.mp4, from: 3, move: none}
+  - {at: "Run a company with", src: broll/pe37439460.mp4, from: 2, move: none, hold: big number}
+  - {at: "Same title", src: broll/pe31741796.mp4, from: 0, move: none}
+  - {at: "So the CEO is the boss", src: broll/pe8814508.mp4, from: 3, move: none}
+  - {at: "Well, at big companies", src: broll/pe6951299.mp4, from: 2, move: push}
+  - at: "Above the CEO sits"
+    page: illus
+    name: ladder
+    title: "Who answers to whom"
+    rungs:
+      - {t: "CEO", sub: "Runs the company", a: "It hires the CEO", color: c3}
+      - {t: "Board of directors", sub: "A small group · about ten people", a: "Above the CEO sits", color: c2}
+      - {t: "Shareholders", sub: "The people who own the company", a: "the shareholders", color: c1}
+  - {at: "And it can fire the CEO", src: broll/pe8135746.mp4, from: 2, move: push}
+  - {at: "The person at the top", src: broll/pe7552419.mp4, from: 6, move: none}
+  - {at: "Actually, about ten", src: broll/pe8847933.mp4, from: 3, move: push}
+  - {at: "And the seats are incredibly", src: broll/pe6951393.mp4, from: 2, move: none}
+  - {at: "One yearly study tracks", src: broll/pe38725029.mp4, from: 2, move: push, hold: the study}
+  - {at: "Among the top 500", src: broll/pe4319342.mp4, from: 1, move: push, hold: big number}
+  - {at: "Fifty-nine seats", src: broll/pe37439076.mp4, from: 3, move: none, hold: big number}
+  - {at: "So let’s say you’re", src: broll/pe7263300.mp4, from: 2, move: push}
+  - {at: "Your results are excellent", src: broll/pe8348322.mp4, from: 2, move: none}
+  - {at: "Do you become CEO next", src: broll/pe7148921.mp4, from: 3, move: push}
+  - {at: "Well, not necessarily", src: broll/pe5716999.mp4, from: 12, move: none}
+  - {at: "Your company already has", src: broll/pe8572174.mp4, from: 25, move: push}
+  - at: "Picture forty people"
+    page: illus
+    name: dots
+    title: "Forty people good enough for the top job"
+    dim_at: "Thirty-nine of them"
+    left: {t: "39", sub: "Won’t get it", at: "Thirty-nine of them"}
+    right: {t: "1", sub: "Chair", at: "only one chair"}
+
+  # ---- chapter 2: door one, rise inside
+  - {at: "So how do people actually", page: chapter, n: 2, title: "Three doors to the top"}
+  - at: "There are three main doors"
+    page: illus
+    name: doors
+    title: "Three ways to the top"
+    doors:
+      - {t: "Rise inside", sub: "Promoted from within", at: 0.3, color: c1}
+      - {t: "Leave", sub: "Lead somewhere else", at: 0.7, color: c2}
+      - {t: "Build your own", sub: "Start a company", at: 1.1, color: c3}
+    open: {door: 0, at: "You rise inside"}
+    stat: {door: 0, t: "≈60%", sub: "of new CEOs in 2025", at: "about 60 percent"}
+  - {at: "And some of those stories", src: broll/pe2746004.mp4, from: 5, move: none}
+  - {at: "Look at Walmart", page: photo, src: archive/store.jpg, zoom: 0.08}
+  - {at: "about 2.1 million", src: broll/pe20682093.mp4, from: 10, move: push, hold: big number}
+  - {at: "In 1984, a teenager", page: photo, src: archive/mcmillon.jpg, zoom: 0.07, origin: "50% 35%"}
+  - {at: "took an hourly job", page: photo, src: archive/dc_docks.jpg, zoom: 0.07}
+  - {at: "unloading trucks", src: broll/pe6169116.mp4, from: 4, move: none}
+  - {at: "Thirty years later", page: photo, src: archive/mcmillon_intl.jpg, zoom: 0.1, origin: "26% 30%"}
+  - {at: "Then in 2026, when McMillon", page: photo, src: archive/furner_mcmillon.jpg, zoom: 0.07, hold: the handover}
+  - {at: "John Furner", page: photo, src: archive/furner.jpg, zoom: 0.07, origin: "45% 35%"}
+  - {at: "As an hourly worker in a Walmart garden", page: photo, src: archive/garden.jpg, zoom: 0.08}
+  - {at: "Bentonville, Arkansas", src: broll/pe6508709.mp4, from: 3, move: push}
+  - at: "So one of the biggest employers"
+    page: split
+    src: broll/pe2746004.mp4
+    from: 24
+    title: "Paid by the hour, then the top job"
+    items:
+      - {t: "Doug McMillon", v: "Warehouse → CEO", a: "two CEOs in a row"}
+      - {t: "John Furner", v: "Garden center → CEO", a: "who started out"}
+  - {at: "Wait, so anyone can", src: broll/pe37439076.mp4, from: 14, move: none}
+  - {at: "Well, not exactly", src: broll/pe8428296.mp4, from: 1, move: none}
+  - {at: "Because nobody really gets", src: broll/pe14569532.mp4, from: 0, move: push}
+  - {at: "You get tested for it", src: broll/pe855386.mp4, from: 2, move: push}
+  - at: "Think of a future CEO’s"
+    page: illus
+    name: ladder
+    title: "Each test costs more to fail"
+    rungs:
+      - {t: "Five people", sub: "Can you manage them?", a: "Can you manage five", color: c1}
+      - {t: "A department", sub: "", a: "here’s a department", color: c3}
+      - {t: "A whole region", sub: "", a: "a whole region", color: c2}
+      - {t: "A struggling division", sub: "", a: "a struggling division", color: c5}
+      - {t: "A crisis", sub: "", a: "Now a crisis", color: c4}
+  - {at: "And the skills being tested", src: broll/pe8005702.mp4, from: 3, move: none}
+  - {at: "Early on, you win", src: broll/pe30260830.mp4, from: 3, move: push}
+  - {at: "But further up", src: broll/pe8123995.mp4, from: 1, move: none}
+  - {at: "how sales, factories", src: broll/pe32305278.mp4, from: 5, move: none, hold: skills chips}
+  - {at: "Depth wins at the bottom", src: broll/pe36498297.mp4, from: 8, move: push}
+  - {at: "At the top, what wins", src: broll/pe38672505.mp4, from: 30, move: none}
+  - at: "People in this world call it"
+    page: define
+    term: "P&L responsibility"
+    phon: "/ˌpiː ən ˈɛl/"
+    pos: "noun · business"
+    text: "Profit and loss. You answer for a whole chunk of the business: the money coming in, the money going out, and what’s left at the end."
+  - {at: "It means you answer", src: broll/pe7651533.mp4, from: 7, move: push}
+  - {at: "the money coming in", src: broll/pe6266286.mp4, from: 1, move: none}
+  - at: "Look at Furner’s path"
+    page: illus
+    name: ladder
+    title: "John Furner’s path"
+    rungs:
+      - {t: "Store manager", sub: "", a: "Store manager", color: c3}
+      - {t: "District manager", sub: "", a: "District manager", color: c3}
+      - {t: "Buyer", sub: "", a: "Buyer.", color: c1}
+      - {t: "Walmart China", sub: "Merchandising · Shenzhen", color: c2}
+      - {t: "Sam’s Club", sub: "CEO", color: c5}
+      - {t: "Walmart U.S.", sub: "CEO", color: accent}
+  - {at: "Then he moved to Shenzhen", src: broll/pe35987653.mp4, from: 1, move: push}
+  - {at: "Then he ran Sam’s Club", page: photo, src: archive/samsclub.jpg, zoom: 0.07}
+  - {at: "Then all of Walmart", src: broll/pe32835508.mp4, from: 2, move: none}
+  - at: "Every step handed him"
+    page: illus
+    name: ladder
+    title: "John Furner’s path"
+    lit: 5
+    rungs:
+      - {t: "Store manager", sub: "", color: c3}
+      - {t: "District manager", sub: "", color: c3}
+      - {t: "Buyer", sub: "", color: c1}
+      - {t: "Walmart China", sub: "Merchandising · Shenzhen", color: c2}
+      - {t: "Sam’s Club", sub: "CEO", color: c5}
+      - {t: "Walmart U.S.", sub: "CEO", color: accent}
+  - {at: "So what about school", src: broll/pe7945769.mp4, from: 1, move: none}
+  - {at: "But when one professor", src: broll/pe6952154.mp4, from: 1, move: none, hold: the study}
+  - {at: "fewer than 12 percent", src: broll/pe4319342.mp4, from: 5, move: none, hold: big number}
+  - {at: "Furner studied at", page: photo, src: archive/uark.jpg, zoom: 0.07, origin: "52% 35%"}
+  - {at: "A bachelor’s degree is typical", src: broll/pe7685212.mp4, from: 14, move: push}
+  - {at: "But there’s no degree", src: broll/pe8170593.mp4, from: 1, move: none}
+  - {at: "If there were, business", src: broll/pe12245077.mp4, from: 20, move: push}
+
+  # ---- chapter 3: you're on the board
+  - {at: "Okay. Now let’s flip", page: chapter, n: 3, title: "You’re on the board"}
+  - {at: "Here’s a made-up", src: broll/pe5981597.mp4, from: 0.5, move: none}
+  - {at: "Your company is one of the most", src: broll/pe38735892.mp4, from: 2, move: push}
+  - {at: "Your CEO is stepping down", src: broll/pe7581306.mp4, from: 1, move: none}
+  - at: "You’re choosing between two"
+    page: illus
+    name: versus
+    title: "Two kinds of candidate"
+    a: {t: "Candidate A", role: "The operator", lines: ["Supply chains", "Operations"], at: "Candidate A is", color: c1}
+    b: {t: "Candidate B", role: "The engineer", lines: ["Builds the products", "Down to the materials", "Never ran operations"], at: "Candidate B is", color: c3}
+    q: {t: "Who do you pick?", at: "Who do you pick"}
+  - {at: "Well, Apple never said", src: broll/pe39690169.mp4, from: 3, move: none}
+  - {at: "But its real choices", src: broll/pe6278830.mp4, from: 2, move: push}
+  - {at: "The last time it changed", page: photo, src: archive/jobs_fl.jpg, zoom: 0.07}
+  - at: "It picked Tim Cook"
+    page: illus
+    name: versus
+    a: {t: "The operator", role: "", at: 0.0, color: c1, reveal: {name: "Tim Cook", sub: "CEO · 2011", img: archive/cook_sq.jpg, pos: "50% 40%", at: 0.15}}
+    b: {t: "The engineer", role: "", at: 0.1, color: c3, reveal: {name: "John Ternus", sub: "CEO · announced April 2026", img: archive/ternus.jpg, pos: "50% 25%", at: "John Ternus, an engineer"}}
+  - {at: "and spent the next 25", src: broll/pe8126367.mp4, from: 2, move: push}
+  - {at: "from the iPad", src: broll/pe5008497.mp4, from: 2, move: push}
+  - {at: "The board approved him", src: broll/pe6951506.mp4, from: 1, move: push}
+  - {at: "after what Apple called", src: broll/pe7552491.mp4, from: 2, move: none}
+  - {at: "So boards don’t pick", src: broll/pe14569532.mp4, from: 2.5, move: none}
+  - {at: "They pick the one they believe", src: broll/pe40085960.mp4, from: 1, move: none}
+  - {at: "Which means you can do", src: broll/pe7263300.mp4, from: 12, move: none, hold: not picked}
+
+  # ---- chapter 4: door two, leave
+  - at: "That’s the second door"
+    page: illus
+    name: doors
+    title: "Door two"
+    doors:
+      - {t: "Rise inside", sub: "Promoted from within", color: c1}
+      - {t: "Leave", sub: "Lead somewhere else", color: c2}
+      - {t: "Build your own", sub: "Start a company", color: c3}
+    open: {door: 1, at: "Leave, and become"}
+  - {at: "Jamie Dimon knows", page: photo, src: archive/dimon_fl.jpg, zoom: 0.07}
+  - {at: "He spent about 15 years", src: broll/pe37558975.mp4, from: 30, move: push, hold: mentor label}
+  - {at: "Dimon rose to president", src: broll/pe37558975.mp4, from: 45, move: push}
+  - {at: "Then in 1998", src: broll/pe8428296.mp4, from: 3, move: push}
+  - {at: "Fired, by his own mentor", src: broll/pe7685810.mp4, from: 3, move: none}
+  - {at: "In 2000, Dimon became", src: broll/pe27049227.mp4, from: 2, move: push}
+  - {at: "a Chicago bank that lost", src: broll/pe19896618.mp4, from: 2, move: none, hold: big number}
+  - at: "About three years later"
+    page: illus
+    name: timeline
+    title: "Jamie Dimon, after being fired"
+    points:
+      - {t: "1998", sub: "Asked to resign", color: c4}
+      - {t: "2000", sub: "CEO of Bank One · lost $511M", color: c2}
+      - {t: "2003", sub: "Record profit · $3.5B", a: "it reported a record", color: c3}
+      - {t: "2005", sub: "CEO of JPMorgan Chase", a: "at the end of 2005", color: accent}
+  - {at: "And setbacks like his", src: broll/pe855386.mp4, from: 5, move: none}
+  - {at: "One ten-year study", src: broll/pe7643457.mp4, from: 12, move: none}
+  - {at: "45 percent had suffered", src: broll/pe9365582.mp4, from: 10, move: none, hold: big number}
+  - {at: "And most of those people", src: broll/pe4480598.mp4, from: 6, move: push}
+
+  # ---- chapter 5: door three, build your own
+  - at: "And then there’s the third door"
+    page: illus
+    name: doors
+    title: "Door three"
+    doors:
+      - {t: "Rise inside", sub: "Promoted from within", color: c1}
+      - {t: "Leave", sub: "Lead somewhere else", color: c2}
+      - {t: "Build your own", sub: "Start a company", color: c3}
+    open: {door: 2, at: "You skip the line"}
+  - {at: "Nobody picks you", src: broll/pe8814508.mp4, from: 4, move: push}
+  - {at: "Jensen Huang did exactly", page: photo, src: archive/huang_b.jpg, zoom: 0.07}
+  - {at: "As a teenager, he washed", src: broll/pe6195929.mp4, from: 0, move: none}
+  - {at: "an American diner chain", page: photo, src: archive/dennys.jpg, zoom: 0.07}
+  - {at: "Then in 1993", src: broll/pe36032432.mp4, from: 0, move: none}
+  - {at: "in San Jose with two", src: broll/pe29545807.mp4, from: 2, move: none}
+  - {at: "and planned a company", src: broll/pe6754824.mp4, from: 3, move: push}
+  - {at: "That company was Nvidia", page: photo, src: archive/nvidia_sign.jpg, zoom: 0.07}
+  - {at: "Now, the title was the easy", src: broll/pe35977437.mp4, from: 2, move: push}
+  - {at: "Your business card doesn’t", src: broll/pe29906414.mp4, from: 25, move: none}
+  - {at: "Huang had to actually", src: broll/pe5466792.mp4, from: 3, move: push}
+  - {at: "He ran Nvidia for 33", page: photo, src: archive/huang_a.jpg, zoom: 0.07}
+  - {at: "its chips went on", src: broll/pe7140928.mp4, from: 1, move: push}
+  - {at: "making it one of the most", src: broll/pe35987648.mp4, from: 2, move: none}
+  - {at: "Founder.", page: photo, src: archive/huang_d.jpg, zoom: 0.07}
+  - {at: "Untouchable, right", src: broll/pe35451425.mp4, from: 5, move: push}
+  - {at: "Once a company grows", src: broll/pe6266286.mp4, from: 4, move: none}
+  - {at: "And that board can remove", src: broll/pe8371030.mp4, from: 50, move: push}
+  - {at: "In November 2026", src: broll/pe12345283.mp4, from: 0.5, move: push}
+  - {at: "and what they might mean", src: broll/pe29188250.mp4, from: 3, move: none}
+  - {at: "Days later, Nvidia announced", src: broll/pe38735892.mp4, from: 12, move: none}
+  - {at: "CNBC reported", src: broll/pe7552491.mp4, from: 8, move: none}
+  - {at: "Thirty-three years in the chair", src: broll/pe6599643.mp4, from: 2, move: push, hold: big number}
+  - {at: "Steve Jobs was pushed", page: photo, src: archive/jobs_fl.jpg, zoom: 0.07}
+  - {at: "When he left, the board", src: broll/pe5971048.mp4, from: 3, move: none, hold: the search}
+  - {at: "and started searching inside", src: broll/pe34705629.mp4, from: 5, move: push}
+  - {at: "One of the most watched", src: broll/pe7985880.mp4, from: 4, move: push}
+  - {at: "And there was no job ad", src: broll/pe10374912.mp4, from: 1, move: none}
+
+  # ---- chapter 6: what you're trusted with
+  - {at: "But say you make it", page: chapter, n: 4, title: "What you’re trusted with"}
+  - {at: "What exactly are you being", src: broll/pe8572188.mp4, from: 14, move: push}
+  - {at: "Picture an ordinary Monday", src: broll/pe31741796.mp4, from: 2, move: none}
+  - at: "You have enough money"
+    page: split
+    src: broll/pe6803594.mp4
+    from: 30
+    title: "One project, not two"
+    items:
+      - {t: "Finance chief", v: "Profit next year", a: "Your finance chief"}
+      - {t: "Head of product", v: "Matters in ten years", a: "Your head of product"}
+      - {t: "The board", v: "Wants results", a: "The board wants results"}
+  - {at: "So who makes the call", src: broll/pe7975468.mp4, from: 15, move: push}
+  - {at: "And if it goes wrong", src: broll/pe6599643.mp4, from: 10, move: none}
+  - {at: "Most of the job is decisions", src: broll/pe34705629.mp4, from: 18, move: none}
+  - {at: "And sometimes, the job hands", src: broll/pe34223663.mp4, from: 1, move: push}
+  - {at: "Mary Barra started at General", page: photo, src: archive/barra_mx.jpg, zoom: 0.08, origin: "33% 40%"}
+  - {at: "Over the next three decades", src: broll/pe4468754.mp4, from: 1, move: none}
+  - {at: "led human resources", src: broll/pe6450803.mp4, from: 2, move: push}
+  - at: "In January 2014, she became"
+    page: illus
+    name: timeline
+    title: "Mary Barra at General Motors"
+    points:
+      - {t: "1980", sub: "Student · age 18", color: c1}
+      - {t: "1980s–2000s", sub: "Engineering · a car plant · HR · product", color: c2}
+      - {t: "2014", sub: "CEO", a: "she became CEO", color: accent}
+    total: {t: "34 years", sub: "of tests, passed", a: "Thirty-four years"}
+  - {at: "A few months later", src: broll/pe29188252.mp4, from: 2, move: push}
+  - {at: "GM had used a faulty", src: broll/pe6421467.mp4, from: 1, move: push}
+  - {at: "and the company had taken", src: broll/pe2075159.mp4, from: 0.5, move: none}
+  - at: "At the time, the switch"
+    page: illus
+    name: bars
+    title: "The faulty ignition switch"
+    items:
+      - {label: "Deaths linked at the time", value: 13, text: "13", a: "linked to 13", color: c4}
+      - {label: "Death claims paid by GM’s fund", value: 124, text: "124", a: "paid claims for 124", color: c4}
+  - {at: "The failures began long", src: broll/pe30022653.mp4, from: 2, move: push}
+  - {at: "But she was the one answering", page: photo, src: archive/barra2_fl.jpg, zoom: 0.08, origin: "70% 38%"}
+  - {at: "You inherit problems", src: broll/pe38672505.mp4, from: 5, move: push}
+
+  # ---- chapter 7: the money and the odds
+  - {at: "Alright. So why would", page: chapter, n: 5, title: "The money and the odds"}
+  - at: "In the US, the median"
+    page: illus
+    name: bars
+    title: "What a chief executive earns"
+    note: "BLS median for all chief executives, 2025 · AP survey of S&P 500 CEO pay"
+    note_at: "According to an Associated"
+    max: 20000000
+    items:
+      - {label: "Median chief executive", value: 214000, text: "$214K", a: "214,000 dollars", color: c1}
+      - {label: "Typical S&P 500 CEO", value: 17700000, text: "$17.7M", a: "17.7 million", color: accent}
+  - {at: "But a big chunk", src: broll/pe7578632.mp4, from: 1, move: push, hold: stock pay}
+  - {at: "and sometimes never", src: broll/pe38725029.mp4, from: 10, move: none}
+  - {at: "And the chair isn’t as safe", src: broll/pe7985880.mp4, from: 14, move: none}
+  - {at: "Back in that yearly study", src: broll/pe31441100.mp4, from: 3, move: none, hold: big number}
+  - {at: "And more than a third", src: broll/pe8135746.mp4, from: 9, move: none, hold: big number}
+  - {at: "So how long does the whole", src: broll/pe5971048.mp4, from: 12, move: push}
+  - {at: "The new CEOs that year", src: broll/pe5971594.mp4, from: 2, move: none, hold: big number}
+  - {at: "And 84 percent had never", src: broll/pe7148921.mp4, from: 10, move: none, hold: big number}
+  - {at: "For most of them", src: broll/pe36182398.mp4, from: 8, move: none}
+  - {at: "And yes, luck plays", src: broll/pe7102266.mp4, from: 2, move: push}
+  - {at: "The right division", src: broll/pe32386522.mp4, from: 2, move: none}
+  - {at: "A seat that opens", src: broll/pe6951393.mp4, from: 8, move: push}
+  - {at: "We mostly hear from", src: broll/pe34805837.mp4, from: 2, move: none}
+  - {at: "not from the ones", src: broll/pe5971594.mp4, from: 8, move: push}
+  - {at: "Still, the people who make it", src: broll/pe7647794.mp4, from: 1, move: none, hold: raised hands}
+  - {at: "They move across the business", src: broll/pe7651687.mp4, from: 2, move: push}
+  - {at: "And over many years", src: broll/pe35451425.mp4, from: 30, move: none, hold: trust line}
+
+  # ---- verdict + outro
+  - {at: "So how hard is it really", src: broll/pe36244308.mp4, from: 2.5, move: push}
+  - {at: "Giving yourself the CEO", src: broll/pe3936483.mp4, from: 3, move: push}
+  - {at: "Building a company that", src: broll/pe7380236.mp4, from: 9, move: push}
+  - {at: "And running one of", src: broll/pe34421322.mp4, from: 6, move: none}
+  - {at: "with no guarantee", src: broll/pe40085960.mp4, from: 8, move: push}
+  - {at: "Because at that level", src: broll/pe7975468.mp4, from: 5, move: none}
+  - {at: "In the end, the biggest", src: broll/pe8136062.mp4, from: 10, move: push}
+  - {at: "A few people look at everything", src: broll/pe6951299.mp4, from: 1, move: push, hold: the room}
+  - {at: "If you want to give yourself", src: broll/pe38705490.mp4, from: 4, move: none}
+  - {at: "Raise your hand", src: broll/pe6952154.mp4, from: 4, move: push}
+  - {at: "Fix the struggling team", src: broll/pe7640722.mp4, from: 1, move: none}
+  - {at: "Learn exactly how", src: broll/pe38774214.mp4, from: 3, move: none}
+  - at: "So, which door would you take"
+    page: illus
+    name: doors
+    title: "Which door would you take?"
+    doors:
+      - {t: "Climb from inside", sub: "", at: "climb from inside", color: c1}
+      - {t: "Leave and lead", sub: "", at: "leave and lead", color: c2}
+      - {t: "Build your own", sub: "", at: "or build your own", color: c3}
+  - {at: "please like the video", src: broll/pe35987648.mp4, from: 4, move: push, hold: like & subscribe end card}
+
+text:
+  - {at: "That person is the CEO", until: ">CEO.", kind: label, text: "The *CEO*", pos: center}
+  - {at: "and write", until: ">name.", kind: label, text: "Your Name · *CEO*", pos: center}
+  - at: "find jobs for engineers"
+    until: ">cleaners."
+    kind: chips
+    items:
+      - {t: "Engineers", a: "find jobs for engineers"}
+      - {t: "Designers", a: "designers"}
+      - {t: "Accountants", a: "accountants"}
+      - {t: "Cleaners", a: "and cleaners"}
+  - {at: "You will never find", until: ">here.”", kind: label, text: "Chief Executive Officer · *Apply here*", sub: "No such posting", pos: center}
+  - at: "So who does the choosing"
+    until: ">take?"
+    kind: questions
+    items:
+      - {t: "Who does the *choosing*?", a: "So who does the choosing"}
+      - {t: "What are they *looking for*?", a: "What are they looking"}
+      - {t: "A famous *degree*? Rich parents?", a: "Do you need a famous"}
+      - {t: "How *long* does it take?", a: "And how long does it take"}
+  - {at: "100,000 workers", until: ">them.", kind: big, text: "100,000", sub: "Workers · you’ll never meet most of them"}
+  - {at: "Same title", until: ">job.", kind: label, text: "Same title. *Very different job.*", pos: center}
+  - {at: "only 59 got", until: ">managers.", kind: big, text: "59", sub: "New CEOs · top 500 US public companies · 2025"}
+  - {at: "about 2.1 million", until: ">world.", kind: big, text: "2.1 million", sub: "Walmart workers worldwide"}
+  - {at: "named Doug McMillon", until: ">McMillon", kind: label, text: "Doug *McMillon*"}
+  - {at: "took an hourly job", until: ">trucks.", kind: label, text: "Hourly *warehouse* job", sub: "1984"}
+  - {at: "Thirty years later", until: ">company.", kind: label, text: "CEO of *Walmart*", sub: "2014 · thirty years later"}
+  - {at: "John Furner", until: ">started?", kind: label, text: "John *Furner*", sub: "Walmart CEO · 2026"}
+  - {at: "Bentonville, Arkansas", until: ">Arkansas.", kind: label, text: "Bentonville, *Arkansas*", sub: "Walmart garden center"}
+  - at: "how sales, factories"
+    until: ">together."
+    kind: chips
+    items:
+      - {t: "Sales", a: "how sales"}
+      - {t: "Factories", a: "factories"}
+      - {t: "Money", a: "money, people"}
+      - {t: "People", a: "people, and"}
+      - {t: "Risk", a: "and risk"}
+  - at: "Depth wins at the bottom"
+    until: ">connects."
+    kind: questions
+    items:
+      - {t: "*Depth* wins at the bottom", a: "Depth wins"}
+      - {t: "*Breadth* wins in the middle", a: "Breadth wins"}
+      - {t: "At the top: how *everything connects*", a: "At the top, what"}
+  - {at: "Then he moved to Shenzhen", until: ">China.", kind: label, text: "Walmart *China*", sub: "Shenzhen · merchandising & marketing"}
+  - {at: "fewer than 12 percent", until: ">degree.", kind: big, text: "<12%", sub: "Top-100 CEOs with an Ivy League first degree · 2023"}
+  - {at: "Furner studied at", until: ">Arkansas.", kind: label, text: "University of *Arkansas*"}
+  - {at: "after what Apple called", until: ">process.", kind: quote, text: "A long-term succession planning process", who: "Apple"}
+  - {at: "Jamie Dimon knows", until: ">well.", kind: label, text: "Jamie *Dimon*"}
+  - {at: "He spent about 15 years", until: ">Citigroup.", kind: label, text: "~15 years beside his *mentor*", sub: "Building what became Citigroup", pos: top}
+  - {at: "that lost 511 million", until: ">year.", kind: big, text: "−$511M", sub: "Bank One · 2000"}
+  - {at: "45 percent had suffered", until: ">job.", kind: big, text: "45%", sub: "of 2,000+ CEO candidates had a major career blowup"}
+  - {at: "Jensen Huang did exactly", until: ">that.", kind: label, text: "Jensen *Huang*"}
+  - {at: "Then in 1993", until: ">graphics.", kind: label, text: "*1993* · a Denny’s booth", sub: "San Jose · age 30 · two engineers", pos: top}
+  - {at: "He ran Nvidia for 33", until: ">boom,", kind: big, text: "33 years", sub: "Running Nvidia"}
+  - at: "Founder."
+    until: ">company."
+    kind: chips
+    items:
+      - {t: "Founder", a: "Founder."}
+      - {t: "CEO", a: "CEO. The"}
+      - {t: "The face of the company", a: "The face of"}
+  - {at: "Thirty-three years in the chair", until: ">decision.", kind: big, text: "33 years", sub: "Ended by one board decision"}
+  - {at: "Steve Jobs was pushed", until: ">1985.", kind: label, text: "Steve *Jobs*", sub: "Pushed out of Apple · 1985"}
+  - {at: "Mary Barra started", until: ">student.", kind: label, text: "Mary *Barra*", sub: "General Motors · 1980 · age 18"}
+  - {at: "Over the next three decades", until: ">development.", kind: label, text: "Engineering · a car plant · HR · *product*", pos: top}
+  - {at: "A few months later", until: ">Congress.", kind: label, text: "The U.S. *Congress*", sub: "2014"}
+  - {at: "8.5 years on average", until: ">five.", kind: big, text: "8.5 years", sub: "Average tenure · CEOs who stepped down in 2025"}
+  - {at: "about 54 years old", until: ">average.", kind: big, text: "54", sub: "Average age of new CEOs"}
+  - {at: "84 percent had never", until: ">before.", kind: big, text: "84%", sub: "Had never been a CEO before"}
+  - at: "The right boss"
+    until: ">ready."
+    kind: chips
+    items:
+      - {t: "The right boss", a: "The right boss"}
+      - {t: "The right division", a: "The right division"}
+      - {t: "A seat that opens", a: "A seat that opens"}
+  - at: "Raise your hand"
+    until: ">money."
+    kind: questions
+    items:
+      - {t: "Raise your hand for the work *nobody else wants*", a: "Raise your hand"}
+      - {t: "Run the *small project*", a: "Run the small"}
+      - {t: "Fix the *struggling team*", a: "Fix the struggling"}
+      - {t: "Learn how your company *makes money*", a: "Learn exactly"}
+  - {at: "do we trust this person", until: ">company?", kind: label, text: "Do we trust this person with *the whole company*?", pos: center}
+
+music_dips: ["You get chosen", "There was only one chair", "Fired, by his own mentor", "ended by one board", "In the end, the biggest"]
