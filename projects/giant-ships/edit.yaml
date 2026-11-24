@@ -47,7 +47,7 @@ shots:
   - {at: "So you’d think the biggest", src: broll/pe6857819.mp4, from: 6, move: left}
   - {at: "at American ports", src: broll/pe34625520.mp4, from: 46, move: push}
   - {at: "Well, they almost never do", src: broll/pe5091870.mp4, from: 2, move: push}
-  - {at: "In fact, back in 2015", page: photo, src: archive/bf_garcetti.jpg, zoom: 0.07}
+  - {at: "In fact, back in 2015", page: photo, src: archive/bf_32667466117.jpg, bg: stage, zoom: 0.04}   # BY-SA: framed, unmodified
   - {at: "speeches, cameras", src: broll/pe30048693.mp4, from: 0.5, move: none}   # NEWS BOX goes here (owner: reel of the 2015 welcome)
   - {at: "A few months later", src: broll/pe26893751.mp4, from: 4, move: none}
   - {at: "So, what’s keeping them away", src: broll/pe35907909.mp4, from: 10, move: push}
@@ -86,7 +86,7 @@ shots:
       - {t: "One ship.", x: 120, y: 980, size: 80, weight: 700, a: "One ship", color: blue}
 
 text:
-  - {at: "In fact, back in 2015", kind: label, text: "CMA CGM *Benjamin Franklin*", sub: "Los Angeles · December 2015", until: "speeches, cameras"}
+  - {at: "In fact, back in 2015", kind: label, text: "CMA CGM *Benjamin Franklin*", sub: "Came to Los Angeles in 2015", until: "speeches, cameras"}
   - kind: questions
     at: "Are American ports"
     until: ">want to come?"

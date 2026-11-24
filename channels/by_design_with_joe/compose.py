@@ -143,6 +143,17 @@ def _footage(P: Path, s: dict, n: int, fps: int, ch, clip: Path, width=1920):
             ",vignette=angle=0.62") if s.get("look") == "night" else ""
     # tpad: if a source still runs short, hold its last frame so the timeline can never drift
     vf = f"{pts}fps={fps},{fit},{mv},{_grade(ch)}{look}{tail},tpad=stop_mode=clone:stop_duration=30,setsar=1,format=yuv420p"
+    if s.get("box") and width == 1920:
+        # news footage (owner: boxed, never full-screen): the clip in a framed window over a blurred, darkened copy
+        bw, bh = 1400, 788
+        vf = (f"{pts}fps={fps},split[a][b];"
+              f"[a]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=28:2,eq=brightness=-0.22:saturation=0.8[bg];"
+              f"[b]scale={bw}:{bh}:force_original_aspect_ratio=decrease:flags=lanczos,eq=contrast=1.08:saturation=1.05,"
+              f"pad=iw+6:ih+6:3:3:color=0xE8E6E1[fg];"
+              f"[bg][fg]overlay=(W-w)/2:(H-h)/2-20,tpad=stop_mode=clone:stop_duration=30,setsar=1,format=yuv420p")
+        ffmpeg(["-ss", f"{start:.3f}", "-i", src, "-filter_complex", vf, "-frames:v", n, "-an", "-c:v", "libx264", "-preset",
+                "veryfast", "-crf", "14", "-r", fps, clip])
+        return
     ffmpeg(["-ss", f"{start:.3f}", "-i", src, "-vf", vf, "-frames:v", n, "-an", "-c:v", "libx264", "-preset", "veryfast",
             "-crf", "14", "-r", fps, clip])
 
@@ -159,7 +170,7 @@ def build_base(P: Path, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
             raise PipelineError(f"shot {i} ({s['at']!r}) has no duration")
         clip = out / f"s{i:03d}.mp4"
         key = short_hash(s.get("src"), s.get("from"), s.get("move"), s.get("speed"), s.get("page"), n, ch["grade"],
-                         ch["motion"], "v2", s.get("look"))
+                         ch["motion"], "v2", s.get("look"), s.get("box"))
         kf = clip.with_suffix(".key")
         if not (clip.exists() and kf.exists() and kf.read_text() == key):
             if s.get("page") == "split":
@@ -379,6 +390,14 @@ class Joe(Composition):
     def black(self, s, t0, t1):
         pass
 
+    def newsbox(self, s, t0, t1):
+        """Outlet tag under a boxed news clip or screenshot: `box: "BBC News · March 2021"`."""
+        if not isinstance(s.get("box"), str):
+            return
+        gid = self.nid("nb")
+        self.add(gid, t0, t1, f'<div class="nb-tag">{esc(s["box"])}</div>', z=15)
+        self.rise(f"#{gid} .nb-tag", t0, 0.45, 10, 0.25)
+
     # ---------- like & subscribe (owner's rule), styled to the channel, no SFX
     def subscribe(self, t0, t1):
         gid = self.nid("cta")
@@ -462,6 +481,8 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .ph-fill img{{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(1.06)}}
 .ph-foot{{position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,0))}}
 .ph-credit-fill{{font-size:21px;color:rgba(244,242,238,.82);text-shadow:0 2px 10px rgba(0,0,0,.8)}}
+.nb-tag{{position:absolute;left:263px;top:946px;font-weight:600;font-size:24px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(244,242,238,.9);text-shadow:0 2px 12px rgba(0,0,0,.6)}}
 .cta{{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;gap:28px}}
 .cta-btn{{display:flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;font-weight:700;font-size:40px;
   background:rgba(20,22,26,.78);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.4)}}
@@ -477,6 +498,8 @@ def build_overlay(P, edit, ch, words, shots, log=print) -> tuple[Path, list[floa
     c = Joe(words, P / "build/hf", ch, a)
     c.proj = P
     for s in shots:
+        if s.get("box") and not s.get("page"):
+            c.newsbox(s, s["t0"] - a, s["t1"] - a)
         if s.get("page"):
             if s["page"] not in PAGES:
                 raise PipelineError(f"unknown page {s['page']}")
