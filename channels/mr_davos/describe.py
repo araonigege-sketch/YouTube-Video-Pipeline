@@ -38,6 +38,26 @@ def credits(P: Path) -> str:
     lines += ["", "FOOTAGE"]
     for who, pages in sorted(by_creator.items(), key=lambda kv: kv[0].lower()):
         lines.append(f"{who}: " + " ".join(pages))
+    text = (P / "edit.yaml").read_text()
+    nf = P / "media/nasa/nasa_meta.json"
+    if nf.exists():
+        meta = json.loads(nf.read_text())
+        used_n = [Path(m).stem for m in re.findall(r"nasa/[\w.-]+\.mp4", text)]
+        if used_n:
+            lines += ["", "NASA FOOTAGE (public domain, courtesy of NASA)"]
+            for k in dict.fromkeys(used_n):
+                if k in meta:
+                    lines.append(f"{meta[k]['title'].strip()} ({meta[k]['date']}): {meta[k]['page']}")
+    wf = P / "media/news/news.json"
+    if wf.exists():
+        news = json.loads(wf.read_text())
+        used_w = [Path(m).stem for m in re.findall(r"news/[\w.-]+\.mp4", text)]
+        if used_w:
+            lines += ["", "NEWS EXCERPTS (a few seconds each, shown in a frame for commentary and reporting)"]
+            for k in dict.fromkeys(used_w):
+                if k in news:
+                    t = news[k]["title"].replace(" - CBS News", "")
+                    lines.append(f"{news[k]['credit']}, “{t}” ({news[k]['date']}): {news[k]['page']}")
     af = P / "media/archive/credits.json"
     if af.exists():
         arch = json.loads(af.read_text())
