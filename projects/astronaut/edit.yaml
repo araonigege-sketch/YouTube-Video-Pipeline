@@ -8,20 +8,20 @@ shots:
   # ---- cold open
   - {at: 0, src: nasa/a2_launch_low.mp4, from: 50, move: none, hold: Artemis II launch hero}
   - {at: "you might have seen the pictures", page: photo, src: archive/earth_window.jpg, zoom: 0.08}
-  - {at: "The Moon, up close", src: nasa/a2_fd6.mp4, from: 1200, move: push}
+  - {at: "The Moon, up close", page: photo, src: archive/earthset_limb.jpg, zoom: 0.07}
   - {at: "And Earth, a small blue", page: photo, src: archive/earthset.jpg, zoom: 0.08}
   - {at: "They came from four people", src: nasa/hansen_reel.mp4, from: 36, move: push}
   - {at: "on a ten-day trip", src: nasa/a2_10days.mp4, from: 14.5, move: none}
-  - {at: "that carried them farther", page: photo, src: archive/earthset_limb.jpg, zoom: 0.07}
+  - {at: "that carried them farther", src: nasa/a2_fd6.mp4, from: 1200, move: push}
   - {at: "One of those four", src: nasa/hansen_reel.mp4, from: 15, move: push}
   - {at: "a fighter pilot", src: nasa/hansen_profile.mp4, from: 63.5, move: push}
   - {at: "And this is the part", src: nasa/hansen_profile.mp4, from: 91.5, move: none}
   - {at: "Hansen had officially been", page: photo, src: archive/hansen_csa_2011.jpg, zoom: 0.07}
   - {at: "That’s 17 years", src: nasa/hansen_reel.mp4, from: 10, move: none}
   - {at: "And this was the first time", src: nasa/a2_launch_wide.mp4, from: 52, move: none}
-  - {at: "Wait, what? Seventeen", src: nasa/hansen_profile.mp4, from: 53.5, move: push, hold: the question beat}
-  - {at: "Yep. And that one fact", src: nasa/nbl_wbtd.mp4, from: 44, move: push}
-  - {at: "The rocket ride is the rare", src: nasa/a2_launch_uas.mp4, from: 8, move: none}
+  - {at: "Wait, what? Seventeen", page: photo, src: archive/hansen_window.jpg, zoom: 0.07}
+  - {at: "Yep. And that one fact", src: nasa/hansen_reel.mp4, from: 176, move: push}
+  - {at: "The rocket ride is the rare", src: nasa/a2_launch_uas.mp4, from: 22, move: none}
   - {at: "Most of an astronaut’s working", src: nasa/ascan_montage.mp4, from: 23.5, move: none}
   - {at: "training, testing equipment", src: nasa/hansen_reel.mp4, from: 200, move: push}
   - {at: "and helping the people", src: nasa/hansen_reel.mp4, from: 341, move: push, hold: Hansen as CAPCOM}
@@ -40,17 +40,17 @@ shots:
   - {at: "Can you apply to NASA", src: broll/pe18127054.mp4, from: 1, move: none}
   - {at: "Well, only if you’re a US", src: broll/px2204.mp4, from: 2, move: none}
   - {at: "It’s the very first line", src: broll/pe9207809.mp4, from: 4, move: push}
-  - {at: "Dual citizens count", src: broll/pe9207809.mp4, from: 10, move: none}
-  - {at: "But that doesn’t close the door", src: nasa/earth4k.mp4, from: 990, move: none}
+  - {at: "Dual citizens count", src: broll/px2204.mp4, from: 10, move: none}
+  - {at: "But that doesn’t close the door", src: nasa/hansen_reel.mp4, from: 51, move: none}
   - {at: "Hansen applied to the Canadian", src: nasa/hansen_reel.mp4, from: 436, move: push}
   - {at: "Europe has the European", src: nasa/ascan_montage.mp4, from: 6, move: none, hold: agency chips}
-  - {at: "So before your grades", src: nasa/earth4k.mp4, from: 600, move: push}
-  - {at: "the first thing that shapes", src: broll/pe9207809.mp4, from: 1, move: push}
+  - {at: "So before your grades", src: broll/pe8143002.mp4, from: 1, move: none}
+  - {at: "the first thing that shapes", src: broll/pe9207809.mp4, from: 6, move: push}
   - {at: "It decides which agency", src: nasa/ascan_montage.mp4, from: 14, move: none}
   - {at: "And those agencies don’t hire", src: broll/px61621.mp4, from: 1, move: push}
   - {at: "When Hansen was picked in 2009", page: photo, src: archive/hansen_csa_2011.jpg, zoom: 0.06, scale: 1.25, origin: "50% 40%"}
   - {at: "And when Europe chose", src: nasa/earth4k.mp4, from: 1120, move: none, hold: 13-year gap}
-  - {at: "For most people on Earth", src: nasa/iss_inside.mp4, from: 207, move: push}
+  - {at: "For most people on Earth", src: nasa/earth4k_6768.mp4, from: 600, move: none}
   - {at: "Okay, say the window opens", src: broll/px136268.mp4, from: 0.5, move: push}
   - {at: "NASA publishes its list", src: broll/pe18126746.mp4, from: 2, move: none}
   - at: "A master’s degree"
@@ -68,7 +68,7 @@ shots:
   - {at: "You don’t need a military", src: nasa/ascan_montage.mp4, from: 142, move: none}
   - {at: "And glasses? Fine", src: broll/pe5995778.mp4, from: 3, move: push}
   - {at: "NASA has even allowed laser", src: broll/pe5241188.mp4, from: 1, move: push}
-  - {at: "Sounds doable?", src: nasa/nbl_wbtd.mp4, from: 26, move: none}
+  - {at: "Sounds doable?", src: nasa/ascan_montage.mp4, from: 54, move: push}
   - {at: "Now comes the countdown", page: chapter, n: 2, title: "THE COUNTDOWN"}
 
   # ---- 02 the countdown
@@ -84,9 +84,9 @@ shots:
       - {n: "10", v: 10, sub: "Picked", a: "NASA picked 10"}
   - {at: "Twelve thousand people", page: photo, src: archive/ascan2021_stage.jpg, zoom: 0.07}
   - {at: "In 2025, it happened again", page: photo, src: archive/ascan2025_class.jpg, zoom: 0.07, origin: "50% 40%"}
-  - {at: "That’s about one in every", src: nasa/earth4k.mp4, from: 1300, move: none, hold: 1 in 800}
+  - {at: "That’s about one in every", page: photo, src: archive/ascan2025_class.jpg, zoom: 0.06, scale: 1.2, origin: "50% 55%"}
   - {at: "Hansen’s round was even tighter", src: broll/px292827.mp4, from: 2, move: push}
-  - {at: "Canada’s 2009 search", src: nasa/hansen_reel.mp4, from: 470, move: push}
+  - {at: "Canada’s 2009 search", src: nasa/hansen_reel.mp4, from: 470, move: push, hold: Canada figure}
   - {at: "And Europe’s 2021 call", src: nasa/earth4k.mp4, from: 1000, move: none, hold: ESA numbers}
   - {at: "Most of the rest went", src: broll/px34855.mp4, from: 1, move: push, hold: the reserve waits}
   - {at: "So if almost everyone", page: photo, src: archive/ascan2025_ceremony.jpg, zoom: 0.07}
@@ -128,16 +128,14 @@ shots:
     term: "Astronaut candidate"
     phon: "/ˈæs.trə.nɔːt ˈkæn.dɪ.dət/"
     text: "What NASA calls you after selection: about two years of training before you are eligible for a flight. Nicknamed “ASCAN”."
-  - {at: "candidates learn spacecraft systems", src: nasa/ascan_montage.mp4, from: 4, move: push}
-  - {at: "fly T-38 jets", src: nasa/ascan_montage.mp4, from: 60, move: none}
-  - {at: "and study robotics", src: nasa/ascan_montage.mp4, from: 104.5, move: none}
+  - {at: "fly T-38 jets", src: nasa/ascan_montage.mp4, from: 62.5, move: none}
   - {at: "Oh, and during the first month", src: broll/pe4115398.mp4, from: 1, move: none}
   - {at: "Imagine beating 12,000", src: broll/pe8685997.mp4, from: 2, move: none}
   - {at: "Speaking of pools", src: nasa/nbl_wbtd.mp4, from: 26.5, move: none, hold: NBL reveal}
   - {at: "Apparently, in the water", src: nasa/hansen_reel.mp4, from: 186, move: push}
   - {at: "NASA’s Neutral Buoyancy Laboratory", src: nasa/nbl_wbtd.mp4, from: 74, move: push, hold: 6.2 million gallons}
-  - {at: "with full-size models", src: nasa/nbl_wbtd.mp4, from: 113, move: none}
-  - {at: "Floating in a pool", src: nasa/hansen_reel.mp4, from: 300, move: push}
+  - {at: "with full-size models", src: nasa/hansen_reel.mp4, from: 177.5, move: push}
+  - {at: "Floating in a pool", src: nasa/hansen_reel.mp4, from: 300, move: push, hold: NBL rehearsal}
   - {at: "before you try them for real", page: photo, src: archive/williams_eva.jpg, zoom: 0.07}
   - {at: "Hansen got through all of it", src: nasa/hansen_reel.mp4, from: 372, move: push}
   - {at: "And then came the part", src: nasa/hansen_reel.mp4, from: 476, move: none}
@@ -146,18 +144,18 @@ shots:
   - {at: "Eligible is the key word", src: nasa/hansen_reel.mp4, from: 470, move: none}
   - {at: "Until a mission comes", src: nasa/hansen_reel.mp4, from: 352, move: none}
   - {at: "and advising on new spacecraft", src: nasa/hansen_reel.mp4, from: 72, move: none}
-  - {at: "And once you do get assigned", src: nasa/a2_10days.mp4, from: 132, move: none}
+  - {at: "And once you do get assigned", src: nasa/a2_10days.mp4, from: 132, move: none, hold: mission training}
   - {at: "There aren’t many seats", page: photo, src: archive/a2_announce1.jpg, zoom: 0.07}
   - {at: "In late 2026, NASA had", src: nasa/a2_fd6.mp4, from: 1020, move: none, hold: 32 astronauts}
   - {at: "and crewed missions have only", src: nasa/hansen_reel.mp4, from: 80, move: none}
   - {at: "For Hansen, the ground years", src: nasa/hansen_reel.mp4, from: 395, move: push}
   - {at: "In 2017, he became", page: photo, src: archive/hansen_2020.jpg, zoom: 0.07}
   - {at: "Think about that", src: nasa/hansen_reel.mp4, from: 440, move: none}
-  - {at: "He was teaching other people", src: nasa/ascan_montage.mp4, from: 28, move: none}
+  - {at: "and he still hadn’t been", src: nasa/hansen_reel.mp4, from: 482, move: none}
   - {at: "Meanwhile, the man picked", page: photo, src: archive/sj_iss.jpg, zoom: 0.07, origin: "70% 40%"}
   - {at: "flew to the space station", page: photo, src: archive/sj_iss2.jpg, zoom: 0.07}
   - {at: "Hansen kept waiting", src: nasa/hansen_profile.mp4, from: 92.5, move: none}
-  - {at: "he was finally named", page: news, src: news/crew2023.mp4, from: 26}
+  - {at: "he was finally named", page: news, src: news/crew2023.mp4, from: 28.3}
   - at: "And then the launch slipped"
     page: illus
     name: timeline
@@ -168,13 +166,13 @@ shots:
       - {t: "1 Apr 2026", sub: "Launch", a: "on April 1", color: accent}
     total: {t: "Age 33 → 50", sub: "Picked → launched", a: "He was 50"}
   - {at: "And he became the first person", src: nasa/a2_fd6.mp4, from: 915, move: push}
-  - {at: "So yes, it’s a dream job", src: nasa/earth4k.mp4, from: 620, move: none}
+  - {at: "So yes, it’s a dream job", page: photo, src: archive/earth_orion.jpg, zoom: 0.06}
   - {at: "It’s also a test of patience", src: broll/px3019.mp4, from: 1, move: push}
 
   # ---- 04 life in orbit
   - {at: "Now, Hansen’s trip around", page: chapter, n: 4, title: "LIFE IN ORBIT"}
-  - {at: "But what if your mission", src: nasa/iss_water.mp4, from: 119.5, move: push}
-  - {at: "where astronauts can spend", src: nasa/iss_inside.mp4, from: 134, move: push}
+  - {at: "But what if your mission", src: nasa/iss_exercise.mp4, from: 36, move: push}
+  - {at: "where astronauts can spend", src: nasa/iss_inside.mp4, from: 134, move: push, hold: living in orbit}
   - {at: "Well, yes. And no", src: nasa/iss_inside.mp4, from: 209, move: none}
   - {at: "The view is real", src: nasa/earth4k.mp4, from: 70, move: none}
   - {at: "The station circles Earth", src: nasa/earth4k_6768.mp4, from: 300, move: none, hold: 90 minutes}
@@ -212,7 +210,7 @@ shots:
     note: "Canadian Space Agency comparison"
   - {at: "Exercise helps reduce", src: nasa/iss_exercise.mp4, from: 46, move: none, hold: exercise}
   - {at: "But not all of it", page: photo, src: archive/crew9_splash2.jpg, zoom: 0.07}
-  - {at: "And sometimes, space simply", src: nasa/earth4k.mp4, from: 100, move: none}
+  - {at: "And sometimes, space simply", src: nasa/cft_launch.mp4, from: 40, move: push}
   - {at: "In June 2024, NASA astronauts", src: nasa/cft_launch.mp4, from: 20, move: none}
   - {at: "launched on Boeing’s new", page: photo, src: archive/cft_liftoff.jpg, zoom: 0.07}
   - {at: "The trip was supposed", src: nasa/cft_launch.mp4, from: 268, move: none, hold: 8 days}
@@ -223,8 +221,8 @@ shots:
   - {at: "Months away from family", src: nasa/iss_inside.mp4, from: 285, move: none}
   - {at: "with no way to leave early", src: nasa/iss_water.mp4, from: 27.5, move: none}
   - {at: "Williams still went outside", page: photo, src: archive/wilmore_williams_eva.jpg, zoom: 0.07}
-  - {at: "That calm, get-on-with-it", src: nasa/williams_profile.mp4, from: 30, move: none, hold: calm under pressure}
-  - {at: "And the risks are real", src: nasa/remembrance2026.mp4, from: 0.2, move: none}
+  - {at: "That calm, get-on-with-it", page: photo, src: archive/williams_eva.jpg, zoom: 0.06, scale: 1.2, origin: "50% 40%"}
+  - {at: "And the risks are real", src: nasa/remembrance2026.mp4, from: 14, move: none}
   - {at: "NASA lost two space shuttles", src: nasa/remembrance2026.mp4, from: 10, move: none}
   - {at: "and Columbia in 2003", page: photo, src: archive/sts107_memorial.jpg, zoom: 0.07}
   - {at: "Fourteen astronauts died", src: nasa/remembrance2026.mp4, from: 42, move: none}
@@ -234,9 +232,9 @@ shots:
   - {at: "Alright. So what does", page: chapter, n: 5, title: "WHAT IT PAYS"}
   - {at: "At NASA, astronauts are government", src: broll/pe18126746.mp4, from: 10, move: none}
   - {at: "When NASA opened applications", src: broll/pe7710826.mp4, from: 3, move: none, hold: salary figure}
-  - {at: "it listed a salary", src: broll/pe7710826.mp4, from: 12, move: push, hold: salary figure}
-  - {at: "That’s very good money", src: broll/pe5466780.mp4, from: 1, move: push}
-  - {at: "for a job where your commute", src: nasa/cft_launch.mp4, from: 78, move: none}
+  - {at: "it listed a salary", src: broll/pe5466780.mp4, from: 1, move: push, hold: salary figure}
+  - {at: "That’s very good money", src: broll/pe7735915.mp4, from: 3, move: push}
+  - {at: "for a job where your commute", src: nasa/a2_launch_uas.mp4, from: 30, move: none}
   - at: "And this is a fun contrast"
     page: illus
     name: bars
@@ -253,13 +251,13 @@ shots:
   - {at: "Remember NASA’s 2025 class", page: photo, src: archive/ascan2025_ceremony.jpg, zoom: 0.06, scale: 1.15}
   - {at: "One of them, Anna Menon", page: photo, src: archive/menon1.jpg, zoom: 0.06, origin: "50% 30%"}
   - {at: "Menon was a biomedical", src: nasa/a2_fd6.mp4, from: 1040, move: none}
-  - {at: "then at SpaceX helping", page: news, src: news/crew9_return.mp4, from: 212}
+  - {at: "then at SpaceX helping", page: news, src: news/polaris_launch.mp4, from: 63}
   - {at: "In September 2024, she flew", page: news, src: news/polaris_launch.mp4, from: 9}
-  - {at: "as its medical officer", page: news, src: news/polaris_launch.mp4, from: 63}
+  - {at: "as its medical officer", page: news, src: news/polaris_eva.mp4, from: 3}
   - {at: "A year later, NASA picked", page: photo, src: archive/menon_ceremony.jpg, zoom: 0.06, origin: "50% 30%"}
-  - {at: "Wait, she went to space", page: news, src: news/polaris_eva.mp4, from: 3}
+  - {at: "Wait, she went to space", page: photo, src: archive/menon1.jpg, zoom: 0.06, scale: 1.25, origin: "50% 25%"}
   - {at: "She’s the first NASA astronaut", src: nasa/earth4k.mp4, from: 1220, move: none, hold: first label}
-  - {at: "And it’s not just an American", src: nasa/earth4k_6768.mp4, from: 1500, move: none}
+  - {at: "And it’s not just an American", src: nasa/earth4k_6768.mp4, from: 1100, move: none}
   - {at: "In June 2025, Shubhanshu", page: photo, src: archive/shukla.jpg, zoom: 0.07, origin: "50% 40%"}
   - {at: "flew to the space station on Axiom", page: news, src: news/ax4_dock.mp4, from: 16}
   - {at: "He became the first Indian", page: photo, src: archive/shukla_whitson.jpg, zoom: 0.07}
@@ -273,8 +271,7 @@ shots:
 
   # ---- verdict + outro
   - {at: "So, what’s the reality?", src: nasa/earth4k.mp4, from: 1290, move: none, hold: checklist}
-  - {at: "years of real work", src: nasa/earth4k.mp4, from: 1340, move: none, hold: checklist}
-  - {at: "a passport that matches", src: nasa/earth4k_6768.mp4, from: 1200, move: none, hold: checklist}
+  - {at: "a passport that matches", src: nasa/earth4k.mp4, from: 1450, move: none, hold: checklist}
   - {at: "Then it takes two years", src: nasa/hansen_reel.mp4, from: 215, move: push}
   - {at: "and a patience most jobs", page: photo, src: archive/hansen_portrait.jpg, zoom: 0.07, origin: "40% 45%"}
   - {at: "If you want a real shot", src: nasa/iss_inside.mp4, from: 18, move: none}
@@ -284,12 +281,11 @@ shots:
   - {at: "Learn to stay calm", src: nasa/ascan_montage.mp4, from: 124, move: none}
   - {at: "Watch for your country’s", src: nasa/earth4k_6768.mp4, from: 2400, move: none}
   - {at: "And if you don’t get in", page: photo, src: archive/hernandez_05.jpg, zoom: 0.06, scale: 1.0}
-  - {at: "Because Jeremy Hansen waited", src: nasa/hansen_profile.mp4, from: 21, move: none}
+  - {at: "Because Jeremy Hansen waited", src: nasa/hansen_reel.mp4, from: 16, move: push}
   - {at: "And when it finally came", src: nasa/a2_launch_wide.mp4, from: 62, move: none}
   - {at: "went farther from Earth", page: photo, src: archive/crescent_earth_moon.jpg, zoom: 0.07}
   - {at: "So, knowing all this", src: nasa/a2_fd6.mp4, from: 1210, move: push}
-  - {at: "Tell me in the comments", src: nasa/earth4k_6768.mp4, from: 2700, move: none}
-  - {at: "And if you’d like me", src: nasa/a2_launch_low.mp4, from: 64, move: none}
+  - {at: "And if you’d like me", src: nasa/a2_launch_low.mp4, from: 64, move: none, hold: closing launch}
   - {at: "please, hit like and subscribe", src: nasa/earth4k.mp4, from: 560, move: none, hold: like & subscribe end card}
 
 text:

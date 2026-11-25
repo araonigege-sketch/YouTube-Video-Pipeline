@@ -615,6 +615,8 @@ def check(P: Path, log=print) -> int:
                 log(f"!  {s['t0']:7.2f}s  {key} from {a:.1f} to {b:.1f} crosses a scene cut in the reel")
                 warn += 1
             key = f"{key}#{seg}"
+            if seg is not None and segs[seg]["e"] - segs[seg]["s"] > 90:   # one long continuous take (e.g. an orbit pass):
+                key += f".{int((a - segs[seg]['s']) // 60)}"                 # different minutes show different ground
         uses[key] = uses.get(key, 0) + 1
     for src, n in uses.items():
         if n > r["max_uses"]:
