@@ -732,3 +732,101 @@ def versus(c, s, t0, t1):
             c.tw(f'tl.fromTo("#{gid}r{k}",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.7,ease:"power3.out"}},{tr:.3f});')
             if q:
                 c.tw(f'tl.to("#{gid}q",{{opacity:0,duration:0.4}},{tr:.3f});')
+
+
+def funnel(c, s, t0, t1):
+    """A selection countdown: each stage is a bar that shrinks (log scale) as the numbers fall.
+    s.stages: [{n: "12,000+", v: 12000, sub: "applied", a: "phrase", color: c1}], s.title; the last stage glows gold."""
+    import math
+    p = c.p
+    gid = c.nid("fn")
+    st = s["stages"]
+    k = len(st)
+    vmax, vmin = max(x["v"] for x in st), min(x["v"] for x in st)
+    top = 230 if k > 4 else 280
+    step = min(150, (880 - top) / max(1, k - 1))
+    bx, bw_max, bh = 660, 1120, 92
+    rows = []
+    for i, x in enumerate(st):
+        f = 0.06 + 0.94 * (math.log(x["v"]) - math.log(vmin)) / max(1e-9, math.log(vmax) - math.log(vmin))
+        w = bw_max * f
+        y = top + i * step
+        last = i == k - 1
+        col = p["accent"] if last else p.get(x.get("color", "c1"), p["c1"])
+        rows.append(
+            f'<div id="{gid}r{i}" style="position:absolute;left:0;top:{y - bh / 2:.0f}px;width:1920px;height:{bh}px;opacity:0">'
+            f'<div style="position:absolute;right:{1920 - 600}px;top:0;height:{bh}px;display:flex;flex-direction:column;'
+            f'justify-content:center;text-align:right">'
+            f'<div style="font-family:\'Inter Display\';font-weight:900;font-size:{64 if last else 56}px;line-height:1;color:{col}">'
+            f'{esc(x["n"])}</div>'
+            f'<div style="font-weight:600;font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:#C9CCD1;margin-top:8px">'
+            f'{esc(x.get("sub", ""))}</div></div>'
+            f'<div class="fnbar" style="position:absolute;left:{bx}px;top:{bh * 0.18:.0f}px;width:{w:.0f}px;height:{bh * 0.64:.0f}px;'
+            f'border-radius:10px;background:{col};opacity:{1 if last else 0.85};transform-origin:0 50%;'
+            f'box-shadow:0 0 {40 if last else 0}px {col}"></div></div>')
+    title = (f'<div id="{gid}T" style="position:absolute;left:0;right:0;top:100px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.28em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
+    c.add(gid, t0, t1, c.stage() + title + "".join(rows), z=10, cls="page")
+    c.rise(f"#{gid}T", t0, 0.5, 10, 0.1)
+    for i, x in enumerate(st):
+        ta = _at(c, x["a"], t0) if "a" in x else t0 + 0.4 + 0.8 * i
+        c.tw(f'tl.to("#{gid}r{i}",{{opacity:1,duration:0.3}},{ta:.3f});')
+        c.tw(f'tl.fromTo("#{gid}r{i} .fnbar",{{scaleX:0}},{{scaleX:1,duration:0.8,ease:"power3.out"}},{ta:.3f});')
+        if i == k - 1 and i:   # the earlier stages step back when the final one lands
+            c.tw(f'tl.to("{",".join(f"#{gid}r{j}" for j in range(k - 1))}",{{opacity:0.45,duration:0.6}},{ta + 0.2:.3f});')
+
+
+def tries(c, s, t0, t1):
+    """Application attempts: n numbered tiles; failures get a coral cross as they are spoken, the last one turns gold.
+    s.n (12), s.fail: [{a: phrase, upto: k}] (cross tiles up to k, staggered), s.win_at, s.title, s.note {t, sub, at}."""
+    p = c.p
+    gid = c.nid("tr")
+    n = s.get("n", 12)
+    cols = 6 if n > 8 else n
+    tw, th, gx, gy = 190, 190, 232, 250
+    rows = (n + cols - 1) // cols
+    x0 = 960 - ((cols - 1) * gx) / 2 - tw / 2
+    y0 = 260 if rows > 1 else 380
+    tiles = []
+    for i in range(n):
+        x, y = x0 + (i % cols) * gx, y0 + (i // cols) * gy
+        tiles.append(
+            f'<div id="{gid}t{i}" style="position:absolute;left:{x:.0f}px;top:{y:.0f}px;width:{tw}px;height:{th}px;border-radius:18px;'
+            f'border:3px solid rgba(244,242,238,.35);background:rgba(244,242,238,.04);opacity:0">'
+            f'<div style="position:absolute;left:18px;top:12px;font-weight:700;font-size:26px;color:#C9CCD1">{i + 1:02d}</div>'
+            f'<svg class="x" viewBox="0 0 100 100" style="position:absolute;left:45px;top:45px;width:100px;height:100px;opacity:0">'
+            f'<path d="M18 18 L82 82 M82 18 L18 82" stroke="{p["c4"]}" stroke-width="12" stroke-linecap="round"/></svg>'
+            f'<svg class="ok" viewBox="0 0 100 100" style="position:absolute;left:45px;top:45px;width:100px;height:100px;opacity:0">'
+            f'<path d="M16 54 L40 78 L86 24" stroke="#0B0D10" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>'
+            f'</div>')
+    title = (f'<div id="{gid}T" style="position:absolute;left:0;right:0;top:110px;text-align:center;font-weight:600;font-size:30px;'
+             f'letter-spacing:.28em;text-transform:uppercase;color:#C9CCD1;opacity:0">{esc(s.get("title", ""))}</div>')
+    note = ""
+    if s.get("note"):
+        nd = s["note"]
+        note = (f'<div id="{gid}N" style="position:absolute;left:0;right:0;top:{y0 + rows * gy + 10}px;text-align:center;opacity:0">'
+                f'<span style="font-family:\'Inter Display\';font-weight:900;font-size:64px;color:{p["accent"]}">{esc(nd["t"])}</span>'
+                f'<span style="font-weight:600;font-size:26px;letter-spacing:.16em;text-transform:uppercase;color:#E8E6E1;margin-left:24px">'
+                f'{esc(nd.get("sub", ""))}</span></div>')
+    c.add(gid, t0, t1, c.stage() + title + "".join(tiles) + note, z=10, cls="page")
+    c.rise(f"#{gid}T", t0, 0.5, 10, 0.1)
+    c.tw(f'tl.fromTo("#{gid} [id^={gid}t]",{{opacity:0,y:14}},{{opacity:1,y:0,duration:0.4,ease:"power3.out",stagger:0.04}},{t0 + 0.2:.3f});')
+    done = 0
+    for f in s.get("fail", []):
+        ta = _at(c, f["a"], t0)
+        upto = min(f["upto"], n - 1)
+        ids = [f"#{gid}t{i}" for i in range(done, upto)]
+        if ids:
+            each = 0.12 if len(ids) > 2 else 0.0
+            c.tw(f'tl.to("{",".join(i + " .x" for i in ids)}",{{opacity:1,duration:0.25,stagger:{each}}},{ta:.3f});')
+            c.tw(f'tl.to("{",".join(ids)}",{{borderColor:"{p["c4"]}",backgroundColor:"rgba(255,107,107,.08)",duration:0.25,stagger:{each}}},{ta:.3f});')
+            c.tw(f'tl.to("{",".join(ids)}",{{opacity:0.55,duration:0.5}},{ta + 0.4 + each * len(ids):.3f});')
+        done = upto
+    if s.get("win_at"):
+        tw_ = _at(c, s["win_at"], t0)
+        c.tw(f'tl.to("#{gid}t{n - 1}",{{backgroundColor:"{p["accent"]}",borderColor:"{p["accent"]}",scale:1.12,'
+             f'boxShadow:"0 0 60px {p["accent"]}",duration:0.6,ease:"back.out(2)"}},{tw_:.3f});')
+        c.tw(f'tl.to("#{gid}t{n - 1} .ok",{{opacity:1,duration:0.3}},{tw_ + 0.2:.3f});')
+        c.tw(f'tl.to("#{gid}t{n - 1} div",{{color:"#0B0D10",duration:0.3}},{tw_:.3f});')
+    if s.get("note"):
+        c.rise(f"#{gid}N", _at(c, s["note"]["at"], t0), 0.6, 14)

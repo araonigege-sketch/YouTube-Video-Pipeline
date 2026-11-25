@@ -12,6 +12,8 @@ projects/<slug>/edit.yaml      the edit as data:
     - {at: ..., page: define, term: "Checkride", phon: "/ˈtʃɛk.raɪd/", text: "..."}
     - {at: ..., page: split, src: broll/..., from: 0, title: "...", items: [{t: "...", v: "$93/hr", a: "phrase"}]}
     - {at: ..., page: illus, name: <function in channels/mr_davos/illus.py>, ...its own fields}
+    - {at: ..., page: news, src: news/<key>.mp4, from: 24}      news report in a framed box over its own blur,
+                                                                picture only, credit from media/news/news.json
   text:                             overlays on footage (sparse: numbers, key terms, names)
     - {at: "phrase", until: ">phrase" | dur: 3, kind: big, text: "150", sub: "PEOPLE ON BOARD"}
     - {at: ..., kind: label, text: "The *captain*", sub: "Left seat"}       *word* = accent colour
@@ -45,7 +47,7 @@ HERE = Path(__file__).resolve().parent
 FONT_DIR = Path("/usr/share/fonts/opentype/inter")
 FONTS = {"Inter-Medium.otf": 500, "Inter-SemiBold.otf": 600, "Inter-Bold.otf": 700,
          "InterDisplay-Bold.otf": 700, "InterDisplay-Black.otf": 900, "InterDisplay-Light.otf": 300}
-PAGES = ("chapter", "roadmap", "define", "split", "illus", "photo", "black")
+PAGES = ("chapter", "roadmap", "define", "split", "illus", "photo", "black", "news")
 
 
 def load(P: Path):
@@ -147,6 +149,25 @@ def _footage(P: Path, s: dict, n: int, fps: int, ch, clip: Path, width=1920):
             "-crf", "14", "-r", fps, clip])
 
 
+NEWS_BOX = (288, 96, 1344, 756)      # x, y, w, h: centred, clear of the bottom-centre subtitle zone
+
+
+def _newsbox(P: Path, s: dict, n: int, fps: int, ch, clip: Path):
+    """News reel kept in a box (owner's rule: news footage sparingly, framed, never full-screen), over its own blur."""
+    src = P / "media" / s["src"]
+    if not src.exists():
+        raise PipelineError(f"missing footage {src}")
+    x, y, w, h = NEWS_BOX
+    start = float(s.get("from", 0.0))
+    fc = (f"[0:v]fps={fps},split[a][b];"
+          f"[a]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,boxblur=40:4,"
+          f"eq=brightness=-0.22:saturation=0.55[bg];"
+          f"[b]scale={w}:{h}:force_original_aspect_ratio=increase:flags=lanczos,crop={w}:{h},eq=contrast=1.04:saturation=1.04[fg];"
+          f"[bg][fg]overlay={x}:{y},tpad=stop_mode=clone:stop_duration=30,setsar=1,format=yuv420p[v]")
+    ffmpeg(["-ss", f"{start:.3f}", "-i", src, "-filter_complex", fc, "-map", "[v]", "-frames:v", n, "-an",
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "14", "-r", fps, clip])
+
+
 def build_base(P: Path, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
     fps = ch["fps"]
     shots = plan_shots(edit, words, fps)
@@ -164,6 +185,8 @@ def build_base(P: Path, edit, ch, words, log=print) -> tuple[Path, list[dict]]:
         if not (clip.exists() and kf.exists() and kf.read_text() == key):
             if s.get("page") == "split":
                 _footage(P, s, n, fps, ch, clip, width=960)
+            elif s.get("page") == "news":
+                _newsbox(P, s, n, fps, ch, clip)
             elif s.get("page"):
                 ffmpeg(["-f", "lavfi", "-i", f"color=c={ch['palette']['stage']}:s=1920x1080:r={fps}", "-frames:v", n,
                         "-c:v", "libx264", "-preset", "veryfast", "-crf", "14", "-pix_fmt", "yuv420p", clip])
@@ -366,6 +389,25 @@ class Davos(Composition):
         if cap:
             self.rise(f"#{gid} .ph-cap", t0, 0.5, 12, 0.3)
 
+    def news(self, s, t0, t1):
+        """Frame and source line for a boxed news report (the picture itself is in the base)."""
+        gid = self.nid("nw")
+        meta = {}
+        nf = self.proj / "media/news/news.json"
+        if nf.exists():
+            meta = json.loads(nf.read_text()).get(Path(s["src"]).stem, {})
+        credit = s.get("credit") or meta.get("credit", "")
+        date = s.get("date") or meta.get("date", "")
+        if date and not s.get("date"):
+            import datetime
+            date = datetime.date.fromisoformat(date).strftime("%-d %b %Y")
+        x, y, w, h = NEWS_BOX
+        line = " · ".join(v for v in (credit, date) if v)
+        inner = (f'<div class="nw-frame" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px"></div>'
+                 f'<div class="nw-src" style="left:{x}px;top:{y + h + 18}px">{esc(line)}</div>')
+        self.add(gid, t0, t1, inner, z=10, cls="page")
+        self.tw(f'tl.fromTo("#{gid} .nw-src",{{opacity:0,y:8}},{{opacity:1,y:0,duration:0.45,ease:"power3.out"}},{t0 + 0.15:.3f});')
+
     def archive_credit(self, src: str) -> str:
         cf = self.proj / "media/archive/credits.json"
         if cf.exists():
@@ -454,6 +496,8 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .ph-frame{{position:absolute;left:50%;top:50%;width:1460px;height:900px;margin:-450px 0 0 -730px;display:flex;align-items:center;justify-content:center}}
 .ph-frame img{{max-width:1460px;max-height:900px;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.6);outline:1px solid rgba(255,255,255,.12)}}
 .ph-cap{{position:absolute;left:110px;bottom:70px;font-family:"Inter Display";font-weight:700;font-size:44px;text-shadow:0 3px 20px rgba(0,0,0,.7)}}
+.nw-frame{{position:absolute;box-sizing:border-box;border:2px solid rgba(244,242,238,.85);border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.55)}}
+.nw-src{{position:absolute;font-weight:600;font-size:22px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,242,238,.8)}}
 .ph-credit{{position:absolute;right:46px;bottom:30px;font-weight:500;font-size:19px;letter-spacing:.04em;color:rgba(244,242,238,.62)}}
 .ph-fill{{position:absolute;inset:0;overflow:hidden;background:#000}}
 .ph-fill img{{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(1.06)}}
@@ -551,16 +595,18 @@ def check(P: Path, log=print) -> int:
     shots = plan_shots(edit, words, ch["fps"])
     r = ch["retention"]
     warn = 0
-    # multi-shot packages (e.g. DVIDS B-roll reels in media/pd/) are counted per shot inside the reel, not per file;
-    # media/pd/shots.json holds each reel's scene cuts ({"file.mp4": [{"s": 0.0, "e": 10.9}, ...]})
-    sj = P / "media/pd/shots.json"
-    reels = json.loads(sj.read_text()) if sj.exists() else {}
+    # multi-shot packages (DVIDS/NASA resource reels, news reports) are counted per scene inside the reel, not per
+    # file: media/<dir>/shots.json holds each reel's scene cuts ({"file.mp4": [{"s": 0.0, "e": 10.9}, ...]}),
+    # written by `python -m pipeline.scenes projects/<slug>/media/<dir>`
+    reels: dict[str, dict] = {}
+    for sj in (P / "media").glob("*/shots.json"):
+        reels[sj.parent.name] = json.loads(sj.read_text())
     uses: dict[str, int] = {}
     for s in shots:
         if not s.get("src"):
             continue                                   # photos and split backgrounds count too
         key = s["src"]
-        segs = reels.get(Path(key).name) if key.startswith("pd/") else None
+        segs = reels.get(Path(key).parent.name, {}).get(Path(key).name)
         if segs:
             a = float(s.get("from", 0))
             b = a + (s["t1"] - s["t0"]) * float(s.get("speed", 1.0))
