@@ -1,0 +1,272 @@
+{
+ "a2_launch_low": {
+  "nasa_id": "KSC ART II Cause Way Launch low angle",
+  "title": "Artemis II launch Causeway Slow-motion ",
+  "center": "MSFC",
+  "date": "2026-04-01",
+  "page": "https://images.nasa.gov/details/KSC%20ART%20II%20Cause%20Way%20Launch%20low%20angle",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_launch_wide": {
+  "nasa_id": "KSC ART II Cause Way Launch high angle",
+  "title": "Artemis II launch Causeway Slow-motion alt wide",
+  "center": "MSFC",
+  "date": "2026-04-01",
+  "page": "https://images.nasa.gov/details/KSC%20ART%20II%20Cause%20Way%20Launch%20high%20angle",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_launch_uas": {
+  "nasa_id": "KSC-20260401-MH-JMB01-0001-Artemis_II_Launch_UAS_4K-M19183",
+  "title": "Artemis II Live Launch Coverage - UAS / Drone",
+  "center": "KSC",
+  "date": "2026-04-01",
+  "page": "https://images.nasa.gov/details/KSC-20260401-MH-JMB01-0001-Artemis_II_Launch_UAS_4K-M19183",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_fd6": {
+  "nasa_id": "jsc2026m000073_ArtemisIIFlightDay6Highlights_NoLowerThirds",
+  "title": "Artemis II Flight Day 6 Highlights (Includes Lunar Flyby)",
+  "center": "JSC",
+  "date": "2026-04-07",
+  "page": "https://images.nasa.gov/details/jsc2026m000073_ArtemisIIFlightDay6Highlights_NoLowerThirds",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_10days": {
+  "nasa_id": "jsc2026m000044_10_Days_in_Orion",
+  "title": "10 Days in Orion",
+  "center": "JSC",
+  "date": "2026-03-25",
+  "page": "https://images.nasa.gov/details/jsc2026m000044_10_Days_in_Orion",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_pad_sunset": {
+  "nasa_id": "SLS_KSC_01282026_ART II at Pad sunset anamorphic",
+  "title": "Sun sets on Full Artemis II Stack at Launch Pad 39B Anamorphic",
+  "center": "MSFC",
+  "date": "2026-02-02",
+  "page": "https://images.nasa.gov/details/SLS_KSC_01282026_ART%20II%20at%20Pad%20sunset%20anamorphic",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_splash_gss": {
+  "nasa_id": "KSC-20260410-MH-JBP01-0001-Artemis_II_Splashdown_GSS_Visual_60fps-M19183",
+  "title": "Artemis II Splashdown",
+  "center": "KSC",
+  "date": "2026-04-10",
+  "page": "https://images.nasa.gov/details/KSC-20260410-MH-JBP01-0001-Artemis_II_Splashdown_GSS_Visual_60fps-M19183",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_crew_training": {
+  "nasa_id": "jsc2024m000120-Artemis_II_Crew_Training_Reel",
+  "title": "Artemis II Crew Training Reel",
+  "center": "JSC",
+  "date": "2024-05-28",
+  "page": "https://images.nasa.gov/details/jsc2024m000120-Artemis_II_Crew_Training_Reel",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_train_moon": {
+  "nasa_id": "jsc2026m000047_How_To_Train_For_The_Moon",
+  "title": "jsc2026m000047 How To Train For The Moon",
+  "center": "JSC",
+  "date": "2026-03-17",
+  "page": "https://images.nasa.gov/details/jsc2026m000047_How_To_Train_For_The_Moon",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "hansen_profile": {
+  "nasa_id": "jsc2026m000013_ArtemisII_CrewProfile_JeremyHansen_4K",
+  "title": "jsc2026m000013_ArtemisII_CrewProfile_JeremyHansen_4K",
+  "center": "JSC",
+  "date": "2026-04-01",
+  "page": "https://images.nasa.gov/details/jsc2026m000013_ArtemisII_CrewProfile_JeremyHansen_4K",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "hansen_reel": {
+  "nasa_id": "jsc2023m000096_Jeremy Hansen Artemis II Crew Announcement Resource Reel_1080p",
+  "title": "Jeremy Hansen Artemis II Crew Announcement Resource Reel",
+  "center": "JSC",
+  "date": "2023-04-03",
+  "page": "https://images.nasa.gov/details/jsc2023m000096_Jeremy%20Hansen%20Artemis%20II%20Crew%20Announcement%20Resource%20Reel_1080p",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "a2_announce": {
+  "nasa_id": "jsc2023m000114_Artemis_II_Announcement_in_4k",
+  "title": "jsc2023m000114_Artemis_II_Announcement_in_4k",
+  "center": "JSC",
+  "date": "2023-05-02",
+  "page": "https://images.nasa.gov/details/jsc2023m000114_Artemis_II_Announcement_in_4k",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "ascan_montage": {
+  "nasa_id": "jsc2024m000081_Training Montage \u2013 Astronaut Group 23_HighQuality MP4",
+  "title": "Training Montage \u2013 Astronaut Group 23 ",
+  "center": "JSC",
+  "date": "2024-03-08",
+  "page": "https://images.nasa.gov/details/jsc2024m000081_Training%20Montage%20%E2%80%93%20Astronaut%20Group%2023_HighQuality%20MP4",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "ascan2021_reel": {
+  "nasa_id": "jsc2024m000077_2021_Astronaut_Candidate_Class_Resource_Reel-1080P-240228-MP4",
+  "title": "2021 Astronaut Candidate Class Resource Reel (1080P)",
+  "center": "JSC",
+  "date": "2024-03-01",
+  "page": "https://images.nasa.gov/details/jsc2024m000077_2021_Astronaut_Candidate_Class_Resource_Reel-1080P-240228-MP4",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "ascan2025_select": {
+  "nasa_id": "jsc2025m000164-NASA_Selects_2025_Astronaut_Candidates_9-22-2025",
+  "title": "NASA Selects 2025 Astronaut Candidates - 9-22-2025",
+  "center": "JSC",
+  "date": "2025-09-23",
+  "page": "https://images.nasa.gov/details/jsc2025m000164-NASA_Selects_2025_Astronaut_Candidates_9-22-2025",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "ascan2025_ceremony": {
+  "nasa_id": "2025 Astronaut Candidates Ceremony Highlights",
+  "title": "2025 Astronaut Candidates Ceremony Highlights",
+  "center": "HQ",
+  "date": "2025-09-24",
+  "page": "https://images.nasa.gov/details/2025%20Astronaut%20Candidates%20Ceremony%20Highlights",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "nbl_wbtd": {
+  "nasa_id": "jsc2024m000064_WBTD-NBL-Finalized",
+  "title": "What\u2019s Behind This Door? -Neutral Buoyancy Lab",
+  "center": "JSC",
+  "date": "2025-04-23",
+  "page": "https://images.nasa.gov/details/jsc2024m000064_WBTD-NBL-Finalized",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "nbl_caps": {
+  "nasa_id": "jsc2021m000794_JSC_NBL",
+  "title": "Johnson Space Center (JSC) Neutral Buoyancy Laboratory (NBL) Capabilities",
+  "center": "JSC",
+  "date": "2021-05-26",
+  "page": "https://images.nasa.gov/details/jsc2021m000794_JSC_NBL",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "t38_ellington": {
+  "nasa_id": "jsc2018m000856-T-38_Ops_@_Ellingon_Field_MXF_1",
+  "title": "jsc2018m000856-T-38_Ops_@_Ellingon_Field_MXF_1",
+  "center": "JSC",
+  "date": "2019-05-06",
+  "page": "https://images.nasa.gov/details/jsc2018m000856-T-38_Ops_%40_Ellingon_Field_MXF_1",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "iss_inside": {
+  "nasa_id": "Step_Inside_the_Station-4K-Clean",
+  "title": "Step_Inside_the_Station-4K-Clean",
+  "center": "JSC",
+  "date": "2025-12-17",
+  "page": "https://images.nasa.gov/details/Step_Inside_the_Station-4K-Clean",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "earth4k": {
+  "nasa_id": "jsc2021m000138_4K_Earth_Views_Extended_Cut_for_Earth_Day_ 2021_210422-4KMP4",
+  "title": "jsc2021m000138_4K_Earth_Views_Extended_Cut_for_Earth_Day_ 2021_210422-4KMP4",
+  "center": "JSC",
+  "date": "2021-04-22",
+  "page": "https://images.nasa.gov/details/jsc2021m000138_4K_Earth_Views_Extended_Cut_for_Earth_Day_%202021_210422-4KMP4",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "earth4k_6768": {
+  "nasa_id": "jsc2023m000111_Earth_in_4K_Space_Station_Expedition_67_68_Edition",
+  "title": "Earth in 4K \u2013 Space Station Expedition 67-68 Edition",
+  "center": "JSC",
+  "date": "2023-04-21",
+  "page": "https://images.nasa.gov/details/jsc2023m000111_Earth_in_4K_Space_Station_Expedition_67_68_Edition",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "iss_exercise": {
+  "nasa_id": "jsc2025m000002_How_Do_Astronauts_Exercise_in_Space_250106-MP4",
+  "title": "How Do Astronauts Exercise in Space?",
+  "center": "JSC",
+  "date": "2025-01-08",
+  "page": "https://images.nasa.gov/details/jsc2025m000002_How_Do_Astronauts_Exercise_in_Space_250106-MP4",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "iss_bathroom": {
+  "nasa_id": "jsc2020m001389_How_to_use_the_Bathroom_in_Space-SOCIAL",
+  "title": "How to use the Bathroom in Space",
+  "center": "JSC",
+  "date": "2020-10-06",
+  "page": "https://images.nasa.gov/details/jsc2020m001389_How_to_use_the_Bathroom_in_Space-SOCIAL",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "iss_water": {
+  "nasa_id": "318_ECLSSWaterRec",
+  "title": "NASA ScienceCasts: Water Recovery on the Space Station",
+  "center": "JSC",
+  "date": "2023-06-20",
+  "page": "https://images.nasa.gov/details/318_ECLSSWaterRec",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "cft_launch": {
+  "nasa_id": "KSC-20240605-MH-AJN01-0001-Boeing_CFT_Isolated_Launch_Views-M7136",
+  "title": "NASA\u2019s Boeing Crew Flight Test (CFT) Isolated Launch Views",
+  "center": "KSC",
+  "date": "2024-06-05",
+  "page": "https://images.nasa.gov/details/KSC-20240605-MH-AJN01-0001-Boeing_CFT_Isolated_Launch_Views-M7136",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "wilmore_williams": {
+  "nasa_id": "jsc2024m000183_Butch_Wilmore_and_Suni_Williams_conduct_International_Space_Station_Research_241112-MP4",
+  "title": "NASA Astronauts Butch Wilmore and Suni Williams conduct International Space Station Research",
+  "center": "JSC",
+  "date": "2024-11-12",
+  "page": "https://images.nasa.gov/details/jsc2024m000183_Butch_Wilmore_and_Suni_Williams_conduct_International_Space_Station_Research_241112-MP4",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "williams_profile": {
+  "nasa_id": "jsc2024m000117_Suni_Williams_Boeing_CFT_Profile-1080p",
+  "title": "Meet Suni Williams, Pilot of NASA\u2019s Boeing Crew Flight Test",
+  "center": "JSC",
+  "date": "2024-06-05",
+  "page": "https://images.nasa.gov/details/jsc2024m000117_Suni_Williams_Boeing_CFT_Profile-1080p",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "sts128_launch": {
+  "nasa_id": "ksc_082809_sts128_launch",
+  "title": "KSC-09-S-00099",
+  "center": "KSC",
+  "date": "2009-08-31",
+  "page": "https://images.nasa.gov/details/ksc_082809_sts128_launch",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ },
+ "remembrance2026": {
+  "nasa_id": "NASA\u2019s Day of Remembrance 2026",
+  "title": "NASA\u2019s Day of Remembrance 2026",
+  "center": "HQ",
+  "date": "2026-01-22",
+  "page": "https://images.nasa.gov/details/NASA%E2%80%99s%20Day%20of%20Remembrance%202026",
+  "credit": "NASA",
+  "license": "Public domain (NASA)"
+ }
+}
