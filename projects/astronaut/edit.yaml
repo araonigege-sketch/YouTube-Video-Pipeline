@@ -14,7 +14,7 @@ shots:
   - {at: "on a ten-day trip", src: nasa/a2_10days.mp4, from: 14.5, move: none}
   - {at: "that carried them farther", src: nasa/a2_fd6.mp4, from: 1200, move: push}
   - {at: "One of those four", src: nasa/hansen_reel.mp4, from: 15, move: push}
-  - {at: "a fighter pilot", src: nasa/hansen_profile.mp4, from: 61.26, move: push}
+  - {at: "a fighter pilot", src: nasa/hansen_profile.mp4, from: 64.85, speed: 0.8, move: push}
   - {at: "And this is the part", src: nasa/hansen_profile.mp4, from: 90.83, move: none}
   - {at: "Hansen had officially been", page: photo, src: archive/hansen_csa_2011.jpg, zoom: 0.07}
   - {at: "That’s 17 years", page: photo, src: archive/hansen_selfie.jpg, zoom: 0.06}
@@ -92,7 +92,7 @@ shots:
   - {at: "So if almost everyone", page: photo, src: archive/ascan2025_ceremony.jpg, zoom: 0.07}
   - {at: "Well, look at that second", src: broll/pe5925214.mp4, from: 3, move: none}
   - {at: "They go through medical", src: broll/pe8460283.mp4, from: 3, move: push}
-  - {at: "They get measured", src: nasa/a2_10days.mp4, from: 13.93, move: push}
+  - {at: "They get measured", src: nasa/a2_10days.mp4, from: 8.55, speed: 0.33, move: push}
   - {at: "And they do team exercises", src: broll/pe9786232.mp4, from: 2, move: none, hold: team exercise}
   - {at: "Because NASA isn’t just", src: nasa/ascan_montage.mp4, from: 108.67, move: none}
   - {at: "It needs to know whether", page: photo, src: archive/survival_1992.jpg, zoom: 0.07}
@@ -155,7 +155,7 @@ shots:
   - {at: "Meanwhile, the man picked", page: photo, src: archive/sj_iss.jpg, zoom: 0.07, origin: "70% 40%"}
   - {at: "flew to the space station", page: photo, src: archive/sj_iss2.jpg, zoom: 0.07}
   - {at: "Hansen kept waiting", src: nasa/hansen_profile.mp4, from: 87.07, move: none}
-  - {at: "he was finally named", page: news, src: news/crew2023.mp4, from: 28.3}
+  - {at: "he was finally named", page: news, src: news/crew2023.mp4, from: 88.3}
   - at: "And then the launch slipped"
     page: illus
     name: timeline
@@ -171,12 +171,12 @@ shots:
 
   # ---- 04 life in orbit
   - {at: "Now, Hansen’s trip around", page: chapter, n: 4, title: "LIFE IN ORBIT"}
-  - {at: "But what if your mission", src: nasa/iss_exercise.mp4, from: 38.57, move: push}
+  - {at: "But what if your mission", src: nasa/earth4k.mp4, from: 2000, move: push}
   - {at: "where astronauts can spend", src: nasa/iss_inside.mp4, from: 134, move: push, hold: living in orbit}
   - {at: "Well, yes. And no", src: nasa/earth4k.mp4, from: 70, move: none}
   - {at: "The station circles Earth", src: nasa/earth4k_6768.mp4, from: 300, move: none, hold: 90 minutes}
   - {at: "so the crew sees a sunrise", page: photo, src: archive/sunrise_orbit.jpg, zoom: 0.06}
-  - {at: "But it’s not a sightseeing", src: nasa/wilmore_williams.mp4, from: 6.59, move: none}
+  - {at: "But it’s not a sightseeing", src: nasa/wilmore_williams.mp4, from: 10.2, move: none}
   - {at: "On a normal day", page: photo, src: archive/meir_iss.jpg, zoom: 0.07, origin: "55% 35%"}
   - {at: "or fix something that broke", page: photo, src: archive/upa_marshburn.jpg, zoom: 0.07}
   - {at: "And then there’s the gym", src: nasa/iss_exercise.mp4, from: 12, move: none}
@@ -210,7 +210,7 @@ shots:
     note: "Canadian Space Agency comparison"
   - {at: "Exercise helps reduce", src: nasa/iss_exercise.mp4, from: 45.27, move: none, hold: exercise}
   - {at: "But not all of it", page: photo, src: archive/crew9_splash2.jpg, zoom: 0.07}
-  - {at: "And sometimes, space simply", src: nasa/cft_launch.mp4, from: 37.84, move: push}
+  - {at: "And sometimes, space simply", src: nasa/earth4k.mp4, from: 2090, move: none}
   - {at: "In June 2024, NASA astronauts", src: nasa/cft_launch.mp4, from: 20, move: none}
   - {at: "launched on Boeing’s new", page: photo, src: archive/cft_liftoff.jpg, zoom: 0.07}
   - {at: "The trip was supposed", src: nasa/cft_launch.mp4, from: 268, move: none, hold: 8 days}
@@ -271,7 +271,7 @@ shots:
 
   # ---- verdict + outro
   - {at: "So, what’s the reality?", src: nasa/earth4k.mp4, from: 1290, move: none, hold: checklist}
-  - {at: "a passport that matches", src: nasa/earth4k.mp4, from: 1450, move: none, hold: checklist}
+  - {at: "a passport that matches", src: nasa/earth4k.mp4, from: 2300, move: none, hold: checklist}
   - {at: "Then it takes two years", src: nasa/hansen_reel.mp4, from: 215, move: push}
   - {at: "and a patience most jobs", page: photo, src: archive/hansen_portrait.jpg, zoom: 0.07, origin: "40% 45%"}
   - {at: "If you want a real shot", src: nasa/iss_inside.mp4, from: 18, move: none}
@@ -285,7 +285,7 @@ shots:
   - {at: "And when it finally came", src: nasa/a2_launch_wide.mp4, from: 62, move: none}
   - {at: "went farther from Earth", page: photo, src: archive/crescent_earth_moon.jpg, zoom: 0.07}
   - {at: "So, knowing all this", src: nasa/a2_fd6.mp4, from: 1210, move: push, hold: closing Moon}
-  - {at: "And if you’d like me", src: nasa/a2_launch_low.mp4, from: 64, move: none, hold: closing launch}
+  - {at: "And if you’d like me", page: photo, src: archive/earthset.jpg, zoom: 0.07, scale: 1.1}
   - {at: "please, hit like and subscribe", src: nasa/earth4k.mp4, from: 560, move: none, hold: like & subscribe end card}
 
 text:
