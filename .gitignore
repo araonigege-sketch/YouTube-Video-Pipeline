@@ -16,3 +16,4 @@ projects/*/media/broll/_pexels/
 projects/*/media/archive/*.jpg
 projects/*/media/archive/*.png
 projects/*/music/**/*.mp3
+*.part
