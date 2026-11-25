@@ -1,0 +1,58 @@
+{
+ "crew2023": {
+  "title": "First moon crew includes one woman, three men - CBS News",
+  "page": "https://www.cbsnews.com/video/first-moon-crew-includes-one-woman-three-men/",
+  "date": "2023-04-04",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "starliner_empty": {
+  "title": "Boeing's Starliner returns safely to Earth, but without crew - CBS News",
+  "page": "https://www.cbsnews.com/video/boeings-starliner-returns-safely-to-earth-but-without-crew/",
+  "date": "2024-09-07",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "starliner_empty2": {
+  "title": "Boeing's troubled Starliner returning to Earth, but without crew - CBS News",
+  "page": "https://www.cbsnews.com/video/boeings-troubled-starliner-returning-to-earth-but-without-crew/",
+  "date": "2024-09-06",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "crew9_return": {
+  "title": "NASA astronauts Suni Williams and Butch Wilmore return after 286 days in space | Special Report - CBS News",
+  "page": "https://www.cbsnews.com/video/nasa-astronauts-suni-williams-butch-wilmore-return-286-days-space/",
+  "date": "2025-03-18",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "polaris_launch": {
+  "title": "SpaceX launches Polaris Dawn crew on historic mission - CBS News",
+  "page": "https://www.cbsnews.com/video/spacex-launches-polaris-dawn-crew/",
+  "date": "2024-09-10",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "polaris_eva": {
+  "title": "SpaceX Polaris Dawn crew makes first private spacewalk - CBS News",
+  "page": "https://www.cbsnews.com/video/spacexs-polaris-crew-makes-first-private-spacewalk/",
+  "date": "2024-09-12",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "ax4_dock": {
+  "title": "Watch: Axiom-4 crew docks at International Space Station - CBS News",
+  "page": "https://www.cbsnews.com/video/footage-shows-axiom-mission-4-astronauts-dock-to-station-inside-dragon/",
+  "date": "2025-06-26",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ },
+ "ax4_return": {
+  "title": "Axiom Mission 4 crew returns from historic trip to International Space Station - CBS News",
+  "page": "https://www.cbsnews.com/video/axiom-mission-4-crew-returns-from-historic-trip-to-international-space-station/",
+  "date": "2025-07-14",
+  "credit": "CBS News",
+  "use": "boxed news excerpt (a few seconds, framed)"
+ }
+}

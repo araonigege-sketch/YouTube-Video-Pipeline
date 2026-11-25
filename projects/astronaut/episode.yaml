@@ -2,4 +2,4 @@ title: So You Want to Become an Astronaut (The Reality)
 channel: mr_davos
 script_doc: https://docs.google.com/document/d/16TB_jZ6RpENXly8kp2AMiiV_1MFpY20fn-XbfyhwojU
 voice:
-  - {file: vo/vo.wav, text: vo/vo.txt}   # owner's recording: one file in Drive folder "Mr. Davos Voiceovers/Astronauts"
+  - {file: vo/vo.wav, text: vo/vo.txt}   # owner recording (Drive "Mr. Davos Voiceovers/Astronauts"); 4:14–4:28 paragraph replaced with the owner re-record of 2026-11-25 ("cool off")
