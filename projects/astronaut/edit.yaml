@@ -242,7 +242,7 @@ shots:
     max: 140000
     items:
       - {label: "Airline pilot · flight school", value: 120000, text: "$120K+", a: "more than 120,000", color: c4}
-      - {label: "NASA astronaut school · paid to train", value: 0, text: "$0", a: "They get paid", color: c3}
+      - {label: "NASA astronaut school · paid to train", value: 0, text: "$0", a: "don’t pay for", color: c3}
   - {at: "The expensive part is everything", src: broll/pe7945196.mp4, from: 14, move: none}
   - {at: "the years of building", src: broll/px215189.mp4, from: 20, move: push}
 

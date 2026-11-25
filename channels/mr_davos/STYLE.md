@@ -146,3 +146,17 @@ only stay if the visuals match. **If a shot doesn't match its line and doesn't l
   when reading the script, and ask the owner for the reel or screenshot if this sandbox can't reach the source.
 - **Weak portrait of a famous person → ask the owner.** The ep4 Steve Jobs photo (Flickr, dim stage shot) was not good
   enough. If the best licensed photo of a named person isn't premium, ask the owner early for better ones instead of using it.
+
+## Lessons from ep5 (Astronaut, 2026-11-25)
+- **Boxed news in practice:** `page: news` puts a clip in a framed box over a blurred copy of itself, with a source line
+  under the box ("CBS NEWS · 4 APR 2023") from `media/news/news.json`. CBS News pages carry an HLS `contentUrl`; fetch the
+  picture only (we never use their audio) and keep each excerpt to a few seconds. describe.py lists every excerpt.
+- **Agency footage beats stock for real people and places.** NASA's media library (images-api.nasa.gov) is public domain
+  and has 4K reels of the exact people named in the script. Use Pexels/Pixabay only for generic lines.
+- **Long agency reels are many shots.** Run `python -m pipeline.scenes <media dir>` so the check counts reuse per scene
+  (per minute inside single takes longer than 90 s). Add manual cuts where soft fades fool the detector.
+- **Agency reels hide slates.** Titles, info cards, "FUN FACT" captions and end logos sit between shots. Check every
+  in-point frame, not just the first, and keep shots off scene boundaries (the check warns).
+- **Illustration holds follow the words.** Reveal each step on the first phrase that states it (the $0 bar on "don’t pay",
+  not on the later "they get paid"); a still illustration over about 5 s needs a reason in the narration.
+- New illustrations: `funnel` (log-scaled selection stages), `tries` (n attempts, failures crossed, the win in gold).
