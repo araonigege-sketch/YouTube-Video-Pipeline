@@ -3,7 +3,7 @@
 # Voice: ElevenLabs, Dan on Eleven v4 (pipeline/eleven.py).
 range: [0, 1062.0]
 
-nudges: ["So yeah, some serious ocean", "Yeah, painful"]
+nudges: ["So yeah, some serious ocean", "Then you might just be out"]
 
 shots:
   # ---------------------------------------------------------------- cold open
