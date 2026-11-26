@@ -470,7 +470,7 @@ shots:
 text:
   - {at: "4,382 containers", dur: 4.0, kind: big, text: "4,382", sub: "CONTAINERS ON BOARD"}
   - {at: "All 26 crew members", dur: 3.0, kind: label, text: "All *26* crew rescued"}
-  - {at: "Can someone go down", kind: questions, until: ">who actually owns it?", items: [{t: "Who pays everyone back?", a: "Does the shipping company"}, {t: "Can anyone get it back?", a: "Can someone go down"}, {t: "Who owns it if it’s found?", a: "And if somebody finds"}]}
+  - {at: "Does the shipping company", kind: questions, until: ">who actually owns it?", items: [{t: "Who pays everyone back?", a: "Does the shipping company"}, {t: "Can anyone get it back?", a: "Can someone go down"}, {t: "Who owns it if it’s found?", a: "And if somebody finds"}]}
   - {at: "Curtis Ebbesmeyer", dur: 3.4, kind: label, text: "*Curtis Ebbesmeyer*", sub: "Oceanographer, Seattle"}
   - {at: "4.8 million pieces", dur: 3.6, kind: big, text: "4.8 million", sub: "PIECES OF LEGO"}
   - {at: "more than a thousand car tires", dur: 3.0, kind: label, text: "*1,000+* car tires"}
