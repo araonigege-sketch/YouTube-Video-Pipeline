@@ -738,7 +738,7 @@ def p_depth(c, s, t0, t1):
         sh.text(s["title"], 160, 130, "graphite", ta, size=66, weight=700)
     wave = [(X0 - 60 + 20 * i, Y0 + (6 if i % 2 else -6)) for i in range(int((X1 - X0 + 120) / 20) + 1)]
     sh.line(wave, "blue", ta + 0.3, 1.0, w=4)
-    sh.hatch([(X0 - 60, Y0), (X0 - 60, Y1), (X1 + 60, Y1), (X1 + 60, Y0)], "blue", ta + 1.2, 1.6, "down", op=0.18, solid=0.08,
+    sh.hatch([(X0 - 60, Y0), (X0 - 60, Y1), (X1 + 60, Y1), (X1 + 60, Y0)], "blue", ta + 1.2, 1.6, "down", op=0.10, solid=0.04,
              spacing=16, pen=False)
     sh.line([(X0 - 90, Y0), (X0 - 90, Y1)], "graphite", ta + 0.8, 0.8, w=3.4)
     for d in range(1000, D + 1, 1000):
