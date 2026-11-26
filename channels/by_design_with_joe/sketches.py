@@ -701,3 +701,65 @@ def p_bridge(c, s, t0, t1):
         sh.lines([[(1790, water), (1790, new_y)], [(1772, water), (1808, water)], [(1772, new_y), (1808, new_y)]], "green", tn, 0.6, w=4)
         sh.text("215 ft", 1770, new_y - 20, "green", tn + 0.4, size=72, weight=700, anchor="end")
     sh.finish()
+
+
+# ---------------------------------------------------------------- episode 2 (sinking-cargo)
+def p_four(c, s, t0, t1):
+    """Four containers on one sinking ship, each with what it holds and what the sea does to it (2 x 2 grid).
+    s.items: [{label, color, a, note, na}], s.title."""
+    sh = Sheet(c, t0, t1, seed=s.get("seed", 71))
+    if s.get("title"):
+        _, (l, b, w) = sh.text(s["title"], 160, 150, "graphite", t0 + 0.2, size=70, weight=700)
+        sh.underline(l, l + w, 170, "graphite", t0 + 1.0)
+    W, H = 560, 230
+    cells = [(220, 300), (1100, 300), (220, 690), (1100, 690)]
+    for k, it in enumerate(s["items"]):
+        x, y = cells[k]
+        ta = _at(c, it["a"], t0)
+        col = it.get("color", "blue")
+        _box(sh, x, y, W, H, col, ta, 1.4)
+        sh.text(f'{k + 1}', x - 60, y + 70, col, ta + 0.2, size=72, weight=700, anchor="middle")
+        sh.text(it["label"], x + W / 2, y + H / 2 + 22, "graphite", ta + 0.9, size=62, weight=700, anchor="middle")
+        if it.get("note"):
+            tn = _at(c, it["na"], t0) if "na" in it else ta + 2.0
+            sh.text(it["note"], x + W / 2, y + H + 78, "red", tn, size=54, weight=600, anchor="middle", rot=-1.5)
+    sh.finish()
+
+
+def p_depth(c, s, t0, t1):
+    """Cross-section of the sea: a depth scale to s.max metres, markers on cue, a pressure note.
+    s.marks: [{depth, label, color, a, box}], s.note: {t, a}, s.title."""
+    sh = Sheet(c, t0, t1, seed=s.get("seed", 73))
+    D = s.get("max", 4500)
+    Y0, Y1, X0, X1 = 210, 960, 300, 1760
+    y = lambda d: Y0 + (Y1 - Y0) * d / D
+    ta = t0 + 0.2
+    if s.get("title"):
+        sh.text(s["title"], 160, 130, "graphite", ta, size=66, weight=700)
+    wave = [(X0 - 60 + 20 * i, Y0 + (6 if i % 2 else -6)) for i in range(int((X1 - X0 + 120) / 20) + 1)]
+    sh.line(wave, "blue", ta + 0.3, 1.0, w=4)
+    sh.hatch([(X0 - 60, Y0), (X0 - 60, Y1), (X1 + 60, Y1), (X1 + 60, Y0)], "blue", ta + 1.2, 1.6, "down", op=0.18, solid=0.08,
+             spacing=16, pen=False)
+    sh.line([(X0 - 90, Y0), (X0 - 90, Y1)], "graphite", ta + 0.8, 0.8, w=3.4)
+    for d in range(1000, D + 1, 1000):
+        sh.line([(X0 - 110, y(d)), (X0 - 70, y(d))], "graphite", ta + 1.0 + d / 4000, 0.2, w=3)
+        sh.text(f"{d:,} m", X0 - 130, y(d) + 16, "grey", ta + 1.1 + d / 4000, size=40, weight=500, anchor="end")
+    sh.text("0 m · sea level", X0 - 130, Y0 - 22, "grey", ta + 1.0, size=40, weight=500, anchor="end")
+    for m in s.get("marks", []):
+        tm = _at(c, m["a"], t0)
+        yy = y(m["depth"])
+        col = m.get("color", "red")
+        if m.get("floor"):
+            sh.line([(X0 + 200, yy), (X1, yy)], col, tm, 0.8, w=5)
+            sh.hatch([(X0 + 200, yy), (X0 + 200, yy + 26), (X1, yy + 26), (X1, yy)], "brown", tm + 0.6, 0.6, "right", op=0.5)
+        if m.get("box"):
+            bx = m.get("x", 900)
+            _box(sh, bx, yy - 80, 220, 80, col, tm, 1.0, ribs=False)
+        sh.line([(X0 - 70, yy), (X0 + 180, yy)], col, tm + 0.2, 0.5, w=3, op=0.7)
+        sh.text(m["label"], m.get("lx", X0 + 200 if not m.get("box") else m.get("x", 900) + 250), yy - 18 if not m.get("box") else yy - 24,
+                col, tm + 0.5, size=m.get("size", 56), weight=700)
+    if s.get("note"):
+        n = s["note"]
+        sh.text(n["t"], n.get("x", X0 + 200), n.get("y", 520), n.get("color", "red"), _at(c, n["a"], t0), size=n.get("size", 70),
+                weight=700, rot=-2)
+    sh.finish()

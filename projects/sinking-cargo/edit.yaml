@@ -1,0 +1,489 @@
+# By Design With Joe ep2 — "What Happens to the Cargo When a Container Ship Sinks?"
+# Mr. Davos blueprint (channels/by_design_with_joe/STYLE.md); illustrations and maths in coloured pencil (sketches.py).
+# Voice: ElevenLabs, Dan on Eleven v4 (pipeline/eleven.py).
+range: [0, 1062.0]
+
+nudges: ["So yeah, some serious ocean", "Yeah, painful"]
+
+shots:
+  # ---------------------------------------------------------------- cold open
+  - {at: 0, src: broll/pe8992907.mp4, from: 1, move: push}                        # Hey there! ordered something
+  - {at: "A new phone", src: broll/px202987.mp4, from: 2, move: push, quick: list}
+  - {at: "a pair of sneakers", src: broll/px8257.mp4, from: 3, move: none, quick: list}
+  - {at: "maybe a sofa", src: broll/pe5898303.mp4, from: 2, move: right, quick: list}
+  - {at: "The tracking page says", src: broll/px174003.mp4, from: 1, move: push}
+  - {at: "A week later", src: broll/pe6868699.mp4, from: 3, move: push}
+  - {at: "Two weeks later", src: broll/px38084.mp4, from: 1, move: push}
+  - {at: "What the tracking page doesn’t", src: broll/pe40622209.mp4, from: 1, move: push}
+  - {at: "might be in serious trouble", src: broll/px16160.mp4, from: 4, move: push}
+  - at: "On June 17, 2013"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-110m.json
+    projection: mercator
+    fit: [[30, -8], [112, 30]]
+    wipe: 0.7
+    places:
+      - {name: Singapore, ll: [103.8, 1.3], label: Singapore, a: "from Singapore", color: teal, dx: -16, dy: 50, anchor: end}
+      - {name: Jeddah, ll: [39.2, 21.5], label: "Jeddah", a: "to Jeddah", color: violet, dx: 18, dy: -16}
+      - {name: Break, ll: [65.0, 13.5], label: "hull cracks", a: "when its hull cracked", color: red, dx: 0, dy: 64, anchor: middle}
+    routes:
+      - legs: [Singapore, [95, 6], [80, 6], [72, 10], [65.0, 13.5]]
+        color: blue
+        a: "from Singapore"
+        dur: 3.0
+      - legs: [[65.0, 13.5], [52, 13], [44, 12.5], [42, 15], Jeddah]
+        color: blue
+        a: "to Jeddah"
+        dur: 1.2
+        w: 3
+    rings:
+      - {place: Break, r: 70, color: red, a: "in bad weather"}
+    notes:
+      - {t: "MOL Comfort · June 17, 2013", x: 120, y: 160, size: 72, weight: 700, a: 0.3}
+      - {t: "Indian Ocean", x: 760, y: 760, size: 60, a: "in the Indian Ocean", color: blue}
+  - {at: "Then the ship broke completely", page: photo, frame: true, zoom: 0.03, h: 720, src: archive/news_mol_fw_split.jpg, box: "American Shipper · June 2013"}
+  - {at: "All 26 crew members", src: broll/px170300.mp4, from: 3, move: push}
+  - {at: "But the two halves", src: broll/px71122.mp4, from: 2, move: push}
+  - {at: "And on board were 4,382", src: broll/px32052.mp4, from: 4, move: push}
+  - {at: "carrying cargo for businesses", src: broll/pe30899477.mp4, from: 3, move: push}
+  - {at: "So, what happens to all that cargo", src: broll/px283533.mp4, from: 6, move: push}
+  - {at: "Does the shipping company", src: broll/px50628.mp4, from: 0, move: push}
+  - {at: "Can someone go down", src: broll/pe32515216.mp4, from: 2, move: push}
+  - {at: "And if somebody finds", src: broll/px225996.mp4, from: 3, move: push}
+  - {at: "later, who actually", src: broll/px29879.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "In this video", src: broll/px129181.mp4, from: 10, move: push}
+  - {at: "from the bottom of the ocean", src: broll/pe37334332.mp4, from: 1, move: push, quick: list}
+  - {at: "all the way to the offices", src: broll/px29162.mp4, from: 2, move: push}
+  - {at: "biggest insurance companies.", src: broll/px107425.mp4, from: 1.5, move: push}   # auto-split
+  # ---------------------------------------------------------------- 1. where the boxes go
+  - {at: "First, let’s clear something up", page: chapter, n: 1, title: "Where the boxes go"}
+  - {at: "When a ship sinks, not every", src: broll/px237249.mp4, from: 2, move: push}
+  - {at: "with it, at", src: broll/px248156.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Normally, containers are locked", src: broll/pe2226482.mp4, from: 4, move: push}
+  - {at: "On deck, they’re stacked", src: broll/px23215.mp4, from: 2, move: push}
+  - {at: "steel twist locks", page: photo, frame: true, zoom: 0.04, h: 760, src: archive/c_twistlock.jpg, bg: stage}
+  - {at: "Below deck, they slide", src: broll/pe32747086.mp4, from: 3, move: push}
+  - {at: "a bit like books", src: broll/px143479.mp4, from: 1, move: none}
+  - {at: "But when a ship breaks apart", src: broll/px201766.mp4, from: 3, move: push}
+  - at: "So, a few different things"
+    page: illus
+    name: p_list
+    title: "When a ship goes down, a box can…"
+    items:
+      - {t: "stay trapped inside and go down with it", a: "Some containers stay trapped"}
+      - {t: "break free and sink on its own", a: "Some break free"}
+      - {t: "float", a: "And some float"}
+  - {at: "A container might look like", src: broll/px23759.mp4, from: 2, move: push}
+  - {at: "but it’s really a box full of air", src: broll/px141056.mp4, from: 2, move: push}
+  - {at: "It’s built to keep out rain", src: broll/px95071.mp4, from: 4, move: push}
+  - {at: "not to stay", src: broll/px248158.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Depending on what’s inside", src: broll/px204565.mp4, from: 4, move: push}
+  - {at: "often riding just below", src: broll/px112722.mp4, from: 2, move: push}
+  - {at: "where smaller boats can’t see it", src: broll/pe13697477.mp4, from: 4, move: push}
+  - {at: "Now, before you cancel", src: broll/pe8927178.mp4, from: 2, move: push}
+  - {at: "ever made, let’s", src: broll/px374783.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "According to the World Shipping Council", page: photo, frame: true, zoom: 0.03, h: 720, src: archive/news_wsc_fw.jpg, box: "FreightWaves · June 2026"}
+  - at: "That sounds like a lot"
+    page: illus
+    name: p_sum
+    title: "Containers lost at sea, 2025"
+    x: 300
+    y: 380
+    lh: 160
+    size: 84
+    rows:
+      - {t: "Lost:", r: "1,478", rcolor: red, a: 0.3}
+      - {t: "Moved:", r: "≈ 280,000,000", rcolor: blue, a: "But it’s out of roughly"}
+      - {t: "1 lost for every", r: "189,000 shipped", rcolor: green, a: "That’s about one container", rule: 1200}
+    box: [{row: 2, a: "189,000 shipped"}]
+  - {at: "And not all of those containers", src: broll/px216619.mp4, from: 6, move: push}
+  - {at: "Containers can also be knocked", src: broll/pe35230426.mp4, from: 1, move: push}
+  - {at: "while the ship carrying them", src: broll/pe7397246.mp4, from: 8, move: push}
+  # ---------------------------------------------------------------- 2. ducks, shoes and Lego
+  - {at: "But when containers do end up", page: chapter, n: 2, title: "Shoes, ducks and Lego"}
+  - {at: "some of them break open", page: photo, frame: true, zoom: 0.03, h: 760, src: archive/news_burst_cbs.jpg, box: "CBS News · October 2024"}
+  - {at: "And that’s when the ocean", src: broll/pe6667230.mp4, from: 2, move: push}
+  - {at: "to places nobody", src: broll/px152274.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "In 1990, a storm knocked", src: broll/px217115.mp4, from: 4, move: push}
+  - {at: "containers off a", src: broll/px28268.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "tens of thousands of Nike", src: broll/px3171.mp4, from: 1, move: push}
+  - {at: "When they started washing up", src: broll/px24216.mp4, from: 4, move: push}
+  - {at: "an oceanographer in Seattle", page: photo, frame: true, zoom: 0.04, h: 760, src: archive/c_ebbesmeyer.jpg}
+  - {at: "realized he could use them", src: broll/px158349.mp4, from: 3, move: push}
+  - at: "Then, in 1992, another container"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-110m.json
+    projection: mercator
+    rotate: [180, 0]
+    fit: [[-230, 18], [-125, 64]]
+    wipe: 0.7
+    places:
+      - {name: Spill, ll: [178.1, 44.7], label: "Jan 1992 · spill", a: "broke open in the North Pacific", color: red, dx: 0, dy: 60, anchor: middle}
+      - {name: Alaska, ll: [-135.5, 57.0], label: "Alaska", a: "washed up in Alaska", color: orange, dx: 20, dy: -18}
+    routes:
+      - legs: [Spill, [-170, 48], [-155, 52], [-145, 56], Alaska]
+        color: blue
+        a: "About ten months later"
+        dur: 2.6
+        label: "≈ 2,000 miles"
+        lx: 980
+        ly: 420
+        la: "roughly 2,000 miles"
+    notes:
+      - {t: "28,800 bath toys", x: 120, y: 160, size: 80, weight: 700, a: "28,800", color: orange}
+      - {t: "ducks · beavers · turtles · frogs", x: 120, y: 240, size: 56, a: "Yellow ducks", color: grey}
+  - {at: "So yeah, some serious ocean", src: broll/pe39073374.mp4, from: 4, move: push}
+  - {at: "powered by rubber ducks", page: photo, frame: true, zoom: 0.03, h: 760, src: archive/news_ducks_cbs.jpg, box: "CBS News · July 2003"}
+  - {at: "And in 1997, a huge wave", page: photo, frame: true, zoom: 0.04, h: 620, src: archive/c_tokio.jpg, bg: stage}
+  - {at: "off the coast of Cornwall", src: broll/px2683.mp4, from: 3, move: push}
+  - {at: "knocking 62 containers", src: broll/px283533.mp4, from: 20, move: push}
+  - {at: "One of them held about 4.8", src: broll/px131159.mp4, from: 2, move: push}
+  - {at: "And here’s the funny part", src: broll/px130239.mp4, from: 4, move: push}
+  - {at: "Tiny scuba tanks", src: broll/px26818.mp4, from: 2, move: push}
+  - {at: "Almost three decades later", src: broll/px2725.mp4, from: 3, move: push}
+  - {at: "finding them on", src: broll/px198464.mp4, from: 1.5, move: push}   # auto-split
+  # ---------------------------------------------------------------- 3. what the sea does
+  - {at: "But even if a container stays", page: chapter, n: 3, title: "What the sea does"}
+  - at: "Let’s imagine four containers"
+    page: illus
+    name: p_four
+    title: "Four boxes, one sinking ship"
+    items:
+      - {label: "Electronics", color: blue, a: "The first is full", note: "salt water → corrosion", na: "and they corrode"}
+      - {label: "Food (reefer)", color: teal, a: "The second is a refrigerated", note: "no power → spoils", na: "loses temperature control"}
+      - {label: "Machinery", color: brown, a: "The third holds", note: "repair may cost > value", na: "could cost more"}
+      - {label: "Plastic pellets", color: orange, a: "And the fourth is full", note: "bags burst → coastlines", na: "If those bags burst"}
+  - {at: "And then there’s depth", src: broll/px13823.mp4, from: 1, move: push}
+  - at: "The back half of the MOL Comfort eventually"
+    page: illus
+    name: p_depth
+    title: "How deep?"
+    max: 4500
+    marks:
+      - {depth: 1281, label: "Med Taipei box · 1,281 m", color: orange, box: true, x: 820, a: "lying upside down"}
+      - {depth: 4000, label: "MOL Comfort, back half · ≈ 4,000 m", color: red, floor: true, a: "about 4,000 meters deep", lx: 560}
+    note: {t: "≈ 400× the pressure at the surface", a: "the water pressure is roughly", x: 560, y: 640}
+  - {at: "So, what does a container look like", src: broll/pe37334332.mp4, from: 4, move: push}
+  - {at: "Well, in 2004", src: broll/px16160.mp4, from: 20, move: push}
+  - {at: "Med Taipei lost", src: broll/px131765.mp4, from: 1.3, move: push}   # auto-split
+  - {at: "containers in a", src: broll/px63560.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "A few months later, researchers", src: broll/px751.mp4, from: 2, move: push}
+  - {at: "Research Institute found", src: broll/px131765.mp4, from: 1.3, move: push}   # auto-split
+  - {at: "lying upside down", src: broll/px750.mp4, from: 1, move: push}
+  - {at: "1,281 meters deep.", src: broll/px374783.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "It was full of more than", src: broll/px218339.mp4, from: 3, move: push}
+  - {at: "When scientists came back", src: broll/px10480.mp4, from: 20, move: push}
+  - {at: "But the sea life on the seafloor", src: broll/pe32515216.mp4, from: 8, move: push}
+  - {at: "changed, across an", src: broll/px248158.mp4, from: 4.4, move: push}   # auto-split
+  - {at: "times the size", src: broll/px135762.mp4, from: 1.1, move: push}   # auto-split
+  - {at: "So here’s the first big lesson", src: broll/px111609.mp4, from: 4, move: push}
+  - {at: "A shipment can become worthless", src: broll/px95241.mp4, from: 10, move: push, hold: "lesson"}
+  # ---------------------------------------------------------------- 4. why not go and get it?
+  - {at: "Now, you might be thinking", page: chapter, n: 4, title: "Why not go and get it?"}
+  - {at: "Good question", src: broll/pe9357808.mp4, from: 2, move: push}
+  - {at: "But first, someone has to find", src: broll/px71122.mp4, from: 10, move: push}
+  - {at: "That might mean searching", src: broll/px239207.mp4, from: 2, move: push}
+  - {at: "then sending down robotic", src: broll/px751.mp4, from: 8, move: push}
+  - {at: "Then you need specialist ships", src: broll/pe4392869.mp4, from: 2, move: push}
+  - {at: "divers or robots", src: broll/px130239.mp4, from: 20, move: push}
+  - {at: "calm enough weather", src: broll/px31550.mp4, from: 6, move: push, quick: list}
+  - {at: "and a wreck that won’t shift", src: broll/px111609.mp4, from: 18, move: right}
+  - {at: "Every single day", src: broll/px153460.mp4, from: 1, move: push}
+  - at: "So let’s do the math"
+    page: illus
+    name: p_sum
+    title: "Let’s do the math"
+    x: 300
+    y: 360
+    lh: 150
+    size: 80
+    rows:
+      - {t: "Goods in the box:", r: "$100,000", rcolor: graphite, a: "$100,000 worth"}
+      - {t: "After months in salt water:", r: "$15,000", rcolor: blue, a: "what’s left might be"}
+      - {t: "Cost to bring it up:", r: "− $80,000", rcolor: red, a: "could cost, say"}
+      - {t: "Extra loss:", r: "− $65,000", rcolor: red, a: "You’ve just lost another", rule: 1250}
+    strike: [{row: 0, a: "what’s left might be"}]
+    box: [{row: 3, a: "on top of the original"}]
+  - {at: "From a business point of view", src: broll/px198488.mp4, from: 10, move: push}
+  - {at: "Now, when a wreck is easier", src: broll/pe16672730.mp4, from: 0, move: push}
+  - {at: "recovery really does", src: broll/px293788.mp4, from: 1.5, move: push}   # auto-split
+  - at: "In October 2011"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-50m.json
+    projection: mercator
+    fit: [[166, -47.5], [179.5, -34]]
+    wipe: 0.7
+    places:
+      - {name: Reef, ll: [176.42, -37.54], label: "Astrolabe Reef", a: "ran aground on a reef", color: red, dx: 24, dy: -18}
+      - {name: Tauranga, ll: [176.17, -37.69], label: "Tauranga", a: "off New Zealand", color: graphite, dx: -20, dy: 46, anchor: end, size: 48}
+    rings:
+      - {place: Reef, r: 60, color: red, a: "about 12 nautical miles"}
+    notes:
+      - {t: "Rena · October 2011", x: 120, y: 160, size: 76, weight: 700, a: 0.3}
+      - {t: "1,368 containers", x: 120, y: 240, size: 64, a: "carrying 1,368", color: blue}
+  - {at: "Salvage teams spent months", page: photo, src: archive/c_rena_chopper.jpg, frame: true, bg: stage, zoom: 0.04, h: 760}
+  - {at: "even after it broke in two", page: photo, frame: true, zoom: 0.03, h: 560, src: archive/news_rena_bbc.jpg, box: "BBC News · October 2011"}
+  - {at: "and more than a thousand", src: broll/pe9357808.mp4, from: 14, move: push}
+  - {at: "But the Rena was stuck", src: broll/px95241.mp4, from: 40, move: push}
+  - {at: "The back half of the MOL Comfort was four", src: broll/px63560.mp4, from: 8, move: pull}
+  - {at: "was four kilometers", src: broll/px191093.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "That’s also why professional salvage", src: broll/pe13379259.mp4, from: 10, move: push}
+  - {at: "A lot of it is done under", src: broll/px87592.mp4, from: 3, move: push}
+  - {at: "Lloyd’s Open Form,", src: broll/px123147.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "called “no cure,", src: broll/px135762.mp4, from: 1.1, move: push}   # auto-split
+  - {at: "If the salvors fail", src: broll/pe36285781.mp4, from: 10, move: push}
+  - {at: "If they succeed", src: broll/px109146.mp4, from: 2, move: push}
+  - {at: "There are special arrangements", src: broll/px263305.mp4, from: 6, move: push}
+  - {at: "environment, but the", src: broll/px293788.mp4, from: 6.9, move: push}   # auto-split
+  - {at: "no rescue, no reward", src: broll/pe17598812.mp4, from: 4, move: push}
+  # ---------------------------------------------------------------- 5. who pays?
+  - {at: "So if the cargo is gone", page: chapter, n: 5, title: "Who pays?"}
+  - {at: "If you’re just waiting", src: broll/pe6994524.mp4, from: 4, move: push}
+  - {at: "bought from will", src: broll/px87593.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "But imagine you’re the business", src: broll/px154950.mp4, from: 2, move: push}
+  - {at: "place. That’s where", src: broll/px46284.mp4, from: 0.8, move: push}   # auto-split
+  - {at: "Let’s say you run a small", src: broll/pe40723273.mp4, from: 1, move: push}
+  - {at: "$100,000 worth of", src: broll/px8252.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Your container is on a ship", src: broll/px154325.mp4, from: 10, move: push}
+  - {at: "So, who owes you", src: broll/px50628.mp4, from: 3, move: none}
+  - {at: "Your first thought is probably", src: broll/pe7397246.mp4, from: 24, move: push}
+  - {at: "obviously. They lost", src: broll/px3132.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Well, not quite", src: broll/px87146.mp4, from: 1, move: push}
+  - {at: "go on a", src: broll/px349087.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "a document called", src: broll/px198888.mp4, from: 3.6, move: push}   # auto-split
+  - {at: "It’s basically a receipt", src: broll/pe7735492.mp4, from: 2, move: push}
+  - {at: "And that contract usually comes", src: broll/px198890.mp4, from: 2, move: push}
+  - {at: "that limit what", src: broll/px212508.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "First, a carrier may have", src: broll/px198901.mp4, from: 2, move: push}
+  - {at: "losses caused by", src: broll/px198898.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "like exceptionally severe weather", src: broll/pe35230426.mp4, from: 4, move: push}
+  - {at: "But a storm doesn’t automatically", src: broll/px201766.mp4, from: 10, move: push}
+  - at: "And even when the carrier is to blame"
+    page: illus
+    name: p_bars
+    title: "What the carrier may owe you"
+    max: 112000
+    items:
+      - {label: "Your furniture", value: 100000, text: "$100,000", color: green, a: 0.3}
+      - {label: "Liability cap", value: 500, text: "$500 / package", color: red, a: "$500 per package", note: "U.S. COGSA"}
+    ring: 1
+    ring_at: "nowhere near"
+  - {at: "So, what actually protects you", src: broll/pe7735492.mp4, from: 7, move: push}
+  - at: "And in shipping, there are three"
+    page: illus
+    name: p_list
+    title: "Three kinds of marine insurance"
+    items:
+      - {t: "Hull & machinery: the ship", a: "The ship itself"}
+      - {t: "P&I: the owner’s duties to others", a: "The shipowner’s responsibilities"}
+      - {t: "Cargo insurance: your goods", a: "And your goods are covered"}
+    end: {t: "…if you bought it.", a: "if you bought it"}
+  - {at: "That last one is the one", src: broll/px124252.mp4, from: 8, move: push}
+  - {at: "If you have it, you report", src: broll/px87592.mp4, from: 12, move: push}
+  - {at: "and the insurer checks", src: broll/px80314.mp4, from: 2, move: push}
+  - {at: "If it’s covered, they pay you", src: broll/px109146.mp4, from: 10, move: push}
+  - {at: "Then, if they think", src: broll/pe11336544.mp4, from: 3, move: push}
+  - {at: "can go after", src: broll/px87593.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "Basically, they pay you first", src: broll/px153460.mp4, from: 5, move: none}
+  - {at: "But even good insurance", src: broll/pe8344449.mp4, from: 4, move: push}
+  - {at: "usually pays for", src: broll/px46284.mp4, from: 0.8, move: push}   # auto-split
+  - {at: "the customers you disappointed", src: broll/px124252.mp4, from: 3, move: push}
+  - {at: "cost of rushing", src: broll/px51592.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "And if you didn’t buy", src: broll/pe40723273.mp4, from: 4, move: left}
+  - {at: "might just be", src: broll/px8252.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "Yeah, painful", src: broll/px198488.mp4, from: 30, move: push}
+  # ---------------------------------------------------------------- 6. general average
+  - {at: "But here’s where it gets really strange", page: chapter, n: 6, title: "General average"}
+  - {at: "This time, the ship doesn’t sink", src: broll/pe37098574.mp4, from: 1, move: push}
+  - {at: "Salvage teams fight the fire", src: broll/pe37221799.mp4, from: 3, move: push}
+  - {at: "Your container was far", src: broll/pe5898303.mp4, from: 8, move: push}
+  - {at: "furniture is completely", src: broll/px21174.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Good news, right", src: broll/pe2226482.mp4, from: 20, move: push}
+  - {at: "you might still", src: broll/px21174.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "This is called general average", page: define, term: "General average", phon: "/ˈdʒɛn(ə)rəl ˈav(ə)rɪdʒ/", text: "When something is sacrificed to save a ship and its cargo, everyone who was saved shares the cost, in proportion to what they had on board."}
+  - {at: "Imagine an ancient merchant ship", page: photo, src: archive/c_rhodes.jpg, zoom: 0.06, origin: "50% 55%"}
+  - at: "To keep it afloat"
+    page: illus
+    name: p_sum
+    title: "Everyone chips in"
+    x: 300
+    y: 380
+    lh: 160
+    size: 80
+    rows:
+      - {t: "Merchant A: thrown overboard", color: red, a: "the captain throws"}
+      - {t: "Merchants B, C, D: saved", color: green, a: "It works"}
+      - {t: "B + C + D share A’s loss", color: blue, a: "So, everyone whose cargo", rule: 1250}
+  - {at: "That idea goes back thousands", src: broll/pe34840543.mp4, from: 20, move: push}
+  - {at: "to the sea", src: broll/px154325.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "and it’s still used today", src: broll/px129250.mp4, from: 20, move: push}
+  - {at: "the York-Antwerp Rules.", src: broll/px3132.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "Here’s how it works now", src: broll/pe36285781.mp4, from: 30, move: push}
+  - {at: "sacrificed, or extraordinary", src: broll/px248156.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "paid, to save", src: broll/px214942.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "everyone who benefited", src: broll/pe30899477.mp4, from: 12, move: push}
+  - {at: "to the value", src: broll/px198464.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "Now, it’s important to be clear", src: broll/px110735.mp4, from: 4, move: push}
+  - {at: "every time a", src: broll/px28268.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "lost, there’s usually", src: broll/px152274.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "It applies when something was saved", src: broll/pe17598812.mp4, from: 14, move: push}
+  - {at: "And the amounts can be huge", src: broll/pe11336544.mp4, from: 10, move: push}
+  - {at: "In March 2018", page: photo, frame: true, zoom: 0.04, h: 640, src: archive/c_honam_fire.jpg}
+  - {at: "Salvage teams saved the ship", src: broll/pe37221799.mp4, from: 12, move: push}
+  - {at: "cargo, and general", src: broll/px214942.mp4, from: 8.5, move: push}   # auto-split
+  - at: "Before shippers could get"
+    page: illus
+    name: p_sum
+    title: "Maersk Honam, 2018: security to release your cargo"
+    x: 300
+    y: 380
+    lh: 150
+    size: 80
+    rows:
+      - {t: "Salvage security:", r: "42.5%", rcolor: red, a: "42.5%"}
+      - {t: "General average:", r: "+ 11.5%", rcolor: orange, a: "plus another 11.5%"}
+      - {t: "Total:", r: "54% of cargo value", rcolor: red, a: "That’s 54%", rule: 1250}
+      - {t: "On a $100,000 box:", r: "$54,000", rcolor: blue, a: "you were asked for $54,000"}
+    box: [{row: 3, a: "just to get it released"}]
+  - {at: "If your cargo insurance covers", src: broll/px80314.mp4, from: 6, move: none}
+  - {at: "can usually provide", src: broll/px1917.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "If not, it’s on you", src: broll/px51592.mp4, from: 4, move: push}
+  - {at: "And this isn’t just old history", src: broll/pe8344449.mp4, from: 14, move: push}
+  - {at: "General average was declared after the Ever Given", page: photo, frame: true, zoom: 0.03, h: 720, src: archive/news_eg_fw.jpg, box: "FreightWaves · April 2021"}
+  - {at: "and again after the Dali", page: photo, frame: true, zoom: 0.03, h: 760, src: archive/news_dali_cbs.jpg, box: "CBS Baltimore · April 2024"}
+  # ---------------------------------------------------------------- 7. finders keepers?
+  - {at: "Now, let’s go back to the cargo", page: chapter, n: 7, title: "Finders keepers?"}
+  - {at: "Say a container washes up", src: broll/px225996.mp4, from: 10, move: push}
+  - {at: "Can you keep what’s inside", src: broll/px263305.mp4, from: 20, move: push}
+  - at: "In January 2007"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-50m.json
+    projection: mercator
+    fit: [[-6.5, 49.6], [-1.0, 51.6]]
+    wipe: 0.7
+    places:
+      - {name: Branscombe, ll: [-3.13, 50.69], label: "Branscombe", a: "near a small village", color: red, dx: 20, dy: -20}
+      - {name: Devon, ll: [-3.9, 50.9], label: "Devon", a: "off the coast of Devon", color: graphite, dx: 0, dy: 0, anchor: middle, dot: false, size: 60}
+    rings:
+      - {place: Branscombe, r: 60, color: red, a: "Containers washed up"}
+    notes:
+      - {t: "MSC Napoli · January 2007", x: 120, y: 160, size: 76, weight: 700, a: 0.3}
+  - {at: "Inside were wine barrels", page: photo, frame: true, zoom: 0.03, h: 700, src: archive/news_napoli_nbc.jpg, box: "NBC News · January 2007"}
+  - {at: "and brand-new BMW motorbikes", src: broll/px74578.mp4, from: 4, move: push}
+  - {at: "Hundreds of people showed up", src: broll/px4797.mp4, from: 3, move: push}
+  - {at: "One group even used a tractor", src: broll/px2683.mp4, from: 14, move: push}
+  - {at: "But under British law", src: broll/px198890.mp4, from: 6, move: push}
+  - {at: "from a wreck", src: broll/px1917.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "Finders have to report it", src: broll/px87146.mp4, from: 3, move: none}
+  - {at: "Receiver of Wreck", src: broll/px191093.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "and police warned", src: broll/px7012.mp4, from: 0, move: push}
+  - {at: "them could be", src: broll/px48345.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "In the end, many of the people", src: broll/px57844.mp4, from: 2, move: push}
+  - {at: "told they could", src: broll/px48345.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "But only because they followed", src: broll/px198901.mp4, from: 8, move: push}
+  - at: "And the rules vary"
+    page: illus
+    name: p_list
+    title: "Found it on the beach?"
+    items:
+      - {t: "It may still belong to the original owner", a: "It might still belong"}
+      - {t: "…or to an insurer that already paid", a: "or to an insurer"}
+      - {t: "A finder may earn a reward, not ownership", a: "A finder might earn"}
+    end: {t: "Box and goods: maybe two different owners", a: "the steel box and the goods"}
+  # ---------------------------------------------------------------- 8. when cargo costs more than the ship
+  - {at: "So far, we’ve talked about", page: chapter, n: 8, title: "When the cargo costs more than the ship"}
+  - at: "In May 2021"
+    page: illus
+    name: p_map
+    topo: world-atlas/land-50m.json
+    projection: mercator
+    fit: [[76.5, 5.5], [83.5, 10.2]]
+    wipe: 0.7
+    places:
+      - {name: Colombo, ll: [79.86, 6.93], label: "Colombo", a: "off the coast of Sri Lanka", color: red, dx: -20, dy: 10, anchor: end}
+    rings:
+      - {place: Colombo, r: 70, color: red, a: "and sank after burning"}
+    notes:
+      - {t: "X-Press Pearl · May 2021", x: 120, y: 160, size: 76, weight: 700, a: 0.3}
+      - {t: "Sri Lanka", x: 1060, y: 560, size: 70, a: "Sri Lanka", color: green}
+  - {at: "On board were chemicals", page: photo, src: archive/c_xpresspearl.jpg, frame: true, bg: stage, zoom: 0.04, h: 760}
+  - {at: "and an estimated 70 billion", page: photo, src: archive/c_nurdles.jpg, frame: true, bg: stage, zoom: 0.04, h: 720}
+  - {at: "They washed up along", page: photo, frame: true, zoom: 0.03, h: 760, src: archive/news_pearl_cbs.jpg, box: "CBS News · June 2021"}
+  - {at: "Fishing communities were hit", src: broll/pe35639434.mp4, from: 2, move: push}
+  - {at: "And in July 2025", src: broll/px198888.mp4, from: 2, move: right}
+  - {at: "ordered the ship’s", src: broll/px138588.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "to pay an initial", page: photo, frame: true, zoom: 0.03, h: 700, src: archive/news_pearl_nbc.jpg, box: "NBC News · June 2021"}
+  - {at: "That’s also why some wrecks", src: broll/px110735.mp4, from: 14, move: push}
+  - {at: "with, whether there’s", src: broll/px244839.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Since 2015, an international treaty", src: broll/px212508.mp4, from: 4, move: push}
+  - {at: "the Nairobi Wreck", src: broll/px244839.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "registered shipowners financially", src: broll/pe38288270.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "for locating, marking", src: broll/px239207.mp4, from: 10, move: push}
+  - {at: "wrecks, wherever the", src: broll/px216315.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "It also requires qualifying", src: broll/px123147.mp4, from: 3, move: push}
+  - {at: "of 300 or", src: broll/pe4813172.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "financial security to", src: broll/px24255.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "So sometimes cargo is removed", src: broll/pe4392869.mp4, from: 9, move: push}
+  - {at: "but because leaving", src: broll/px202560.mp4, from: 1.5, move: push}   # auto-split
+  # ---------------------------------------------------------------- finale: the MOL Comfort
+  - {at: "So, what finally happened", src: broll/px205011.mp4, from: 4, move: push}
+  - at: "On June 27, 2013"
+    page: illus
+    name: p_sum
+    title: "MOL Comfort, 2013"
+    x: 300
+    y: 360
+    lh: 150
+    size: 76
+    rows:
+      - {t: "June 17:", r: "breaks in two", rcolor: graphite, a: 0.3}
+      - {t: "June 27:", r: "back half sinks · ≈ 4,000 m · ≈ 1,700 boxes", rcolor: red, a: "the back half sank"}
+      - {t: "July 6:", r: "front half catches fire", rcolor: orange, a: "on July 6"}
+      - {t: "July 10:", r: "front half sinks · ≈ 3,000 m · ≈ 2,400 boxes", rcolor: red, a: "On July 10"}
+  - {at: "And with that", page: photo, frame: true, zoom: 0.03, h: 720, src: archive/news_mol_fw_sinks.jpg, box: "American Shipper · July 2013"}
+  - {at: "For businesses around the world", src: broll/px198898.mp4, from: 4, move: push}
+  - {at: "the story moved", src: broll/px92480.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "Claims, invoices", src: broll/px349087.mp4, from: 2, move: push}
+  - {at: "The International Union", src: broll/px129250.mp4, from: 40, move: push, hold: "big number"}
+  - at: "So, what’s the big lesson"
+    page: illus
+    name: p_list
+    title: "The big lesson"
+    items:
+      - {t: "The cargo may stop moving", a: "the cargo may stop moving"}
+      - {t: "The money and paperwork keep travelling", a: "But the money"}
+      - {t: "Some cargo floats to faraway beaches", a: "Some cargo floats"}
+      - {t: "Some becomes a home on the seabed", a: "Some becomes a strange"}
+    end: {t: "Almost all of it ends with a bill.", a: "And almost all of it"}
+  - {at: "Because global shipping", src: broll/px123146.mp4, from: 2, move: push}
+  - {at: "It’s also a system built", src: broll/px129181.mp4, from: 40, move: push}
+  - {at: "when those goods", src: broll/px388064.mp4, from: 1.5, move: push}   # auto-split
+  - {at: "So, be honest", src: broll/px74578.mp4, from: 16, move: push}
+  - {at: "washed up on", src: broll/px388064.mp4, from: 8.5, move: push}   # auto-split
+  - {at: "Let me know in the comments", src: broll/px138588.mp4, from: 4, move: push, quick: "comments"}
+  - {at: "And if you enjoyed this", src: broll/px31550.mp4, from: 28, move: push, hold: "end card"}
+
+text:
+  - {at: "4,382 containers", dur: 4.0, kind: big, text: "4,382", sub: "CONTAINERS ON BOARD"}
+  - {at: "All 26 crew members", dur: 3.0, kind: label, text: "All *26* crew rescued"}
+  - {at: "Can someone go down", kind: questions, until: ">who actually owns it?", items: [{t: "Who pays everyone back?", a: "Does the shipping company"}, {t: "Can anyone get it back?", a: "Can someone go down"}, {t: "Who owns it if it’s found?", a: "And if somebody finds"}]}
+  - {at: "Curtis Ebbesmeyer", dur: 3.4, kind: label, text: "*Curtis Ebbesmeyer*", sub: "Oceanographer, Seattle"}
+  - {at: "4.8 million pieces", dur: 3.6, kind: big, text: "4.8 million", sub: "PIECES OF LEGO"}
+  - {at: "more than a thousand car tires", dur: 3.0, kind: label, text: "*1,000+* car tires"}
+  - {at: "called ROVs", dur: 3.0, kind: label, text: "*ROV*", sub: "Remotely operated vehicle"}
+  - {at: "Lloyd’s Open Form", until: ">no pay.”", kind: quote, text: "No cure, no pay.", who: "Lloyd’s Open Form"}
+  - {at: "a bill of lading", dur: 3.2, kind: label, text: "Bill of *lading*", sub: "Receipt + contract in one"}
+  - {at: "“perils of the sea,”", dur: 3.2, kind: label, text: "“Perils of the *sea*”"}
+  - {at: "That’s called subrogation", dur: 3.0, kind: label, text: "*Subrogation*", sub: "Insurer pays you, then chases the carrier"}
+  - {at: "York-Antwerp Rules", dur: 3.2, kind: label, text: "The *York-Antwerp* Rules"}
+  - {at: "Five crew members lost", dur: 2.8, kind: label, text: "Five crew members lost"}
+  - {at: "Receiver of Wreck", dur: 3.4, kind: label, text: "Receiver of *Wreck*", sub: "Report finds within 28 days"}
+  - {at: "Nairobi Wreck Removal", dur: 3.6, kind: label, text: "Nairobi *Wreck Removal* Convention", sub: "In force since 2015"}
+  - {at: "$300 million and $400 million", dur: 4.4, kind: big, text: "$300–400M", sub: "INSURED CARGO LOSS · IUMI ESTIMATE"}
+  - {at: "$1 billion in compensation", dur: 3.4, kind: big, text: "$1 billion", sub: "INITIAL COMPENSATION ORDERED"}
+
+music_dips: ["Then the ship broke completely", "So here’s the first big lesson", "So, what finally happened"]

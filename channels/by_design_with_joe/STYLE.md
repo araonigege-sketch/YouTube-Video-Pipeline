@@ -10,6 +10,7 @@ follows. Keep the two style guides in step: when the owner adds a rule for Mr. D
 
 ## Channel-specific decisions (owner, 2026-11-24)
 - **The owner supplies the script and voiceover for every episode.** Claude doesn't write scripts or make TTS for it.
+- **Two mid-video like & subscribe nudges** (owner, 2026-11-26), before the end card: a small pill pair bottom-right for 4.5 s, on a plain footage shot (keep text, news boxes and faces clear of that corner). Set them in edit.yaml `nudges:`; good moments are right after a payoff line, roughly a third and two-thirds through.
 - **Clips already used by Mr. Davos may be reused on this channel.** The "no clip used in two different episodes"
   rule counts **By Design With Joe episodes only**: check with `python -m pipeline.broll ledger --channel by_design_with_joe`.
   Inside an episode, the "max twice, counted by shoot" rule still holds.

@@ -17,6 +17,7 @@ projects/<slug>/edit.yaml      the edit as data:
     - {at: ..., kind: label, text: "The *captain*", sub: "Left seat"}       *word* = accent colour
     - {at: ..., kind: questions, items: [{t: "...", a: "phrase"}]}
     - {at: ..., kind: quote, text: "...", who: "..."}
+  nudges: ["phrase", "phrase"]      two small like & subscribe nudges mid-video (bottom-right, 4.5 s; keep that corner clear)
   music_dips: ["phrase", ...]       extra music dips (chapter cards dip automatically)
 
 Owner rules enforced here: hard cuts only, no SFX, no subtitles, no clip used more than twice
@@ -401,14 +402,16 @@ class Joe(Composition):
         self.rise(f"#{gid} .nb-tag", t0, 0.45, 10, 0.25)
 
     # ---------- like & subscribe (owner's rule), styled to the channel, no SFX
-    def subscribe(self, t0, t1):
+    def subscribe(self, t0, t1, mini=False):
+        """End card (centred), or `mini`: a small corner nudge mid-video (edit.yaml `nudges:`), bottom-right, clear of text."""
         gid = self.nid("cta")
-        thumb = ('<svg viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6C6.2 8 6 8.5 6 9v10c0 1.1.9 2 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg>')
-        inner = (f'<div class="cta"><div class="cta-btn cta-like">{thumb}<span>Like</span></div>'
+        sz = 26 if mini else 40
+        thumb = (f'<svg viewBox="0 0 24 24" width="{sz}" height="{sz}"><path fill="currentColor" d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6C6.2 8 6 8.5 6 9v10c0 1.1.9 2 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg>')
+        inner = (f'<div class="cta{" cta-mini" if mini else ""}"><div class="cta-btn cta-like">{thumb}<span>Like</span></div>'
                  f'<div class="cta-btn cta-sub"><span>Subscribe</span></div></div>')
         self.add(gid, t0, t1, inner, z=40)
-        self.rise(f"#{gid} .cta-like", t0, 0.5, 20)
-        self.rise(f"#{gid} .cta-sub", t0, 0.5, 20, 0.15)
+        self.rise(f"#{gid} .cta-like", t0, 0.5, 12 if mini else 20)
+        self.rise(f"#{gid} .cta-sub", t0, 0.5, 12 if mini else 20, 0.15)
         self.tw(f'tl.to("#{gid} .cta-like",{{backgroundColor:"{self.p["accent"]}",color:"{self.p["ink"]}",duration:0.3}},{t0 + 1.2:.3f});')
         self.tw(f'tl.to("#{gid} .cta-sub",{{backgroundColor:"#E5262B",color:"#fff",duration:0.3}},{t0 + 1.8:.3f});')
         self.tw(f'tl.to("#{gid} .cta-sub span",{{innerText:"Subscribed",duration:0.01}},{t0 + 2.6:.3f});')
@@ -489,6 +492,8 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .cta{{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;gap:28px}}
 .cta-btn{{display:flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;font-weight:700;font-size:40px;
   background:rgba(20,22,26,.78);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.4)}}
+.cta-mini{{left:auto;right:72px;bottom:72px;gap:14px}}
+.cta-mini .cta-btn{{gap:10px;padding:12px 26px;font-size:26px;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,.35)}}
 """
 
 
@@ -521,6 +526,10 @@ def build_overlay(P, edit, ch, words, shots, log=print) -> tuple[Path, list[floa
         if mention:
             ts = float(mention[-1]["s"]) - 1.2 - a
             c.subscribe(ts, min(end, ts + 5.0))
+    for n in edit.get("nudges", []):               # owner, 2026-11-26: two mid-video like & subscribe nudges
+        t0 = resolve(words, n, 0.0, 0.0) - a
+        if 0 <= t0 < end - 1:
+            c.subscribe(t0, min(end, t0 + 4.5), mini=True)
     for d in edit.get("music_dips", []):
         c.dips.append(resolve(words, d, 0.0) - a)
     c.els.insert(0, f'<video id="base" class="clip" src="assets/base.mp4" muted data-start="0" data-duration="{end:.3f}"></video>')
