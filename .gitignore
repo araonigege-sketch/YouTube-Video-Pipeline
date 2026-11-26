@@ -20,3 +20,5 @@ projects/*/music/**/*.mp3
 projects/*/vo/**/*.wav
 projects/*/media/archive/*.jpeg
 projects/_pencil_test/
+projects/*/vo/parts/
+projects/*/vo/*.mp3
