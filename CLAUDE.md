@@ -67,6 +67,7 @@ projects/<slug>/
   rendition (often the original). Openverse also finds Commons-hosted files' Flickr originals, which helps while Wikimedia 429s.
 - Openverse's audio index (`/v1/audio/?q=...&source=wikimedia_audio`) confirms a Kevin MacLeod track's Commons licence when Commons itself refuses.
 - API keys come from environment secrets (`ELEVENLABS_API_KEY`, `PIXABAY_API_KEY`); never ask for them in chat.
+- fal.ai (image/video generation, backup only, see the channel STYLE.md): key is a network secret on queue.fal.run (send `Authorization: Key proxy-injected`); results download from v3.fal.media / v3b.fal.media / fal.media. `python -m pipeline.fal`.
 - ElevenLabs voiceovers: `python -m pipeline.eleven <project> [--verify] [--redo N]` (voice + model in episode.yaml `tts:`). Word times come from ElevenLabs alignment, so no `align` step.
 
 ## Layout

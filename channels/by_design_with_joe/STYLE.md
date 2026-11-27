@@ -9,7 +9,7 @@ lessons. Where this file says "Mr. Davos" or quotes a Mr. Davos episode, read it
 follows. Keep the two style guides in step: when the owner adds a rule for Mr. Davos, ask whether it applies here too.
 
 ## Channel-specific decisions (owner, 2026-11-24)
-- **The owner supplies the script and voiceover for every episode.** Claude doesn't write scripts or make TTS for it.
+- **The owner supplies the script for every episode.** Ep1 used the owner's recording; from ep2 Claude generates the voice with ElevenLabs (owner-brief). Claude never writes the script.
 - **Two mid-video like & subscribe nudges** (owner, 2026-11-26), before the end card: a small pill pair bottom-right for 4.5 s, on a plain footage shot (keep text, news boxes and faces clear of that corner). Set them in edit.yaml `nudges:`; good moments are right after a payoff line, roughly a third and two-thirds through.
 - **Clips already used by Mr. Davos may be reused on this channel.** The "no clip used in two different episodes"
   rule counts **By Design With Joe episodes only**: check with `python -m pipeline.broll ledger --channel by_design_with_joe`.
@@ -39,6 +39,31 @@ follows. Keep the two style guides in step: when the owner adds a rule for Mr. D
   Good premium sources: port and harbour aerials, container-terminal drone shots, ship-to-shore cranes, bridge and
   engine-room interiors, rail yards, highway trucking at golden hour, warehouse robotics. Public-domain government
   material (NOAA, US Coast Guard, US Army Corps of Engineers, MARAD, DOT, NASA imagery) fits source tier 1 below.
+
+## Owner review of ep2 (2026-11-27): standing rules from episode 3 on
+- **Voice:** from ep2 on, Claude generates the voiceover with ElevenLabs (owner's choice of voice, see owner-brief), not the owner.
+- **The audience is here for the ships and the sea.** Feed them the giants in their full cinematic beauty: aerials of
+  huge container ships, open water, golden hour and night, storms. Whenever a line allows a big-ship or ocean shot,
+  use one. This is a shipping channel, not a finance channel.
+- **The hook is the best spectacle in the video.** The first 15–20 s get the most cinematic shots of the episode
+  (giant ships, storms, the event itself); no lingering on everyday shots (a hand on a phone, a sofa). People skim
+  the opening before they commit.
+- **Pencil pages are rare and earned.** Use one only where no footage can show the idea (a process, a mechanism, a
+  sum that teaches: the ep1 canal lock, the ep2 salvage maths). Never two pencil pages back to back; never a page for
+  a small detail. If a page can't make its point fast, use B-roll with on-screen text instead. Lists and definitions
+  (types of insurance, rules) go on footage as text, not on paper. Maps of real events give way to real photos or
+  footage of the event when they exist.
+- **Every shot must match its line exactly.** If the script names a document or object (a bill of lading, a marine
+  insurance policy, a court), show that thing, or show nothing specific: no home-insurance form for a bill of lading.
+  Courts: look for real cinematic courtroom or court-building footage before falling back to the gavel-on-desk cliché.
+- **"Max twice" is a ceiling, not a target.** Use a clip once unless the second use truly fits; don't repeat
+  handshakes, money stacks and other generic shots. Find a fresh fitting shot instead.
+- **AI generation (fal.ai) is a backup only (owner, 2026-11-27).** Real footage (Pexels, Pixabay, archives), public
+  domain and news sources come first. Use fal.ai only where real sources can't show an essential, cinematic moment
+  (a ship cracking in two, containers floating or on the seabed, cargo washing ashore, an ancient scene) and it would
+  tighten retention. A few moments per episode at most, and none if the episode doesn't need them. Keep generated shots
+  photoreal and period-correct; never use them to fake a real news photo, a named person or a specific real event's record.
+- **The close:** end on a cinematic ship carrying goods across open water (dusk or night if it's the most cinematic).
 
 ## Mr. Davos blueprint (applies in full)
 
