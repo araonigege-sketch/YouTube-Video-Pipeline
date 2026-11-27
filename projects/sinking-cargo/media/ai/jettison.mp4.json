@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "Sailors throw an amphora over the rail into the waves, the deck tilts with the swell, rain blows across. Realistic motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/jettison_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c1e-dd1c-7531-a257-24311bc56df9",
+ "url": "https://v3b.fal.media/files/b/0ab42005/ACxMQjss-cXPk738LY_Pa_output.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

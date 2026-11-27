@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "The stern section slowly slips deeper under the water, the bridge sinking, air and foam bursting up, containers drifting. Slow drone hold. Realistic motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/stern_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c1e-de6e-7f92-aaa7-65bd0142c2c1",
+ "url": "https://v3b.fal.media/files/b/0ab41ff9/To6ajIvEGrs0Qt-G-K1IM_Vvb48R9f.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

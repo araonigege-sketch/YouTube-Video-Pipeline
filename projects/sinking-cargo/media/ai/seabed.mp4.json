@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "The ROV lights glide slowly along the upside-down container, marine snow drifting through the beams. Realistic deep-sea motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/seabed_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c19-bd2a-7752-9cc8-b68e3fb6f026",
+ "url": "https://v3b.fal.media/files/b/0ab42017/ztX4VtsAhQ-l8nCETL7hh_output.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

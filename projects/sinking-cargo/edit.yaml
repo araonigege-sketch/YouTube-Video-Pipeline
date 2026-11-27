@@ -174,12 +174,13 @@ shots:
   - {at: "From a business point of view", src: broll/px198488.mp4, from: 10, move: push}
   - {at: "Now, when a wreck is easier", src: broll/pe16672730.mp4, from: 0, move: push}
   - {at: "recovery really does", src: broll/px191093.mp4, from: 8.5, move: push}   # auto-split
-  - {at: "In October 2011", page: photo, src: archive/c_rena01.jpg, zoom: 0.06, origin: "50% 50%"}
-  - {at: "ran aground on a reef", page: photo, src: archive/c_rena05.jpg, zoom: 0.06, origin: "50% 50%"}
-  - {at: "Salvage teams spent months", page: photo, src: archive/c_rena06.jpg, zoom: 0.06, origin: "50% 50%"}
+  - {at: "In October 2011", page: photo, src: archive/c_rena_chopper.jpg, zoom: 0.06, origin: "50% 50%"}
+  - {at: "ran aground on a reef", src: broll/px340813.mp4, from: 3, move: push}
+  - {at: "carrying 1,368", src: broll/pe39598213.mp4, from: 4, move: push}
+  - {at: "Salvage teams spent months", src: broll/pe9357808.mp4, from: 8, move: push}
   - {at: "even after it broke in two", page: photo, frame: true, zoom: 0.03, h: 560, src: archive/news_rena_bbc.jpg, box: "BBC News · October 2011"}
-  - {at: "and more than a thousand", page: photo, src: archive/c_rena08.jpg, zoom: 0.06, origin: "50% 50%"}
-  - {at: "But the Rena was stuck", page: photo, src: archive/c_rena_chopper.jpg, zoom: 0.06, origin: "50% 50%"}
+  - {at: "and more than a thousand", src: broll/pe8344449.mp4, from: 14, move: push}
+  - {at: "But the Rena was stuck", src: broll/px342815.mp4, from: 3, move: push}
   - {at: "The back half of the MOL Comfort was four", src: broll/px63560.mp4, from: 8, move: pull}
   - {at: "was four kilometers", src: broll/px123146.mp4, from: 5.7, move: push}   # auto-split
   - {at: "That’s also why professional salvage", src: broll/pe13379259.mp4, from: 10, move: push}
@@ -205,7 +206,7 @@ shots:
   - {at: "obviously. They lost", src: broll/pe35907902.mp4, from: 8.5, move: push}   # auto-split
   - {at: "Well, not quite", src: broll/px87146.mp4, from: 1, move: push}
   - {at: "go on a", src: broll/pe30524233.mp4, from: 8.5, move: push}   # auto-split
-  - {at: "a document called a bill", page: photo, frame: true, zoom: 0.04, h: 760, src: archive/c_bol1853.jpg, bg: stage}
+  - {at: "a document called a bill", page: photo, frame: true, zoom: 0.04, h: 720, src: archive/c_bol1853.jpg, bg: stage}
   - {at: "And that contract usually comes", src: broll/px198890.mp4, from: 2, move: push}
   - {at: "that limit what", src: broll/px326715.mp4, from: 8.5, move: push}   # auto-split
   - {at: "First, a carrier may have", src: broll/pe28122932.mp4, from: 2, move: push}
