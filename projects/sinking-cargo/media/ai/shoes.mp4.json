@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "The sneakers drift and bob on the swell, spreading out from the broken container, slow drone push-in. Realistic water motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/shoes_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c17-1b07-7222-889e-c04c9590fa18",
+ "url": "https://v3b.fal.media/files/b/0ab41fc8/OCGSd7F6jK-ZJbfIL1qsn_4e88oYtP.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

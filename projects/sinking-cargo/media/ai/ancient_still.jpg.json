@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "An ancient Greek merchant sailing ship with a single square sail fighting a violent storm on the Aegean Sea, clay amphorae lashed on deck, sailors struggling with ropes, towering dark waves, rain, lightning in the distance, historically accurate. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-f107-7890-8b51-0e443dbd169e",
+ "url": "https://v3b.fal.media/files/b/0ab41fb1/FPyG3JevEBuRoCri4NrkO_9e1fab8e9bd443229dd416f737df6c2f.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

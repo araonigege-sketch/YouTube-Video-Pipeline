@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "Slow ROV push-in toward the open container doors and the tyres, marine snow drifting through the light. Realistic deep-sea motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/tyres_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c1b-7c9f-7cb2-a114-35eb4626c1c3",
+ "url": "https://v3b.fal.media/files/b/0ab41fe3/5HRu1Q4yc0DM4_25K-v5h_svpFGyJj.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

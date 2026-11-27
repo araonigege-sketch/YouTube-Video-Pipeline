@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "Slow lateral drone move along the beach, small waves wash in around the containers and scattered cargo. Realistic motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/beach_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c19-7ce7-7052-ba0f-4317bd1f55e0",
+ "url": "https://v3b.fal.media/files/b/0ab41fd4/9rbbTs0ctka4HXhBHnrlN_1WOK9skK.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

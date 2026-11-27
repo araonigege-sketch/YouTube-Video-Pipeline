@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Thousands of small plastic bath toys, yellow ducks, red beavers, blue turtles and green frogs, floating together on the dark choppy North Pacific Ocean, close aerial view, cold grey light, a few scattered far across the swell. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-bae8-7451-ad57-96d21445d172",
+ "url": "https://v3b.fal.media/files/b/0ab41fb0/Aedj9wYRBAhykJ8fXib1d_320e72e8dafe4337a6852a347d6fa80e.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

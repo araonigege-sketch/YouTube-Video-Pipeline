@@ -23,3 +23,5 @@ projects/_pencil_test/
 projects/*/vo/parts/
 projects/*/vo/*.mp3
 projects/*/music/*.mp3
+projects/*/media/ai/*.mp4
+projects/*/media/ai/*.jpg

@@ -492,6 +492,8 @@ body{{background:#000;width:1920px;height:1080px;overflow:hidden;font-family:Int
 .cta{{position:absolute;left:0;right:0;bottom:120px;display:flex;justify-content:center;gap:28px}}
 .cta-btn{{display:flex;align-items:center;gap:16px;padding:22px 44px;border-radius:999px;font-weight:700;font-size:40px;
   background:rgba(20,22,26,.78);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 40px rgba(0,0,0,.4)}}
+.ai-tag{{position:absolute;right:46px;top:34px;font-weight:500;font-size:19px;letter-spacing:.06em;
+  color:rgba(244,242,238,.66);text-shadow:0 2px 10px rgba(0,0,0,.8)}}
 .cta-mini{{left:auto;right:72px;bottom:72px;gap:14px}}
 .cta-mini .cta-btn{{gap:10px;padding:12px 26px;font-size:26px;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,.35)}}
 """
@@ -506,6 +508,9 @@ def build_overlay(P, edit, ch, words, shots, log=print) -> tuple[Path, list[floa
     c = Joe(words, P / "build/hf", ch, a)
     c.proj = P
     for s in shots:
+        if str(s.get("src", "")).startswith("ai/") and not s.get("page"):
+            # fal.ai backup shots (owner, 2026-11-27): always labelled, small, top right (clear of labels and nudges)
+            c.add(c.nid("ai"), s["t0"] - a, s["t1"] - a, '<div class="ai-tag">AI reconstruction</div>', z=14)
         if s.get("box"):
             c.newsbox(s, s["t0"] - a, s["t1"] - a)
         if s.get("page"):

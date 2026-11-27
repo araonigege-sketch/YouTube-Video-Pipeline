@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Close shot of several brand-new unbranded motorcycles lying on their sides on a wet pebble beach beside a broken-open shipping container, a wave washing in around the wheels, grey winter light, cliffs in soft focus behind. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-bc40-77c0-9223-e5b8825b6792",
+ "url": "https://v3b.fal.media/files/b/0ab41fb0/Qh9JiXxkO0gCPKL5aUKmv_444b23581a7249fe868be5c94b07b4d9.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

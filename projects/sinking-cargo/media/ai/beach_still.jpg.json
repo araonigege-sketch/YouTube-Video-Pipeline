@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Wide shot of a pebble beach beneath tall cliffs on the south coast of England in winter, several damaged shipping containers washed up on the shore, cargo scattered on the stones: wooden wine barrels, cardboard boxes, a few motorcycles on their sides; a large stricken container ship listing offshore in a grey sea, overcast January light. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-bc22-7f32-9bf8-c50dab28a4d5",
+ "url": "https://v3b.fal.media/files/b/0ab41fb0/AkSQ7JxnkfbU61-iLFE56_a9521235801f4cfe872132fb341d25c6.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

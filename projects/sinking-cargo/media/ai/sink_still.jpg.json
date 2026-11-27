@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Underwater photograph in the open ocean: a single steel shipping container sinking at an angle into the deep blue, a trail of bubbles rising from it, sun rays from the surface fading into darkness below. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-86af-71e3-94c7-e67f9182a697",
+ "url": "https://v3b.fal.media/files/b/0ab41faf/bZ5l0-Fz2ymrPYh4lfWSR_60ce98f57de849c08e7fc2ab7aca30dc.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

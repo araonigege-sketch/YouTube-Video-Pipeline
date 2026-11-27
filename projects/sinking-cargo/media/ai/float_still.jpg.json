@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Aerial drone view of five lost shipping containers floating low in the open ocean after a storm, colorful steel boxes half-submerged in deep blue swell, white foam around them, no ship in sight, soft overcast light. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-86de-7ea0-a2d9-85482ff8f665",
+ "url": "https://v3b.fal.media/files/b/0ab41faf/A7iAqQpOj_CblDyj0Q1Wb_32b99f2db11643e292e34021c9f30614.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

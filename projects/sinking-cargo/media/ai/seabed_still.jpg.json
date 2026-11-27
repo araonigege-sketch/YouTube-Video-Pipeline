@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Deep-sea floor in total darkness at 1,300 meters, seen from the camera of a remotely operated vehicle (no equipment visible in frame): a steel 40-foot shipping container lying upside down on grey mud, its underside frame and corner fittings facing up, half sunk into the sediment, lit by a soft spotlight beam from above-left, marine snow drifting. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c16-777c-7691-b4a4-3e3728d5e25d",
+ "url": "https://v3b.fal.media/files/b/0ab41fb5/olfJsM1c2j7Pjwgb6zy2A_bb45abfe8eb54efdbcfc1a6f8337e8ac.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

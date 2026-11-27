@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Aerial documentary photograph of a large container ship broken into two separate halves in a storm on the open ocean. The bow section and the stern section float apart with a wide gap of churning grey sea between them, torn steel edges visible at each break, shipping containers stacked on both halves, some containers tilting. Dark heavy waves, wind-blown spray, overcast grey sky, natural light, realistic, sharp detail, no text.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c01-5bb3-76e0-8d8d-d0c2502a0963",
+ "url": "https://v3b.fal.media/files/b/0ab41f2b/Z4AzRAEuJNY25lq1mOBFx_eeb5fef0815f4de48f626292fcea28c7.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

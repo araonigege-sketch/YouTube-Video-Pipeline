@@ -60,6 +60,10 @@ def credits(P: Path) -> str:
                     line = f"{arch[k]['title']}: {arch[k]['credit']} {arch[k]['page']}".rstrip()
                     if line not in lines:                      # the same photo can be used from two downloads
                         lines.append(line)
+    if any(str(s.get("src", "")).startswith("ai/") for s in edit["shots"]):
+        lines += ["", "AI RECONSTRUCTIONS",
+                  "A few shots of events no camera recorded are AI-generated reconstructions (fal.ai: Seedream 4 and Kling 2.1), "
+                  "labelled \"AI reconstruction\" on screen. All other footage and photos are real."]
     for extra in edit.get("credits_extra", []):
         lines.append(extra)
     if ep.get("hashtags"):

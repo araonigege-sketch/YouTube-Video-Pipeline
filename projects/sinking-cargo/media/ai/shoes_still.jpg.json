@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Thousands of unbranded sneakers floating on the surface of a grey open ocean, spilling from a broken-open shipping container floating among them, close aerial view, choppy swell, overcast light. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-86ca-7862-b9f1-af144bb99ec4",
+ "url": "https://v3b.fal.media/files/b/0ab41faf/bST5lvQzOJr1ybQw4tOZ-_3527eb29650c4d04b28625278eeae93c.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

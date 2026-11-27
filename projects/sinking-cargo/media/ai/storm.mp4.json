@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/kling-video/v2.1/master/image-to-video",
+ "args": {
+  "prompt": "The giant ship pitches down into a huge wave, white water explodes over the bow and blows across the containers, the camera tracks alongside slowly. Realistic heavy-sea motion.",
+  "image_url": "file:/home/user/youtube-video-pipeline/projects/sinking-cargo/media/ai/storm_still.jpg",
+  "duration": "5",
+  "negative_prompt": "blur, distort, morphing, warping, text, logo, cartoon",
+  "cfg_scale": 0.5
+ },
+ "request_id": "01a21c17-1b11-77f2-b95d-3f2afff777f4",
+ "url": "https://v3b.fal.media/files/b/0ab41fc9/dVDildocmZm9Vwjs4sG7z_5ZI7IKq4.mp4",
+ "generated": "fal.ai (AI-generated)"
+}

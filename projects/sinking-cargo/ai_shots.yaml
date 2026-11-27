@@ -1,0 +1,44 @@
+# fal.ai backup shots for ep2 (owner, 2026-11-27): only moments real sources can't show.
+# Each: a Seedream 4 still (2560x1440), reviewed, then animated with Kling 2.1 Master (5 s, 1080p).
+# Build: python projects/sinking-cargo/ai_build.py [stills|videos] [name ...]
+style: "Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names."
+shots:
+  crack:
+    still: "Aerial documentary photograph of a large container ship broken into two separate halves in a storm on the open ocean. The bow section and the stern section float apart with a wide gap of churning grey sea between them, torn steel edges visible at each break, shipping containers stacked on both halves, some containers tilting. Dark heavy waves, wind-blown spray, overcast grey sky."
+    motion: "Slow cinematic drone push-in. Heavy storm waves roll and crash between the two broken halves of the container ship, spray blows in the wind, the halves heave on the swell and drift slightly apart. Realistic ocean motion, no new objects."
+  storm:
+    still: "Dramatic low aerial at dusk of a giant fully loaded container ship ploughing through a violent storm on the open ocean, a huge wave bursting white over the bow, spray blowing across the container stacks, dark churning sea, heavy storm clouds, deck lights glowing."
+    motion: "The giant ship pitches down into a huge wave, white water explodes over the bow and blows across the containers, the camera tracks alongside slowly. Realistic heavy-sea motion."
+  float:
+    still: "Aerial drone view of five lost shipping containers floating low in the open ocean after a storm, colorful steel boxes half-submerged in deep blue swell, white foam around them, no ship in sight, soft overcast light."
+    motion: "Slow descending drone orbit over the floating containers as they rise and fall on the ocean swell, water washing over their tops. Realistic water motion."
+  sink:
+    still: "Underwater photograph in the open ocean: a single steel shipping container sinking at an angle into the deep blue, a trail of bubbles rising from it, sun rays from the surface fading into darkness below."
+    motion: "The container sinks slowly downward away from the camera into the dark blue depth, bubbles rising, light rays shimmering. Realistic underwater motion."
+  shoes:
+    still: "Thousands of unbranded sneakers floating on the surface of a grey open ocean, spilling from a broken-open shipping container floating among them, close aerial view, choppy swell, overcast light."
+    motion: "The sneakers drift and bob on the swell, spreading out from the broken container, slow drone push-in. Realistic water motion."
+  ducks:
+    still: "Thousands of small plastic bath toys, yellow ducks, red beavers, blue turtles and green frogs, floating together on the dark choppy North Pacific Ocean, close aerial view, cold grey light, a few scattered far across the swell."
+    motion: "The bath toys bob and drift apart on the rolling swell, slow drone glide over them. Realistic water motion."
+  beach:
+    still: "Wide shot of a pebble beach beneath tall cliffs on the south coast of England in winter, several damaged shipping containers washed up on the shore, cargo scattered on the stones: wooden wine barrels, cardboard boxes, a few motorcycles on their sides; a large stricken container ship listing offshore in a grey sea, overcast January light."
+    motion: "Slow lateral drone move along the beach, small waves wash in around the containers and scattered cargo. Realistic motion."
+  bikes:
+    still: "Close shot of several brand-new unbranded motorcycles lying on their sides on a wet pebble beach beside a broken-open shipping container, a wave washing in around the wheels, grey winter light, cliffs in soft focus behind."
+    motion: "A wave washes in over the pebbles and around the motorcycles and retreats, slow push-in. Realistic motion."
+  seabed:
+    still: "Deep-sea floor in total darkness at 1,300 meters, seen from the camera of a remotely operated vehicle (no equipment visible in frame): a steel 40-foot shipping container lying upside down on grey mud, its underside frame and corner fittings facing up, half sunk into the sediment, lit by a soft spotlight beam from above-left, marine snow drifting."
+    motion: "The ROV lights glide slowly along the upside-down container, marine snow drifting through the beams. Realistic deep-sea motion."
+  tyres:
+    still: "Pitch-dark deep-sea floor at 1,280 meters, no water surface visible, no coral: an old rusted shipping container resting on grey mud with its doors open, hundreds of bare black car tyres (no wheels) spilling out onto the seabed, pale deep-sea anemones and a few sea stars settled on the steel, lit only by a soft spotlight beam from above-left, marine snow drifting, darkness all around."
+    motion: "Slow ROV push-in toward the open container doors and the tyres, marine snow drifting through the light. Realistic deep-sea motion."
+  ancient:
+    still: "An ancient Greek merchant sailing ship with a single square sail fighting a violent storm on the Aegean Sea, clay amphorae lashed on deck, sailors struggling with ropes, towering dark waves, rain, lightning in the distance, historically accurate."
+    motion: "The ancient ship rolls heavily in the storm waves, the sail strains, spray sweeps across the deck. Realistic motion."
+  jettison:
+    still: "On the deck of an ancient Greek wooden merchant ship in a storm, sailors heaving clay amphorae and sacks of cargo over the side into the foaming waves, rain and spray, historically accurate clothing, dramatic cinematic light."
+    motion: "Sailors throw an amphora over the rail into the waves, the deck tilts with the swell, rain blows across. Realistic motion."
+  stern:
+    still: "Aerial view of the stern half of a broken container ship sinking into the open ocean, only the white bridge and funnel still above the water, loose shipping containers floating around it, grey calm swell, overcast."
+    motion: "The stern section slowly slips deeper under the water, the bridge sinking, air and foam bursting up, containers drifting. Slow drone hold. Realistic motion."

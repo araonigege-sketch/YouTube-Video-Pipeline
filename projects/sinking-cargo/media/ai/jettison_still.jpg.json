@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "On the deck of an ancient Greek wooden merchant ship in a storm, sailors heaving clay amphorae and sacks of cargo over the side into the foaming waves, rain and spray, historically accurate clothing, dramatic cinematic light. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c15-f234-7a51-b32a-d9dbc1e3b63f",
+ "url": "https://v3b.fal.media/files/b/0ab41fb1/3_UIGjtGJG5vY5w1I-IAi_40f7b46e067c4d27814433471e9d19ab.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

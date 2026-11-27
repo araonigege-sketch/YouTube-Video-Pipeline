@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Aerial view of the stern half of a broken container ship sinking into the open ocean, only the white bridge and funnel still above the water, loose shipping containers floating around it, grey calm swell, overcast. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c16-0ff8-7080-b725-684d3eb38139",
+ "url": "https://v3b.fal.media/files/b/0ab41fb2/SwflBZCNdfbXvX1H9L3oG_ae973f7f549741d4843a3693d4b4f8c8.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

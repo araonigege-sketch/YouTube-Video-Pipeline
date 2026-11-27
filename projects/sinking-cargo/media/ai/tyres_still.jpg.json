@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/bytedance/seedream/v4/text-to-image",
+ "args": {
+  "prompt": "Pitch-dark deep-sea floor at 1,280 meters, no water surface visible, no coral: an old rusted shipping container resting on grey mud with its doors open, hundreds of bare black car tyres (no wheels) spilling out onto the seabed, pale deep-sea anemones and a few sea stars settled on the steel, lit only by a soft spotlight beam from above-left, marine snow drifting, darkness all around. Photoreal documentary cinematography, natural light, realistic scale and physics, sharp detail, no text, no logos, no brand names.",
+  "image_size": {
+   "width": 2560,
+   "height": 1440
+  }
+ },
+ "request_id": "01a21c16-ca20-7e41-ac60-f36df1b90e11",
+ "url": "https://v3b.fal.media/files/b/0ab41fb7/fRHks6jmbLxuNZfzw2GAY_ca070483e0354c5693007805e2013d99.jpg",
+ "generated": "fal.ai (AI-generated)"
+}

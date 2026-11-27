@@ -1,0 +1,13 @@
+{
+ "model": "fal-ai/flux-pro/v1.1-ultra",
+ "args": {
+  "prompt": "Cinematic aerial photograph, a large loaded container ship cracking in half amidships in a violent storm on the open Indian Ocean, hull split open with a jagged gap across the deck, stacks of colorful shipping containers tilting toward the crack, huge dark waves and white spray, heavy grey storm clouds, overcast diffuse light, documentary realism, shot on ARRI Alexa, 35mm, high detail, no text, no logos",
+  "aspect_ratio": "16:9",
+  "raw": true,
+  "output_format": "jpeg",
+  "safety_tolerance": "2"
+ },
+ "request_id": "01a21c00-e325-78b3-9666-7c7c02f9fa0f",
+ "url": "https://v3b.fal.media/files/b/0ab41f27/kWPzHpkfRBR4RW-u6GYpO_0d629b2bc57346d0b5a21cb000b183d9.jpg",
+ "generated": "fal.ai (AI-generated)"
+}
